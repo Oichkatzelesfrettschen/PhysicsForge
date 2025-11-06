@@ -48,6 +48,34 @@ DOMAIN_PRIORITIES: list[tuple[str, list[str]]] = [
 ]
 
 
+def _read_content_worker(pstr: str, max_lines: int | None) -> tuple[str, int]:
+    try:
+        with open(pstr, "r", encoding="utf-8", errors="strict") as f:
+            if max_lines is not None:
+                buf: list[str] = []
+                for i, line in enumerate(f, 1):
+                    buf.append(line)
+                    if i >= max_lines:
+                        break
+                return "".join(buf), 0
+            return f.read(), 0
+    except Exception:
+        return "", 1
+
+
+def _worker_process(args: tuple[int, tuple[str, str], int | None]) -> tuple[int, list[dict], int, str, float, float, float]:
+    idx, (pstr, fw), max_lines = args
+    _rs = time.perf_counter()
+    content, skipped = _read_content_worker(pstr, max_lines)
+    read_elapsed = time.perf_counter() - _rs
+    if not content:
+        return idx, [], skipped, fw, read_elapsed, 0.0, 0.0
+    _es = time.perf_counter()
+    entries, classify_e = EquationExtractor._extract_entries_from_content(content, fw, os.path.basename(pstr))
+    extract_elapsed = time.perf_counter() - _es
+    return idx, entries, skipped, fw, read_elapsed, extract_elapsed, classify_e
+
+
 class EquationExtractor:
     """Extracts equations from text files and LaTeX modules.
 
@@ -417,7 +445,8 @@ class EquationExtractor:
         """
         return re.search(r"(=|\+|\-|\*|/|\^|\\(sum|int|frac|alpha|beta|gamma|sqrt|log|exp|partial|nabla))", expr) is not None
 
-    def _is_valid_equation(self, eq_str: str) -> bool:  # used in tests
+    @staticmethod
+    def _is_valid_equation(eq_str: str) -> bool:  # used in tests
         """Validates if a string is a plausible equation.
 
         This method applies a series of heuristics to determine if a given
@@ -434,7 +463,7 @@ class EquationExtractor:
             return False
         if eq_str.startswith(("- [", "* [", "C:\\Users\\")):
             return False
-        if not self._has_math(eq_str):
+        if not EquationExtractor._has_math(eq_str):
             return False
         prose_indicators = [
             " the ", " and ", " or ", " is ", " are ", " that ",
@@ -488,7 +517,7 @@ class EquationExtractor:
                         eq_text = m.group(1).strip()
                     else:
                         eq_text = m.group(0).strip()
-                    if not self._is_valid_equation(eq_text):
+                    if not EquationExtractor._is_valid_equation(eq_text):
                         continue
                     normalized = self.normalize_equation(eq_text)
                     self.metrics['candidate_equations'] = int(self.metrics.get('candidate_equations', 0)) + 1
@@ -515,7 +544,8 @@ class EquationExtractor:
                         entry["RelatedEqs"] = f"module:{self.latex_map[tex_key]}"
                     self.equations.append(entry)
 
-    def _extract_entries_from_content(self, content: str, framework_type: str, filename: str) -> tuple[list[dict], float]:
+    @staticmethod
+    def _extract_entries_from_content(content: str, framework_type: str, filename: str) -> tuple[list[dict], float]:
         """Extracts equation entries from a string of content.
 
         This method is called by `process_dirs` to perform the actual
@@ -534,6 +564,7 @@ class EquationExtractor:
         classify_elapsed = 0.0
         lines = content.splitlines()
         patterns = [
+            (r"\$\$([^\$]+?)\$\$", "display_math"),  # Extract $$...$$ blocks
             (r"Energy\s+relation:\s*(.+)", "key_relation"),
             (r"^\s*([A-Za-z_][A-Za-z0-9_\s]*)\s*[=:]\s*(.+)$", "explicit"),
             (r"(.+?)\s*=\s*(.+)", "assignment"),
@@ -550,12 +581,13 @@ class EquationExtractor:
                 except re.error:
                     continue
                 for m in matches:
-                    eq_text = m.group(1).strip() if kind in ("governing", "key_relation") else m.group(0).strip()
-                    if not self._is_valid_equation(eq_text):
+                    # Handle new 'display_math' kind
+                    eq_text = m.group(1).strip() if kind in ("governing", "key_relation", "display_math") else m.group(0).strip()
+                    if not EquationExtractor._is_valid_equation(eq_text):
                         continue
                     _cs = time.perf_counter()
-                    descr = self._extract_description(lines, line_num)
-                    domain = self._classify_domain(eq_text, descr)
+                    descr = EquationExtractor._extract_description(lines, line_num)
+                    domain = EquationExtractor._classify_domain(eq_text, descr)
                     classify_elapsed += (time.perf_counter() - _cs)
                     results.append({
                         "Equation": eq_text,
@@ -564,7 +596,7 @@ class EquationExtractor:
                         "SourceDoc": filename,
                         "SourceLine": line_num,
                         "Description": descr,
-                        "ExperimentalTest": self._suggest_experiment(eq_text, descr),
+                        "ExperimentalTest": EquationExtractor._suggest_experiment(eq_text, descr),
                     })
         return results, classify_elapsed
 
@@ -687,34 +719,13 @@ class EquationExtractor:
 
         # Parallel path (optional)
         if (parallel_workers or 0) > 0 and candidates:
-            from concurrent.futures import ThreadPoolExecutor
-            # local extractor to avoid modifying global state in threads
-            def read_content(pstr: str) -> tuple[str, int]:
-                try:
-                    with open(pstr, "r", encoding="utf-8", errors="strict") as f:
-                        if max_lines is not None:
-                            buf: list[str] = []
-                            for i, line in enumerate(f, 1):
-                                buf.append(line)
-                                if i >= max_lines:
-                                    break
-                            return "".join(buf), 0
-                        return f.read(), 0
-                except Exception:
-                    return "", 1
+            import multiprocessing as mp
+            from functools import partial
 
-            def worker(idx_path_fw: tuple[int, tuple[str, str]]):
-                idx, (pstr, fw) = idx_path_fw
-                # measure read
-                _rs = time.perf_counter()
-                content, skipped = read_content(pstr)
-                read_elapsed = time.perf_counter() - _rs
-                if not content:
-                    return idx, [], skipped, fw, read_elapsed, 0.0, 0.0
-                _es = time.perf_counter()
-                entries, classify_e = self._extract_entries_from_content(content, fw, os.path.basename(pstr))
-                extract_elapsed = time.perf_counter() - _es
-                return idx, entries, skipped, fw, read_elapsed, extract_elapsed, classify_e
+            worker_func = partial(_worker_process, max_lines=max_lines)
+
+            # Map inputs for workers
+            worker_inputs = [(idx, item) for idx, item in enumerate(candidates)]
 
             results_by_index: list[list[dict]] = [[] for _ in candidates]
             skipped_decode_total = 0
@@ -723,20 +734,23 @@ class EquationExtractor:
             read_total = 0.0
             extract_total = 0.0
             classify_total = 0.0
-            with ThreadPoolExecutor(max_workers=parallel_workers) as ex:
-                futures = []
-                for idx, item in enumerate(candidates):
-                    futures.append(ex.submit(worker, (idx, item)))
-                for fut in futures:
-                    idx, entries, skipped, fw, read_e, extract_e, classify_e = fut.result()
+
+            with mp.Pool(processes=parallel_workers) as pool:
+                # Use map to maintain order and simplify processing
+                results = pool.map(worker_func, worker_inputs)
+
+                for idx, entries, skipped, fw, read_e, extract_e, classify_e in results:
                     results_by_index[idx] = entries
                     skipped_decode_total += int(skipped)
+
                     timing_fw[fw] = timing_fw.get(fw, 0.0) + float(read_e + extract_e)
                     if fw not in timing_fw_break:
                         timing_fw_break[fw] = {'read_s': 0.0, 'extract_s': 0.0, 'classify_s': 0.0}
+
                     timing_fw_break[fw]['read_s'] += float(read_e)
                     timing_fw_break[fw]['extract_s'] += float(extract_e)
                     timing_fw_break[fw]['classify_s'] += float(classify_e)
+
                     read_total += float(read_e)
                     extract_total += float(extract_e)
                     classify_total += float(classify_e)
@@ -804,58 +818,48 @@ class EquationExtractor:
                             subset.append(line)
                             if i >= max_lines:
                                 break
-                    tmp = Path(self.base_dir) / "data" / "fixtures"
-                    tmp.mkdir(parents=True, exist_ok=True)
-                    tmp_path = tmp / ("_slice_" + os.path.basename(pstr))
-                    try:
-                        tmp_path.write_text("".join(subset), encoding="utf-8")
-                        # Read from slice (counting as read)
-                        _rs = time.perf_counter()
-                        content = "".join(subset)
-                        read_e = time.perf_counter() - _rs
-                        _es = time.perf_counter()
-                        entries, classify_e = self._extract_entries_from_content(content, fw, os.path.basename(pstr))
-                        extract_e = time.perf_counter() - _es
-                        # Integrate entries deterministically now
-                        for entry in entries:
-                            normalized = self.normalize_equation(entry["Equation"])
-                            if normalized in self.seen_equations:
-                                continue
-                            self.seen_equations.add(normalized)
-                            eq_id = self._generate_eq_id(entry["Framework"])
-                            tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
-                            related = f"module:{self.latex_map[tex_key]}" if tex_key in self.latex_map else ""
-                            entry_full = {
-                                "EqID": eq_id,
-                                "Equation": entry["Equation"],
-                                "Framework": entry["Framework"],
-                                "Domain": entry["Domain"],
-                                "SourceDoc": entry["SourceDoc"],
-                                "SourceLine": entry["SourceLine"],
-                                "Description": entry["Description"],
-                                "VerificationStatus": "Theoretical",
-                                "RelatedEqs": related,
-                                "ExperimentalTest": entry["ExperimentalTest"],
-                            }
-                            self.equations.append(entry_full)
-                        candidate_total_serial += len(entries)
-                        timing_fw_serial[fw] = timing_fw_serial.get(fw, 0.0) + (read_e + extract_e)
-                        if fw not in timing_fw_break_serial:
-                            timing_fw_break_serial[fw] = {'read_s': 0.0, 'extract_s': 0.0, 'classify_s': 0.0}
-                        timing_fw_break_serial[fw]['read_s'] += read_e
-                        timing_fw_break_serial[fw]['extract_s'] += extract_e
-                        timing_fw_break_serial[fw]['classify_s'] += float(classify_e)
-                        read_total_serial += read_e
-                        extract_total_serial += extract_e
-                        classify_total_serial += float(classify_e)
-                    except UnicodeDecodeError:
-                        print(f"Warning: Could not encode temporary file as UTF-8 (non-ASCII content?): {tmp_path}")
-                        self.had_errors = True
-                        continue
-                    except IOError as e:
-                        print(f"Error writing temporary file {tmp_path}: {e}")
-                        self.had_errors = True
-                        continue
+                    
+                    # Read from slice (counting as read)
+                    _rs = time.perf_counter()
+                    content = "".join(subset)
+                    read_e = time.perf_counter() - _rs
+                    _es = time.perf_counter()
+                    entries, classify_e = self._extract_entries_from_content(content, fw, os.path.basename(pstr))
+                    extract_e = time.perf_counter() - _es
+                    
+                    # Integrate entries deterministically now
+                    for entry in entries:
+                        normalized = self.normalize_equation(entry["Equation"])
+                        if normalized in self.seen_equations:
+                            continue
+                        self.seen_equations.add(normalized)
+                        eq_id = self._generate_eq_id(entry["Framework"])
+                        tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
+                        related = f"module:{self.latex_map[tex_key]}" if tex_key in self.latex_map else ""
+                        entry_full = {
+                            "EqID": eq_id,
+                            "Equation": entry["Equation"],
+                            "Framework": entry["Framework"],
+                            "Domain": entry["Domain"],
+                            "SourceDoc": entry["SourceDoc"],
+                            "SourceLine": entry["SourceLine"],
+                            "Description": entry["Description"],
+                            "VerificationStatus": "Theoretical",
+                            "RelatedEqs": related,
+                            "ExperimentalTest": entry["ExperimentalTest"],
+                        }
+                        self.equations.append(entry_full)
+                    candidate_total_serial += len(entries)
+                    timing_fw_serial[fw] = timing_fw_serial.get(fw, 0.0) + (read_e + extract_e)
+                    if fw not in timing_fw_break_serial:
+                        timing_fw_break_serial[fw] = {'read_s': 0.0, 'extract_s': 0.0, 'classify_s': 0.0}
+                    timing_fw_break_serial[fw]['read_s'] += read_e
+                    timing_fw_break_serial[fw]['extract_s'] += extract_e
+                    timing_fw_break_serial[fw]['classify_s'] += float(classify_e)
+                    read_total_serial += read_e
+                    extract_total_serial += extract_e
+                    classify_total_serial += float(classify_e)
+
                 except UnicodeDecodeError:
                     print(f"Warning: Could not decode file as UTF-8 (non-ASCII content?): {pstr}")
                     self.had_errors = True
@@ -1113,5 +1117,3 @@ if __name__ == "__main__":
 
     if extractor.had_errors:
         raise SystemExit(1)
-
-
