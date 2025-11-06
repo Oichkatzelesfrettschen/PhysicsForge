@@ -1,16 +1,30 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "$0")"
-MAIN="../main.tex"
-LOG_DIR="../logs"
+
+# --- Start Harmonized Block ---
+
+# 1. Use the 'feature' branch logic to cd to the project root (up one level).
+#    This is cleaner as all build files (.aux, .log, etc.) will be
+#    created in the project root, not in the script directory.
+cd "$(dirname "$0")/.."
+
+# 2. Define MAIN relative to the new CWD (the project root).
+MAIN="main.tex"
+
+# 3. Adopt the 'main' branch's logging enhancements, but *adapt* the
+#    paths to be relative to the new CWD (the project root).
+LOG_DIR="logs"
 mkdir -p "$LOG_DIR"
 LATEXMK_LOG="$LOG_DIR/latexmk_compile.log"
 PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"
 
 echo "Starting compilation of $MAIN..."
 
+# --- End Harmonized Block ---
+
 if command -v latexmk >/dev/null 2>&1; then
   echo "Using latexmk for compilation."
+  # Note: Redirecting both stdout and stderr to the log file
   if latexmk -pdf "$MAIN" > "$LATEXMK_LOG" 2>&1; then
     echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
   else
@@ -25,6 +39,8 @@ else
   fi
 
   echo "Using pdflatex for compilation."
+  # Note: Redirecting both stdout and stderr to the log file.
+  # Running pdflatex twice is necessary to resolve references/TOC.
   if pdflatex -interaction=nonstopmode "$MAIN" > "$PDFLATEX_LOG" 2>&1 && \
      pdflatex -interaction=nonstopmode "$MAIN" >> "$PDFLATEX_LOG" 2>&1; then
     echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
