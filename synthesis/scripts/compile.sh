@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "$0")"
-MAIN="../main.tex"
+cd "$(dirname "$0")/.."
+MAIN="main.tex"
 if command -v latexmk >/dev/null 2>&1; then
   latexmk -pdf "$MAIN"
 else
