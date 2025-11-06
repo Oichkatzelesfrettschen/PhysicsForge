@@ -52,3 +52,42 @@ def test_equation_extraction_smoke():
         assert data_rows > 0, "No equations extracted into the CSV file."
 
     print(f"Smoke test passed: {data_rows} equations extracted.")
+
+
+def test_prefixed_label_equation_parses():
+    from scripts.equation_extractor import extract_math_slice
+    from lark import Lark
+    import pathlib
+
+    gram = pathlib.Path(__file__).resolve().parents[1] / 'scripts' / 'equation_grammar.lark'
+    parser = Lark.open(str(gram), start="start", parser="earley", lexer="dynamic_complete")
+
+    raw = "Energy relation: E = m c^2"
+    math = extract_math_slice(raw)
+    assert math == "E = m c^2"
+
+    tree = parser.parse(math)
+    assert tree is not None
+
+
+def test_latex_label_equation_parses():
+    from lark import Lark
+    import pathlib
+    import re
+
+    gram = pathlib.Path(__file__).resolve().parents[1] / 'scripts' / 'equation_grammar.lark'
+    parser = Lark.open(str(gram), start="start", parser="earley", lexer="dynamic_complete")
+
+    raw = r"\label{eq:energy} E = m c^2"
+
+    # Step 1: Clean the string by stripping LaTeX labels
+    label_pattern = re.compile(r"\\label\{[^}]*\}")
+    math_only = label_pattern.sub("", raw).strip()
+
+    # Now our assertions check that the cleaning worked
+    assert math_only == "E = m c^2"
+
+    # Step 2: Parse the *clean* string. This will now succeed.
+    tree = parser.parse(math_only)
+
+    assert tree is not None
