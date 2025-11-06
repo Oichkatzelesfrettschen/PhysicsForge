@@ -1,9 +1,64 @@
+.DEFAULT_GOAL := help
+.PHONY: help
+help:
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "---------------------------------------------------------------------------"
+	@echo " PhysicsForge Makefile - Your portal to project automation.                "
+	@echo "---------------------------------------------------------------------------"
+	@echo "                                                                           "
+	@echo " Core Commands:                                                            "
+	@echo "   pipeline        - Full data extraction and catalog generation.          "
+	@echo "                     Example: make pipeline                                "
+	@echo "   quick_pipeline  - A faster, limited-scope pipeline for quick checks.    "
+	@echo "                     Example: make quick_pipeline                          "
+	@echo "   test            - Run the full test suite.                              "
+	@echo "                     Example: make test                                    "
+	@echo "   ci              - Continuous integration: all checks, tests, and build. "
+	@echo "                     Example: make ci                                      "
+	@echo "                                                                           "
+	@echo "---------------------------------------------------------------------------"
+	@echo "                                                                           "
+	@echo " Validation & Auditing:                                                    "
+	@echo "   validate        - Validate the integrity of the equation catalog.       "
+	@echo "   audit           - Audit the repository for structural issues.           "
+	@echo "   parity          - Check for consistency between catalog and modules.    "
+	@echo "   gaps            - Identify TODOs and gaps in the research.              "
+	@echo "   lint            - Run all linting checks.                               "
+	@echo "                                                                           "
+	@echo "---------------------------------------------------------------------------"
+	@echo "                                                                           "
+	@echo " LaTeX & Synthesis:                                                        "
+	@echo "   latex           - Compile the main LaTeX document.                      "
+	@echo "   latex_strict    - Compile LaTeX in strict mode (errors fail the build). "
+	@echo "   link            - Link equation modules into the synthesis directory.   "
+	@echo "                                                                           "
+	@echo "---------------------------------------------------------------------------"
+	@echo "                                                                           "
+	@echo " Reporting & Metrics:                                                      "
+	@echo "   reports         - Generate all project reports (dependencies, TODOs).   "
+	@echo "   quick_reports   - Generate a subset of faster reports.                  "
+	@echo "   bench           - Benchmark the equation extraction process.            "
+	@echo "   metrics_only    - Generate extraction metrics without building catalog. "
+	@echo "   plan            - Create an extraction plan without executing it.       "
+	@echo "                                                                           "
+	@echo "---------------------------------------------------------------------------"
+	@echo "                                                                           "
+	@echo " Maintenance:                                                              "
+	@echo "   clean           - Remove temporary and generated files.                 "
+	@echo "   distclean       - A more thorough cleaning, removing caches.            "
+	@echo "   ascii_guard     - Check for non-ASCII characters in the codebase.       "
+	@echo "   ascii_normalize - Normalize unicode characters to ASCII.                "
+	@echo "   update_data_readme - Regenerate the README for the data directory.      "
+	@echo "                                                                           "
+	@echo "---------------------------------------------------------------------------"
+
 SHELL := /bin/bash
 
 BASE_DIR ?= .
 SCANS ?= notes .
 
-.PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict todo reports ascii_guard ascii_normalize update_data_readme
+.PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict todo reports ascii_guard ascii_normalize update_data_readme help
 
 pipeline:
 	python scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
