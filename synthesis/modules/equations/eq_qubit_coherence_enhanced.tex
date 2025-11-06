@@ -1,0 +1,34 @@
+%==============================================================================
+% Equation: Scalar-Enhanced Qubit Coherence Time
+% Source: Alpha001.06 (ZPE coherence sections), Alpha003.02 (quantum stability)
+% Framework: Unified | Domain: QM | Status: Experimental
+%==============================================================================
+\begin{equation}
+  T_2^{\text{enhanced}} = T_2^{(0)} \exp\left(\frac{g^2 \phi^2 \tau}{\hbar}\right)
+  \eqtag{U}{QM}{E}
+  \label{eq:qubit:coherence-enhanced}
+\end{equation}
+%
+% where:
+%   T_2^{enhanced} = enhanced decoherence time (s)
+%   T_2^{(0)}      = baseline decoherence time without scalar coupling (s)
+%   g              = scalar field coupling constant (dimensionless)
+%   phi            = scalar field amplitude (energy units)
+%   tau            = interaction timescale (s)
+%   hbar           = reduced Planck constant
+%
+% Physical Interpretation:
+% Scalar field coupling provides additional coherence protection by correlating
+% environmental fluctuations with the qubit state. Exponential enhancement arises
+% from constructive interference between scalar-mediated and direct decoherence
+% channels when g^2*phi^2 > environmental coupling strength.
+%
+% Experimental Validation:
+% - Superconducting qubits: Expected 2-5x enhancement at phi ~ 10^{-3} eV
+% - Ion traps: Expected 3-8x enhancement with laser-induced scalar fields
+% - Photonic systems: Expected 1.5-3x enhancement via optical cavities
+%
+% Dependencies: Ch01 (quantum mechanics), Ch07 (scalar field theory),
+%               Ch22 (experimental protocols)
+% Cross-references: Ch27 (quantum computing applications)
+%==============================================================================

@@ -1,0 +1,278 @@
+%==============================================================================
+% PREAMBLE: LaTeX Synthesis Project
+% Project: Unified Field Theory - Aether, Genesis, Pais Frameworks
+% Date: 2025-10-21
+% Purpose: Package declarations, macros, custom commands
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% ENCODING AND FONTS
+%------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+%------------------------------------------------------------------------------
+% MATHEMATICS
+%------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}      % Dirac notation, derivatives
+
+%------------------------------------------------------------------------------
+% GRAPHICS AND FIGURES
+%------------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing,shapes.geometric}
+
+%------------------------------------------------------------------------------
+% TABLES
+%------------------------------------------------------------------------------
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+
+%------------------------------------------------------------------------------
+% COLORS
+%------------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{aetherblue}{RGB}{0,102,204}
+\definecolor{genesisgreen}{RGB}{34,139,34}
+\definecolor{paisred}{RGB}{204,0,0}
+\definecolor{unifiedpurple}{RGB}{128,0,128}
+
+%------------------------------------------------------------------------------
+% UNITS AND FORMATTING
+%------------------------------------------------------------------------------
+\usepackage{siunitx}
+\sisetup{
+  separate-uncertainty = true,
+  multi-part-units = single
+}
+
+%------------------------------------------------------------------------------
+% CROSS-REFERENCING AND HYPERLINKS
+%------------------------------------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Unified Field Theory Synthesis},
+  pdfauthor={Research Team},
+  pdfsubject={Theoretical Physics},
+  pdfkeywords={E8, Aether, Genesis, Pais, Unified Theory}
+}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+%------------------------------------------------------------------------------
+% BIBLIOGRAPHY
+%------------------------------------------------------------------------------
+\usepackage{natbib}
+
+%------------------------------------------------------------------------------
+% INDEX
+%------------------------------------------------------------------------------
+\usepackage{makeidx}
+\makeindex
+
+%------------------------------------------------------------------------------
+% CODE LISTINGS (for appendix simulation code)
+%------------------------------------------------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!60!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single
+}
+
+%------------------------------------------------------------------------------
+% CUSTOM THEOREM ENVIRONMENTS
+%------------------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: FRAMEWORK ATTRIBUTION
+%------------------------------------------------------------------------------
+\newcommand{\aetherattr}{\textsuperscript{\color{aetherblue}[A]}}
+\newcommand{\genesisattr}{\textsuperscript{\color{genesisgreen}[G]}}
+\newcommand{\paisattr}{\textsuperscript{\color{paisred}[P]}}
+\newcommand{\unifiedattr}{\textsuperscript{\color{unifiedpurple}[U]}}
+\newcommand{\mathgenericattr}{\textsuperscript{[M]}}
+
+% Inline framework names (for narrative text)
+\newcommand{\aether}{\textcolor{aetherblue}{Aether}}
+\newcommand{\genesis}{\textcolor{genesisgreen}{Genesis}}
+\newcommand{\pais}{\textcolor{paisred}{Pais}}
+\newcommand{\unified}{\textcolor{unifiedpurple}{Unified}}
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: EQUATION TAGS
+%------------------------------------------------------------------------------
+% Usage: \eqtag{FRAMEWORK}{DOMAIN}{STATUS}
+% FRAMEWORK: A (Aether), G (Genesis), P (Pais), M (Math), U (Unified)
+% DOMAIN: QM, GR, EM, MATH, COSMO, EXP
+% STATUS: T (Theoretical), E (Experimental), S (Speculative), V (Validated)
+\newcommand{\eqtag}[3]{%
+  \tag*{\scriptsize\color{gray}[#1:#2:#3]}%
+}
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: MATHEMATICAL OPERATORS
+%------------------------------------------------------------------------------
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Det}{Det}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Alt}{Alt}
+\DeclareMathOperator{\sgn}{sgn}
+% \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Span}{span}
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: SPECIAL SETS AND SPACES
+%------------------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}        % Real numbers
+\newcommand{\C}{\mathbb{C}}        % Complex numbers
+\newcommand{\Q}{\mathbb{Q}}        % Rational numbers
+\newcommand{\Z}{\mathbb{Z}}        % Integers
+\newcommand{\N}{\mathbb{N}}        % Natural numbers
+\newcommand{\HH}{\mathbb{H}}       % Quaternions
+\newcommand{\OO}{\mathbb{O}}       % Octonions
+\newcommand{\PP}{\mathbb{P}}       % Projective space or Pathions
+\newcommand{\M}{\mathbb{M}}        % Monster Group
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: PHYSICS NOTATION
+%------------------------------------------------------------------------------
+% \newcommand{\ket}[1]{\left| #1 \right\rangle}
+% \newcommand{\bra}[1]{\left\langle #1 \right|}
+% \newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+% \newcommand{\expval}[1]{\left\langle #1 \right\rangle}
+
+% \newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+% \newcommand{\dv}[2]{\frac{d #1}{d #2}}
+% \newcommand{\pdvsq}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: VECTOR CALCULUS
+%------------------------------------------------------------------------------
+% \renewcommand{\div}{\nabla \cdot}
+% \newcommand{\curl}{\nabla \times}
+% \newcommand{\grad}{\nabla}
+% \newcommand{\laplacian}{\nabla^2}
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: SPECIAL FUNCTIONS
+%------------------------------------------------------------------------------
+% \DeclareMathOperator{\erf}{erf}
+% \DeclareMathOperator{\erfc}{erfc}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\Li}{Li}           % Polylogarithm
+\DeclareMathOperator{\Ei}{Ei}           % Exponential integral
+\newcommand{\ee}{\mathrm{e}}            % Euler's number (exponential base)
+\newcommand{\imag}{\mathrm{i}}          % Imaginary unit
+
+%------------------------------------------------------------------------------
+% CUSTOM MACROS: FRAMEWORK-SPECIFIC
+%------------------------------------------------------------------------------
+% Aether framework
+\newcommand{\ZPE}{\text{ZPE}}
+\newcommand{\phiscalar}{\phi}
+\newcommand{\Laether}{\mathcal{L}_{\text{Aether}}}
+
+% Genesis framework
+\newcommand{\Kgenesis}{K_{\text{Genesis}}}
+\newcommand{\nodespace}{\mathcal{N}}
+\newcommand{\Lgenesis}{\mathcal{L}_{\text{Genesis}}}
+
+% Pais framework
+\newcommand{\GEM}{\text{GEM}}
+\newcommand{\Lpais}{\mathcal{L}_{\text{Pais}}}
+
+% Unified
+\newcommand{\Kunified}{K_{\text{unified}}}
+\newcommand{\Lunified}{\mathcal{L}_{\text{unified}}}
+
+%------------------------------------------------------------------------------
+% PAGE LAYOUT
+%------------------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=1.5in,
+  right=1.0in,
+  top=1.0in,
+  bottom=1.0in,
+  headheight=25.2232pt
+}
+
+%------------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+%------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\slshape \leftmark}
+\fancyhead[RO]{\slshape \rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%------------------------------------------------------------------------------
+% CHAPTER AND SECTION FORMATTING
+%------------------------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+%------------------------------------------------------------------------------
+% MISC PACKAGES
+%------------------------------------------------------------------------------
+\usepackage{tcolorbox}     % Colored boxes for examples and highlights
+\usepackage{lipsum}        % For placeholder text during development
+\usepackage{enumitem}      % Better control over lists
+\usepackage{caption}       % Better caption formatting
+\usepackage{subcaption}    % Subfigures
+
+%------------------------------------------------------------------------------
+% TOC DEPTH
+%------------------------------------------------------------------------------
+\setcounter{tocdepth}{2}     % Include subsections in TOC
+\setcounter{secnumdepth}{3}  % Number subsubsections
+
+%==============================================================================
+% END PREAMBLE
+%==============================================================================

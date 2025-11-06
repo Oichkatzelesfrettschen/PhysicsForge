@@ -1,0 +1,215 @@
+% fig_ch30_energy_comparison.tex
+% Author: Computernonymouse
+% Description: Logarithmic bar chart comparing energy requirements for various propulsion technologies
+% Shows the vast energy scales from chemical rockets to warp drives
+% Includes reference lines for cosmic energy scales
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,patterns,calc,decorations.pathreplacing,backgrounds}
+\usepgfplotslibrary{colorbrewer}
+
+% Define custom colors for different technology categories
+\definecolor{chemical}{RGB}{100,150,200}
+\definecolor{nuclear}{RGB}{200,150,50}
+\definecolor{antimatter}{RGB}{200,50,150}
+\definecolor{exotic}{RGB}{150,50,200}
+\definecolor{warpcolor}{RGB}{50,200,150}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[
+    ybar,
+    bar width=25pt,
+    width=16cm,
+    height=12cm,
+    ymode=log,
+    ymin=1e10,
+    ymax=1e75,
+    ytick={1e10,1e15,1e20,1e25,1e30,1e35,1e40,1e45,1e50,1e55,1e60,1e65,1e70,1e75},
+    yticklabels={
+        $10^{10}$,
+        $10^{15}$,
+        $10^{20}$,
+        $10^{25}$,
+        $10^{30}$,
+        $10^{35}$,
+        $10^{40}$,
+        $10^{45}$,
+        $10^{50}$,
+        $10^{55}$,
+        $10^{60}$,
+        $10^{65}$,
+        $10^{70}$,
+        $10^{75}$
+    },
+    ylabel={Energy Requirement [Joules]},
+    ylabel style={font=\large\bfseries},
+    xlabel={Propulsion Technology},
+    xlabel style={font=\large\bfseries},
+    xtick=data,
+    xticklabels={
+        Chemical\\Rocket,
+        Nuclear\\Rocket,
+        Antimatter\\Rocket,
+        Inertia\\Reduction,
+        Warp Drive\\(optimized),
+        Warp Drive\\(original)
+    },
+    x tick label style={
+        text width=2.5cm,
+        align=center,
+        font=\small
+    },
+    enlarge x limits=0.15,
+    title={{\Large\bfseries Energy Requirements for Interstellar Propulsion}\\[2mm]
+           {\normalsize Comparison of conventional and exotic technologies (1000 kg payload to Alpha Centauri)}},
+    title style={at={(0.5,1.08)}},
+    grid=major,
+    grid style={gray!20,dashed},
+    ymajorgrids=true,
+    legend pos=north west,
+    legend style={
+        draw=gray!40,
+        fill=white,
+        fill opacity=0.95,
+        font=\small,
+        row sep=2pt
+    },
+    clip=false,
+]
+
+% Chemical rocket
+\addplot[
+    fill=chemical,
+    draw=chemical!80!black,
+    line width=1pt,
+] coordinates {(0,1e12)};
+
+% Nuclear rocket
+\addplot[
+    fill=nuclear,
+    draw=nuclear!80!black,
+    line width=1pt,
+] coordinates {(1,1e15)};
+
+% Antimatter rocket
+\addplot[
+    fill=antimatter,
+    draw=antimatter!80!black,
+    line width=1pt,
+] coordinates {(2,1e18)};
+
+% Inertia reduction
+\addplot[
+    fill=exotic,
+    draw=exotic!80!black,
+    line width=1pt,
+] coordinates {(3,1e24)};
+
+% Warp drive (optimized)
+\addplot[
+    fill=warpcolor,
+    draw=warpcolor!80!black,
+    line width=1pt,
+] coordinates {(4,1e47)};
+
+% Warp drive (original)
+\addplot[
+    fill=warpcolor!60,
+    draw=warpcolor!60!black,
+    line width=1pt,
+] coordinates {(5,1e64)};
+
+% Add reference lines for cosmic energy scales
+\draw[thick,red!70,dashed] (axis cs:-0.5,5e20) -- (axis cs:5.5,5e20);
+\node[anchor=west,red!70,font=\small\bfseries] at (axis cs:5.6,5e20)
+    {Global annual energy ($5 \times 10^{20}$ J)};
+
+\draw[thick,orange!70,dashed] (axis cs:-0.5,1.8e47) -- (axis cs:5.5,1.8e47);
+\node[anchor=west,orange!70,font=\small\bfseries] at (axis cs:5.6,1.8e47)
+    {Solar mass-energy ($M_\odot c^2 = 1.8 \times 10^{47}$ J)};
+
+\draw[thick,purple!70,dashed] (axis cs:-0.5,1e70) -- (axis cs:5.5,1e70);
+\node[anchor=west,purple!70,font=\small\bfseries] at (axis cs:5.6,1e70)
+    {Observable universe ($\sim 10^{70}$ J)};
+
+% Add feasibility indicators
+\node[anchor=south,rotate=90,font=\footnotesize\bfseries,green!60!black]
+    at (axis cs:-0.35,1e12) {Feasible};
+\node[anchor=south,rotate=90,font=\footnotesize\bfseries,green!60!black]
+    at (axis cs:0.65,1e15) {Feasible};
+\node[anchor=south,rotate=90,font=\footnotesize\bfseries,yellow!80!black]
+    at (axis cs:1.65,1e18) {Challenging};
+\node[anchor=south,rotate=90,font=\footnotesize\bfseries,orange!80!black]
+    at (axis cs:2.65,1e24) {Speculative};
+\node[anchor=south,rotate=90,font=\footnotesize\bfseries,red!80!black]
+    at (axis cs:3.65,1e47) {Highly Speculative};
+\node[anchor=south,rotate=90,font=\footnotesize\bfseries,red!80!black]
+    at (axis cs:4.65,1e64) {Likely Impossible};
+
+% Add annotations for each bar with specific values
+\node[anchor=south,font=\footnotesize] at (axis cs:0,2e12) {$10^{12}$ J};
+\node[anchor=south,font=\footnotesize] at (axis cs:1,2e15) {$10^{15}$ J};
+\node[anchor=south,font=\footnotesize] at (axis cs:2,2e18) {$10^{18}$ J};
+\node[anchor=south,font=\footnotesize] at (axis cs:3,2e24) {$10^{24}$ J};
+\node[anchor=south,font=\footnotesize] at (axis cs:4,2e47) {$10^{47}$ J};
+\node[anchor=south,font=\footnotesize] at (axis cs:5,2e64) {$10^{64}$ J};
+
+\end{axis}
+
+% Add side panel with technology descriptions
+\begin{scope}[on background layer]
+    \node[
+        anchor=north west,
+        draw=black!40,
+        fill=white,
+        rounded corners,
+        text width=6cm,
+        align=left,
+        font=\footnotesize
+    ] at ([xshift=1cm,yshift=-1cm]current axis.north east) {
+        \textbf{Technology Assumptions:}\\[3mm]
+        \textbf{Chemical:} LOX/LH2, $I_{sp} = 450$s\\
+        Requires exponential fuel mass\\[2mm]
+        \textbf{Nuclear:} Fission/fusion, $I_{sp} = 3000$s\\
+        Limited by reactor mass\\[2mm]
+        \textbf{Antimatter:} Catalyzed propulsion\\
+        100\% annihilation efficiency\\[2mm]
+        \textbf{Inertia Reduction:} Mach effect\\
+        Reduces effective mass by $10^6$\\[2mm]
+        \textbf{Warp (optimized):} Van Den Broeck\\
+        Microscopic bubble, $r_s = 10^{-30}$m\\[2mm]
+        \textbf{Warp (original):} Alcubierre 1994\\
+        Macroscopic bubble, $r_s = 100$m\\[3mm]
+        \textit{Note: Values for 1000 kg payload}\\
+        \textit{to Alpha Centauri (4.37 ly)}
+    };
+\end{scope}
+
+% Add gap indicators with arrows
+\draw[<->,thick,blue!60!black] (axis cs:3.5,1e24) -- (axis cs:3.5,1e47)
+    node[midway,right,align=center,font=\small] {23 orders\\of magnitude};
+
+\draw[<->,thick,red!60!black] (axis cs:4.5,1e47) -- (axis cs:4.5,1e64)
+    node[midway,right,align=center,font=\small] {17 orders\\of magnitude};
+
+% Add bottom note about energy density
+\node[
+    below=8mm of current axis.south,
+    text width=14cm,
+    align=center,
+    font=\small
+] {
+    \textbf{Note:} Energy requirements assume 10\% of light speed cruise velocity for conventional rockets,
+    10c effective velocity for warp drives. Exotic technologies require negative energy density,
+    violating known energy conditions.
+};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,26 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ascii-guard
+        name: ASCII Guard (code/docs)
+        entry: python scripts/ascii_guard.py --base-dir .
+        language: system
+        pass_filenames: false
+      - id: pytest-fast
+        name: Pytest (quick)
+        entry: pytest -q
+        language: system
+        pass_filenames: false
+        stages: [commit]
+      - id: plan-validate
+        name: Plan (quick) and validate
+        entry: bash -lc "python scripts/equation_extractor.py --base-dir . --scan-dir notes --plan-only --plan-output plan.json && python scripts/validate_plan_schema.py plan.json"
+        language: system
+        pass_filenames: false
+        stages: [commit]
+      - id: metrics-validate
+        name: Metrics (quick) and validate
+        entry: bash -lc "python scripts/equation_extractor.py --base-dir . --scan-dir notes --max-files 30 --max-lines 300 --parallel-workers 2 --no-csv --no-ndjson --metrics-output metrics.json && python scripts/validate_metrics_schema.py metrics.json"
+        language: system
+        pass_filenames: false
+        stages: [commit]

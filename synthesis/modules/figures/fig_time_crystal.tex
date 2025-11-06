@@ -1,0 +1,14 @@
+egin{tikzpicture}
+egin{axis}[xlabel=Cycles,ylabel=Coherence (µs),legend pos=south east]
+ddplot table [x=cycles, y=T1(us)] {%%
+index cycles T1(us) T2(us)
+1 100 15 10
+2 200 30 20
+};ddlegendentry{$}
+ddplot table [x=cycles, y=T2(us)] {%%
+index cycles T1(us) T2(us)
+1 100 15 10
+2 200 30 20
+};ddlegendentry{$}
+\end{axis}
+\end{tikzpicture}

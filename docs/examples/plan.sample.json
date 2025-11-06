@@ -1,0 +1,22 @@
+{
+  "base_dir": "/abs/path/to/repo",
+  "elapsed_s": 0.012,
+  "items": [
+    {
+      "path": "/abs/path/to/repo/notes/keep.md",
+      "rel": "notes/keep.md",
+      "framework": "Unified",
+      "action": "scan",
+      "reason": "selected",
+      "size": 21
+    },
+    {
+      "path": "/abs/path/to/repo/notes/drop.md",
+      "rel": "notes/drop.md",
+      "framework": "",
+      "action": "skip",
+      "reason": "glob_exclude",
+      "size": 18
+    }
+  ]
+}

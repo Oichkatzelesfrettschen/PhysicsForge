@@ -1,0 +1,220 @@
+%==============================================================================
+% Equation: Effective Dimension Renormalization Group Flow
+% Source: Theoretical synthesis (dimensional running with energy scale)
+%         Inspired by AdS/CFT holographic dimension (Maldacena)
+%         Fractal RG from Wilson renormalization
+% Framework: Unified | Domain: QM+GR | Status: Theoretical
+%==============================================================================
+% Describes how effective spacetime dimensionality varies with energy scale
+% (or equivalently, probing length scale) via renormalization group equations.
+% Unifies Aether's integer dimensional hierarchy, Genesis's fractal dimensions,
+% and standard 4D spacetime into a single scale-dependent framework.
+%==============================================================================
+
+\begin{equation}
+  \frac{\dd D_{\text{eff}}}{\dd \log \mu} = \beta_D(g, D_{\text{eff}}, \lambda)
+  \eqtag{U}{QM}{T}
+  \label{eq:unified:dimension-rg-flow}
+\end{equation}
+
+\noindent
+where:
+\begin{itemize}
+  \item $D_{\text{eff}}(\mu)$: Effective spacetime dimension at energy scale $\mu$
+  \item $\mu$: Renormalization scale (energy or inverse length)
+  \item $\beta_D$: Dimensional beta function (anomalous dimension)
+  \item $g = \{g_i\}$: Set of coupling constants (gravitational, gauge, scalar-ZPE)
+  \item $\lambda$: Fractal/origami parameter (folding angle, Hausdorff exponent)
+\end{itemize}
+
+%==============================================================================
+% BETA FUNCTION SPECIFICATION
+%==============================================================================
+
+\paragraph{Dimensional Beta Function:} Explicit form derived from fractal geometry and hypercomplex algebra:
+
+\begin{equation}
+  \beta_D(g, D, \lambda) = \alpha_0 \frac{g_{\text{grav}}^2}{16\pi^2}
+    \left( D - D_{\text{base}} \right)
+    + \alpha_1 \frac{g_{\text{scalar}}^2}{8\pi^2} \log\left(1 + \frac{\mu}{\mu_{\text{Planck}}}\right)
+    + \alpha_2 \lambda \sin^2\left(\frac{\pi D}{D_{\text{max}}}\right)
+  \eqtag{U}{QM}{T}
+  \label{eq:unified:beta-function-dimension}
+\end{equation}
+
+\noindent
+where:
+\begin{itemize}
+  \item $\alpha_0, \alpha_1, \alpha_2$: Dimensionless coefficients (framework-dependent)
+  \item $g_{\text{grav}}$: Gravitational coupling $\sim \sqrt{G\mu^2/\hbar c^3}$
+  \item $g_{\text{scalar}}$: Scalar-ZPE coupling strength
+  \item $D_{\text{base}} = 4$: Macroscopic base dimensionality
+  \item $D_{\text{max}} = 2048$: Maximum Cayley-Dickson dimension
+  \item $\mu_{\text{Planck}} = \sqrt{\hbar c^5 / G} \approx 1.22 \times 10^{19}$ GeV
+\end{itemize}
+
+%==============================================================================
+% SOLUTION AND FIXED POINTS
+%==============================================================================
+
+\paragraph{Fixed Points:} Dimensional RG flow has fixed points where $\beta_D = 0$:
+
+\begin{equation}
+  D_{\text{eff}}^* \quad \text{such that} \quad \beta_D(g, D^*, \lambda) = 0
+  \label{eq:unified:dimension-fixed-points}
+\end{equation}
+
+\noindent
+Typical fixed point structure:
+\begin{itemize}
+  \item \textbf{IR fixed point} ($\mu \ll \mu_{\text{Planck}}$): $D^*_{\text{IR}} = 4$ (classical spacetime)
+  \item \textbf{Intermediate fixed point} ($\mu \sim 1$ TeV): $D^*_{\text{int}} \approx 4 + \epsilon$ (fractal corrections, $\epsilon \sim 0.1-0.5$)
+  \item \textbf{UV fixed point} ($\mu \to \mu_{\text{Planck}}$): $D^*_{\text{UV}} \approx 8$ (octonion structure)
+  \item \textbf{Trans-Planckian limit} ($\mu \gg \mu_{\text{Planck}}$): $D^*_{\text{TP}} \to D_{\text{max}}$ (full Cayley-Dickson hierarchy)
+\end{itemize}
+
+\paragraph{Stability Analysis:} Stability of fixed points determined by:
+\begin{equation}
+  \omega_D = \frac{\partial \beta_D}{\partial D}\bigg|_{D = D^*}
+  \label{eq:unified:stability-exponent}
+\end{equation}
+
+\begin{itemize}
+  \item $\omega_D < 0$: Stable (IR attractive)
+  \item $\omega_D > 0$: Unstable (UV repulsive)
+  \item $\omega_D = 0$: Marginal (logarithmic corrections)
+\end{itemize}
+
+%==============================================================================
+% SCALE-DEPENDENT DIMENSIONAL HIERARCHY
+%==============================================================================
+
+\paragraph{Explicit Solution:} For weak coupling and small $\lambda$, perturbative solution:
+
+\begin{equation}
+  D_{\text{eff}}(\mu) = D_{\text{base}}
+    + \sum_{n=1}^{N} \Delta D_n \cdot \Theta\left(\mu - \mu_{\text{threshold},n}\right)
+    \cdot \left(1 - \exp\left(-\frac{\mu - \mu_{\text{threshold},n}}{\mu_n}\right)\right)
+  \eqtag{U}{QM}{T}
+  \label{eq:unified:dimensional-hierarchy-solution}
+\end{equation}
+
+\noindent
+where:
+\begin{itemize}
+  \item $\Delta D_n$: Dimensional jump at $n$-th threshold (related to Cayley-Dickson doubling)
+  \item $\mu_{\text{threshold},n}$: Energy threshold for $n$-th dimensional activation
+  \item $\mu_n$: Characteristic smoothing scale
+  \item $\Theta(x)$: Heaviside step function
+\end{itemize}
+
+\paragraph{Dimensional Thresholds:} Correspondence to Cayley-Dickson levels:
+
+\begin{align}
+  \mu_{\text{threshold},1} &\sim 1 \text{ GeV} \quad &&(\text{QCD scale, fractal onset}) \nonumber \\
+  \mu_{\text{threshold},2} &\sim 100 \text{ GeV} \quad &&(\text{Electroweak scale, } \mathbb{H} \text{ structure}) \nonumber \\
+  \mu_{\text{threshold},3} &\sim 10 \text{ TeV} \quad &&(\text{Octonion activation, } \mathbb{O}) \nonumber \\
+  \mu_{\text{threshold},4} &\sim 10^{3} \text{ TeV} \quad &&(\text{Sedenion level, } \mathbb{S}) \nonumber \\
+  \mu_{\text{threshold},n} &\sim \mu_{\text{Planck}} \cdot 2^{-(11-n)} \quad &&(\text{Higher Cayley-Dickson levels})
+  \label{eq:unified:threshold-hierarchy}
+\end{align}
+
+%==============================================================================
+% WORKED EXAMPLE: IR TO PLANCK SCALE
+%==============================================================================
+
+\paragraph{Worked Example:} Dimensional flow from IR to Planck scale with parameters:
+\begin{align*}
+  D_{\text{base}} &= 4 \\
+  \alpha_0 &= 0.1, \quad \alpha_1 = 0.05, \quad \alpha_2 = 0.02 \\
+  g_{\text{grav}}(\mu) &= \sqrt{G\mu^2/(\hbar c^3)} \\
+  g_{\text{scalar}} &= 0.3 \quad \text{(dimensionless)} \\
+  \lambda &= 0.5
+\end{align*}
+
+At low energy ($\mu = 1$ GeV $\ll \mu_{\text{Planck}}$):
+\begin{align*}
+  g_{\text{grav}} &\approx 10^{-19} \\
+  \beta_D &\approx 0.05 \cdot \frac{0.09}{8\pi^2} \cdot \log(10^{-19}) + 0.02 \cdot 0.5 \cdot 1 \\
+        &\approx -0.0002 + 0.01 \approx 0.01
+\end{align*}
+Positive $\beta_D$ indicates slow dimensional growth with increasing energy.
+
+At Planck scale ($\mu = \mu_{\text{Planck}}$):
+\begin{align*}
+  g_{\text{grav}} &\approx 1 \\
+  \beta_D &\approx 0.1 \cdot \frac{1}{16\pi^2} \cdot (D - 4) + 0 + 0.01 \\
+        &= 0.0006 (D - 4) + 0.01
+\end{align*}
+Fixed point: $\beta_D = 0 \implies D^* \approx 4 + 0.01/0.0006 \approx 21$ (intermediate Cayley-Dickson level).
+
+%==============================================================================
+% CONNECTION TO FRACTAL GEOMETRY
+%==============================================================================
+
+\paragraph{Fractal Interpretation:} The running dimension $D_{\text{eff}}(\mu)$ corresponds to the fractal dimension measured at resolution $\sim 1/\mu$:
+
+\begin{equation}
+  D_{\text{eff}}(\mu) = \lim_{\epsilon \to \hbar c/\mu} \frac{\log N(\epsilon)}{\log(1/\epsilon)}
+  \label{eq:unified:fractal-rg-connection}
+\end{equation}
+
+where $N(\epsilon)$ is the box-counting function for spacetime structure at scale $\epsilon$. This unifies the RG picture with Hausdorff dimensional analysis.
+
+%==============================================================================
+% PHYSICAL INTERPRETATION
+%==============================================================================
+
+\paragraph{Physical Meaning:}
+\begin{itemize}
+  \item At macroscopic scales ($\mu \sim$ eV), spacetime appears strictly 4-dimensional
+  \item Fractal corrections emerge at nuclear scales ($\mu \sim$ GeV), making $D_{\text{eff}} \approx 4.1-4.3$
+  \item Hypercomplex structure (quaternions, octonions) becomes relevant at TeV-PeV scales
+  \item Full Cayley-Dickson hierarchy accessible only at trans-Planckian energies
+  \item Origami folding parameter $\lambda$ determines smoothness of dimensional transitions
+  \item Strong scalar-ZPE coupling accelerates dimensional growth with energy
+\end{itemize}
+
+%==============================================================================
+% EXPERIMENTAL PREDICTIONS
+%==============================================================================
+
+\paragraph{Experimental Tests:}
+\begin{itemize}
+  \item \textbf{High-energy scattering}: Deviations from 4D cross-sections at LHC/FCC energies
+    \begin{equation*}
+      \sigma(\mu) \propto \mu^{2-D_{\text{eff}}(\mu)} \quad \text{(modified dimensional scaling)}
+    \end{equation*}
+  \item \textbf{Gravitational wave propagation}: Extra polarization modes if $D_{\text{eff}} > 4$ at merger energies
+  \item \textbf{Black hole thermodynamics}: Entropy should scale as $S \sim A^{D_{\text{eff}}/2}$ instead of $S \sim A$
+  \item \textbf{Cosmic ray anomalies}: Ultra-high-energy cosmic rays probe $D_{\text{eff}} > 4$ regime
+  \item \textbf{Dimensional spectroscopy}: Resonances at thresholds $\mu_{\text{threshold},n}$ detectable as sharp features in scattering amplitudes
+\end{itemize}
+
+%==============================================================================
+% HOLOGRAPHIC INTERPRETATION
+%==============================================================================
+
+\paragraph{Holographic Duality:} Dimensional RG flow has holographic interpretation via AdS/CFT:
+\begin{equation}
+  D_{\text{eff}}(\mu) \longleftrightarrow D_{\text{AdS}}(r) \quad \text{with} \quad r \sim \frac{L_{\text{AdS}}^2}{\hbar c/\mu}
+  \label{eq:unified:holographic-dimension}
+\end{equation}
+
+where $r$ is the AdS radial coordinate and $L_{\text{AdS}}$ is the AdS radius. Flow toward UV (large $\mu$) corresponds to moving into the AdS interior, where effective dimension increases.
+
+%==============================================================================
+% DEPENDENCIES AND CONNECTIONS
+%==============================================================================
+% Dependencies: Ch02 (Cayley-Dickson hierarchy provides dimensional targets)
+%               Ch05 (Fractal calculus, Hausdorff dimension)
+%               Ch07-Ch10 (Aether scalar-ZPE coupling)
+%               Ch13 (Genesis origami parameter lambda)
+%
+% Forward references: Ch20 Section 6 (detailed RG derivation)
+%                     Ch21 (Unified framework using scale-dependent dimension)
+%                     Ch22-Ch24 (Experimental tests of dimensional running)
+%
+% Related equations: eq:unified:cayley-to-fractal (static dimensional mapping)
+%                    eq:genesis:origami-folding (geometric folding mechanism)
+%==============================================================================

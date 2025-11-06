@@ -1,0 +1,19 @@
+%==============================================================================
+% Equation: Fourier transform (time to frequency domain)
+% Source: Standard Fourier analysis (Arfken, Bracewell, Stein-Shakarchi)
+% Provenance: Mathematical preliminaries for spectral analysis
+%==============================================================================
+\begin{equation}
+  \tilde{f}(\omega) = \int_{-\infty}^\infty f(t) \, \ee^{\imag \omega t} \, \dd t
+  \eqtag{M}{MATH}{T}
+  \label{eq:prelim:fourier-transform-def}
+\end{equation}
+% Notes:
+%   * $f(t)$: function in time domain
+%   * $\tilde{f}(\omega)$: Fourier transform in frequency domain
+%   * Convention: positive $\imag \omega t$ in forward transform
+%   * Inverse transform: $f(t) = \frac{1}{2\pi} \int \tilde{f}(\omega) \ee^{-\imag \omega t} \dd\omega$
+%   * Parseval's theorem: $\int |f(t)|^2 \dd t = \frac{1}{2\pi} \int |\tilde{f}(\omega)|^2 \dd\omega$
+%   * 3D spatial version: $\tilde{f}(\mathbf{k}) = \int f(\mathbf{x}) \ee^{\imag \mathbf{k} \cdot \mathbf{x}} \dd^3 x$
+%   * Essential for Genesis fractal harmonic analysis and Aether spectral decomposition
+%==============================================================================

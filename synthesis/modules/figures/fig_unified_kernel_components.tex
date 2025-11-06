@@ -1,0 +1,186 @@
+%==============================================================================
+% Figure: Unified Kernel Component Diagram
+% Purpose: Visualize Genesis Kernel decomposition and component interactions
+% Chapter: Ch21 - Unified Kernel Construction
+% Type: Component diagram / System architecture
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    component/.style={
+      rectangle,
+      rounded corners,
+      minimum width=2.8cm,
+      minimum height=1.2cm,
+      text centered,
+      draw=black,
+      line width=0.8pt,
+      font=\small
+    },
+    kernel/.style={
+      ellipse,
+      minimum width=3.5cm,
+      minimum height=2cm,
+      text centered,
+      draw=black,
+      line width=1.5pt,
+      font=\large\bfseries
+    },
+    arrow/.style={
+      thick,
+      ->,
+      >=stealth,
+      line width=1.2pt
+    },
+    bidirectional/.style={
+      thick,
+      <->,
+      >=stealth,
+      line width=1pt
+    },
+    label/.style={
+      font=\scriptsize,
+      align=center,
+      fill=white
+    }
+  ]
+
+    % Central Genesis Kernel
+    \node (kernel) [kernel, fill=purple!30] at (0,0) {$K_{\text{Genesis}}$\\Unified Kernel};
+
+    % Component 1: Base Kernel (top left)
+    \node (base) [component, fill=blue!20] at (-5,3.5) {$K_{\text{base}}(x,y,t)$\\Spacetime Base};
+
+    % Component 2: Scalar-ZPE (top right)
+    \node (zpe) [component, fill=green!20] at (5,3.5) {$K_{\text{scalar-ZPE}}(x,t)$\\Vacuum Energy};
+
+    % Component 3: Extended Force (left)
+    \node (force) [component, fill=red!20] at (-6,0) {$F_M^{\text{extended}}$\\Force Unification};
+
+    % Component 4: Metric Modulation (right)
+    \node (metric) [component, fill=orange!20] at (6,0) {$M_n(x)$\\Metric Modulation};
+
+    % Component 5: Total Potential (bottom)
+    \node (potential) [component, fill=yellow!20] at (0,-4) {$\Phi_{\text{total}}(x,y,z,t)$\\Unified Potential};
+
+    % Arrows from components to kernel
+    \draw [arrow, blue!60] (base) -- node[above left, label] {Geometric\\foundation} (kernel);
+
+    \draw [arrow, green!60] (zpe) -- node[above right, label] {Quantum\\vacuum} (kernel);
+
+    \draw [arrow, red!60] (force) -- node[above, label, text width=2cm] {EM-gravity\\coupling} (kernel);
+
+    \draw [arrow, orange!60] (metric) -- node[above, label, text width=2cm] {Spacetime\\curvature} (kernel);
+
+    \draw [arrow, yellow!60] (potential) -- node[right, label] {Field\\interaction} (kernel);
+
+    % Interaction arrows between components (showing interdependencies)
+    \draw [bidirectional, gray, dashed] (base) -- node[above, label, font=\tiny] {couples} (zpe);
+
+    \draw [bidirectional, gray, dashed] (base) -- node[left, label, font=\tiny, text width=1.5cm] {modulates} (force);
+
+    \draw [bidirectional, gray, dashed] (zpe) -- node[right, label, font=\tiny, text width=1.5cm] {perturbs} (metric);
+
+    \draw [bidirectional, gray, dashed] (force) -- node[below, label, font=\tiny] {mediates} (potential);
+
+    \draw [bidirectional, gray, dashed] (metric) -- node[below, label, font=\tiny] {sources} (potential);
+
+    % Component detail boxes
+    \node[
+      draw,
+      rounded corners,
+      fill=blue!10,
+      align=left,
+      font=\tiny,
+      text width=2.5cm
+    ] at (-5,5.5) {
+      \textbf{Base Kernel:}\\
+      - Minkowski metric\\
+      - Lorentz covariance\\
+      - Causality structure\\
+      - Foundation: $\eta_{\mu\nu}$
+    };
+
+    \node[
+      draw,
+      rounded corners,
+      fill=green!10,
+      align=left,
+      font=\tiny,
+      text width=2.5cm
+    ] at (5,5.5) {
+      \textbf{Scalar-ZPE:}\\
+      - Vacuum fluctuations\\
+      - Scalar field $\phi$\\
+      - Energy density $\rho_{\text{ZPE}}$\\
+      - Coupling: $g\phi\text{ZPE}^2$
+    };
+
+    \node[
+      draw,
+      rounded corners,
+      fill=red!10,
+      align=left,
+      font=\tiny,
+      text width=2.5cm
+    ] at (-8.5,0) {
+      \textbf{Extended Force:}\\
+      - EM: $F_{\mu\nu}$\\
+      - Weak: $W_\mu$\\
+      - Strong: $G_{\mu\nu}^a$\\
+      - Gravity: $R_{\mu\nu}$\\
+      - Pais coupling
+    };
+
+    \node[
+      draw,
+      rounded corners,
+      fill=orange!10,
+      align=left,
+      font=\tiny,
+      text width=2.5cm
+    ] at (8.5,0) {
+      \textbf{Metric Modulation:}\\
+      - Aether crystalline\\
+      - Fractal dimension\\
+      - $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$\\
+      - Perturbation $h$
+    };
+
+    \node[
+      draw,
+      rounded corners,
+      fill=yellow!10,
+      align=left,
+      font=\tiny,
+      text width=2.5cm
+    ] at (0,-6) {
+      \textbf{Total Potential:}\\
+      - Effective potential\\
+      - All field interactions\\
+      - Observable physics\\
+      - $V_{\text{eff}} = \sum_i V_i$
+    };
+
+    % Master equation at bottom
+    \node[
+      draw,
+      rounded corners,
+      fill=purple!10,
+      text width=13cm,
+      align=center,
+      font=\footnotesize
+    ] at (0,-8) {
+      \textbf{Genesis Kernel Master Equation:}\\[0.2cm]
+      $K_{\text{Genesis}} = K_{\text{base}}(x,y,t) \cdot K_{\text{scalar-ZPE}}(x,t) \cdot F_M^{\text{extended}} \cdot M_n(x) \cdot \Phi_{\text{total}}(x,y,z,t)$\\[0.2cm]
+      This multiplicative kernel structure combines geometric (base, metric), quantum (ZPE),
+      force-theoretic (extended forces), and field-theoretic (potential) components into a
+      unified description. Dashed lines show component interdependencies.
+    };
+
+  \end{tikzpicture}
+
+  \caption{Component diagram of the Genesis Kernel unified structure (Ch21). The central kernel $K_{\text{Genesis}}$ (purple) integrates five major components via multiplicative coupling: (1) spacetime base kernel providing geometric foundation (blue), (2) scalar-ZPE kernel encoding vacuum energy fluctuations (green), (3) extended force unification including all fundamental interactions (red), (4) metric modulation from crystalline/fractal structure (orange), and (5) total unified potential (yellow). Solid arrows indicate component contributions to the kernel; dashed bidirectional arrows show mutual interdependencies between components. Detail boxes specify mathematical content of each component. This structure provides the foundation for experimental predictions in Part IV.}
+  \label{fig:unified-kernel-components}
+\end{figure}

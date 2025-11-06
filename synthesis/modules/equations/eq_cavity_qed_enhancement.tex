@@ -1,0 +1,20 @@
+%==============================================================================
+% Equation: Cavity QED Enhancement Factor for Vacuum Coupling
+% Framework: Aether | Domain: QM | Status: Experimental
+%==============================================================================
+\begin{equation}
+  \mathcal{F}_{\text{QED}} = \frac{g_{\text{cav}}^2}{2\kappa\gamma_{\perp}} = \frac{3\pi c^3 Q_{\text{cav}}}{2\omega_{\text{cav}}^3 V_{\text{eff}}}, \quad
+  g_{\text{cav}} = \sqrt{\frac{\omega_{\text{cav}}}{2\hbar\epsilon_0 V_{\text{eff}}}}d_{ge}
+  \eqtag{A}{QM}{E}
+  \label{eq:cavity-qed:enhancement}
+\end{equation}
+% Notes: Purcell enhancement factor for atom-cavity coupling strength in engineered vacuum
+% resonators. The cooperativity $\mathcal{F}_{\text{QED}}$ compares cavity coupling rate $g_{\text{cav}}$
+% to photon decay rate $\kappa$ and atomic dephasing $\gamma_{\perp}$. Strong coupling regime
+% ($\mathcal{F}_{\text{QED}} \gg 1$) requires high cavity quality factor $Q_{\text{cav}}$, small mode
+% volume $V_{\text{eff}}$, and large dipole moment $d_{ge}$ between atomic states $|g\rangle$ and $|e\rangle$.
+% Superconducting cavities achieve $\mathcal{F}_{\text{QED}} \sim 10^4$ enabling quantum error correction
+% and ZPE coherence measurements. The scalar field $\phi$ modifies $g_{\text{cav}}$ through shifts
+% in vacuum permittivity $\epsilon_0 \to \epsilon_0(1 + \alpha_{\phi}\phi^2)$, providing a detection channel.
+% Dependencies: eq:qubit-coherence-enhanced, eq:decoherence:measurement
+%==============================================================================

@@ -1,0 +1,196 @@
+%==============================================================================
+% Figure: Unified Kernel Decomposition
+% Purpose: Genesis kernel as central hub with component inputs/outputs
+% Chapter: Ch21 - Unified Mathematical Kernel
+% Type: Mathematical/Schematic
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=1.0,
+    kernel/.style={ellipse, draw=black, fill=purple!20, ultra thick, minimum width=5cm, minimum height=3cm, align=center, font=\Large\bfseries},
+    component/.style={rectangle, draw=black, fill=blue!15, thick, minimum width=3.5cm, minimum height=1.2cm, align=center, font=\small},
+    limit/.style={rectangle, draw=black, fill=green!15, thick, minimum width=3cm, minimum height=1.8cm, align=center, font=\small},
+    arrow_in/.style={->, >=stealth, ultra thick, blue!70},
+    arrow_out/.style={->, >=stealth, ultra thick, green!70}
+  ]
+
+    % Central kernel
+    \node[kernel] (kernel) at (0, 0) {
+      Unified Kernel \\[0.3cm]
+      $K_{\text{total}}$
+    };
+
+    % Input components (arranged in a circle around kernel)
+    \node[component] (base) at (0, 4.5) {
+      \textbf{Base Kernel} \\
+      $K_{\text{base}}(x,y,t)$ \\
+      Spacetime geometry
+    };
+
+    \node[component] (scalar) at (4.5, 2.5) {
+      \textbf{Scalar-ZPE} \\
+      $K_{\text{scalar}}(x,t)$ \\
+      Quantum vacuum
+    };
+
+    \node[component] (force) at (4.5, -2.5) {
+      \textbf{Force Matrix} \\
+      $F_M^{\text{extended}}$ \\
+      Interactions
+    };
+
+    \node[component] (metric) at (0, -4.5) {
+      \textbf{Metric Modulation} \\
+      $M_n(x)$ \\
+      Curvature
+    };
+
+    \node[component] (field) at (-4.5, -2.5) {
+      \textbf{Field Potential} \\
+      $\Phi_{\text{total}}(x,y,z,t)$ \\
+      All fields
+    };
+
+    % Additional input (meta-principle)
+    \node[component] (meta) at (-4.5, 2.5) {
+      \textbf{Meta-Principle} \\
+      $\mathcal{M}[\cdot]$ \\
+      Selection rule
+    };
+
+    % Arrows from components to kernel
+    \draw[arrow_in] (base) -- (kernel);
+    \draw[arrow_in] (scalar) -- (kernel);
+    \draw[arrow_in] (force) -- (kernel);
+    \draw[arrow_in] (metric) -- (kernel);
+    \draw[arrow_in] (field) -- (kernel);
+    \draw[arrow_in] (meta) -- (kernel);
+
+    % Output limiting cases (frameworks emerge)
+    \node[limit] (aether_out) at (7, 0) {
+      \textbf{Aether Limit} \\
+      $K_{\text{scalar}} \to \max$ \\
+      $M_n \to$ lattice \\
+      \\
+      Crystalline + \\
+      Scalar-ZPE
+    };
+
+    \node[limit] (genesis_out) at (3.5, -6.5) {
+      \textbf{Genesis Limit} \\
+      $\mathcal{M} \to$ active \\
+      $K_{\text{base}} \to$ graph \\
+      \\
+      Nodespace + \\
+      Meta-principle
+    };
+
+    \node[limit] (pais_out) at (-3.5, -6.5) {
+      \textbf{Pais Limit} \\
+      $F_M \to$ GEM \\
+      $\Phi \to$ EM+Grav \\
+      \\
+      Superforce \\
+      coupling
+    };
+
+    % Arrows from kernel to limiting cases
+    \draw[arrow_out] (kernel) -- (aether_out) node[midway, above, font=\footnotesize, sloped] {Specialize};
+    \draw[arrow_out] (kernel) -- (genesis_out) node[midway, below, font=\footnotesize, sloped] {Specialize};
+    \draw[arrow_out] (kernel) -- (pais_out) node[midway, below, font=\footnotesize, sloped] {Specialize};
+
+    % Central kernel equation
+    \node[anchor=north, align=center, font=\footnotesize, draw=purple!70, fill=purple!5, rounded corners, thick]
+      at (0, -1.8) {
+      $K_{\text{total}} = K_{\text{base}} \cdot K_{\text{scalar}} \cdot F_M \cdot M_n \cdot \Phi \cdot \mathcal{M}[\cdot]$
+    };
+
+    % Component details box
+    \node[anchor=north west, align=left, font=\footnotesize, draw=black, fill=yellow!10, rounded corners, thick]
+      at (-10, 5) {
+      \textbf{Component Descriptions:} \\
+      \\
+      \textbf{Base Kernel} $K_{\text{base}}(x,y,t)$: \\
+      $\quad$ Fundamental spacetime structure \\
+      $\quad$ Can be continuum (metric) or discrete (lattice/graph) \\
+      \\
+      \textbf{Scalar-ZPE} $K_{\text{scalar}}(x,t)$: \\
+      $\quad$ Zero-point energy density and scalar field \\
+      $\quad$ Coupling: $g \phi^2 \rho_{\text{ZPE}}$ \\
+      \\
+      \textbf{Force Matrix} $F_M^{\text{extended}}$: \\
+      $\quad$ Interaction matrix for all forces \\
+      $\quad$ Includes EM, weak, strong, gravity, exotic \\
+      \\
+      \textbf{Metric Modulation} $M_n(x)$: \\
+      $\quad$ Curvature and geometric perturbations \\
+      $\quad$ $g_{\mu\nu}(x) = \eta_{\mu\nu} + h_{\mu\nu}(x)$ \\
+      \\
+      \textbf{Field Potential} $\Phi_{\text{total}}$: \\
+      $\quad$ Sum of all field contributions \\
+      $\quad$ Scalar, vector, tensor, spinor \\
+      \\
+      \textbf{Meta-Principle} $\mathcal{M}[\cdot]$: \\
+      $\quad$ Variational principle or selection rule \\
+      $\quad$ Determines which configurations are physical
+    };
+
+    % Limiting case details
+    \node[anchor=north east, align=left, font=\footnotesize, draw=black, fill=green!5, rounded corners, thick]
+      at (10, 5) {
+      \textbf{Limiting Cases (Frameworks):} \\
+      \\
+      \textbf{Aether Limit:} \\
+      $\quad$ Maximize $K_{\text{scalar}}$: ZPE coupling dominant \\
+      $\quad$ $M_n \to$ discrete lattice at Planck scale \\
+      $\quad$ $\mathcal{M} \to$ elasticity action \\
+      $\quad$ Reproduce: Casimir modifications, time crystals \\
+      \\
+      \textbf{Genesis Limit:} \\
+      $\quad$ Activate $\mathcal{M}$: meta-principle selects topology \\
+      $\quad$ $K_{\text{base}} \to$ nodespace graph \\
+      $\quad$ $M_n \to$ connectivity-based metric \\
+      $\quad$ Reproduce: origami dimensions, multiverse \\
+      \\
+      \textbf{Pais Limit:} \\
+      $\quad$ $F_M \to$ GEM coupling matrix \\
+      $\quad$ $\Phi \to$ combined EM+Gravity potential \\
+      $\quad$ $\kappa \sim 10^{-50}$ coupling constant \\
+      $\quad$ Reproduce: Lense-Thirring, GEM waves \\
+      \\
+      \textbf{Full Kernel:} \\
+      $\quad$ All components active simultaneously \\
+      $\quad$ No framework preferred $a$ $priori$ \\
+      $\quad$ Experimental data selects best description
+    };
+
+    % Title
+    \node[anchor=south, font=\huge\bfseries] at (0, 6.5) {Unified Mathematical Kernel Decomposition};
+
+    % Subtitle
+    \node[anchor=north, font=\large\itshape] at (0, -8.5) {
+      All frameworks as limiting cases of unified structure
+    };
+
+  \end{tikzpicture}
+  \caption{Decomposition of the unified mathematical kernel $K_{\text{total}}$ as a product of six
+    fundamental components (blue boxes, input arrows). The central purple ellipse represents the
+    full kernel, which can be specialized to recover each framework as a limiting case (green boxes,
+    output arrows). The six components are: (1) Base Kernel $K_{\text{base}}(x,y,t)$ encoding
+    fundamental spacetime structure (continuum metric or discrete lattice/graph), (2) Scalar-ZPE
+    $K_{\text{scalar}}(x,t)$ for zero-point energy and scalar field coupling, (3) Force Matrix
+    $F_M^{\text{extended}}$ for all interactions (EM, weak, strong, gravity, exotic), (4) Metric
+    Modulation $M_n(x)$ for curvature perturbations $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$,
+    (5) Field Potential $\Phi_{\text{total}}$ summing all field contributions, and (6) Meta-Principle
+    $\mathcal{M}[\cdot]$ providing variational selection of physical configurations. Specialization
+    yields frameworks: \textbf{Aether} by maximizing $K_{\text{scalar}}$ (ZPE dominant) and setting
+    $M_n$ to discrete lattice; \textbf{Genesis} by activating $\mathcal{M}$ (meta-principle selection)
+    and $K_{\text{base}} \to$ nodespace graph; \textbf{Pais} by setting $F_M \to$ GEM coupling and
+    $\Phi \to$ EM+Gravity with $\kappa \sim 10^{-50}$. The full kernel with all components active
+    represents the most general unified theory, with experimental data selecting the appropriate
+    limiting case for each physical regime. This structure, developed in Ch20-21, provides the
+    mathematical foundation for reconciling all three frameworks within a single formalism.}
+  \label{fig:unified-kernel-decomposition}
+\end{figure}

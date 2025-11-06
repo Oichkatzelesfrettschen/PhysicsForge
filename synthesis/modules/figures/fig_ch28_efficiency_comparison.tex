@@ -1,0 +1,202 @@
+% Figure 7: Comparative Efficiency Chart
+% Author: Dr. Computernonymouse
+% Description: Logarithmic bar chart comparing power densities across
+%              different energy technologies including ZPE harvesting
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns,arrows.meta}
+
+% Define colors by category
+\definecolor{chemical}{RGB}{255,127,14}
+\definecolor{nuclear}{RGB}{214,39,40}
+\definecolor{renewable}{RGB}{44,160,44}
+\definecolor{experimental}{RGB}{148,103,189}
+\definecolor{threshold}{RGB}{0,0,0}
+\definecolor{gridcolor}{RGB}{128,128,128}
+
+% Create data table
+\pgfplotstableread{
+Technology      PowerDensity    Category
+Li-ion          1e6            1
+Gasoline        1.3e10         1
+Nuclear         3.8e11         2
+Solar           1e2            3
+Wind            3e1            3
+ZPE             4e-5           4
+}\datatable
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{semilogyaxis}[
+    ybar,
+    bar width=1.2cm,
+    width=14cm,
+    height=10cm,
+    ylabel={Power Density (W/m$^3$)},
+    xlabel={Energy Technology},
+    ymin=1e-6,
+    ymax=1e13,
+    ytick={1e-6,1e-4,1e-2,1e0,1e2,1e4,1e6,1e8,1e10,1e12},
+    yticklabels={
+        $10^{-6}$,
+        $10^{-4}$,
+        $10^{-2}$,
+        $10^{0}$,
+        $10^{2}$,
+        $10^{4}$,
+        $10^{6}$,
+        $10^{8}$,
+        $10^{10}$,
+        $10^{12}$
+    },
+    xtick=data,
+    xticklabels={Li-ion Battery,Gasoline,Nuclear Fission,Solar PV,Wind Turbine,ZPE Harvesting},
+    x tick label style={rotate=45,anchor=east,font=\normalsize},
+    ylabel style={font=\large},
+    xlabel style={font=\large,yshift=-20pt},
+    grid=y,
+    major grid style={line width=0.5pt,draw=gridcolor!50},
+    minor grid style={line width=0.2pt,draw=gridcolor!20},
+    minor y tick num=9,
+    legend pos=north west,
+    legend style={
+        font=\normalsize,
+        fill=white,
+        fill opacity=0.95,
+        draw=black,
+        rounded corners=2mm,
+        row sep=2pt
+    },
+    title={Power Density Comparison Across Energy Technologies},
+    title style={font=\Large\bfseries,yshift=5pt},
+    enlarge x limits=0.15,
+    nodes near coords align={vertical},
+    point meta=explicit symbolic
+]
+
+% Li-ion Battery (Chemical)
+\addplot[
+    fill=chemical,
+    draw=black,
+    line width=0.5pt
+] coordinates {(0,1e6)};
+
+% Gasoline (Chemical)
+\addplot[
+    fill=chemical,
+    draw=black,
+    line width=0.5pt
+] coordinates {(1,1.3e10)};
+
+% Nuclear Fission (Nuclear)
+\addplot[
+    fill=nuclear,
+    draw=black,
+    line width=0.5pt
+] coordinates {(2,3.8e11)};
+
+% Solar PV (Renewable)
+\addplot[
+    fill=renewable,
+    draw=black,
+    line width=0.5pt
+] coordinates {(3,1e2)};
+
+% Wind Turbine (Renewable)
+\addplot[
+    fill=renewable,
+    draw=black,
+    line width=0.5pt
+] coordinates {(4,3e1)};
+
+% ZPE Harvesting (Experimental) - Highlighted
+\addplot[
+    fill=experimental,
+    draw=red,
+    line width=2pt,
+    pattern=crosshatch,
+    pattern color=experimental!50
+] coordinates {(5,4e-5)};
+
+% Viability threshold line at 1 W/m³
+\draw[threshold,ultra thick,dashed] (axis cs:-0.5,1) -- (axis cs:5.5,1)
+    node[right,font=\normalsize] {Viability Threshold};
+
+% Category labels in legend
+\addlegendimage{fill=chemical,draw=black}
+\addlegendentry{Chemical}
+\addlegendimage{fill=nuclear,draw=black}
+\addlegendentry{Nuclear}
+\addlegendimage{fill=renewable,draw=black}
+\addlegendentry{Renewable}
+\addlegendimage{fill=experimental,pattern=crosshatch,pattern color=experimental!50,draw=red,line width=2pt}
+\addlegendentry{Experimental}
+
+% Annotations with power density values
+\node[above,font=\footnotesize] at (axis cs:0,2e6) {$10^6$};
+\node[above,font=\footnotesize] at (axis cs:1,2.6e10) {$1.3 \times 10^{10}$};
+\node[above,font=\footnotesize] at (axis cs:2,7.6e11) {$3.8 \times 10^{11}$};
+\node[above,font=\footnotesize] at (axis cs:3,2e2) {$10^2$};
+\node[above,font=\footnotesize] at (axis cs:4,6e1) {$3 \times 10^1$};
+\node[above,font=\footnotesize,red,draw=red,rounded corners,fill=white] at (axis cs:5,8e-5) {$4 \times 10^{-5}$};
+
+% Comparison annotations
+\draw[<->,thick,red] (axis cs:5,1e-4) -- (axis cs:5,1)
+    node[midway,right,font=\small,red] {$10^5 \times$ below threshold};
+
+\draw[<->,thick,blue] (axis cs:3.5,1e2) -- (axis cs:5.5,4e-5)
+    node[midway,below right,font=\small,blue,align=center] {
+        $10^7 \times$ less than\\photovoltaics
+    };
+
+% Efficiency indicators
+\node[align=center,font=\footnotesize] at (axis cs:0,5e4) {
+    Mature\\Tech
+};
+
+\node[align=center,font=\footnotesize] at (axis cs:2,2e10) {
+    Highest\\Density
+};
+
+\node[align=center,font=\footnotesize,red] at (axis cs:5,1e-7) {
+    Theoretical\\Limit
+};
+
+\end{semilogyaxis}
+
+% Additional information boxes
+\node[draw=black,thick,rounded corners=2mm,fill=white!95,
+      align=left,font=\footnotesize] at (3,2) {
+    \textbf{ZPE Characteristics:}\\
+    $\bullet$ Volume: 1 m$^3$ $\rightarrow$ 40 $\mu$W\\
+    $\bullet$ Football field cavity $\rightarrow$ 0.4 W\\
+    $\bullet$ Requires cryogenic cooling\\
+    $\bullet$ Limited to niche applications
+};
+
+\node[draw=black,thick,rounded corners=2mm,fill=green!10,
+      align=left,font=\footnotesize] at (10,8) {
+    \textbf{Viable Technologies:}\\
+    Power density $>$ 1 W/m$^3$\\
+    Room temperature operation\\
+    Established infrastructure
+};
+
+% Bottom summary
+\node[below,font=\normalsize,align=center] at (7,-1.5) {
+    \textbf{Conclusion:} ZPE harvesting faces fundamental physical limitations,\\
+    with power density $10^{16}$ times lower than nuclear and $10^7$ times lower than solar PV.
+};
+
+\end{tikzpicture}
+
+\end{document}

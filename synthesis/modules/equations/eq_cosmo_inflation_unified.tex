@@ -1,0 +1,30 @@
+% Equation Module: Unified Inflation Dynamics
+% Purpose: Inflationary epoch driven by all three frameworks
+% Chapter: 20 (Cosmological Applications)
+% Auto-numbered equation
+
+\begin{equation}\label{eq:cosmo_inflation_unified}
+\boxed{
+\begin{aligned}
+H^2 &= \frac{8\pi G}{3}\left(\rho_\phi + \rho_N + \rho_{Pais}\right) \\[8pt]
+\rho_\phi &= \frac{1}{2}\dot{\phi}^2 + V(\phi), \quad V(\phi) = \frac{1}{4}\lambda(\phi^2 - v^2)^2 \\[6pt]
+\rho_N &= \epsilon_N e^{3Ht}, \quad \epsilon_N = \frac{\hbar c}{V_{nodespace}^0} \\[6pt]
+\rho_{Pais} &= \frac{F_S}{r_P^2 c^2} = \frac{c^7}{Gr_P^2}, \quad F_S = \frac{c^4}{G} \\[10pt]
+\epsilon &\equiv -\frac{\dot{H}}{H^2} = \frac{\dot{\phi}^2}{2V + \epsilon_N e^{3Ht}} \ll 1 \quad &\text{(slow-roll condition)} \\[6pt]
+\eta &\equiv \frac{\ddot{\phi}}{H\dot{\phi}} = -\frac{V''}{3H^2} \ll 1 \quad &\text{(acceleration condition)}
+\end{aligned}
+}
+\end{equation}
+
+\noindent\textbf{Framework Roles:}
+\begin{enumerate}
+  \item \textbf{Genesis drives inflation}: Nodespace connectivity expansion provides exponential growth of $\psi_N \sim e^{Ht}$. Graph Laplacian dynamics yield natural slow-roll from topology.
+  \item \textbf{Aether provides graceful exit}: Scalar field $\phi$ couples to nodespace via $g_{AG}\phi|\mathcal{F}|^2$. Transition from slow-roll to reheating when $\epsilon \sim 1$.
+  \item \textbf{Pais sets energy scale}: Superforce $F_S = c^4/G$ provides inflationary energy density. Inflation scale: $V^{1/4} \sim (F_S r_P^2)^{1/4} \sim 10^{16}$ GeV (matches GUT scale).
+\end{enumerate}
+
+\noindent\textbf{Duration and e-foldings:}
+\begin{equation}
+N_e = \int_{t_i}^{t_f} H\,dt = \int_{\phi_i}^{\phi_f}\frac{H}{\dot{\phi}}d\phi \approx \frac{8\pi G}{M_P^2}\int_{\phi_f}^{\phi_i}\frac{V}{V'}d\phi \approx 60
+\end{equation}
+solves the horizon and flatness problems.

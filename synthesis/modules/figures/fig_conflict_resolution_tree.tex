@@ -1,0 +1,170 @@
+%==============================================================================
+% Figure: Conflict Resolution Decision Tree
+% Purpose: Decision tree for resolving framework conflicts
+% Chapter: Ch18 - Conflict Resolution
+% Type: Conceptual
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=1.0,
+    level 1/.style={sibling distance=8cm, level distance=2.5cm},
+    level 2/.style={sibling distance=4cm, level distance=2.5cm},
+    level 3/.style={sibling distance=3cm, level distance=2.5cm},
+    decision/.style={rectangle, draw=black, fill=yellow!20, thick, minimum width=3cm, minimum height=1cm, align=center, font=\small\bfseries},
+    outcome/.style={rectangle, draw=black, fill=green!20, thick, minimum width=2.8cm, minimum height=1.2cm, align=center, font=\footnotesize},
+    conflict/.style={ellipse, draw=red, fill=red!10, thick, minimum width=2.5cm, minimum height=0.8cm, align=center, font=\small},
+    arrow/.style={->, >=stealth, thick}
+  ]
+
+    % Root: Conflict identified
+    \node[conflict] (root) at (0, 0) {Conflict\\Identified};
+
+    % Level 1: Scale question
+    \node[decision] (scale) at (0, -2.5) {Do frameworks\\apply at\\different scales?};
+
+    \draw[arrow] (root) -- (scale);
+
+    % Level 2: Scale branches
+    \node[outcome] (scale_yes) at (-6, -5.5) {
+      \textbf{Scale Separation} \\
+      Different domains \\
+      \\
+      \textit{Example:} \\
+      Aether (Planck) \\
+      vs Genesis (cosmic) \\
+      \\
+      \textcolor{blue}{$\Rightarrow$ Complementary}
+    };
+
+    \node[decision] (scale_no) at (6, -5.5) {Are predictions\\mathematically\\equivalent?};
+
+    \draw[arrow] (scale) -- (scale_yes) node[midway, above, sloped, font=\tiny] {YES};
+    \draw[arrow] (scale) -- (scale_no) node[midway, above, sloped, font=\tiny] {NO};
+
+    % Level 3: Equivalence branches
+    \node[outcome] (equiv_yes) at (3, -8.5) {
+      \textbf{Equivalence} \\
+      Different formulations \\
+      same physics \\
+      \\
+      \textit{Example:} \\
+      Discrete lattice \\
+      $\leftrightarrow$ continuum limit \\
+      \\
+      \textcolor{blue}{$\Rightarrow$ Dual descriptions}
+    };
+
+    \node[decision] (equiv_no) at (9, -8.5) {Can experiment\\distinguish?};
+
+    \draw[arrow] (scale_no) -- (equiv_yes) node[midway, above, sloped, font=\tiny] {YES};
+    \draw[arrow] (scale_no) -- (equiv_no) node[midway, above, sloped, font=\tiny] {NO};
+
+    % Level 4: Experimental test branches
+    \node[outcome] (exp_yes) at (7, -11.5) {
+      \textbf{Experimental Test} \\
+      Design protocol \\
+      measure difference \\
+      \\
+      \textit{Example:} \\
+      Casimir geometry \\
+      (Aether vs Pais) \\
+      \\
+      \textcolor{orange}{$\Rightarrow$ Ch22 protocols}
+    };
+
+    \node[outcome] (exp_no) at (11, -11.5) {
+      \textbf{Meta-Analysis} \\
+      Philosophical choice \\
+      or pending data \\
+      \\
+      \textit{Example:} \\
+      Ontology: \\
+      medium vs emergent \\
+      \\
+      \textcolor{purple}{$\Rightarrow$ Document both}
+    };
+
+    \draw[arrow] (equiv_no) -- (exp_yes) node[midway, above, sloped, font=\tiny] {YES};
+    \draw[arrow] (equiv_no) -- (exp_no) node[midway, above, sloped, font=\tiny] {NO};
+
+    % Additional outcome: Reconciliation pathway
+    \node[outcome] (reconcile) at (-2, -8.5) {
+      \textbf{Reconciliation} \\
+      Map between \\
+      frameworks \\
+      \\
+      \textit{Example:} \\
+      Aether 2048D \\
+      $\leftrightarrow$ Genesis 8D \\
+      via dimensional map \\
+      \\
+      \textcolor{blue}{$\Rightarrow$ Ch20 unified kernel}
+    };
+
+    \draw[arrow, dashed] (scale_yes) -- (reconcile) node[midway, above, sloped, font=\tiny] {IF RELATED};
+
+    % Legend
+    \node[anchor=north west, align=left, font=\small, draw=black, fill=yellow!10, rounded corners, thick]
+      at (-13, 1) {
+      \textbf{Decision Tree Legend:} \\
+      \\
+      \textcolor{red}{\textbullet} Conflict (red ellipse): \\
+      \quad Incompatible claims identified \\
+      \\
+      \textcolor{orange!80}{\textbullet} Decision (yellow box): \\
+      \quad Question to ask \\
+      \\
+      \textcolor{green!60!black}{\textbullet} Outcome (green box): \\
+      \quad Resolution strategy \\
+      \\
+      \textbf{Colors in outcomes:} \\
+      \textcolor{blue}{Blue}: Frameworks compatible \\
+      \textcolor{orange}{Orange}: Experimental test needed \\
+      \textcolor{purple}{Purple}: Undecidable (currently)
+    };
+
+    % Examples box
+    \node[anchor=north east, align=left, font=\small, draw=black, fill=blue!5, rounded corners, thick]
+      at (13, 1) {
+      \textbf{Specific Conflicts Resolved:} \\
+      \\
+      \textbf{1. Dimensionality (2048D vs 8D):} \\
+      $\Rightarrow$ Reconciliation via Ch20 map \\
+      \\
+      \textbf{2. ZPE cutoff (Planck vs dynamic):} \\
+      $\Rightarrow$ Scale separation (Aether micro, Genesis macro) \\
+      \\
+      \textbf{3. Unification (scalar vs GEM):} \\
+      $\Rightarrow$ Experimental test (Casimir vs GW polarization) \\
+      \\
+      \textbf{4. Discrete vs continuous:} \\
+      $\Rightarrow$ Equivalence (lattice $\to$ continuum limit) \\
+      \\
+      \textbf{5. Meta-principle vs mechanism:} \\
+      $\Rightarrow$ Meta-analysis (ontological difference)
+    };
+
+    % Title
+    \node[anchor=south, font=\huge\bfseries] at (0, 1.5) {Conflict Resolution Decision Tree};
+
+  \end{tikzpicture}
+  \caption{Decision tree for systematically resolving conflicts between the Aether, Genesis, and
+    Pais frameworks. Starting from an identified conflict (red ellipse), the tree branches through
+    a series of diagnostic questions (yellow boxes) to reach resolution strategies (green boxes).
+    The first question asks whether frameworks apply at different scales: if yes, conflicts may
+    resolve via scale separation (e.g., Aether at Planck scale, Genesis at cosmological scale) or
+    reconciliation through mapping (Ch20 dimensional correspondence). If scales overlap, the next
+    question asks whether predictions are mathematically equivalent despite different formalisms:
+    if yes, frameworks are dual descriptions of the same physics (e.g., discrete lattice versus
+    continuum limit). If not equivalent, the final question asks whether experiments can distinguish:
+    if yes, design experimental protocols (orange, Ch22); if no, document both as meta-analysis
+    pending future data (purple, philosophical differences like ontology). Color coding in outcomes
+    indicates: blue (frameworks compatible/complementary), orange (experimental resolution needed),
+    purple (currently undecidable). Specific examples include: dimensionality conflict (2048D vs
+    8D) resolved via Ch20 reconciliation, ZPE cutoff via scale separation, unification mechanisms
+    via Casimir/GW experiments, and discrete vs continuous via equivalence. This systematic approach
+    ensures all conflicts are addressed rigorously in Ch18.}
+  \label{fig:conflict-resolution-tree}
+\end{figure>

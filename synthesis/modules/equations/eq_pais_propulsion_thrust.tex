@@ -1,0 +1,33 @@
+%==============================================================================
+% Equation Module: Pais Inertia Reduction Propulsion Thrust
+% Source: PAIS_UNIFIED.md Section 5.3 (Advanced Propulsion)
+% Tag: eq:pais:propulsion-thrust
+%==============================================================================
+
+\begin{equation}
+  F_{\mathrm{thrust}} = m_{\mathrm{eff}} \cdot a = m_0 \left(1 - \frac{S^2}{u_{\mathrm{vac}} c^2}\right) \cdot a
+  \eqtag{P}{PROP}{THRUST}
+  \label{eq:pais:propulsion-thrust}
+\end{equation}
+
+\noindent\textbf{Physical Interpretation:} The Vacuum Bernoulli Equation (VBE) enables inertia reduction through electromagnetic field engineering. A mass $m_0$ surrounded by high-intensity electromagnetic fields (Poynting flux $S = |\mathbf{E} \times \mathbf{H}|$) experiences reduced effective inertia $m_{\mathrm{eff}}$ when accelerated.
+
+\noindent\textbf{Inertia Reduction Mechanism:} The factor $(1 - S^2/(u_{\mathrm{vac}} c^2))$ represents the fractional reduction in inertial mass. From the VBE:
+\begin{equation*}
+  \frac{S^2}{u_{\mathrm{vac}} c^2} - \frac{g^2}{2\pi G} = K
+\end{equation*}
+High electromagnetic Poynting flux modifies local vacuum energy density $u_{\mathrm{vac}}$, creating negative mass density contribution that reduces inertia via the Equivalence Principle.
+
+\noindent\textbf{Engineering Requirements (Pais Patent US 10,144,532 B2):}
+\begin{itemize}
+  \item Double conducting shells with concentrated microwave fields (10$^9$--10$^{18}$ Hz)
+  \item Poynting flux magnitude: $S \gtrsim 10^{10}$ W/m$^2$ (requires megawatt power in centimeter volumes)
+  \item Vacuum energy density: $u_{\mathrm{vac}} \sim 10^{-9}$ J/m$^3$ (dark energy scale)
+  \item For 10\% inertia reduction: $S^2/(u_{\mathrm{vac}} c^2) = 0.1 \Rightarrow S \sim 10^{12}$ W/m$^2$
+\end{itemize}
+
+\noindent\textbf{Thrust Amplification:} For fixed applied force $F_{\mathrm{applied}}$, reduced inertia yields higher acceleration:
+\begin{equation*}
+  a = \frac{F_{\mathrm{applied}}}{m_{\mathrm{eff}}} = \frac{F_{\mathrm{applied}}}{m_0(1 - S^2/(u_{\mathrm{vac}} c^2))} > \frac{F_{\mathrm{applied}}}{m_0}
+\end{equation*}
+Enabling rapid acceleration with reduced energy expenditure for spacecraft, submarines, or terrestrial vehicles.

@@ -1,0 +1,519 @@
+%==============================================================================
+% Chapter 26: Dimensional Transition Spectroscopy
+% Part IV: Experimental Validation
+%
+% Source: Maximal_Extraction_SET1_SET2.md (Cayley-Dickson construction, E8 lattice)
+%         Alpha001.06 (hyperdimensional kernel formulations, lines 5000-8000, 12000-15000)
+%         Ch02: Cayley-Dickson algebras (dimensional hierarchy)
+%         Ch04: E8 lattice theory
+%         Ch20: Dimensional mapping (unified framework)
+%==============================================================================
+
+\chapter{Dimensional Transition Spectroscopy}\label{ch:exp_dimensional}
+
+\section{Introduction: Probing Dimensional Structure}
+
+The frameworks under investigation predict fundamentally different dimensional structures for physical reality:
+
+\begin{itemize}
+  \item \textbf{\aetherattr}: The crystalline lattice model employs Cayley-Dickson algebras extending from $\mathbb{R}$ (1D) through $\mathbb{C}$ (2D), $\mathbb{H}$ (4D), $\mathbb{O}$ (8D), sedenions (16D), pathions (32D), to potentially 2048D. Physical observables manifest as projections from hyperdimensional space onto observable 3+1D spacetime. Dimensional transitions occur at $D = 2^n$ boundaries where algebraic properties (commutativity, associativity, alternativity) are lost.
+
+  \item \textbf{\genesisattr}: The origami-folding cosmology posits fractal and non-integer dimensions arising from nodespace topology. Effective dimensions vary with energy scale: $D_{\text{eff}}(E) = 3 + \delta D(E)$ where $\delta D$ can be fractional. "Dimensional resonances" occur when energy scales probe nodespace folding transitions.
+
+  \item \textbf{Standard Model + GR}: Physical reality is strictly 3+1 dimensional (3 spatial + 1 temporal). Extra dimensions, if they exist, are compactified at Planck or string scales ($\sim 10^{-35}$ m to $10^{-32}$ m) and manifest only through Kaluza-Klein excitations at inaccessible energies ($\gg$ TeV).
+\end{itemize}
+
+This chapter presents a multi-scale experimental program to probe dimensional structure across seven decades of energy: from atomic spectroscopy (meV to eV) through condensed matter analogues (meV to keV) to collider searches (GeV to TeV). The goal is to detect "dimensional transition signatures"—observable deviations from 3+1D predictions that correlate with the dimensional hierarchies predicted by \aether~and \genesis~frameworks.
+
+\section{Theoretical Predictions}
+
+\subsection{Cayley-Dickson Dimensional Resonances}
+
+The Cayley-Dickson construction (Ch02) generates algebras at dimensions $D_n = 2^n$:
+
+\begin{equation}
+  \mathbb{R} \xrightarrow{n=0} \mathbb{C} \xrightarrow{n=1} \mathbb{H} \xrightarrow{n=2} \mathbb{O} \xrightarrow{n=3} \mathbb{S} \xrightarrow{n=4} \mathbb{P} \xrightarrow{n=5} \cdots \xrightarrow{} 2^{11}D
+  \label{eq:dim:cayley-dickson}
+\end{equation}
+
+At each transition, a fundamental algebraic property is lost:
+\begin{itemize}
+  \item $\mathbb{C} \to \mathbb{H}$: Commutativity lost ($ab \neq ba$)
+  \item $\mathbb{H} \to \mathbb{O}$: Associativity lost ($(ab)c \neq a(bc)$)
+  \item $\mathbb{O} \to \mathbb{S}$: Alternativity lost (power-associativity fails)
+\end{itemize}
+
+The \aether~framework posits these transitions manifest physically as \textbf{symmetry breaking scales}. The associated energy:
+
+\input{modules/equations/eq_dimensional_resonance_formula.tex}
+
+where $\ell_n$ is the characteristic length scale for dimension $D_n$, predicted to follow:
+
+\begin{equation}
+  \ell_n = \ell_P \cdot 2^{\alpha(n - n_0)}
+  \label{eq:dim:length-scaling}
+\end{equation}
+
+with $\alpha \sim 1$ to 2 (logarithmic spacing) and $n_0$ determining the lowest observable transition. For $n_0 = 10$ (1024D transition at Planck scale) and $\alpha = 1$:
+
+\begin{table}[htbp]
+\centering
+\caption{Cayley-Dickson dimensional transitions: Predicted energy scales}
+\label{tab:dim:cayley-scales}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+$n$ & Dimension $D_n$ & Length $\ell_n$ & Energy $E_n$ & Observable \\
+\midrule
+3 & 8 (octonions) & $10^{-18}$ m & 200 MeV & Nucleon scale \\
+4 & 16 (sedenions) & $10^{-19}$ m & 2 GeV & Proton mass \\
+5 & 32 (pathions) & $10^{-20}$ m & 20 GeV & $Z^0$ boson \\
+6 & 64 & $10^{-21}$ m & 200 GeV & Higgs scale (?) \\
+7 & 128 & $10^{-22}$ m & 2 TeV & LHC reach \\
+8 & 256 & $10^{-23}$ m & 20 TeV & Future colliders \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+If this scaling holds, the LHC and future colliders ($\sqrt{s} \sim$ few TeV to 100 TeV) probe dimensions 64 through 512, potentially revealing resonance structures.
+
+\subsection{Fractal Dimensional Signatures}
+
+The \genesis~framework predicts non-integer effective dimensions from fractal nodespace topology:
+
+\begin{equation}
+  D_{\text{eff}}(E) = 3 + \frac{\ln \mathcal{N}(E)}{\ln(E / E_0)}
+  \label{eq:dim:fractal-dimension}
+\end{equation}
+
+where $\mathcal{N}(E)$ is the number of accessible nodespace states at energy $E$, and $E_0$ is a reference scale. For self-similar fractal structures:
+
+\begin{equation}
+  \mathcal{N}(E) \propto \left( \frac{E}{E_0} \right)^{\alpha_F}
+  \label{eq:dim:fractal-scaling}
+\end{equation}
+
+yielding constant fractal dimension $D_{\text{eff}} = 3 + \alpha_F$ with $\alpha_F \sim 0.5$ to 1 predicted. Observable consequences:
+
+\begin{itemize}
+  \item \textbf{Power-law anomalies}: Scattering cross-sections scale as $\sigma \propto E^{-\alpha}$ with $\alpha \neq 2$ (deviation from 3+1D prediction)
+  \item \textbf{Spectral dimension}: Random walk return probability scales as $P(t) \propto t^{-D_{\text{eff}}/2}$ instead of $t^{-3/2}$
+  \item \textbf{Fractal horizons}: Black hole entropy acquires logarithmic corrections $S = (A / 4G)[1 + \alpha_F \ln(A/\ell_P^2)]$
+\end{itemize}
+
+\subsection{Energy Scales for Dimensional Probes}
+
+Dimensional structure manifests at characteristic energy scales determined by the compactification/projection mechanism:
+
+\begin{table}[htbp]
+\centering
+\caption{Dimensional spectroscopy: Energy scales and experimental probes}
+\label{tab:dim:energy-scales}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Energy Range} & \textbf{Length Scale} & \textbf{Dimension Probed} & \textbf{Experiment} \\
+\midrule
+meV to eV & mm to nm & Fractal ($D \sim 3.5$) & Atomic spectroscopy \\
+eV to keV & nm to pm & Octonions ($D = 8$) & Condensed matter \\
+MeV & fm & Sedenions ($D = 16$) & Nuclear structure \\
+100 MeV to GeV & $10^{-16}$ to $10^{-17}$ m & Pathions ($D = 32$) & Electron-positron \\
+GeV to TeV & $10^{-18}$ to $10^{-19}$ m & $D = 64$ to 128 & LHC, future colliders \\
+$> 10$ TeV & $< 10^{-20}$ m & $D = 256+$ & Cosmic rays, indirect \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The experimental program spans this full range with complementary techniques.
+
+\section{Collider Experiments}
+
+\subsection{LHC Searches for Extra Dimensions}
+
+The Large Hadron Collider (LHC) provides the highest-energy controlled environment for dimensional probes. Current searches focus on:
+
+\textbf{1. Kaluza-Klein graviton production}:
+
+In theories with large or warped extra dimensions, gravitons propagate into higher-dimensional bulk space, producing Kaluza-Klein (KK) excitations with masses:
+
+\begin{equation}
+  M_{\text{KK}}^{(n)} = \frac{n}{R_{\text{compact}}}
+  \label{eq:collider:kk-mass}
+\end{equation}
+
+where $R_{\text{compact}}$ is the compactification radius and $n = 1, 2, 3, \ldots$ labels KK modes. Signatures:
+\begin{itemize}
+  \item \textbf{Dilepton resonances}: $pp \to \text{KK-graviton} \to e^+ e^-$ or $\mu^+ \mu^-$
+  \item \textbf{Diphoton events}: $pp \to \text{KK-graviton} \to \gamma \gamma$
+  \item \textbf{Missing energy}: Graviton escape into bulk manifests as momentum imbalance
+\end{itemize}
+
+Current limits (2023): No resonances observed, constraining $R_{\text{compact}} < 10^{-19}$ m for $n = 6$ extra dimensions.
+
+\textbf{2. Dimensional resonances (Aether protocol)}:
+
+The \aether~Cayley-Dickson hierarchy predicts resonances at $E_n$ (Table~\ref{tab:dim:cayley-scales}). Search strategy:
+
+\begin{itemize}
+  \item \textbf{Broad resonance scan}: Search for excess events in dilepton, diphoton, dijet invariant mass spectra
+  \item \textbf{Target masses}: 200 GeV, 500 GeV, 1 TeV, 2 TeV, 5 TeV (expected $D = 64$ to 256 transitions)
+  \item \textbf{Signature}: Narrow resonance ($\Gamma / M < 0.1$) with production cross-section $\sigma \sim$ pb to fb
+\end{itemize}
+
+Distinguish from Standard Model (Higgs-like scalars, $Z'$ bosons) via:
+\begin{itemize}
+  \item \textbf{Spin determination}: Measure angular distributions to identify spin-0 (scalar) vs. spin-2 (tensor)
+  \item \textbf{Coupling patterns}: Dimensional resonances couple democratically to all fermions; new gauge bosons show flavor preferences
+  \item \textbf{Multiplicity}: Cayley-Dickson predicts logarithmically-spaced resonances ($E_{n+1} / E_n \sim 10$); single new particles appear isolated
+\end{itemize}
+
+\textbf{3. Fractal scattering anomalies (Genesis protocol)}:
+
+Test for deviations from Standard Model scattering at high $Q^2$ (momentum transfer):
+
+\begin{equation}
+  \frac{d\sigma}{dQ^2}\bigg|_{\text{measured}} = \frac{d\sigma}{dQ^2}\bigg|_{\text{SM}} \times \left( 1 + \delta_{\text{fractal}}(Q^2) \right)
+  \label{eq:collider:fractal-deviation}
+\end{equation}
+
+\genesis~predicts $\delta_{\text{fractal}} \propto (Q / E_{\text{node}})^{\alpha_F}$ with $\alpha_F \sim 0.5$. Observables:
+\begin{itemize}
+  \item Deep inelastic scattering: Modified parton distribution functions at high $x$
+  \item Jet production: Excess at high $p_T$ from enhanced phase space
+  \item Electroweak precision: Shifts in $W/Z$ production cross-sections
+\end{itemize}
+
+\subsection{Resonance Searches}
+
+\textbf{Experimental procedure} (LHC ATLAS/CMS detectors):
+
+\begin{enumerate}
+  \item \textbf{Data collection} (Run 3, 2022-2025):
+  \begin{itemize}
+    \item Integrated luminosity: $\mathcal{L} \sim 300$ fb$^{-1}$ at $\sqrt{s} = 13.6$ TeV
+    \item Trigger: High-$p_T$ leptons ($p_T > 50$ GeV) or photons ($E_T > 100$ GeV)
+  \end{itemize}
+
+  \item \textbf{Event selection}:
+  \begin{itemize}
+    \item Dilepton channel: Two opposite-sign, same-flavor leptons, $M_{ll} > 200$ GeV
+    \item Diphoton channel: Two isolated photons, $M_{\gamma\gamma} > 200$ GeV, $|\eta| < 2.5$
+    \item Background rejection: Veto jets (suppress $t\bar{t}$, QCD), require isolation
+  \end{itemize}
+
+  \item \textbf{Invariant mass spectrum}:
+  \begin{itemize}
+    \item Bin data in $M_{ll}$ or $M_{\gamma\gamma}$ with 10-50 GeV bins (resolution-dependent)
+    \item Fit to smooth background (polynomial or exponential)
+    \item Search for localized excess ($> 3\sigma$ local significance)
+  \end{itemize}
+
+  \item \textbf{Statistical analysis}:
+  \begin{itemize}
+    \item Likelihood ratio test: $\lambda = \mathcal{L}(\text{signal}+\text{background}) / \mathcal{L}(\text{background})$
+    \item Discovery threshold: $p < 3 \times 10^{-7}$ (five-sigma global significance)
+    \item Systematic uncertainties: Luminosity ($\pm 2\%$), energy scale ($\pm 1\%$), background modeling ($\pm 5\%$ to $20\%$)
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Sensitivity projections}:
+
+For \aether~dimensional resonance with mass $M_{\text{res}} = 1$ TeV and width $\Gamma = 10$ GeV:
+\begin{itemize}
+  \item Required cross-section for $3\sigma$ evidence: $\sigma \times \text{BR}(ll) \gtrsim 1$ fb (achievable if coupling $\sim 0.1$)
+  \item Discovery reach: Masses up to $\sim 5$ TeV with 3000 fb$^{-1}$ (HL-LHC)
+  \item Exclusion: Can rule out resonances down to $\sigma \sim 0.1$ fb at $M < 2$ TeV
+\end{itemize}
+
+\section{Atomic/Molecular Spectroscopy}
+
+\subsection{High-Precision Energy Level Measurements}
+
+Atomic spectroscopy provides exquisite precision ($\sim$ kHz out of PHz frequencies, $\Delta E / E \sim 10^{-15}$) for testing low-energy dimensional effects.
+
+\textbf{Target systems}:
+\begin{itemize}
+  \item \textbf{Hydrogen}: 1S-2S two-photon transition, $\nu = 2466061413187103(46)$ Hz (10 digits precision)
+  \item \textbf{Helium}: Fine structure splitting, $\Delta E_{2^3P} \sim 30$ GHz (QED test)
+  \item \textbf{Rydberg atoms}: High-$n$ states ($n \sim 100$ to 300) probe long-range interactions
+  \item \textbf{Positronium}: Electron-positron bound state, sensitive to pure QED corrections
+\end{itemize}
+
+\subsection{Dimensional Shift Predictions}
+
+\input{modules/equations/eq_spectral_shift_dimensional.tex}
+
+The \aether~framework predicts small shifts from hyperdimensional projection effects:
+
+\begin{equation}
+  \Delta E_n = E_n^{(3+1D)} \left[ 1 + \sum_{k} \epsilon_k \left( \frac{a_0}{\ell_k} \right)^2 \right]
+  \label{eq:spectro:energy-shift}
+\end{equation}
+
+where $a_0$ is the Bohr radius, $\ell_k$ are dimensional transition scales, and $\epsilon_k \ll 1$ are coupling strengths. For $\ell_k \sim 10^{-18}$ m (Table~\ref{tab:dim:cayley-scales}):
+
+\begin{equation}
+  \frac{\Delta E}{E} \sim \epsilon \left( \frac{10^{-10} \text{ m}}{10^{-18} \text{ m}} \right)^2 \sim 10^{16} \epsilon
+  \label{eq:spectro:shift-magnitude}
+\end{equation}
+
+To be detectable at $10^{-15}$ precision requires $\epsilon > 10^{-31}$—extraordinarily weak coupling, likely unobservable.
+
+However, \textbf{Rydberg states} with $n \sim 100$ have radii $a_n = n^2 a_0 \sim 1$ $\mu$m, increasing sensitivity:
+
+\begin{equation}
+  \frac{\Delta E_{\text{Rydberg}}}{E} \sim \epsilon \left( \frac{10^{-6} \text{ m}}{10^{-18} \text{ m}} \right)^2 \sim 10^{24} \epsilon
+  \label{eq:spectro:rydberg-enhancement}
+\end{equation}
+
+Now $\epsilon \sim 10^{-39}$ is sufficient—still challenging but within projected precision of optical lattice clocks.
+
+\textbf{Experimental protocol}:
+
+\begin{enumerate}
+  \item \textbf{Excite Rydberg state}: Two-photon excitation $5S_{1/2} \to nS_{1/2}$ or $nD_{5/2}$ in $^{87}$Rb
+  \item \textbf{Measure energy}: Electromagnetically-induced transparency (EIT) spectroscopy, linewidth $\sim$ kHz
+  \item \textbf{Compare to QED}: Subtract known corrections (Lamb shift, hyperfine, etc.)
+  \item \textbf{Search for dimensional signature}: Correlate residual with dimensional scale predictions
+\end{enumerate}
+
+Challenges: Rydberg states are sensitive to stray electric fields ($\sim$ mV/cm shifts by MHz), requiring ultra-stable environment.
+
+\section{Condensed Matter Analogues}
+
+Condensed matter systems exhibit emergent phenomena mimicking higher-dimensional physics without requiring fundamental extra dimensions.
+
+\subsection{Quantum Hall Systems (Fractional Dimensions)}
+
+The fractional quantum Hall effect (FQHE) at filling factor $\nu = p/q$ (odd denominator) exhibits quasiparticles with fractional charge $e^* = e/q$ and anyonic statistics—signatures of effective dimensional reduction.
+
+\textbf{Connection to fractal dimensions}:
+
+The FQHE wavefunctions (Laughlin states) have fractal support in phase space. The effective dimension:
+
+\begin{equation}
+  D_{\text{eff}}^{\text{QH}} = 2 - \frac{1}{\nu}
+  \label{eq:cm:quantum-hall-dimension}
+\end{equation}
+
+For $\nu = 1/3$: $D_{\text{eff}} = 2 - 3 = -1$ (!) indicating dimensional inversion—electrons confined to 2D behave as if in negative-dimensional space (related to statistics).
+
+\textbf{Experimental test}:
+
+\begin{itemize}
+  \item \textbf{Measure}: Electrical conductivity $\sigma_{xy} = \nu e^2 / h$ (quantized Hall conductance)
+  \item \textbf{Vary}: Magnetic field $B$ to tune $\nu$, map out dimensional transitions
+  \item \textbf{Compare}: \genesis~predicts specific $\nu$ values from nodespace topology
+\end{itemize}
+
+Observed fractional states ($\nu = 1/3, 2/5, 3/7, 5/2, \ldots$) may encode dimensional hierarchy if originating from hyperdimensional projection.
+
+\subsection{Topological Insulators (Dimensional Reduction)}
+
+Topological insulators (TI) are 3D bulk insulators with conducting 2D surface states—effective dimensional reduction from 3D to 2D due to band topology.
+
+\textbf{Connection to dimensional spectroscopy}:
+
+The TI surface Dirac fermions obey $(2+1)$D relativistic dispersion $E = \hbar v_F k$, distinct from 3D bulk. This provides a controlled environment for testing $(2+1)$D vs. $(3+1)$D physics predictions.
+
+\textbf{Experimental protocol}:
+
+\begin{enumerate}
+  \item \textbf{Material}: Bi$_2$Se$_3$, Bi$_2$Te$_3$, or SnTe (canonical 3D TI)
+  \item \textbf{Measurement}: Angle-resolved photoemission spectroscopy (ARPES) to map $E(k)$
+  \item \textbf{Dimensional test}: Measure scattering rate $\Gamma(E) \propto E^{\alpha}$
+  \begin{itemize}
+    \item Standard $(2+1)$D: $\alpha = 2$ (from phase space)
+    \item \genesis~fractal: $\alpha = 1.5$ to 2.5 (non-integer from fractal DOS)
+  \end{itemize}
+  \item \textbf{Temperature dependence}: Thermal de Broglie wavelength $\lambda_T = h / \sqrt{2\pi m k_B T}$ probes dimensional crossover
+\end{enumerate}
+
+If $\alpha$ deviates from integer values, extract effective fractal dimension via:
+
+\begin{equation}
+  D_{\text{eff}} = 1 + \alpha
+  \label{eq:cm:ti-fractal-dimension}
+\end{equation}
+
+\section{Experimental Protocol}
+
+\subsection{Multi-Scale Approach}
+
+The experimental program requires coordinated measurements across six energy/length scales:
+
+\begin{table}[htbp]
+\centering
+\caption{Multi-scale dimensional spectroscopy: Experimental timeline}
+\label{tab:protocol:timeline}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Energy} & \textbf{Experiment} & \textbf{Duration} & \textbf{Observable} & \textbf{Sensitivity} \\
+\midrule
+meV & Rydberg spectroscopy & 6 months & $\Delta E / E$ & $10^{-15}$ \\
+eV & Quantum Hall effect & 3 months & $\nu$, $\sigma_{xy}$ & $10^{-8}$ \\
+keV & ARPES on TI & 6 months & $E(k)$, $\Gamma(E)$ & $10^{-3}$ \\
+GeV & $e^+ e^-$ collider & Ongoing & $\sigma(s)$ & $10^{-2}$ \\
+TeV & LHC searches & 2022-2035 & $M_{ll}$, $M_{\gamma\gamma}$ & $10^{-3}$ \\
+PeV & Cosmic ray obs. & Continuous & Shower depth & $10^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Coordination strategy}:
+
+\begin{enumerate}
+  \item \textbf{Phase 1 (Years 1-2)}: Low-energy precision tests (atomic, condensed matter)
+  \begin{itemize}
+    \item Establish baseline: Measure Standard Model predictions to highest precision
+    \item Search for anomalies: Deviations $> 3\sigma$ from SM
+  \end{itemize}
+
+  \item \textbf{Phase 2 (Years 2-4)}: Collider searches (LHC Run 3, future $e^+ e^-$)
+  \begin{itemize}
+    \item Resonance scan: Dilepton/diphoton spectra at $M > 200$ GeV
+    \item Fractal scattering: High-$Q^2$ DIS and dijet events
+  \end{itemize}
+
+  \item \textbf{Phase 3 (Years 4-6)}: Integration and interpretation
+  \begin{itemize}
+    \item Cross-correlate: Do anomalies at different scales follow predicted pattern?
+    \item Framework discrimination: Bayesian model comparison
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Data Collection Strategy}
+
+\textbf{Unified data repository}:
+
+Centralize all dimensional spectroscopy data in common format:
+\begin{itemize}
+  \item \textbf{Format}: HDF5 files with metadata (energy, observable, uncertainty, experiment)
+  \item \textbf{Versioning}: Git-based version control for reproducibility
+  \item \textbf{Analysis pipeline}: Python/ROOT scripts for automated cross-correlation
+\end{itemize}
+
+\textbf{Statistical methodology}:
+
+Apply consistent Bayesian framework across all energy scales:
+
+\begin{equation}
+  P(\text{framework} | \text{data}) = \frac{P(\text{data} | \text{framework}) P(\text{framework})}{\sum_i P(\text{data} | \text{framework}_i) P(\text{framework}_i)}
+  \label{eq:protocol:bayes}
+\end{equation}
+
+with priors based on theoretical naturalness and posterior updated after each measurement.
+
+\section{Framework Discrimination}
+
+\input{modules/equations/eq_dimensional_resonance_formula.tex}
+
+\begin{table}[htbp]
+\centering
+\caption{Dimensional spectroscopy: Framework-specific signatures}
+\label{tab:discrim:signatures}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Observable} & \textbf{\aether} & \textbf{\genesis} & \textbf{SM + GR} \\
+\midrule
+Collider resonances & Yes, at $M = 2^n \times 100$ GeV & No sharp resonances & No (or single new particle) \\
+Resonance spacing & Logarithmic ($\Delta \ln M \sim$ const) & Irregular & N/A \\
+Atomic shifts & $\propto n^4$ (Rydberg states) & $\propto n^{\alpha}$, $\alpha \neq 4$ & Zero (QED-only) \\
+FQHE $\nu$ values & Standard (1/3, 2/5, ...) & Exotic ($\nu \sim$ fractal) & Standard \\
+TI scattering & $\Gamma \propto E^2$ & $\Gamma \propto E^{\alpha}$, $\alpha \sim 1.7$ & $\Gamma \propto E^2$ \\
+Cosmic ray showers & Standard depth & Early shower (fractal) & Standard depth \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Decision tree for framework selection}:
+
+\begin{enumerate}
+  \item \textbf{If collider resonances observed at logarithmic spacing}: Strong evidence for \aether~Cayley-Dickson hierarchy
+  \begin{itemize}
+    \item Cross-check: Atomic Rydberg shifts consistent with same dimensional scales?
+    \item If yes: \aether~framework validated
+    \item If no: Possible new physics unrelated to dimensional structure
+  \end{itemize}
+
+  \item \textbf{If non-integer scattering exponents in TI/QH systems}: Evidence for \genesis~fractal dimensions
+  \begin{itemize}
+    \item Cross-check: Cosmic ray shower depths anomalous (early development)?
+    \item If yes: \genesis~framework supported
+    \item If no: Fractal effects confined to condensed matter (emergent, not fundamental)
+  \end{itemize}
+
+  \item \textbf{If all measurements consistent with SM + GR}: Frameworks ruled out or couplings below sensitivity
+  \begin{itemize}
+    \item Establish upper bounds: $\epsilon_{\text{Aether}} < 10^{-40}$, $\alpha_{F, \text{Genesis}} < 0.01$
+    \item Motivates higher precision (next-generation experiments)
+  \end{itemize}
+\end{enumerate}
+
+\section{Expected Results}
+
+\textbf{Scenario 1: Aether Cayley-Dickson resonances detected}
+
+Discovery of resonances at $M \approx 500$ GeV, 2 TeV, 10 TeV with logarithmic spacing ($\Delta \ln M \approx 1.4$) would constitute breakthrough evidence for hyperdimensional physics. Required follow-up:
+
+\begin{itemize}
+  \item \textbf{Spin measurement}: Angular distribution analysis to confirm spin-0 (scalar) nature
+  \item \textbf{Coupling determination}: Production cross-sections $\to$ coupling strengths $\to$ dimensional embedding
+  \item \textbf{Rydberg correlation}: Predicted atomic shifts at $\Delta E / E \sim 10^{-16}$ to $10^{-14}$ must be observed
+  \item \textbf{Theoretical development}: Construct explicit projection maps from $D = 64, 128, 256$ to 3+1D
+\end{itemize}
+
+\textbf{Scenario 2: Genesis fractal dimensions observed}
+
+Non-integer scattering exponents ($\alpha = 1.7 \pm 0.1$ in TI systems, $\alpha = 2.3 \pm 0.2$ in cosmic rays) would validate fractal spacetime. Implications:
+
+\begin{itemize}
+  \item Extract effective dimension: $D_{\text{eff}}(E) = 2.7$ to 3.3 across energy scales
+  \item Connect to nodespace: $\ell_{\text{node}} \sim$ (energy scale)$^{-1}$ mapping
+  \item Predict quantum gravity regime: Fractal dimension $\to$ integer (3 or 4) at $E \to E_{\text{Planck}}$
+  \item Test holographic entropy: Logarithmic corrections in BH thermodynamics (Ch25) must be consistent
+\end{itemize}
+
+\textbf{Scenario 3: Null results (SM + GR)}
+
+If no dimensional signatures above thresholds, establish constraints:
+
+\begin{itemize}
+  \item \textbf{\aether}: Dimensional transition scales $\ell_n < 10^{-22}$ m (beyond LHC reach)
+  \item \textbf{\genesis}: Fractal dimension deviations $|\alpha_F| < 0.01$ (essentially integer)
+  \item \textbf{Both}: Dimensional effects decouple from observable 3+1D physics
+\end{itemize}
+
+This would not refute frameworks but would constrain their parameter space and push observability to next-generation experiments (100 TeV collider, ultra-cold atom quantum simulators, space-based interferometers).
+
+\section{Summary and Integration}
+
+This chapter presented a comprehensive multi-scale program for dimensional transition spectroscopy, probing the hypothesized hyperdimensional and fractal structures of \aether~and \genesis~frameworks across seven decades of energy:
+
+\begin{itemize}
+  \item \textbf{Collider searches} (GeV to TeV): Resonances at Cayley-Dickson transitions, fractal scattering deviations
+  \item \textbf{Atomic spectroscopy} (meV to eV): Rydberg state shifts from dimensional coupling
+  \item \textbf{Condensed matter} (meV to keV): Quantum Hall fractal dimensions, topological insulator $(2+1)$D physics
+  \item \textbf{Cosmic rays} (PeV): Shower development anomalies from fractal effective dimensions
+\end{itemize}
+
+The coordinated experimental program enables framework discrimination through:
+\begin{enumerate}
+  \item \textbf{Pattern recognition}: Do anomalies follow predicted dimensional hierarchies?
+  \item \textbf{Cross-correlation}: Are collider resonances consistent with atomic shifts via dimensional scaling?
+  \item \textbf{Bayesian model selection}: Quantitative posterior probabilities for each framework
+\end{enumerate}
+
+Integration with prior experimental chapters (Ch22 scalar-ZPE, Ch23 time crystals, Ch24 quantum foam, Ch25 holographic entropy) provides multi-faceted validation. If dimensional signatures are detected consistently across multiple independent observables, the case for hyperdimensional or fractal spacetime becomes compelling.
+
+The next phase (Part V: Applications) will explore engineering implications: if dimensional structure is validated, how can it be exploited for quantum computing, energy systems, propulsion, and spacetime manipulation?
+
+%==============================================================================
+% Cross-references:
+%   - Ch02: Cayley-Dickson algebra construction (dimensional hierarchy)
+%   - Ch03: Exceptional Lie groups (E8, G2, F4 symmetries)
+%   - Ch04: E8 lattice theory (Gosset polytope, dimensional projections)
+%   - Ch11: Genesis nodespace formulation (fractal dimensions)
+%   - Ch18: Framework experimental distinguishability
+%   - Ch20: Dimensional mapping (unified framework projections)
+%   - Ch21: Unified predictions (dimensional transition energies)
+%   - Ch22-25: Complementary experimental protocols
+%==============================================================================

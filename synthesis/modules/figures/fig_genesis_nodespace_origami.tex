@@ -1,0 +1,123 @@
+%==============================================================================
+% Figure: Genesis Nodespace Origami Dimensional Folding
+% Source: Ch11-14 (Genesis Framework)
+% Framework: G (Genesis) | Type: Dimensional folding diagram
+% Date: 2025-10-21
+%==============================================================================
+
+\begin{tikzpicture}[scale=1.0]
+
+  % Title
+  \node[anchor=north, font=\large\bfseries] at (6,9.5) {Genesis Framework: Origami Dimensional Folding};
+
+  % 8D Initial State (E8)
+  \node[draw, rectangle, fill=purple!30, minimum width=6cm, minimum height=1.2cm, font=\footnotesize, align=center] (E8) at (6,8) {
+    \textbf{8D Nodespace (E8)} \\
+    248 symmetries, full E8 root system
+  };
+
+  % Folding arrow 1
+  \draw[->, very thick, red] (6,7.2) -- (6,6.5);
+  \node[right, font=\tiny, text=red] at (6.2,6.85) {Fold 1: 8D $\to$ 7D};
+
+  % 7D State (E7)
+  \node[draw, rectangle, fill=purple!40, minimum width=5cm, minimum height=1.2cm, font=\footnotesize, align=center] (E7) at (6,6) {
+    \textbf{7D Nodespace (E7)} \\
+    133 symmetries, 126 roots
+  };
+
+  % Visual origami fold representation
+  \begin{scope}[shift={(1,6)}]
+    \draw[thick, blue, fill=blue!10] (0,0) -- (1,0) -- (1,0.8) -- (0,0.8) -- cycle;
+    \draw[thick, blue, dashed] (1,0) -- (1.3,0.2);
+    \draw[thick, blue, dashed] (1,0.8) -- (1.3,1);
+    \draw[thick, blue, fill=blue!20] (1.3,0.2) -- (1.8,0.4) -- (1.8,1.2) -- (1.3,1) -- cycle;
+    \node[font=\tiny, below] at (0.9,-0.2) {Fold line};
+  \end{scope}
+
+  % Folding arrow 2
+  \draw[->, very thick, red] (6,5.2) -- (6,4.5);
+  \node[right, font=\tiny, text=red] at (6.2,4.85) {Fold 2: 7D $\to$ 6D};
+
+  % 6D State (E6)
+  \node[draw, rectangle, fill=purple!50, minimum width=4cm, minimum height=1.2cm, font=\footnotesize, align=center] (E6) at (6,4) {
+    \textbf{6D Nodespace (E6)} \\
+    78 symmetries, 72 roots
+  };
+
+  % Folding arrow 3
+  \draw[->, very thick, red] (6,3.2) -- (6,2.5);
+  \node[right, font=\tiny, text=red] at (6.2,2.85) {Fold 3: 6D $\to$ 4D};
+
+  % 4D Observable State
+  \node[draw, rectangle, fill=green!40, minimum width=3.5cm, minimum height=1.2cm, font=\footnotesize, align=center] (4D) at (6,2) {
+    \textbf{4D Observable Space} \\
+    Spacetime manifestation
+  };
+
+  % Unfolding path (reverse)
+  \draw[<-, very thick, blue, dashed] (8.5,2) to[bend right=20] (8.5,4);
+  \draw[<-, very thick, blue, dashed] (8.5,4) to[bend right=20] (8.5,6);
+  \draw[<-, very thick, blue, dashed] (8.5,6) to[bend right=20] (8.5,8);
+  \node[right, font=\tiny, text=blue] at (9,5) {Unfolding};
+  \node[right, font=\tiny, text=blue] at (9,4.7) {(emergence)};
+
+  % Symmetry reduction table
+  \node[draw, rectangle, fill=yellow!20, font=\footnotesize, align=left, text width=4.5cm] at (1.5,3) {
+    \textbf{Symmetry Reduction Cascade:} \\[3pt]
+    E8 (248 dim) $\to$ E7 (133 dim) \\
+    \phantom{E8 (248 dim)} $\searrow$ 115 lost \\[2pt]
+    E7 (133 dim) $\to$ E6 (78 dim) \\
+    \phantom{E7 (133 dim)} $\searrow$ 55 lost \\[2pt]
+    E6 (78 dim) $\to$ 4D observable \\
+    \phantom{E6 (78 dim)} $\searrow$ 74 hidden
+  };
+
+  % Origami folding principle
+  \node[draw, rectangle, fill=orange!20, font=\footnotesize, align=left, text width=4.5cm] at (10.5,3) {
+    \textbf{Origami Principle:} \\[3pt]
+    $\bullet$ Higher dimensions "fold" \\
+    \phantom{$\bullet$} into lower manifolds \\
+    $\bullet$ Information preserved \\
+    \phantom{$\bullet$} in fold structure \\
+    $\bullet$ Observable physics = \\
+    \phantom{$\bullet$} shadow of 8D geometry \\
+    $\bullet$ Unfolds during phase \\
+    \phantom{$\bullet$} transitions
+  };
+
+  % Genesis kernel equation
+  \node[draw, rectangle, fill=cyan!15, font=\footnotesize, align=center, text width=5cm] at (6,0.3) {
+    Genesis Kernel (8D $\to$ 4D projection): \\[3pt]
+    $K_{\text{Genesis}} = \Pi_{8 \to 4}(M_n(x) \cdot \Phi_{\text{total}})$
+  };
+
+  % Meta-principle annotation
+  \node[draw, ellipse, fill=red!15, font=\tiny, align=center] at (10.5,6.5) {
+    Meta-Principle: \\
+    "Form follows \\
+    function follows \\
+    fold"
+  };
+
+  % Dimensional markers
+  \foreach \y/\dim in {8/8D, 6/7D, 4/6D, 2/4D} {
+    \node[draw, circle, fill=white, font=\tiny, minimum size=0.5cm] at (0,\y) {\dim};
+  }
+
+  % Visual 8D to 4D compression
+  \begin{scope}[shift={(1,0)}]
+    \draw[thick, purple, fill=purple!10] (0,0) rectangle (0.2,1.6);
+    \node[below, font=\tiny] at (0.1,-0.2) {8D};
+    \draw[thick, ->, red] (0.3,0.8) -- (0.7,0.8);
+    \draw[thick, green, fill=green!10] (0.8,0.3) rectangle (1,1.3);
+    \node[below, font=\tiny] at (0.9,-0.2) {4D};
+    \node[above, font=\tiny] at (0.5,1.8) {Projection};
+  \end{scope}
+
+\end{tikzpicture}
+
+% Usage: \input{modules/figures/fig_genesis_nodespace_origami.tex}
+% Notes: Visualizes Genesis framework's "origami folding" concept where
+%        8D E8 nodespace folds through E7 and E6 to manifest as 4D spacetime.
+%==============================================================================

@@ -1,0 +1,126 @@
+%==============================================================================
+% Figure: Experimental Protocol Flowchart - Casimir Force Measurement
+% Purpose: Step-by-step experimental procedure for Casimir force validation
+% Chapter: Ch22 - Experimental Validation: Casimir Force Experiments
+% Type: Flowchart / Experimental protocol
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=2cm,
+    auto,
+    process/.style={
+      rectangle,
+      rounded corners,
+      minimum width=4cm,
+      minimum height=1cm,
+      text centered,
+      draw=black,
+      line width=0.8pt,
+      font=\small
+    },
+    decision/.style={
+      diamond,
+      minimum width=3cm,
+      minimum height=1.2cm,
+      text centered,
+      draw=black,
+      line width=0.8pt,
+      font=\small,
+      aspect=2
+    },
+    arrow/.style={
+      thick,
+      ->,
+      >=stealth,
+      line width=1pt
+    },
+    annotation/.style={
+      font=\scriptsize,
+      text width=3cm,
+      align=left,
+      fill=white
+    }
+  ]
+
+    % Setup phase
+    \node (setup) [process, fill=blue!20] {1. Setup\\Parallel plate apparatus\\(separation $d = 10$--$1000$ nm)};
+
+    % Calibration
+    \node (calibrate) [process, below of=setup, fill=blue!30] {2. Calibration\\Standard Casimir measurement\\(baseline force $F_0$)};
+
+    % Fractal geometry application
+    \node (modify) [process, below of=calibrate, fill=orange!20] {3. Apply Geometry\\Fractal surface patterning\\(dimension $D_f = 2.1$--$2.3$)};
+
+    % Measurement
+    \node (measure) [process, below of=modify, fill=green!20] {4. Measure Force\\High-precision AFM\\($F_{fractal}$ at multiple $d$)};
+
+    % Data analysis
+    \node (analyze) [process, below of=measure, fill=green!30] {5. Data Analysis\\Compute deviation:\\$\Delta = (F_{fractal} - F_0)/F_0$};
+
+    % Decision point
+    \node (check) [decision, below of=analyze, fill=yellow!20] {$\Delta$ within\\predicted\\range?};
+
+    % Positive outcome
+    \node (positive) [process, right of=check, node distance=5cm, fill=green!40] {6a. Validation\\$\Delta = 15$--$25\%$\\supports Aether framework};
+
+    % Negative outcome
+    \node (negative) [process, left of=check, node distance=5cm, fill=red!20] {6b. Refine Model\\Adjust parameters\\or explore alternatives};
+
+    % Publication
+    \node (publish) [process, below of=check, node distance=3cm, fill=blue!40] {7. Report Results\\Publish findings with\\error analysis};
+
+    % Arrows
+    \draw [arrow] (setup) -- node[right, annotation] {Vacuum chamber\\$P < 10^{-8}$ Torr} (calibrate);
+
+    \draw [arrow] (calibrate) -- node[right, annotation] {Record baseline\\$F_0(d) \propto d^{-4}$} (modify);
+
+    \draw [arrow] (modify) -- node[right, annotation] {Nanofabrication\\electron beam lithography} (measure);
+
+    \draw [arrow] (measure) -- node[right, annotation] {Force resolution\\$< 1$ pN} (analyze);
+
+    \draw [arrow] (analyze) -- (check);
+
+    \draw [arrow] (check) -- node[above] {Yes} (positive);
+
+    \draw [arrow] (check) -- node[above] {No} (negative);
+
+    \draw [arrow] (negative) |- node[near start, above] {Iterate} (modify);
+
+    \draw [arrow] (positive) -- ++(0,-1.5) -| (publish);
+
+    \draw [arrow, dashed] (negative) -- ++(0,-2.5) -| (publish);
+
+    % Side annotations with experimental details
+    \node[annotation, align=left, text=blue!60!black, left of=setup, node distance=6cm]
+      (detail1) {
+        \textbf{Apparatus:}\\
+        - Gold-coated plates\\
+        - AFM force sensor\\
+        - Temperature control\\
+        - Vibration isolation
+      };
+
+    \node[annotation, align=left, text=blue!60!black, left of=measure, node distance=6cm]
+      (detail2) {
+        \textbf{Key Parameters:}\\
+        - Separation: 10--1000 nm\\
+        - Fractal dim: $D_f = 2.1$--$2.3$\\
+        - Roughness: $< 1$ nm RMS\\
+        - Temperature: $T = 4$--300 K
+      };
+
+    \node[annotation, align=left, text=blue!60!black, left of=analyze, node distance=6cm]
+      (detail3) {
+        \textbf{Predicted Deviation:}\\
+        Aether: $+15\%$ to $+25\%$\\
+        Genesis: $+10\%$ to $+30\%$\\
+        Standard QED: $< 2\%$
+      };
+
+  \end{tikzpicture}
+
+  \caption{Experimental protocol flowchart for Casimir force measurements with fractal geometry enhancements (Ch22). The procedure tests predictions from the Aether framework: fractal surface patterning should enhance Casimir forces by 15--25\% beyond standard quantum electrodynamics predictions. Steps include: (1) parallel plate apparatus setup, (2) baseline calibration, (3) fractal geometry application via nanofabrication, (4) high-precision force measurement, (5) deviation analysis, (6) validation or model refinement, and (7) publication. Green path indicates validation; red path indicates need for model adjustment. Key parameters and apparatus specifications shown in left margin.}
+  \label{fig:casimir-protocol}
+\end{figure}

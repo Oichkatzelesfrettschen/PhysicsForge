@@ -1,0 +1,450 @@
+%==============================================================================
+% Chapter 24: Quantum Foam Detection and Amplification
+% Part IV: Experimental Validation
+%
+% Source: Alpha003.02 (Sections 0.5, 7.1-7.15, lines 71-80, 1428-1620)
+%         Quantum_Foam_Experimental_Evidence_Literature_Survey_2010-2025.md
+%         Ch18 (experimental distinguishability)
+%         Ch21 (unified predictions)
+%==============================================================================
+
+\chapter{Quantum Foam Detection and Amplification}\label{ch:exp_quantum_foam}
+
+\section{Introduction: Probing Planck-Scale Fluctuations}
+
+Quantum foam represents the dynamic, fluctuating substructure of spacetime at Planck scales, characterized by transient curvature variations and probabilistic topology changes. First proposed by John Wheeler in the 1950s, quantum foam emerges naturally from attempts to reconcile quantum mechanics with general relativity at scales approaching the Planck length $\ell_P \approx \SI{1.616e-35}{\meter}$.
+
+The three frameworks under investigation predict fundamentally different manifestations of quantum foam:
+\begin{itemize}
+  \item \textbf{\aetherattr}: Foam fluctuations couple to scalar fields via $\delta g(\phi, \text{ZPE}, \text{foam})$, creating enhanced coherence patterns measurable through interferometry. The crystalline lattice model predicts foam-induced periodic energy density variations.
+
+  \item \textbf{\genesisattr}: Nodespace discreteness creates topological signatures in vacuum fluctuations. The origami-folding structure produces non-Gaussian correlation functions distinct from standard quantum field theory predictions.
+
+  \item \textbf{Standard QFT}: Foam arises purely from virtual particle fluctuations with Gaussian statistics and power-law power spectral densities determined by renormalization group flow.
+\end{itemize}
+
+Detecting quantum foam requires pushing measurement precision beyond current gravitational wave detector sensitivity by several orders of magnitude. However, the \aether~framework predicts a novel amplification mechanism: scalar field coupling enhances foam signatures from undetectable ($\sim 10^{-35}$ m) to potentially observable ($\sim 10^{-18}$ m) scales through resonant cavity effects.
+
+This chapter presents comprehensive experimental protocols to detect, characterize, and distinguish quantum foam signatures predicted by competing theoretical frameworks.
+
+\section{Theoretical Predictions}
+
+\subsection{Aether Framework: Foam-Enhanced Scalar Coupling}
+
+The \aether~framework treats quantum foam as a stabilized substructure modulated by scalar-ZPE interactions (Alpha003.02, Section 7.2):
+
+\begin{equation}
+  \delta g_{\mu\nu}^{\text{foam}} = \delta g_0 + \kappa \phi(x,t) \rho_{\text{foam}}(x)
+  \label{eq:foam:aether-coupling}
+\end{equation}
+
+where $\delta g_0$ represents the baseline foam metric perturbation, $\kappa$ is the scalar coupling constant (predicted $\kappa \sim 10^{-3}$ to $10^{-2}$ in natural units), and the foam energy density:
+
+\input{modules/equations/eq_foam_power_spectrum.tex}
+
+The key prediction is \textbf{coherence enhancement}: scalar field oscillations at frequency $\omega$ create resonant amplification of foam fluctuations at harmonics $n\omega$, producing observable signatures in high-Q optical cavities. The amplification factor scales as:
+
+\begin{equation}
+  A_{\text{foam}} = Q \cdot \frac{\kappa \phi_0}{\ell_P / L_{\text{cavity}}}
+  \label{eq:foam:amplification}
+\end{equation}
+
+where $Q$ is the cavity quality factor (achievable $Q \sim 10^{10}$ to $10^{12}$), $\phi_0$ is the scalar field amplitude, and $L_{\text{cavity}} \sim 1$ m is the cavity length. For realistic parameters, this predicts amplification from Planck scale to potentially detectable $\Delta L / L \sim 10^{-18}$ strain levels.
+
+\subsection{Genesis Framework: Nodespace Discreteness Signatures}
+
+The \genesis~framework models spacetime as discrete nodespace with characteristic spacing $\ell_{\text{node}}$ potentially larger than $\ell_P$ (math5GenesisFrameworkUnveiled.md, Section 3.2). Quantum foam manifests as:
+
+\begin{equation}
+  \langle \delta g_{\mu\nu}(x) \delta g_{\alpha\beta}(y) \rangle =
+  G_{\text{node}}(|x - y|) \cdot \Theta(\ell_{\text{node}})
+  \label{eq:foam:genesis-correlation}
+\end{equation}
+
+where $\Theta(\ell_{\text{node}})$ is a cutoff function introducing discreteness at scale $\ell_{\text{node}}$. The correlation function exhibits:
+
+\begin{itemize}
+  \item \textbf{Non-Gaussian tails}: Higher-order correlators decay slower than Gaussian predictions due to topological defects
+  \item \textbf{Fractal dimension}: Power spectrum follows $P(k) \propto k^{-\alpha}$ with $\alpha = 3 + D_{\text{fractal}} - 4$ where $D_{\text{fractal}} \approx 3.7$ predicted
+  \item \textbf{Periodic signatures}: Origami folding introduces discrete frequencies in vacuum fluctuations
+\end{itemize}
+
+\subsection{Standard QFT: Virtual Particle Fluctuations}
+
+Standard quantum field theory on curved spacetime predicts foam energy density from vacuum stress-tensor fluctuations:
+
+\begin{equation}
+  \langle T_{\mu\nu}(x) T_{\alpha\beta}(y) \rangle =
+  \frac{\hbar c}{(x-y)^8} \left[ \text{polynomial in } g_{\mu\nu} \right]
+  \label{eq:foam:qft-standard}
+\end{equation}
+
+with purely Gaussian statistics and no enhancement mechanisms. The expected strain sensitivity in interferometers:
+
+\begin{equation}
+  \frac{\Delta L}{L} \sim \sqrt{\frac{\ell_P}{L_{\text{cavity}}}} \sim 10^{-18} \left( \frac{1 \text{ m}}{L} \right)^{1/2}
+  \label{eq:foam:qft-strain}
+\end{equation}
+
+This is precisely at the detection threshold of advanced LIGO-class instruments, making foam detection marginally feasible even without framework-specific enhancement.
+
+\section{Experimental Apparatus}
+
+\subsection{High-Q Optical Cavity Setup}
+
+The detection apparatus centers on an ultra-stable Fabry-Perot cavity operating in ultra-high vacuum:
+
+\textbf{Cavity specifications}:
+\begin{itemize}
+  \item Length: $L = 1.0$ m (baseline), scalable to $L = 10$ m for enhanced sensitivity
+  \item Mirror reflectivity: $R > 0.999999$ (six-nines, $Q \sim 10^{11}$)
+  \item Finesse: $\mathcal{F} \sim 10^6$
+  \item Material: Ultra-low expansion (ULE) glass or single-crystal silicon for thermal stability
+  \item Temperature: Cryogenic cooling to $T < 10$ K to reduce thermal noise
+  \item Vacuum: $p < 10^{-10}$ torr to eliminate acoustic coupling
+\end{itemize}
+
+\textbf{Laser system}:
+\begin{itemize}
+  \item Wavelength: $\lambda = 1064$ nm (Nd:YAG) or 1550 nm (telecom-compatible)
+  \item Power: $P_{\text{in}} = 10$ W to 100 W (limited by coating damage threshold)
+  \item Linewidth: $\Delta \nu < 1$ Hz (sub-Hz stabilization via PDH locking)
+  \item Frequency noise: Shot-noise limited at detection frequencies above 100 Hz
+\end{itemize}
+
+\textbf{Detection system}:
+\begin{itemize}
+  \item Photodetectors: Quantum efficiency $\eta > 0.95$ at operating wavelength
+  \item Readout: Homodyne/heterodyne detection with phase sensitivity $< 1$ mrad
+  \item Bandwidth: DC to 10 kHz for foam fluctuation spectrum analysis
+  \item Seismic isolation: Multi-stage active isolation to suppress vibrations below 1 Hz
+\end{itemize}
+
+\subsection{Interferometric Precision Requirements}
+
+To detect foam at the predicted sensitivity levels, the apparatus must achieve:
+
+\begin{align}
+  \text{Strain sensitivity: } & \quad \delta L / L < 10^{-18} \text{ Hz}^{-1/2} \label{eq:req:strain} \\
+  \text{Phase sensitivity: } & \quad \delta \phi < 10^{-9} \text{ rad Hz}^{-1/2} \label{eq:req:phase} \\
+  \text{Frequency stability: } & \quad \delta \nu / \nu < 10^{-15} \text{ (Allan deviation at } \tau = 1 \text{ s)} \label{eq:req:frequency}
+\end{align}
+
+These requirements are within reach of current technology, as demonstrated by LIGO, VIRGO, and advanced cavity QED experiments. The key innovation is the \textbf{dual-mode operation}:
+
+\begin{enumerate}
+  \item \textbf{Broadband mode}: Measure foam power spectral density from 100 Hz to 10 kHz
+  \item \textbf{Resonant mode}: Lock to scalar field oscillation frequency to activate \aether~amplification
+\end{enumerate}
+
+Seismic isolation must suppress ground motion ($\sim 10^{-6}$ m Hz$^{-1/2}$ at 1 Hz) by $> 10^{12}$ at measurement frequencies $> 100$ Hz. This is achievable with 6-stage passive + active isolation systems.
+
+\section{Detection Protocol}
+
+\subsection{Step 1: Cavity Preparation and Calibration}
+
+\textbf{Initial setup} (Duration: 2-4 weeks):
+\begin{enumerate}
+  \item Evacuate cavity to $p < 10^{-10}$ torr, bake at 150°C for 72 hours
+  \item Cool to operating temperature ($T = 4$ K to 10 K) via liquid helium or pulse-tube cryocooler
+  \item Verify mirror surface quality: wavefront error $< \lambda / 100$, scatter $< 1$ ppm
+  \item Achieve PDH lock with residual frequency noise $< 1$ Hz
+\end{enumerate}
+
+\textbf{Calibration measurements}:
+\begin{itemize}
+  \item \textbf{Shot noise floor}: Measure quantum noise limit with high input power
+  \item \textbf{Thermal noise}: Characterize coating Brownian motion (dominant at 100-1000 Hz)
+  \item \textbf{Seismic coupling}: Transfer function from ground motion to cavity length
+  \item \textbf{Laser noise}: Amplitude and frequency noise spectral densities
+\end{itemize}
+
+Establish baseline noise budget with all classical noise sources characterized to $< 10\%$ uncertainty.
+
+\subsection{Step 2: Baseline Measurement (No Foam Enhancement)}
+
+\textbf{Standard QFT mode} (Duration: 1-3 months):
+
+Operate cavity in broadband detection mode without external scalar field modulation. Measure cavity length fluctuations:
+
+\begin{equation}
+  S_L(f) = \int_{-\infty}^{\infty} \langle \delta L(t) \delta L(t + \tau) \rangle e^{2\pi i f \tau} d\tau
+  \label{eq:protocol:psd}
+\end{equation}
+
+Expected baseline spectrum from known noise sources:
+\begin{itemize}
+  \item \textbf{Shot noise}: $S_L^{\text{shot}}(f) = \frac{\hbar c}{4 P_{\text{circ}}} \cdot \frac{L^2}{\mathcal{F}^2}$ (white, frequency-independent)
+  \item \textbf{Thermal noise}: $S_L^{\text{thermal}}(f) \propto T / (m f^2)$ (coating Brownian, scales as $1/f^2$)
+  \item \textbf{Seismic}: $S_L^{\text{seismic}}(f) \sim 10^{-20}$ m$^2$ Hz$^{-1}$ at $f > 100$ Hz (negligible with isolation)
+\end{itemize}
+
+Any excess noise beyond this baseline at $f > 1$ kHz is a candidate for quantum foam signature.
+
+\subsection{Step 3: Scalar Field Activation (Aether Protocol)}
+
+\textbf{Enhanced foam detection mode} (Duration: 3-6 months):
+
+Introduce external scalar field oscillator at frequency $\omega_{\phi} / 2\pi = 1$ kHz to 10 kHz:
+
+\begin{itemize}
+  \item \textbf{Scalar source}: Piezoelectric transducer coupled to cavity mirrors, modulating mechanical stress at $\omega_{\phi}$
+  \item \textbf{Amplitude}: $\phi_0 \sim 10^{-6}$ (dimensionless in natural units, equivalent to strain $\sim 10^{-6}$)
+  \item \textbf{Frequency sweep}: Scan $\omega_{\phi}$ from 1 kHz to 10 kHz in 100 Hz steps
+\end{itemize}
+
+According to \aether~predictions (Eq.~\ref{eq:foam:amplification}), foam-induced length fluctuations should appear as:
+
+\begin{equation}
+  S_L^{\text{foam}}(n\omega_{\phi}) = A_{\text{foam}}^2 \cdot S_L^{\text{baseline}}(\omega_{\phi})
+  \label{eq:protocol:enhanced-psd}
+\end{equation}
+
+with enhancement visible at harmonics $n = 1, 2, 3, \ldots$ corresponding to nonlinear scalar-foam coupling. The signature is a \textbf{comb of peaks} in the power spectrum, distinct from broadband noise.
+
+\subsection{Step 4: Nodespace Perturbation (Genesis Protocol)}
+
+\textbf{Non-Gaussian statistics test} (Duration: 3-6 months):
+
+The \genesis~framework predicts deviations from Gaussian statistics in higher-order correlators. Measure:
+
+\begin{align}
+  \text{Skewness: } & \quad S_3 = \langle \delta L^3 \rangle / \sigma^3 \label{eq:protocol:skewness} \\
+  \text{Kurtosis: } & \quad S_4 = \langle \delta L^4 \rangle / \sigma^4 - 3 \label{eq:protocol:kurtosis}
+\end{align}
+
+Standard QFT (Gaussian vacuum) predicts $S_3 = 0$, $S_4 = 0$. \genesis~framework predicts:
+\begin{itemize}
+  \item $|S_3| \sim 0.1$ to 1 (non-zero skewness from topological defects)
+  \item $S_4 \sim 0.5$ to 2 (heavy tails from fractal correlations)
+\end{itemize}
+
+Statistical significance requires $> 10^6$ independent samples, demanding months of continuous data acquisition.
+
+\input{modules/equations/eq_foam_correlation_function.tex}
+
+Additionally, search for \textbf{periodic modulation} in vacuum noise at frequencies corresponding to nodespace characteristic scales:
+
+\begin{equation}
+  f_{\text{node}} = \frac{c}{\ell_{\text{node}}} \sim 10^{26} \text{ Hz} \times \left( \frac{10^{-35} \text{ m}}{\ell_{\text{node}}} \right)
+  \label{eq:protocol:node-frequency}
+\end{equation}
+
+If $\ell_{\text{node}} \sim 100 \ell_P$, this corresponds to $f_{\text{node}} \sim 10^{24}$ Hz (far beyond detector bandwidth), but folding effects may produce observable sidebands at $f \sim$ kHz.
+
+\subsection{Step 5: Signal Analysis and Comparison}
+
+\textbf{Data processing pipeline}:
+\begin{enumerate}
+  \item \textbf{Glitch removal}: Identify and excise transient noise events using wavelet decomposition
+  \item \textbf{Spectral estimation}: Welch's method with Hanning windows, $> 1000$ averages
+  \item \textbf{Coherence analysis}: Cross-correlate scalar field drive with cavity response
+  \item \textbf{Statistical tests}: Kolmogorov-Smirnov test for non-Gaussianity, $\chi^2$ test for power spectrum
+\end{enumerate}
+
+\textbf{Framework discrimination criteria}:
+
+\begin{table}[htbp]
+\centering
+\caption{Quantum foam detection: Framework-specific signatures}
+\label{tab:foam:signatures}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Observable} & \textbf{\aether~Prediction} & \textbf{\genesis~Prediction} \\
+\midrule
+Power spectrum peaks & Comb at $n\omega_{\phi}$ & Broadband + discrete lines \\
+Enhancement factor & $A_{\text{foam}} \sim 10^3$ to $10^5$ & No enhancement (baseline) \\
+Higher-order stats & Gaussian ($S_3 = 0$, $S_4 = 0$) & Non-Gaussian ($S_3 \neq 0$) \\
+Frequency dependence & Resonant at $\omega_{\phi}$ & Flat above $f_{\text{node}}$ \\
+Coherence with $\phi$ & High ($\gamma^2 > 0.9$) & Low ($\gamma^2 < 0.3$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Standard QFT predicts \textbf{no} enhancement, \textbf{Gaussian} statistics, and \textbf{no coherence} with external scalar field.
+
+\section{Predicted Signatures}
+
+\subsection{Power Spectral Density Anomalies}
+
+The \aether~framework predicts a characteristic \textbf{three-peak structure} in the strain PSD:
+
+\begin{enumerate}
+  \item \textbf{Baseline noise floor}: $S_L(f) \sim 10^{-18}$ m$^2$ Hz$^{-1}$ from shot + thermal noise
+  \item \textbf{Foam resonance}: Enhancement by factor $A_{\text{foam}}^2 \sim 10^6$ to $10^{10}$ at $f = \omega_{\phi} / 2\pi$
+  \item \textbf{Harmonics}: Peaks at $2\omega_{\phi}$, $3\omega_{\phi}$, ... with amplitudes $\propto 1/n^2$ from cubic/quartic scalar interactions
+\end{enumerate}
+
+The peak width $\Delta f$ is determined by cavity linewidth:
+
+\begin{equation}
+  \Delta f = \frac{c}{2\pi L \mathcal{F}} \sim 100 \text{ Hz} \times \left( \frac{10^6}{\mathcal{F}} \right)
+  \label{eq:sig:peak-width}
+\end{equation}
+
+For $\mathcal{F} \sim 10^6$, peaks are narrow ($\Delta f \sim 100$ Hz), easily distinguished from broadband backgrounds.
+
+\subsection{Correlation Function Deviations}
+
+The two-point correlation function of cavity length fluctuations:
+
+\begin{equation}
+  C(\tau) = \langle \delta L(t) \delta L(t + \tau) \rangle
+  \label{eq:sig:correlation}
+\end{equation}
+
+exhibits framework-specific behavior:
+
+\begin{itemize}
+  \item \textbf{Standard QFT}: Exponential decay $C(\tau) \propto e^{-\tau / \tau_c}$ with coherence time $\tau_c \sim 1/\Delta f_{\text{cavity}}$
+
+  \item \textbf{\aether}: Oscillatory component $C(\tau) \propto \cos(\omega_{\phi} \tau) e^{-\tau / \tau_{\text{foam}}}$ with $\tau_{\text{foam}} \gg \tau_c$ (long-lived foam coherence)
+
+  \item \textbf{\genesis}: Power-law tail $C(\tau) \propto \tau^{-\alpha}$ at long times from fractal correlations, with $\alpha \sim 0.3$ to 0.7 predicted
+\end{itemize}
+
+Measuring $C(\tau)$ out to $\tau \sim 1$ second requires continuous data acquisition with sampling rate $> 20$ kHz (Nyquist for 10 kHz signals).
+
+\section{Data Analysis Methods}
+
+\subsection{Noise Reduction Techniques}
+
+Multiple strategies for improving signal-to-noise ratio:
+
+\textbf{1. Adaptive filtering}:
+Use Wiener filtering to subtract correlated environmental noise (seismic, acoustic, electromagnetic):
+
+\begin{equation}
+  \hat{s}(t) = s_{\text{raw}}(t) - \sum_{i} W_i(\omega) n_i(t)
+  \label{eq:analysis:wiener}
+\end{equation}
+
+where $W_i(\omega)$ are frequency-dependent weights optimized to minimize residual variance.
+
+\textbf{2. Coincidence detection}:
+Operate multiple identical cavities (separated by $> 100$ m to avoid correlated seismic noise) and cross-correlate outputs. Foam signatures should be correlated with near-unity coefficient if universal; local noise averages to zero.
+
+\textbf{3. Veto channels}:
+Monitor auxiliary sensors (accelerometers, magnetometers, microphones) and veto time periods with excess environmental noise. Reduces duty cycle but improves data quality.
+
+\textbf{4. Bayesian inference}:
+Construct likelihood functions for each framework's predicted spectrum and use Bayesian model comparison to assess relative probabilities:
+
+\begin{equation}
+  \mathcal{L}(\text{data} | \text{model}) = \prod_{f_i}
+  \frac{1}{\sqrt{2\pi S_{\text{model}}(f_i)}} \exp\left[ -\frac{|\tilde{s}(f_i)|^2}{2 S_{\text{model}}(f_i)} \right]
+  \label{eq:analysis:likelihood}
+\end{equation}
+
+Compute Bayes factors comparing \aether, \genesis, and standard QFT models.
+
+\subsection{Statistical Tests for Framework Discrimination}
+
+\textbf{Test 1: Enhancement vs. baseline}
+
+Null hypothesis $H_0$: No enhancement, $S_L(f) = S_L^{\text{baseline}}(f)$
+
+Test statistic:
+\begin{equation}
+  T_{\text{enh}} = \frac{S_L(\omega_{\phi}) - S_L^{\text{baseline}}(\omega_{\phi})}{\sigma_{S_L}}
+  \label{eq:test:enhancement}
+\end{equation}
+
+Reject $H_0$ if $T_{\text{enh}} > 5$ (five-sigma detection threshold). Requires $\sigma_{S_L} < S_L / 5$, achievable with $> 25$ independent measurements.
+
+\textbf{Test 2: Non-Gaussianity}
+
+Use Jarque-Bera test for normality:
+\begin{equation}
+  \text{JB} = \frac{N}{6} \left( S_3^2 + \frac{S_4^2}{4} \right)
+  \label{eq:test:jarque-bera}
+\end{equation}
+
+Under Gaussian null hypothesis, $\text{JB} \sim \chi^2(2)$. Reject normality if $\text{JB} > 9.21$ ($p < 0.01$).
+
+\textbf{Test 3: Coherence with scalar field}
+
+Compute magnitude-squared coherence:
+\begin{equation}
+  \gamma^2(f) = \frac{|S_{\phi L}(f)|^2}{S_{\phi\phi}(f) S_{LL}(f)}
+  \label{eq:test:coherence}
+\end{equation}
+
+where $S_{\phi L}$ is the cross-spectral density between scalar field drive $\phi(t)$ and cavity response $L(t)$.
+
+\aether~framework predicts $\gamma^2(\omega_{\phi}) > 0.9$ (strong coherence); \genesis~and QFT predict $\gamma^2 < 0.3$ (no correlation).
+
+\section{Expected Results and Interpretation}
+
+\subsection{Success Criteria}
+
+\textbf{Positive detection of \aether~foam enhancement} requires:
+\begin{enumerate}
+  \item Statistically significant peaks in $S_L(f)$ at $\omega_{\phi}$ and harmonics ($> 5\sigma$)
+  \item Enhancement factor consistent with Eq.~\ref{eq:foam:amplification} predictions (within factor of 2)
+  \item High coherence $\gamma^2 > 0.8$ between scalar drive and cavity response
+  \item Gaussian statistics maintained ($|S_3|, |S_4| < 0.1$)
+  \item Reproducibility across multiple cavity systems and experimental runs
+\end{enumerate}
+
+\textbf{Positive detection of \genesis~nodespace signatures} requires:
+\begin{enumerate}
+  \item Non-Gaussian statistics: $|S_3| > 0.1$ or $|S_4| > 0.5$ at $> 3\sigma$ significance
+  \item Power-law correlation function $C(\tau) \propto \tau^{-\alpha}$ with $\alpha \approx 0.5$
+  \item No enhancement with external scalar field ($A_{\text{foam}} \sim 1$)
+  \item Fractal power spectrum $P(k) \propto k^{-\alpha}$ consistent with $D_{\text{fractal}} \sim 3.7$
+  \item Evidence for discrete frequency components at unexpected frequencies
+\end{enumerate}
+
+\textbf{Null result} (standard QFT consistent):
+\begin{enumerate}
+  \item No enhancement beyond baseline noise floor
+  \item Gaussian statistics ($|S_3|, |S_4| < 0.05$)
+  \item No coherence with scalar field ($\gamma^2 < 0.2$)
+  \item Power spectrum consistent with shot noise + thermal noise models
+\end{enumerate}
+
+\subsection{Null Result Implications}
+
+If no foam signatures are detected above baseline, several possibilities emerge:
+
+\textbf{1. Scalar coupling too weak}: The \aether~coupling constant $\kappa$ may be smaller than predicted ($\kappa < 10^{-4}$), requiring higher cavity finesse or longer integration times.
+
+\textbf{2. Nodespace scale too small}: If $\ell_{\text{node}} \approx \ell_P$, \genesis~signatures may be indistinguishable from standard QFT at achievable sensitivities.
+
+\textbf{3. Standard QFT validated}: Quantum foam exists but without framework-specific enhancements, supporting conventional quantum gravity approaches.
+
+\textbf{4. Systematic errors}: Unidentified classical noise sources may mask genuine foam signals. This motivates:
+\begin{itemize}
+  \item Operating multiple independent detectors at different sites
+  \item Varying cavity parameters ($L$, $Q$, $\omega_{\phi}$) to distinguish signal from systematic
+  \item Conducting experiments in different environments (surface lab, underground, space-based)
+\end{itemize}
+
+Even a null result provides valuable constraints on quantum gravity phenomenology, ruling out large coupling constants and establishing upper bounds on foam-induced decoherence.
+
+\section{Summary}
+
+This chapter established comprehensive protocols for quantum foam detection through ultra-high-precision optical interferometry. The experimental program distinguishes three theoretical frameworks:
+
+\begin{itemize}
+  \item \textbf{\aether}: Predicts resonant enhancement of foam fluctuations via scalar field coupling, manifesting as coherent spectral peaks with amplification $A_{\text{foam}} \sim 10^3$ to $10^5$
+
+  \item \textbf{\genesis}: Predicts non-Gaussian statistics and fractal power spectra from nodespace discreteness, with no scalar-induced enhancement
+
+  \item \textbf{Standard QFT}: Predicts Gaussian vacuum fluctuations at baseline sensitivity with no enhancement mechanisms
+\end{itemize}
+
+The required apparatus (high-Q optical cavity with $Q \sim 10^{11}$, strain sensitivity $\delta L / L < 10^{-18}$ Hz$^{-1/2}$) represents challenging but achievable extensions of current gravitational wave detector technology. The dual-mode protocol—baseline broadband measurement followed by scalar-enhanced resonant detection—maximizes framework discrimination power while maintaining robustness against systematic errors.
+
+Integration with complementary experiments (Ch22 scalar-ZPE interferometry, Ch23 time crystal coherence, Ch25 holographic entropy tests) will provide multi-faceted validation of competing quantum gravity models. The next chapter extends these techniques to analog black hole systems for testing holographic entropy modifications.
+
+%==============================================================================
+% Cross-references:
+%   - Ch01: Mathematical preliminaries (Planck scale, uncertainty principle)
+%   - Ch18: Framework experimental distinguishability
+%   - Ch21: Unified predictions for foam-scalar coupling
+%   - Ch22: Scalar-ZPE experimental protocols (cavity QED methods)
+%   - Ch23: Time crystal experiments (coherence measurements)
+%   - Ch25: Holographic entropy tests (related black hole physics)
+%==============================================================================

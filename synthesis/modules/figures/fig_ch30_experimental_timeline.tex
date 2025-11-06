@@ -1,0 +1,249 @@
+% fig_ch30_experimental_timeline.tex
+% Author: Computernonymouse
+% Description: Gantt-style timeline showing experimental roadmap for spacetime engineering
+% Displays phases, TRL levels, and feasibility color-coding from 2025-2060
+% Includes budget estimates and key milestones
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,patterns,calc,decorations.pathreplacing,backgrounds,shapes,positioning}
+
+% Define custom colors for feasibility levels
+\definecolor{achievable}{RGB}{50,200,50}
+\definecolor{challenging}{RGB}{255,200,50}
+\definecolor{speculative}{RGB}{255,100,50}
+\definecolor{highlyspeculative}{RGB}{200,50,50}
+
+% Define phase colors
+\definecolor{phase1}{RGB}{100,150,200}
+\definecolor{phase2}{RGB}{150,200,100}
+\definecolor{phase3}{RGB}{200,150,100}
+\definecolor{phase4}{RGB}{200,100,150}
+
+\begin{document}
+\begin{tikzpicture}
+
+% Main Gantt chart
+\begin{ganttchart}[
+    x unit=0.42cm,
+    y unit chart=0.8cm,
+    vgrid={*{7}{draw=none}, dotted},
+    hgrid=true,
+    time slot format=isodate-yearmonth,
+    time slot unit=year,
+    title/.style={fill=gray!30, draw=black},
+    title label font=\bfseries\small,
+    title height=1,
+    bar/.style={fill=blue!40, draw=black},
+    bar height=0.6,
+    bar label font=\small,
+    group/.style={fill=orange!40, draw=black},
+    group label font=\bfseries\small,
+    milestone/.style={fill=red, draw=black, xscale=0.5},
+    milestone label font=\small\itshape,
+    canvas/.style={draw=black!50},
+    today=2025,
+    today offset=0,
+    today label=Current,
+    today label font=\small\bfseries,
+    today rule/.style={draw=red, thick},
+]{2025}{2060}
+
+    % Title row
+    \gantttitle{\Large\bfseries Experimental Roadmap for Spacetime Engineering Technologies}{36} \\
+    \gantttitle{2025-2029}{5}
+    \gantttitle{2030-2039}{10}
+    \gantttitle{2040-2049}{10}
+    \gantttitle{2050-2059}{10}
+    \gantttitle{2060+}{1} \\
+    \gantttitlelist{2025,...,2060}{1} \\
+
+    % Phase 1: Near-term experiments (TRL 3-4)
+    \ganttgroup[
+        group/.style={fill=achievable!70, draw=achievable!90!black}
+    ]{Phase 1: Analog Systems}{2025}{2030} \\
+
+    \ganttbar[
+        bar/.style={fill=achievable!50, draw=black},
+        bar label font=\footnotesize,
+        name=bec
+    ]{BEC acoustic horizons}{2025}{2027} \\
+
+    \ganttbar[
+        bar/.style={fill=achievable!50, draw=black},
+        bar label font=\footnotesize,
+        name=metamat
+    ]{Optical metamaterials}{2026}{2029} \\
+
+    \ganttbar[
+        bar/.style={fill=achievable!50, draw=black},
+        bar label font=\footnotesize,
+        name=timecrystal
+    ]{Time crystal platforms}{2027}{2030} \\
+
+    \ganttmilestone[
+        milestone/.style={fill=green!70!black, draw=black}
+    ]{M1: First analog demos}{2028} \\
+
+    % Phase 2: Mid-term experiments (TRL 2-3)
+    \ganttgroup[
+        group/.style={fill=challenging!70, draw=challenging!90!black}
+    ]{Phase 2: Vacuum Engineering}{2030}{2040} \\
+
+    \ganttbar[
+        bar/.style={fill=challenging!50, draw=black},
+        bar label font=\footnotesize,
+        name=casimir
+    ]{Enhanced Casimir systems}{2030}{2035} \\
+
+    \ganttbar[
+        bar/.style={fill=challenging!50, draw=black},
+        bar label font=\footnotesize,
+        name=scalar
+    ]{Scalar field generation}{2032}{2038} \\
+
+    \ganttbar[
+        bar/.style={fill=challenging!50, draw=black},
+        bar label font=\footnotesize,
+        name=cavity
+    ]{Cavity QED experiments}{2034}{2040} \\
+
+    \ganttmilestone[
+        milestone/.style={fill=yellow!70!black, draw=black}
+    ]{M2: Vacuum modulation}{2036} \\
+
+    % Phase 3: Long-term experiments (TRL 1-2)
+    \ganttgroup[
+        group/.style={fill=speculative!70, draw=speculative!90!black}
+    ]{Phase 3: High Energy Tests}{2040}{2055} \\
+
+    \ganttbar[
+        bar/.style={fill=speculative!50, draw=black},
+        bar label font=\footnotesize,
+        name=collider
+    ]{Collider signatures}{2040}{2048} \\
+
+    \ganttbar[
+        bar/.style={fill=speculative!50, draw=black},
+        bar label font=\footnotesize,
+        name=nodespace
+    ]{Nodespace probes}{2045}{2055} \\
+
+    \ganttbar[
+        bar/.style={fill=speculative!50, draw=black},
+        bar label font=\footnotesize,
+        name=gem
+    ]{GEM coupling tests}{2042}{2050} \\
+
+    \ganttmilestone[
+        milestone/.style={fill=orange!70!black, draw=black}
+    ]{M3: Extra dimensions}{2050} \\
+
+    % Phase 4: Far-term goals (TRL 1)
+    \ganttgroup[
+        group/.style={fill=highlyspeculative!70, draw=highlyspeculative!90!black}
+    ]{Phase 4: Exotic Phenomena}{2055}{2060} \\
+
+    \ganttbar[
+        bar/.style={fill=highlyspeculative!50, draw=black},
+        bar label font=\footnotesize,
+        name=microworm
+    ]{Micro-wormhole attempts}{2055}{2060} \\
+
+    \ganttbar[
+        bar/.style={fill=highlyspeculative!50, draw=black},
+        bar label font=\footnotesize,
+        name=inertia
+    ]{Inertia modulation}{2057}{2060} \\
+
+    \ganttmilestone[
+        milestone/.style={fill=red!70!black, draw=black}
+    ]{M4: Spacetime metric mod}{2060} \\
+
+    % Add links between related tasks
+    \ganttlink{bec}{casimir}
+    \ganttlink{metamat}{scalar}
+    \ganttlink{casimir}{collider}
+    \ganttlink{scalar}{nodespace}
+    \ganttlink{collider}{microworm}
+
+\end{ganttchart}
+
+% Add TRL level indicators on the right
+\node[anchor=west,font=\small\bfseries] at (16,7.5) {TRL Levels};
+
+\node[anchor=west,draw=achievable!90!black,fill=achievable!20,rounded corners,text width=3cm,align=left,font=\footnotesize]
+    at (16,6.5) {
+    \textbf{TRL 3-4}\\
+    Component validation\\
+    Lab demonstration
+};
+
+\node[anchor=west,draw=challenging!90!black,fill=challenging!20,rounded corners,text width=3cm,align=left,font=\footnotesize]
+    at (16,4.5) {
+    \textbf{TRL 2-3}\\
+    Concept formulated\\
+    Proof of concept
+};
+
+\node[anchor=west,draw=speculative!90!black,fill=speculative!20,rounded corners,text width=3cm,align=left,font=\footnotesize]
+    at (16,2.5) {
+    \textbf{TRL 1-2}\\
+    Basic principles\\
+    Technology concept
+};
+
+\node[anchor=west,draw=highlyspeculative!90!black,fill=highlyspeculative!20,rounded corners,text width=3cm,align=left,font=\footnotesize]
+    at (16,0.5) {
+    \textbf{TRL 1}\\
+    Basic research\\
+    Theoretical only
+};
+
+% Add budget estimates below
+\node[anchor=north west,draw=black!40,fill=white,rounded corners,text width=14cm,align=left,font=\small]
+    at (0,-2) {
+    \textbf{Budget Estimates (2024 USD):}\\[2mm]
+    \textbf{Phase 1 (2025-2030):} \$500M total\\
+    \hspace{5mm}$\bullet$ BEC systems: \$150M\\
+    \hspace{5mm}$\bullet$ Metamaterials: \$200M\\
+    \hspace{5mm}$\bullet$ Time crystals: \$150M\\[2mm]
+    \textbf{Phase 2 (2030-2040):} \$5B total\\
+    \hspace{5mm}$\bullet$ Casimir facilities: \$2B\\
+    \hspace{5mm}$\bullet$ Scalar field labs: \$1.5B\\
+    \hspace{5mm}$\bullet$ Cavity QED: \$1.5B\\[2mm]
+    \textbf{Phase 3 (2040-2055):} \$50B total\\
+    \hspace{5mm}$\bullet$ Collider upgrades: \$30B\\
+    \hspace{5mm}$\bullet$ Nodespace probes: \$15B\\
+    \hspace{5mm}$\bullet$ GEM tests: \$5B\\[2mm]
+    \textbf{Phase 4 (2055-2060):} \$100B+ total\\
+    \hspace{5mm}$\bullet$ Highly speculative, costs uncertain
+};
+
+% Add key milestones legend
+\node[anchor=north east,draw=black!40,fill=white,rounded corners,text width=5cm,align=left,font=\small]
+    at (15,-2) {
+    \textbf{Key Milestones:}\\[2mm]
+    \textcolor{green!70!black}{$\blacksquare$} M1: Analog demonstrations\\
+    \hspace{5mm}Hawking radiation analog\\[2mm]
+    \textcolor{yellow!70!black}{$\blacksquare$} M2: Vacuum modulation\\
+    \hspace{5mm}Measurable Casimir force\\[2mm]
+    \textcolor{orange!70!black}{$\blacksquare$} M3: Extra dimensions\\
+    \hspace{5mm}Collider signatures\\[2mm]
+    \textcolor{red!70!black}{$\blacksquare$} M4: Metric modification\\
+    \hspace{5mm}Spacetime engineering
+};
+
+% Add bottom note
+\node[below=7cm of current bounding box.north,text width=18cm,align=center,font=\small\itshape] {
+    Timeline represents optimistic projections assuming sustained funding and no major theoretical obstacles.\\
+    Actual progress may vary significantly based on theoretical breakthroughs and experimental challenges.
+};
+
+\end{tikzpicture}
+\end{document}

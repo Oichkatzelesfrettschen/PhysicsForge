@@ -1,0 +1,33 @@
+%==============================================================================
+% Equation Module: Tourmaline-GEM Coupling for Material Realization
+% Source: PAIS_UNIFIED.md Section 3 (Material Realization - Tourmaline)
+% Tag: eq:pais:tourmaline-coupling
+%==============================================================================
+
+\begin{equation}
+  P_i = d_{ijk}^{\mathrm{ZPE}} \sigma_{jk} + \gamma_i \Delta T + \epsilon_0 \chi_{ijk}^{(2)} E_j E_k + \kappa_{\mathrm{GEM}} \phi B_{g,i}
+  \eqtag{P}{TOUR}{COUPLE}
+  \label{eq:pais:tourmaline-coupling}
+\end{equation}
+
+\noindent\textbf{Physical Interpretation:} Tourmaline serves as the quantum-crystalline platform for Pais Superforce realization through its unique combination of properties:
+\begin{itemize}
+  \item Piezoelectric response: $d_{ijk}^{\mathrm{ZPE}} \sigma_{jk}$ (mechanical stress generates polarization, enhanced by ZPE)
+  \item Pyroelectric response: $\gamma_i \Delta T$ (temperature variations produce electric fields)
+  \item Nonlinear optics: $\chi_{ijk}^{(2)} E_j E_k$ (second-harmonic generation for frequency conversion)
+  \item GEM coupling: $\kappa_{\mathrm{GEM}} \phi B_{g,i}$ (scalar-mediated interaction with gravitomagnetic fields)
+\end{itemize}
+
+\noindent\textbf{Material Parameters:} For natural tourmaline (chemical formula $XY_3Z_6[\mathrm{BO}_3]_3[\mathrm{Si}_6\mathrm{O}_{18}]V_3W$):
+\begin{itemize}
+  \item Piezoelectric coefficient: $d_{33} \sim 5$--$20$ pC/N
+  \item Pyroelectric coefficient: $\gamma \sim 4 \times 10^{-10}$ C/(cm$^2$ K)
+  \item Nonlinear susceptibility: $\chi^{(2)} \sim 10^{-12}$ m/V (optimized with 9.59\% doping for SHG)
+  \item GEM coupling strength: $\kappa_{\mathrm{GEM}} \sim 10^{-20}$ (theoretical estimate, unmeasured)
+\end{itemize}
+
+\noindent\textbf{ZPE Enhancement:} Zero-point energy coupling modifies the piezoelectric tensor:
+\begin{equation*}
+  d_{ijk}^{\mathrm{ZPE}} = d_{ijk}^0 + \Delta d_{ijk}(\rho_{\mathrm{vac}})
+\end{equation*}
+enabling resonant extraction of vacuum energy to amplify both conventional (piezo/pyro) and exotic (GEM) responses.

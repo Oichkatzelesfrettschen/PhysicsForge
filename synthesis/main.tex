@@ -1,0 +1,46 @@
+\documentclass[11pt,twoside,openright]{book}
+
+\input{preamble}
+
+\begin{document}
+
+\frontmatter
+\input{frontmatter/titlepage}
+\input{frontmatter/abstract}
+\tableofcontents
+\listoffigures
+\listoftables
+\input{frontmatter/notation}
+\input{frontmatter/acknowledgments}
+
+\mainmatter
+\input{modules/modules_index_auto}
+
+\part{Mathematical Foundations}\label{part:foundations}
+\input{parts/part1_foundations}
+
+\part{Theoretical Frameworks}\label{part:frameworks}
+\input{parts/part2_frameworks}
+
+\part{Unified Synthesis}\label{part:unification}
+\input{parts/part3_unification}
+
+\part{Experimental Validation}\label{part:experiments}
+\input{parts/part4_experiments}
+
+\part{Applications and Outlook}\label{part:applications}
+\input{parts/part5_applications}
+
+\backmatter
+\appendix
+\input{backmatter/appendices/app_a_notation_reference}
+\input{backmatter/appendices/app_b_constant_values}
+\input{backmatter/appendices/app_c_simulation_code}
+\input{backmatter/appendices/app_d_experimental_setups}
+\input{backmatter/appendices/app_e_historical_context}
+\input{backmatter/glossary}
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+\input{backmatter/index}
+
+\end{document}

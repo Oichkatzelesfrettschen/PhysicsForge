@@ -1,0 +1,484 @@
+%==============================================================================
+% Chapter 25: Holographic Entropy and Black Hole Analogues
+% Part IV: Experimental Validation
+%
+% Source: Alpha003.02 (Sections 0.10, 1.13, 7.10, 8.8, 10.7, lines 132-141, 415-432, 1545-1555, 1705-1710, 2053-2070, 2089-2095)
+%         Ch18 (experimental distinguishability)
+%         Ch21 (unified predictions)
+%==============================================================================
+
+\chapter{Holographic Entropy and Black Hole Analogues}\label{ch:exp_holographic}
+
+\section{Introduction: Testing Holographic Principles}
+
+The holographic principle, originating from black hole thermodynamics and formalized through the AdS/CFT correspondence, posits that the information content of a volume of space can be encoded on its boundary. The cornerstone prediction is the Bekenstein-Hawking entropy formula:
+
+\begin{equation}
+  S_{\text{BH}} = \frac{A}{4 G \hbar} = \frac{k_B c^3 A}{4 G \hbar}
+  \label{eq:holo:bekenstein-hawking}
+\end{equation}
+
+where $A$ is the event horizon area, establishing entropy proportional to \emph{area} rather than volume—a profound departure from thermodynamic intuition.
+
+The three frameworks under consideration predict modifications to this baseline formula:
+
+\begin{itemize}
+  \item \textbf{\aetherattr}: Scalar-ZPE coupling introduces volumetric corrections to entropy via vacuum coherence within the horizon (Alpha003.02, Section 0.10):
+  \begin{equation}
+    S = \frac{A}{4 G \hbar} + \alpha \int_{\mathcal{V}} \rho_{\text{ZPE}}(x) d^3 x
+    \label{eq:intro:aether-entropy}
+  \end{equation}
+  where $\alpha \sim 10^{-2}$ to $10^{-1}$ is the predicted coupling strength.
+
+  \item \textbf{\genesisattr}: Nodespace discreteness modifies horizon thermodynamics through fractal boundary corrections:
+  \begin{equation}
+    S = \frac{A}{4 G \hbar} \left( 1 + \beta \frac{\ell_{\text{node}}^2}{A} \right)
+    \label{eq:intro:genesis-entropy}
+  \end{equation}
+  with $\beta$ determined by nodespace topology (predicted $\beta \sim 1$ to 10).
+
+  \item \textbf{Standard GR}: Unmodified Bekenstein-Hawking formula holds exactly, no volumetric or discrete corrections.
+\end{itemize}
+
+Direct observation of astrophysical black holes cannot resolve these subtle differences ($\Delta S / S \sim 10^{-3}$ to $10^{-2}$). However, \textbf{analog black hole systems}—laboratory constructs mimicking event horizon physics in condensed matter or optical media—provide controlled testbeds for holographic entropy with tunable parameters and accessible measurement regimes.
+
+This chapter presents comprehensive protocols for testing holographic entropy modifications using acoustic black holes in Bose-Einstein condensates (BEC) and optical black holes in nonlinear photonic media.
+
+\section{Theoretical Framework}
+
+\subsection{Bekenstein-Hawking Entropy: $S = A / 4G$}
+
+Black hole thermodynamics establishes four laws paralleling classical thermodynamics:
+
+\begin{enumerate}
+  \item \textbf{Zeroth law}: Surface gravity $\kappa$ constant on horizon
+  \item \textbf{First law}: $dM = \frac{\kappa}{8\pi G} dA + \Omega dJ + \Phi dQ$ (energy balance)
+  \item \textbf{Second law}: Horizon area $A$ never decreases ($dA \geq 0$)
+  \item \textbf{Third law}: Impossible to reach $\kappa = 0$ in finite operations
+\end{enumerate}
+
+Comparing the first law to thermodynamics $dE = T dS + \ldots$ identifies:
+
+\begin{align}
+  T_{\text{Hawking}} &= \frac{\hbar \kappa}{2\pi k_B c} \label{eq:theory:hawking-temp} \\
+  S_{\text{BH}} &= \frac{k_B c^3 A}{4 G \hbar} = \frac{k_B A}{4 \ell_P^2} \label{eq:theory:bh-entropy}
+\end{align}
+
+For a Schwarzschild black hole of mass $M$, this yields:
+
+\begin{equation}
+  S_{\text{BH}} = \frac{\pi k_B c^3}{\hbar G} M^2 = k_B \left( \frac{M}{m_P} \right)^2 \approx 10^{77} k_B \left( \frac{M}{M_\odot} \right)^2
+  \label{eq:theory:schwarzschild-entropy}
+\end{equation}
+
+The enormous entropy ($10^{77}$ to $10^{90}$ for stellar-mass to supermassive black holes) reflects the vast information hidden behind the horizon.
+
+\subsection{Aether Modifications: Scalar-ZPE Contributions}
+
+The \aether~framework introduces scalar field-ZPE interactions that modify near-horizon physics. The unified energy density (Alpha003.02, Section 0.3):
+
+\begin{equation}
+  \rho_{\text{total}} = \rho_{\text{ZPE}} + g \phi(t) + \lambda \phi \text{ZPE}^2
+  \label{eq:theory:aether-density}
+\end{equation}
+
+persists into the black hole interior, creating coherent vacuum structures. The corrected entropy:
+
+\input{modules/equations/eq_holographic_entropy_modified.tex}
+
+The volumetric term scales as:
+
+\begin{equation}
+  \Delta S_{\text{vol}} = \alpha \int_{\mathcal{V}} \rho_{\text{ZPE}} d^3 x
+  \sim \alpha \frac{\rho_{\text{ZPE}} \cdot R_s^3}{k_B}
+  \sim \alpha \frac{c^6}{G^2 \hbar M}
+  \label{eq:theory:aether-correction}
+\end{equation}
+
+where $R_s = 2GM/c^2$ is the Schwarzschild radius. For stellar-mass black holes ($M \sim M_\odot$), this predicts:
+
+\begin{equation}
+  \frac{\Delta S_{\text{vol}}}{S_{\text{BH}}} \sim \alpha \frac{m_P}{M} \sim 10^{-40} \alpha
+  \label{eq:theory:aether-fraction}
+\end{equation}
+
+Completely negligible for astrophysical black holes! However, in analog systems with effective Planck mass $m_P^{\text{eff}} \sim 10^{-26}$ kg (atomic mass scale), the correction becomes:
+
+\begin{equation}
+  \frac{\Delta S_{\text{vol}}}{S_{\text{BH}}} \sim \alpha \cdot 10^{-2} \text{ to } 10^{-1}
+  \label{eq:theory:aether-analog}
+\end{equation}
+
+potentially detectable with precision thermometry.
+
+\subsection{Genesis Modifications: Nodespace Discreteness}
+
+The \genesis~framework models spacetime as discrete nodespace with characteristic length $\ell_{\text{node}}$. The event horizon, traditionally a smooth null surface, acquires discrete structure. The horizon area quantization:
+
+\begin{equation}
+  A = N_{\text{nodes}} \cdot \ell_{\text{node}}^2
+  \label{eq:theory:genesis-area}
+\end{equation}
+
+where $N_{\text{nodes}}$ is the number of nodespace cells intersecting the horizon. Standard quantum gravity (loop quantum gravity) predicts similar discreteness with $\ell_{\text{node}} \sim \ell_P$ and quantized area eigenvalues:
+
+\begin{equation}
+  A_n = 8\pi \gamma \ell_P^2 \sqrt{n(n+1)}, \quad n = 0, 1, 2, \ldots
+  \label{eq:theory:lqg-area}
+\end{equation}
+
+The \genesis~framework extends this with fractal boundary corrections. The entropy becomes:
+
+\begin{equation}
+  S = \frac{k_B A}{4 \ell_{\text{node}}^2} \left( 1 + \beta \frac{\ell_{\text{node}}^2}{A} + \gamma \frac{\ell_{\text{node}}^4}{A^2} + \ldots \right)
+  \label{eq:theory:genesis-series}
+\end{equation}
+
+For macroscopic black holes ($A \gg \ell_{\text{node}}^2$), corrections are negligible. But analog systems with effective horizon areas $A_{\text{eff}} \sim 10^{-12}$ m$^2$ (mm-scale BEC) yield:
+
+\begin{equation}
+  \frac{\Delta S}{S_{\text{BH}}} \sim \beta \left( \frac{\ell_{\text{node}}}{10^{-6} \text{ m}} \right)^2 \sim 10^{-2} \beta
+  \label{eq:theory:genesis-analog}
+\end{equation}
+
+for nodespace scales $\ell_{\text{node}} \sim 10^{-6}$ to $10^{-5}$ m (micrometer range).
+
+\section{Analog Black Hole Systems}
+
+Analog systems replicate black hole horizon physics by creating regions where excitation velocities exceed wave propagation speeds—the acoustic/optical equivalent of an event horizon.
+
+\subsection{Acoustic Black Holes in BEC}
+
+\textbf{Physical principle}:
+
+A Bose-Einstein condensate with spatially varying flow velocity $v(x)$ supports phonon excitations with dispersion:
+
+\begin{equation}
+  \omega(k) = c_s k + \text{higher-order terms}
+  \label{eq:analog:phonon-dispersion}
+\end{equation}
+
+where $c_s = \sqrt{gn/m}$ is the sound speed ($g$ = interaction strength, $n$ = density, $m$ = atomic mass). The effective metric for phonons:
+
+\begin{equation}
+  ds^2 = \frac{\rho}{c_s^2} \left[ -(c_s^2 - v^2) dt^2 - 2 v_i dx^i dt + dx^i dx^i \right]
+  \label{eq:analog:acoustic-metric}
+\end{equation}
+
+An \textbf{acoustic horizon} forms where $v(x_h) = c_s$, trapping phonons analogous to light in a black hole.
+
+\textbf{Experimental realization}:
+
+\begin{itemize}
+  \item \textbf{Condensate}: $^{87}$Rb or $^{23}$Na atoms, $N \sim 10^5$ to $10^6$, $T < 100$ nK
+  \item \textbf{Trap}: Crossed optical dipole trap or magnetic quadrupole, tunable to create flow
+  \item \textbf{Flow generation}: "Waterfall" geometry via moving optical potential or density step
+  \item \textbf{Horizon properties}:
+  \begin{align}
+    \text{Effective surface gravity: } & \kappa_{\text{eff}} = \frac{d(v - c_s)}{dx}\bigg|_{x_h} \sim 10^3 \text{ to } 10^5 \text{ s}^{-1} \\
+    \text{Hawking temperature: } & T_H^{\text{eff}} = \frac{\hbar \kappa_{\text{eff}}}{2\pi k_B} \sim 1 \text{ to } 100 \text{ nK}
+  \end{align}
+\end{itemize}
+
+Crucially, $T_H^{\text{eff}}$ is comparable to BEC critical temperature, making thermal Hawking radiation potentially observable.
+
+\subsection{Optical Black Holes in Nonlinear Media}
+
+\textbf{Physical principle}:
+
+Intense laser pulses in nonlinear optical media (e.g., self-focusing Kerr materials) create refractive index variations:
+
+\begin{equation}
+  n(I) = n_0 + n_2 I
+  \label{eq:analog:kerr-nonlinearity}
+\end{equation}
+
+where $I$ is the intensity and $n_2 > 0$ (self-focusing) or $n_2 < 0$ (self-defocusing). The effective metric for probe photons:
+
+\begin{equation}
+  ds^2 = \frac{n^2(I)}{c^2} \left[ -c^2 dt^2 + (dx - v_g dt)^2 + dy^2 + dz^2 \right]
+  \label{eq:analog:optical-metric}
+\end{equation}
+
+where $v_g$ is the group velocity of the pump pulse. An \textbf{optical horizon} forms where $v_g = c/n$, trapping probe photons.
+
+\textbf{Experimental realization}:
+
+\begin{itemize}
+  \item \textbf{Material}: Fused silica, photonic crystal fiber, or rubidium vapor
+  \item \textbf{Pump laser}: $\lambda = 532$ nm or 1064 nm, $P \sim 1$ W to 100 W, pulse duration $\sim$ ps to ns
+  \item \textbf{Probe laser}: Frequency-shifted from pump, low power to avoid back-action
+  \item \textbf{Horizon properties}:
+  \begin{align}
+    \text{Effective temperature: } & T_H^{\text{opt}} \sim \frac{\hbar c \kappa_{\text{eff}}}{2\pi k_B} \sim 10^3 \text{ to } 10^5 \text{ K} \\
+    \text{Hawking emission: } & \text{Visible as correlated photon pairs (partner modes)}
+  \end{align}
+\end{itemize}
+
+Optical systems enable room-temperature operation and sub-nanosecond time resolution, ideal for studying transient horizon dynamics.
+
+\section{Experimental Protocol}
+
+\subsection{System Preparation}
+
+\textbf{BEC acoustic horizon protocol}:
+
+\begin{enumerate}
+  \item \textbf{Condensate formation} (Duration: 10-30 seconds per cycle):
+  \begin{itemize}
+    \item Laser cool $^{87}$Rb atoms to $\sim 100$ $\mu$K
+    \item Transfer to magnetic/optical trap, evaporatively cool to $T < T_c \approx 100$ nK
+    \item Verify condensate fraction $> 80\%$ via time-of-flight imaging
+  \end{itemize}
+
+  \item \textbf{Flow generation} (Duration: $\sim 100$ ms):
+  \begin{itemize}
+    \item Activate moving optical potential (blue-detuned laser barrier)
+    \item Ramp barrier velocity from 0 to $v > c_s$ over 50 ms to avoid heating
+    \item Stabilize flow with feedback on barrier position/intensity
+  \end{itemize}
+
+  \item \textbf{Horizon characterization}:
+  \begin{itemize}
+    \item Map density $n(x)$ and velocity $v(x)$ via Bragg spectroscopy
+    \item Identify horizon position $x_h$ where $v(x_h) = c_s(x_h)$
+    \item Measure surface gravity $\kappa_{\text{eff}}$ from velocity gradient
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Optical black hole protocol}:
+
+\begin{enumerate}
+  \item \textbf{Pump pulse injection}:
+  \begin{itemize}
+    \item Generate high-power pump pulse (1064 nm, 100 ps duration, $P \sim 10$ W peak)
+    \item Focus into photonic crystal fiber or nonlinear crystal
+    \item Monitor self-focusing via transverse beam profile imaging
+  \end{itemize}
+
+  \item \textbf{Probe detection}:
+  \begin{itemize}
+    \item Inject weak probe pulse ($P_{\text{probe}} \ll P_{\text{pump}}$) co-propagating with pump
+    \item Frequency-resolve probe spectrum to detect Hawking pairs
+    \item Cross-correlate pump and probe timing with ps resolution
+  \end{itemize}
+
+  \item \textbf{Horizon mapping}:
+  \begin{itemize}
+    \item Scan probe injection time to probe different horizon positions
+    \item Reconstruct effective metric from probe deflection angles
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Hawking Radiation Detection}
+
+\textbf{Signature in BEC}:
+
+Hawking radiation manifests as correlated density fluctuations (phonon pairs) straddling the horizon. Detection strategy:
+
+\begin{itemize}
+  \item \textbf{In-situ imaging}: Phase-contrast or absorption imaging of density $n(x,t)$
+  \item \textbf{Correlation analysis}: Compute two-point correlator $\langle \delta n(x, t) \delta n(y, t) \rangle$
+  \item \textbf{Hawking signature}: Enhanced correlation at frequency $\omega \sim k_B T_H / \hbar$ across horizon
+\end{itemize}
+
+Expected thermal spectrum:
+
+\begin{equation}
+  \langle N_\omega \rangle = \frac{1}{e^{\hbar \omega / k_B T_H} - 1}
+  \label{eq:protocol:bose-spectrum}
+\end{equation}
+
+Compare to non-thermal backgrounds (quantum shot noise, technical noise).
+
+\textbf{Signature in optical system}:
+
+Hawking radiation appears as correlated photon pairs (signal + idler) with frequencies $\omega_s + \omega_i = 2\omega_{\text{pump}}$. Detection via:
+
+\begin{itemize}
+  \item \textbf{Spectral measurement}: High-resolution spectrometer resolving $\Delta \omega \sim 1$ GHz
+  \item \textbf{Coincidence counting}: Photon detectors with sub-ns timing resolution
+  \item \textbf{Hawking signature}: Thermal photon number distribution at $T_H^{\text{opt}}$
+\end{itemize}
+
+\subsection{Entropy Measurement via Temperature}
+
+The Bekenstein-Hawking entropy relates directly to measured Hawking temperature through:
+
+\begin{equation}
+  S_{\text{BH}} = \frac{2\pi k_B c^3}{\hbar G} \frac{M^2}{T_H}
+  \label{eq:protocol:entropy-temperature}
+\end{equation}
+
+In analog systems, replace $G \to G_{\text{eff}}$ and $M \to M_{\text{eff}}$ (effective parameters). The experimental procedure:
+
+\begin{enumerate}
+  \item \textbf{Measure $T_H$} from Hawking radiation spectrum (Eq.~\ref{eq:protocol:bose-spectrum})
+
+  \item \textbf{Determine effective horizon area} $A_{\text{eff}}$ from spatial extent of horizon
+
+  \item \textbf{Compute baseline entropy}:
+  \begin{equation}
+    S_{\text{baseline}} = \frac{k_B c_s^2 A_{\text{eff}}}{4 G_{\text{eff}} \hbar}
+    \label{eq:protocol:baseline-entropy}
+  \end{equation}
+
+  \item \textbf{Test framework corrections}:
+  \begin{itemize}
+    \item \textbf{\aether}: Measure volumetric ZPE density $\rho_{\text{ZPE}}$ independently (via Casimir force in cavity)
+    \item \textbf{\genesis}: Vary $A_{\text{eff}}$ (by tuning BEC geometry) and test for $\propto 1/A$ corrections
+  \end{itemize}
+
+  \item \textbf{Compare measured $S_{\text{measured}}$ to predictions}:
+  \begin{equation}
+    \chi^2 = \sum_i \frac{(S_i^{\text{measured}} - S_i^{\text{model}})^2}{\sigma_i^2}
+    \label{eq:protocol:chi-squared}
+  \end{equation}
+  Reject models with $\chi^2 / \text{dof} > 2$ at 95\% confidence.
+\end{enumerate}
+
+\section{Framework-Specific Predictions}
+
+\input{modules/equations/eq_holographic_entropy_modified.tex}
+
+\input{modules/equations/eq_hawking_temperature_modified.tex}
+
+\begin{table}[htbp]
+\centering
+\caption{Holographic entropy modifications: Framework predictions for analog systems}
+\label{tab:holo:predictions}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Property} & \textbf{Standard GR} & \textbf{\aether} & \textbf{\genesis} \\
+\midrule
+Entropy formula & $S = A / 4G$ & $S = A/4G + \alpha \int \rho_{\text{ZPE}} dV$ & $S = (A/4G)(1 + \beta \ell_{\text{node}}^2 / A)$ \\
+Volumetric term & Absent & Present ($\alpha \sim 0.01$ to 0.1) & Absent \\
+Discrete corrections & Absent & Absent & Present ($\beta \sim 1$ to 10) \\
+$T_H$ modification & None & $\sim 1\%$ shift via ZPE & $\sim 10\%$ shift via discreteness \\
+Area scaling & $S \propto A$ & $S \propto A + V$ & $S \propto A (1 + 1/A)$ \\
+Analog sensitivity & Baseline & $\Delta S/S \sim 10^{-2}$ & $\Delta S/S \sim 10^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Key distinguishing tests:
+
+\begin{enumerate}
+  \item \textbf{Area vs. volume scaling}: Vary BEC volume $V$ while holding horizon area $A$ fixed (e.g., pancake vs. cigar geometries). \aether~predicts $S$ changes; others predict no change.
+
+  \item \textbf{Discreteness scaling}: Vary effective Planck scale (by changing BEC parameters $g$, $n$) and test $S \propto 1/A$ term. \genesis~predicts correlation; others predict independence.
+
+  \item \textbf{ZPE coupling}: Introduce external scalar field modulation (as in Ch22 protocols) and measure entropy change. \aether~predicts response; others predict null.
+\end{enumerate}
+
+\section{Data Collection and Analysis}
+
+\textbf{Experimental cycle} (BEC system):
+
+\begin{itemize}
+  \item \textbf{Repetition rate}: 0.1 Hz to 1 Hz (limited by BEC formation time)
+  \item \textbf{Data per cycle}: Density map $n(x,y,z,t)$ with $\sim 10^5$ pixels, 10 time slices
+  \item \textbf{Campaign duration}: 100 to 1000 hours for statistical significance
+  \item \textbf{Total datasets}: $\sim 10^6$ independent BEC realizations
+\end{itemize}
+
+\textbf{Data analysis pipeline}:
+
+\begin{enumerate}
+  \item \textbf{Density reconstruction}: Fit $n(x)$ to Thomas-Fermi or Gaussian profiles
+  \item \textbf{Velocity extraction}: Compute $v(x) = j(x) / n(x)$ from density current $j$
+  \item \textbf{Horizon identification}: Solve $v(x_h) = c_s(x_h)$ for horizon position
+  \item \textbf{Correlation functions}: Compute $\langle \delta n \delta n \rangle$ in frequency domain
+  \item \textbf{Temperature fit}: Extract $T_H$ from thermal spectrum (Eq.~\ref{eq:protocol:bose-spectrum})
+  \item \textbf{Entropy calculation}: Evaluate $S$ from measured $T_H$, $A_{\text{eff}}$, compare to models
+\end{enumerate}
+
+\textbf{Systematic uncertainties}:
+
+\begin{itemize}
+  \item \textbf{Temperature calibration}: $\pm 5\%$ from imaging resolution and shot noise
+  \item \textbf{Horizon position}: $\pm 1$ $\mu$m from density fitting uncertainty
+  \item \textbf{ZPE density} (\aether~test): $\pm 10\%$ from Casimir force measurement
+  \item \textbf{Effective coupling constants}: $\pm 20\%$ from theoretical modeling uncertainties
+\end{itemize}
+
+Total systematic uncertainty on $\Delta S / S$: $\sim 15\%$ to $25\%$, sufficient to distinguish $\sim 10\%$ framework corrections at $> 3\sigma$ confidence.
+
+\section{Interpretation and Validation}
+
+\textbf{Positive detection scenarios}:
+
+\begin{enumerate}
+  \item \textbf{\aether~volumetric term observed}:
+  \begin{itemize}
+    \item Entropy increases with volume at fixed area
+    \item Correlation with independently measured $\rho_{\text{ZPE}}$
+    \item Magnitude consistent with $\alpha \sim 0.01$ to 0.1
+    \item \textbf{Implication}: Scalar-ZPE coupling confirmed, supports crystalline lattice model
+  \end{itemize}
+
+  \item \textbf{\genesis~discrete corrections observed}:
+  \begin{itemize}
+    \item Entropy deviates from $S \propto A$ at small $A$ (sub-mm horizons)
+    \item Scaling consistent with $\beta \ell_{\text{node}}^2 / A$ correction
+    \item Nodespace scale $\ell_{\text{node}} \sim 10^{-6}$ to $10^{-5}$ m extracted
+    \item \textbf{Implication}: Spacetime discreteness at micrometer scales, challenges continuum GR
+  \end{itemize}
+
+  \item \textbf{Both corrections observed}:
+  \begin{itemize}
+    \item Frameworks not mutually exclusive; both may contribute
+    \item Requires multi-parameter fit: $S = S_{\text{baseline}} + \Delta S_{\aether} + \Delta S_{\genesis}$
+    \item \textbf{Implication}: Hybrid model, unified framework synthesis necessary
+  \end{itemize}
+
+  \item \textbf{Null result} (standard GR confirmed):
+  \begin{itemize}
+    \item Entropy strictly proportional to area with no volume or discrete terms
+    \item $|\Delta S| < 0.05 S$ across all tested geometries
+    \item \textbf{Implication}: Holographic principle validated, exotic corrections ruled out to $\sim 5\%$
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Cross-validation with other experiments}:
+
+Results must be consistent with:
+\begin{itemize}
+  \item Ch22 scalar-ZPE interferometry (if \aether~corrections detected)
+  \item Ch24 quantum foam measurements (foam-entropy connection via $\rho_{\text{ZPE}}$)
+  \item Ch26 dimensional spectroscopy (if discreteness at $\ell_{\text{node}}$ scales found)
+\end{itemize}
+
+Inconsistencies indicate systematic errors or theoretical modeling flaws requiring resolution.
+
+\section{Summary}
+
+This chapter established protocols for testing holographic entropy modifications using analog black hole systems—laboratory-accessible surrogates for astrophysical event horizons. The experimental program distinguishes:
+
+\begin{itemize}
+  \item \textbf{Standard GR}: Bekenstein-Hawking entropy $S = A / 4G$ with no corrections
+  \item \textbf{\aether}: Volumetric ZPE contributions $\Delta S \sim \alpha \int \rho_{\text{ZPE}} dV$, detectable at $\sim 1\%$ level in BEC systems
+  \item \textbf{\genesis}: Discrete nodespace corrections $\Delta S \sim \beta \ell_{\text{node}}^2 / A$, detectable at $\sim 10\%$ level for micrometer-scale horizons
+\end{itemize}
+
+The dual-platform approach (BEC acoustic + optical black holes) provides complementary tests:
+\begin{itemize}
+  \item \textbf{BEC}: Long integration times, precise thermometry, tunable geometries
+  \item \textbf{Optical}: High temperatures (easier detection), ultrafast dynamics, room-temperature operation
+\end{itemize}
+
+Systematic uncertainties ($\sim 15\%$ to $25\%$) are sufficient to achieve $> 3\sigma$ discrimination between frameworks given predicted $\sim 10\%$ corrections. Integration with scalar-ZPE interferometry (Ch22), quantum foam detection (Ch24), and dimensional spectroscopy (Ch26) will provide comprehensive validation of competing quantum gravity models through independent observational channels.
+
+The next chapter completes the experimental program with dimensional transition spectroscopy, probing the hierarchical structure of hyperdimensional frameworks across energy scales from atomic to collider regimes.
+
+%==============================================================================
+% Cross-references:
+%   - Ch01: Planck scale, thermodynamic foundations
+%   - Ch07: Aether metric perturbations and scalar-ZPE coupling
+%   - Ch11: Genesis nodespace formulation
+%   - Ch18: Framework experimental distinguishability
+%   - Ch21: Unified predictions (holographic entropy)
+%   - Ch22: Scalar-ZPE interferometry (ZPE density measurement)
+%   - Ch24: Quantum foam detection (foam-entropy connection)
+%   - Ch26: Dimensional spectroscopy (discrete scale tests)
+%==============================================================================

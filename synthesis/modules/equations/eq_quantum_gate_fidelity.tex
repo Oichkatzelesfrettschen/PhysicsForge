@@ -1,0 +1,39 @@
+%==============================================================================
+% Equation: Framework-Enhanced Quantum Gate Fidelity
+% Source: Derived from Alpha001.06 coherence analysis and standard quantum computing
+% Framework: Unified | Domain: QM | Status: Theoretical
+%==============================================================================
+\begin{equation}
+  F_{\text{gate}} = F_0 \left(1 + \alpha \cdot \mathcal{C}_{\text{ZPE}}\right)
+                         \left(1 - \beta \frac{\tau_{\text{gate}}}{T_2^{\text{enhanced}}}\right)
+  \eqtag{U}{QM}{T}
+  \label{eq:quantum:gate-fidelity}
+\end{equation}
+%
+% where:
+%   F_gate         = effective quantum gate fidelity (0 to 1)
+%   F_0            = baseline gate fidelity (geometric/control errors only)
+%   alpha          = ZPE coherence enhancement factor (dimensionless, ~ 0.1-0.5)
+%   C_ZPE          = ZPE coherence parameter = <rho_ZPE * phi^2> (normalized)
+%   beta           = decoherence susceptibility (dimensionless, ~ 1-2)
+%   tau_gate       = gate operation time (s)
+%   T_2^{enhanced} = enhanced coherence time from Eq. (eq:qubit:coherence-enhanced)
+%
+% Physical Interpretation:
+% Gate fidelity enhancement has two components:
+% 1. Positive: ZPE coherence stabilizes quantum states during operation
+% 2. Negative: Finite gate time still suffers decoherence (reduced by enhancement)
+%
+% For fault-tolerant quantum computing, F_gate > 0.99 required.
+% Framework enhancement enables reaching this threshold with:
+%   - alpha*C_ZPE ~ 0.02-0.05 (2-5% improvement)
+%   - tau_gate/T_2 reduced from ~10^{-3} to ~10^{-4}
+%
+% Typical values:
+%   - Superconducting: F_0 ~ 0.995, alpha ~ 0.2, C_ZPE ~ 0.15 => F_gate ~ 0.998
+%   - Ion trap: F_0 ~ 0.9995, alpha ~ 0.3, C_ZPE ~ 0.1 => F_gate ~ 0.9998
+%
+% Dependencies: Ch01 (density matrices), Ch07-Ch09 (ZPE theory),
+%               Ch22 (coherence measurements)
+% Cross-references: Ch27 (error correction, quantum algorithms)
+%==============================================================================

@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/eirikr/Playground/Math_Science/logs/.dec79f494a675709b6f525c5b1cdc9341deaddca-audit.json",
+    "files": [
+        {
+            "date": 1762382609557,
+            "name": "/home/eirikr/Playground/Math_Science/logs/mcp-puppeteer-2025-11-05.log",
+            "hash": "6d3ec587bd42e5d00646de93a2644680c21cef207fabdcf070e4bbfa038d2220"
+        }
+    ],
+    "hashType": "sha256"
+}

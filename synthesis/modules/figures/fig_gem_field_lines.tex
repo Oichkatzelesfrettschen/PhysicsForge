@@ -1,0 +1,144 @@
+%==============================================================================
+% Figure: Gravitoelectromagnetic Field Lines
+% Purpose: Visualize GEM fields around rotating mass (Pais framework)
+% Chapter: Ch16 - Pais Superforce
+% Type: Schematic
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=1.2
+  ]
+
+    % Central rotating mass (sphere)
+    \shade[ball color=gray!50] (0, 0) circle (0.8cm);
+    \node[font=\small\bfseries] at (0, 0) {$M$};
+
+    % Rotation arrow
+    \draw[->, >=stealth, ultra thick, blue, curved] (0.6, 0.5) arc (40:320:0.75cm);
+    \node[font=\small, text=blue] at (0, -1.3) {$\boldsymbol{\omega}$};
+
+    % Gravitoelectric field lines (radial, like electric field)
+    \foreach \angle in {0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330} {
+      \draw[->, >=stealth, thick, red!70] (0, 0) -- (\angle:3.5cm);
+    }
+
+    % Gravitomagnetic field lines (circular, like magnetic field)
+    \foreach \r in {1.5, 2.2, 3.0} {
+      \draw[->, >=stealth, thick, green!60!black, domain=0:350, samples=100, smooth]
+        plot ({(\r) * cos(\x)}, {(\r) * sin(\x)});
+      % Add arrowhead manually at theta = 90 degrees
+      \draw[->, >=stealth, ultra thick, green!60!black] ({\r * cos(85)}, {\r * sin(85)}) -- ({\r * cos(95)}, {\r * sin(95)});
+    }
+
+    % Test particle trajectory (precession)
+    \draw[ultra thick, orange!80, dashed, domain=0:720, samples=200, smooth]
+      plot ({(2.5 + 0.3*sin(\x/2)) * cos(\x)}, {(2.5 + 0.3*sin(\x/2)) * sin(\x)});
+    \draw[->, >=stealth, ultra thick, orange!80] ({2.5 * cos(700)}, {2.5 * sin(700)}) -- ({2.5 * cos(720)}, {2.5 * sin(720)});
+    \node[font=\small, text=orange!80, align=center] at (3.8, 2.0) {Test mass\\trajectory\\(precession)};
+
+    % Field labels
+    \node[font=\small, text=red!70, align=center] at (3.8, 0) {$\mathbf{E}_g$\\(gravitoelectric)};
+    \node[font=\small, text=green!60!black, align=center] at (0, 3.5) {$\mathbf{B}_g$\\(gravitomagnetic)};
+
+    % Equations box
+    \node[anchor=north west, align=left, font=\footnotesize, draw=black, fill=yellow!10, rounded corners, thick]
+      at (-5.5, 4.5) {
+      \textbf{GEM Field Equations:} \\
+      \\
+      $\nabla \cdot \mathbf{E}_g = -4\pi G \rho$ \\
+      $\nabla \cdot \mathbf{B}_g = 0$ \\
+      $\nabla \times \mathbf{E}_g = -\frac{\partial \mathbf{B}_g}{\partial t}$ \\
+      $\nabla \times \mathbf{B}_g = -\frac{4\pi G}{c^2} \mathbf{j} + \frac{1}{c^2}\frac{\partial \mathbf{E}_g}{\partial t}$ \\
+      \\
+      \textcolor{red!70}{$\mathbf{E}_g$}: gravitoelectric field \\
+      \textcolor{green!60!black}{$\mathbf{B}_g$}: gravitomagnetic field \\
+      $\rho$: mass density, $\mathbf{j}$: mass current
+    };
+
+    % Force on test mass
+    \node[anchor=north east, align=left, font=\footnotesize, draw=black, fill=blue!5, rounded corners, thick]
+      at (5.5, 4.5) {
+      \textbf{Lorentz-like Force:} \\
+      \\
+      $\mathbf{F}_{\text{GEM}} = m\left(\mathbf{E}_g + \mathbf{v} \times \mathbf{B}_g\right)$ \\
+      \\
+      $m$: test mass \\
+      $\mathbf{v}$: velocity \\
+      \\
+      \textbf{Effects:} \\
+      $\bullet$ Frame dragging (Lense-Thirring) \\
+      $\bullet$ Gravitomagnetic induction \\
+      $\bullet$ Orbital precession \\
+      $\bullet$ Gyroscope precession \\
+      \\
+      \textbf{Experiments:} \\
+      Gravity Probe B: \\
+      $\Omega_{\text{LT}} \approx 39$ mas/yr \\
+      (confirmed 2011)
+    };
+
+    % Pais Superforce connection
+    \node[anchor=south west, align=left, font=\footnotesize, draw=red!70, fill=red!5, rounded corners, thick]
+      at (-5.5, -4.5) {
+      \textbf{Pais Superforce:} \\
+      \\
+      Unification ansatz: \\
+      $\mathbf{B}_g \propto \mathbf{B}_{\text{EM}}$ \\
+      $\mathbf{E}_g \propto \mathbf{E}_{\text{EM}}$ \\
+      \\
+      Coupling constant: \\
+      $\kappa = \frac{G}{4\pi\epsilon_0 c^4} \approx 10^{-50}$ \\
+      \\
+      GEM-EM unified field tensor: \\
+      $F_{\mu\nu}^{\text{total}} = F_{\mu\nu}^{\text{EM}} + \kappa F_{\mu\nu}^{\text{GEM}}$
+    };
+
+    % Observable effects
+    \node[anchor=south east, align=left, font=\footnotesize, draw=green!60!black, fill=green!5, rounded corners, thick]
+      at (5.5, -4.5) {
+      \textbf{Observable Effects:} \\
+      \\
+      \textbf{1. Lense-Thirring precession:} \\
+      Rotating Earth drags spacetime \\
+      Satellite orbits precess \\
+      \\
+      \textbf{2. Geodetic effect:} \\
+      Curvature-induced precession \\
+      GP-B: 6606 mas/yr (measured) \\
+      \\
+      \textbf{3. Gravitomagnetic induction:} \\
+      Changing $\mathbf{B}_g$ induces $\mathbf{E}_g$ \\
+      (gravitational analogue of Faraday's law) \\
+      \\
+      \textbf{4. GEM waves:} \\
+      Gravitational waves $\leftrightarrow$ EM waves \\
+      Pais predicts coupling (Ch16)
+    };
+
+    % Title
+    \node[anchor=south, font=\Large\bfseries] at (0, 5.5) {Gravitoelectromagnetic Field Lines (Pais Framework)};
+
+    % Coordinate axes
+    \draw[->, >=stealth, thick, gray!50] (-5, -5) -- (-5, -3.5) node[above] {$z$};
+    \draw[->, >=stealth, thick, gray!50] (-5, -5) -- (-3.5, -5) node[right] {$x$};
+    \node[font=\footnotesize, text=gray!50] at (-5.3, -5.3) {$y$ (out)};
+
+  \end{tikzpicture}
+  \caption{Gravitoelectromagnetic (GEM) field lines around a rotating mass $M$ in the Pais framework.
+    The gravitoelectric field $\mathbf{E}_g$ (red arrows) is radial, analogous to the electric
+    field of a charge, while the gravitomagnetic field $\mathbf{B}_g$ (green circular arrows) forms
+    closed loops around the rotation axis, analogous to the magnetic field of a current. The central
+    sphere rotates with angular velocity $\boldsymbol{\omega}$ (blue arrow). A test mass (orange
+    dashed trajectory) experiences a Lorentz-like force $\mathbf{F} = m(\mathbf{E}_g + \mathbf{v}
+    \times \mathbf{B}_g)$, causing orbital precession. The GEM field equations (yellow box) mirror
+    Maxwell's equations with mass replacing charge and $4\pi G/c^2$ replacing $1/c^2$. Observable
+    effects include Lense-Thirring frame dragging (confirmed by Gravity Probe B in 2011: $\Omega_{\text{LT}}
+    \approx 39$ milliarcseconds/year) and geodetic precession. In the Pais Superforce framework
+    (red box), gravity and electromagnetism are unified via a proportionality relation $\mathbf{B}_g
+    \propto \mathbf{B}_{\text{EM}}$ with coupling constant $\kappa \sim 10^{-50}$. This predicts
+    coupling between gravitational waves and electromagnetic waves, with potential experimental
+    signatures in precision interferometry (Ch16, Ch22).}
+  \label{fig:gem-field-lines}
+\end{figure>

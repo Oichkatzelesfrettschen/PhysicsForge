@@ -1,0 +1,19 @@
+%==============================================================================
+% Equation: Metamaterial Dispersion Relation for ZPE Enhancement
+% Framework: Aether | Domain: ENERGY | Status: Experimental
+%==============================================================================
+\begin{equation}
+  \omega^2(k) = c^2k^2 + \omega_p^2\left[1 - \frac{\omega_0^2}{\omega^2 - \omega_0^2 + i\gamma\omega}\right] + \frac{g_{\phi}^2\phi_0^2}{\hbar^2}F(k/k_c)
+  \eqtag{A}{ENERGY}{E}
+  \label{eq:metamaterial:dispersion}
+\end{equation}
+% Notes: Dispersion relation for electromagnetic waves in metamaterials engineered for
+% ZPE coupling. The first term is the vacuum dispersion, second term represents plasmonic
+% response with plasma frequency $\omega_p$, resonance $\omega_0$, and damping $\gamma$, while
+% the third term captures Aether scalar coupling with strength $g_{\phi}$, VEV $\phi_0$, and
+% geometric form factor $F(k/k_c)$ peaked at cutoff wavevector $k_c$. Negative refractive
+% index ($\epsilon\mu < 0$) regions enable enhanced vacuum fluctuation extraction. Split-ring
+% resonators and wire arrays with $\omega_0/2\pi \sim 10$ GHz achieve $g_{\phi}^2\phi_0^2/\hbar^2 \sim 10^{-4}\omega_0^2$,
+% creating casimir cavity enhancement factors $\alpha_{\text{enh}} \sim 10^2$.
+% Dependencies: eq:aether:cavity-resonance, eq:energy:harvesting-efficiency
+%==============================================================================

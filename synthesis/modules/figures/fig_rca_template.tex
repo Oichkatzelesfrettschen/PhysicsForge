@@ -1,0 +1,87 @@
+%==============================================================================
+% Figure: RCA Problem-Solution Flowchart Template
+% Purpose: Reusable Root Cause Analysis flowchart for chapter openings
+% Chapter: Universal template for all chapters
+% Type: Flowchart / Process diagram
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=2.5cm,
+    auto,
+    process/.style={
+      rectangle,
+      rounded corners,
+      minimum width=3.5cm,
+      minimum height=1.2cm,
+      text centered,
+      draw=black,
+      line width=0.8pt,
+      fill=blue!20,
+      font=\large
+    },
+    decision/.style={
+      diamond,
+      minimum width=3cm,
+      minimum height=1.2cm,
+      text centered,
+      draw=black,
+      line width=0.8pt,
+      fill=yellow!20,
+      font=\normalsize
+    },
+    arrow/.style={
+      thick,
+      ->,
+      >=stealth,
+      line width=1pt
+    },
+    annotation/.style={
+      font=\small,
+      text width=2.5cm,
+      align=center
+    }
+  ]
+
+    % Main process nodes
+    \node (problem) [process, fill=red!20] {Problem Statement};
+    \node (analysis) [process, below of=problem] {Data Analysis};
+    \node (root) [process, below of=analysis, fill=orange!20] {Root Cause Identification};
+    \node (solution) [process, below of=root, fill=green!20] {Proposed Solution};
+    \node (validation) [process, below of=solution, fill=blue!30] {Validation Protocol};
+
+    % Decision point
+    \node (check) [decision, right of=validation, node distance=5cm] {Validated?};
+
+    % Success node
+    \node (success) [process, below of=validation, fill=green!40] {Implementation};
+
+    % Arrows connecting main flow
+    \draw [arrow] (problem) -- node[right, annotation] {Observe symptoms} (analysis);
+    \draw [arrow] (analysis) -- node[right, annotation] {Investigate mechanisms} (root);
+    \draw [arrow] (root) -- node[right, annotation] {Design intervention} (solution);
+    \draw [arrow] (solution) -- node[right, annotation] {Test predictions} (validation);
+    \draw [arrow] (validation) -- (check);
+    \draw [arrow] (check) -- node[above] {Yes} (success);
+
+    % Feedback loop
+    \draw [arrow, dashed] (check) -- node[above, annotation] {No: Refine} ++(0,3.5) -| (root);
+
+    % Side annotations
+    \node[annotation, left of=problem, node distance=5cm, text=blue!60!black]
+      {RCA Phase 1:\\Define scope};
+    \node[annotation, left of=analysis, node distance=5cm, text=blue!60!black]
+      {RCA Phase 2:\\Gather evidence};
+    \node[annotation, left of=root, node distance=5cm, text=blue!60!black]
+      {RCA Phase 3:\\Identify cause};
+    \node[annotation, left of=solution, node distance=5cm, text=blue!60!black]
+      {RCA Phase 4:\\Develop fix};
+    \node[annotation, left of=validation, node distance=5cm, text=blue!60!black]
+      {RCA Phase 5:\\Verify outcome};
+
+  \end{tikzpicture}
+
+  \caption{Root Cause Analysis (RCA) flowchart template. This systematic approach guides problem-solving throughout the monograph: identify the problem, analyze data, determine root causes, propose solutions, and validate through experimental protocols. Dashed feedback loop represents iterative refinement when initial validation fails.}
+  \label{fig:rca-template}
+\end{figure}

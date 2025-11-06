@@ -1,0 +1,220 @@
+name: LaTeX Build and Deploy
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'synthesis/**'
+      - '.github/workflows/latex_build.yml'
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install LaTeX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-science \
+            texlive-bibtex-extra \
+            biber \
+            latexmk \
+            python3-pygments
+
+      - name: Compile individual chapters
+        run: |
+          cd synthesis
+          for i in {01..30}; do
+            if [ -f "test_ch$i.tex" ]; then
+              echo "Compiling chapter $i..."
+              pdflatex -interaction=nonstopmode "test_ch$i.tex" || true
+            fi
+          done
+
+      - name: Compile main document
+        run: |
+          cd synthesis
+          pdflatex -interaction=nonstopmode main.tex
+          bibtex main || true
+          pdflatex -interaction=nonstopmode main.tex
+          pdflatex -interaction=nonstopmode main.tex
+
+      - name: Create output directory structure
+        run: |
+          mkdir -p output/latex/chapters
+          mkdir -p output/latex/supplements
+
+      - name: Copy PDFs to output
+        run: |
+          cp synthesis/main.pdf output/latex/ || true
+          cp synthesis/test_ch*.pdf output/latex/chapters/ || true
+
+      - name: Generate equation catalog
+        run: |
+          python3 scripts/build_catalog_pipeline.py --base-dir . || true
+          cp equation_catalog.csv output/ || true
+          cp equation_summary.txt output/ || true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-pdfs
+          path: |
+            output/
+            synthesis/main.pdf
+            synthesis/test_ch*.pdf
+          retention-days: 30
+
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: actions/configure-pages@v4
+
+      - name: Build Pages
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: |
+          mkdir -p _site
+          cp -r output/* _site/
+
+          # Create index.html
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Math & Science - Unified Field Theories</title>
+            <style>
+              body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: #fff;
+              }
+              .container {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                color: #333;
+              }
+              h1 {
+                color: #667eea;
+                border-bottom: 3px solid #764ba2;
+                padding-bottom: 10px;
+              }
+              h2 {
+                color: #764ba2;
+                margin-top: 30px;
+              }
+              .framework {
+                background: #f8f9fa;
+                border-left: 4px solid #667eea;
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 5px;
+              }
+              .pdf-link {
+                display: inline-block;
+                background: #667eea;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                margin: 5px;
+                transition: all 0.3s;
+              }
+              .pdf-link:hover {
+                background: #764ba2;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+              }
+              .equation {
+                font-family: 'Courier New', monospace;
+                background: #f0f0f0;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+                margin: 5px 0;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h1>Unified Field Theories: Mathematical Synthesis</h1>
+
+              <div class="framework">
+                <h3>Superforce Proof</h3>
+                <p>Formal derivation of the Planck force scale:</p>
+                <div class="equation">F* = c⁴/G ≈ 1.21 × 10⁴⁴ N</div>
+                <p>Proven identity connecting Einstein coupling, Planck units, and force unification.</p>
+              </div>
+
+              <h2>Theoretical Frameworks</h2>
+
+              <div class="framework">
+                <h3>Aether Framework</h3>
+                <p>Scalar field dynamics, zero-point energy, quantum foam, time crystals</p>
+              </div>
+
+              <div class="framework">
+                <h3>Genesis Framework</h3>
+                <p>Exceptional Lie groups (E8, E7, E6, F4, G2), Cayley-Dickson algebras, fractal geometries</p>
+              </div>
+
+              <div class="framework">
+                <h3>Pais Framework</h3>
+                <p>Gravitational-electromagnetic unification with scalar-ZPE interactions</p>
+              </div>
+
+              <h2>Documents</h2>
+
+              <a href="latex/main.pdf" class="pdf-link">📕 Full Book (PDF)</a>
+
+              <h3>Chapters</h3>
+              <p>Individual chapter PDFs available in the chapters directory.</p>
+
+              <h3>Equations</h3>
+              <p><a href="equation_catalog.csv" class="pdf-link">📊 Equation Catalog (CSV)</a></p>
+              <p><a href="equation_summary.txt" class="pdf-link">📄 Equation Summary</a></p>
+
+              <h2>Repository</h2>
+              <p><a href="https://github.com/yourusername/Math_Science" class="pdf-link">🔗 View on GitHub</a></p>
+            </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        id: deployment
+        uses: actions/deploy-pages@v4

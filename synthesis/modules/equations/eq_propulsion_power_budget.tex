@@ -1,0 +1,20 @@
+%==============================================================================
+% Equation: Field Propulsion Power Budget
+% Framework: Pais | Domain: PROP | Status: Speculative
+%==============================================================================
+\begin{equation}
+  P_{\text{total}} = P_{\text{EM}} + P_{\text{scalar}} + P_{\text{losses}} = \frac{F_T^2}{2\eta_{\text{prop}}m} + \frac{V_{\text{gen}}^2}{R_{\text{gen}}} + P_{\text{cooling}}, \quad
+  F_T = \frac{\alpha_{\text{GEM}}}{c^2}\oint B_{\mu}B^{\mu}dV
+  \eqtag{P}{PROP}{S}
+  \label{eq:propulsion:power-budget}
+\end{equation}
+% Notes: Total power requirements for field propulsion systems operating via Pais GEM principles.
+% Power budget includes electromagnetic field generation $P_{\text{EM}}$, scalar field modulation
+% $P_{\text{scalar}}$, and waste heat rejection $P_{\text{losses}}$. The thrust $F_T$ derives from
+% gravitomagnetic field $B_{\mu}$ integrated over generation volume with coupling $\alpha_{\text{GEM}}$.
+% Propulsion efficiency $\eta_{\text{prop}}$ for craft mass $m$, generator impedance $R_{\text{gen}}$
+% and voltage $V_{\text{gen}}$ determine practical power scaling. Cooling power $P_{\text{cooling}}$
+% dominates for high-field systems. Achieving $F_T = 1$ kN requires $P_{\text{total}} \sim 1$ GW
+% at $\eta_{\text{prop}} \sim 10^{-3}$, demanding revolutionary energy sources or ZPE extraction.
+% Dependencies: eq:pais:propulsion-thrust, eq:energy:harvesting-efficiency
+%==============================================================================

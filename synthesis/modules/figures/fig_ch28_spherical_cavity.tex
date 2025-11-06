@@ -1,0 +1,95 @@
+% Figure 1: Spherical Resonant Cavity for ZPE Coupling
+% Author: Dr. Computernonymouse
+% Description: Cross-section of perfectly conducting spherical cavity showing
+%              electromagnetic field lines and scalar field gradient
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,patterns,decorations.markings,calc,backgrounds,shadings}
+
+% Define colors for scientific visualization
+\definecolor{fieldblue}{RGB}{31,119,180}
+\definecolor{fieldred}{RGB}{214,39,40}
+\definecolor{cavitysilver}{RGB}{189,189,189}
+\definecolor{axisblack}{RGB}{0,0,0}
+\definecolor{fieldarrow}{RGB}{44,160,44}
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{30}
+\begin{tikzpicture}[tdplot_main_coords,scale=2.5]
+
+% Background layer for cavity
+\begin{scope}[on background layer]
+    % Draw spherical cavity outline (cross-section)
+    \shade[ball color=cavitysilver!30,opacity=0.3] (0,0,0) circle (2cm);
+    \draw[thick,cavitysilver!80] (0,0,0) circle (2cm);
+
+    % Draw back hemisphere outline
+    \draw[thick,cavitysilver!60,dashed] (0,0,0) ellipse (2cm and 0.8cm);
+\end{scope}
+
+% Scalar field gradient (color gradient from blue to red)
+\foreach \r in {0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8} {
+    \pgfmathsetmacro{\opacity}{100-\r*40}
+    \pgfmathsetmacro{\redcomponent}{\r*50}
+    \pgfmathsetmacro{\bluecomponent}{100-\r*50}
+    \fill[fieldblue!\bluecomponent!fieldred!\redcomponent,opacity=\opacity/100] (0,0,0) circle (\r cm);
+}
+
+% Center point with maximum ZPE density
+\fill[fieldred,opacity=0.9] (0,0,0) circle (0.08cm);
+\node[below right] at (0.1,-0.1,0) {$\rho_{\text{ZPE}}^{\text{max}}$};
+
+% Electric field lines (radial pattern)
+\foreach \angle in {0,30,60,90,120,150,180,210,240,270,300,330} {
+    \draw[-{Stealth[length=2.5mm,width=2mm]},fieldarrow,thick,
+          decoration={markings,mark=at position 0.7 with {\arrow{>}}},
+          postaction={decorate}]
+          (0,0,0) -- ({1.8*cos(\angle)},{1.8*sin(\angle)},0);
+}
+
+% 3D field lines for depth perception
+\foreach \zangle in {30,60,120,150} {
+    \foreach \xyangle in {45,135,225,315} {
+        \tdplotsetrotatedcoords{\xyangle}{\zangle}{0}
+        \draw[tdplot_rotated_coords,-{Stealth[length=2mm,width=1.5mm]},
+              fieldarrow!70,thick,opacity=0.7]
+              (0,0,0) -- (1.6,0,0);
+    }
+}
+
+% Coordinate axes
+\draw[-{Stealth[length=3mm]},axisblack,very thick] (-2.5,0,0) -- (2.8,0,0) node[right] {$x$};
+\draw[-{Stealth[length=3mm]},axisblack,very thick] (0,-2.5,0) -- (0,2.8,0) node[above] {$y$};
+\draw[-{Stealth[length=3mm]},axisblack,very thick] (0,0,-1.5) -- (0,0,2.5) node[above] {$z$};
+
+% Radius label
+\draw[<->,thick,axisblack] (0,0,0) -- (1.41,1.41,0) node[midway,above left] {$R$};
+
+% Scalar field label
+\node[fieldblue,thick] at (-1.5,1.7,0) {$\phi_{\text{min}}$};
+\node[fieldred,thick] at (0.3,0.3,0) {$\phi_{\text{max}}$};
+
+% Electric field label
+\node[fieldarrow,thick] at (2.2,-1.5,0) {$\vec{E}$};
+
+% Cavity wall label
+\draw[thick,<-,cavitysilver!80] (1.41,-1.41,0) -- (2.3,-2.3,0)
+    node[right,cavitysilver!80] {Perfect conductor};
+
+% Title and parameters
+\node[align=center,font=\large\bfseries] at (0,-3.5,0)
+    {Spherical Resonant Cavity};
+\node[align=center,font=\normalsize] at (0,-4.0,0)
+    {$\omega_{\text{res}} = \frac{c\chi_{nl}}{R}$, where $\chi_{nl}$ = spherical Bessel zeros};
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,426 @@
+\chapter{Scalar-ZPE Experimental Protocols}\label{ch:scalar_zpe_protocols}
+
+%==============================================================================
+% CHAPTER 22: Scalar-ZPE Experimental Protocols
+% Purpose: Detailed laboratory protocols for testing scalar-ZPE predictions
+% Source: Alpha003.02, Ch08 (Aether), Ch19 (unified kernel)
+% Status: Comprehensive experimental validation procedures
+%==============================================================================
+
+\section{Introduction}
+\label{sec:ch17:experiments}
+
+This chapter presents laboratory-scale experimental protocols for detecting and characterizing scalar field--zero-point energy (ZPE) coupling predicted by the \aether{} framework (Chapters 7--10) and encoded in the unified kernel (Chapter 19). These experiments operate at energy scales $E \sim$ eV--MeV where the $K_{\text{Lab}}$ factor in the unified kernel \eqref{eq:ch19:unified_kernel} dominates.
+
+\paragraph{Theoretical Predictions.}
+From the unified kernel (Ch19 \S\ref{sec:ch19:experiments}), the primary testable signatures are:
+
+\begin{enumerate}
+  \item \textbf{Scalar-ZPE nonlinear coupling} (Ch8, Ch19):
+  \begin{equation}
+  \mathcal{L}_{\text{int}} = g \phi \rho_{\text{ZPE}}^2 + \beta \phi^2 \rho_{\text{ZPE}} + \zeta (\nabla \phi)^2 \rho_{\text{ZPE}}
+  \label{eq:ch22:interaction}
+  \end{equation}
+
+\item \textbf{Casimir force modification} (see Ch17, Experimental Predictions):
+  \begin{equation}
+  F = F_C \left[1 + \kappa \frac{\phi}{M_P} + \alpha \nabla^2 \phi + O(g^2)\right]
+  \label{eq:ch22:casimir_mod}
+  \end{equation}
+
+  \item \textbf{Interferometric phase shifts}:
+  \begin{equation}
+  \Delta \phi_{\text{phase}} = \int \mathcal{S}_C(x,t) \, dx \approx g \int \phi(x) \rho_{\text{ZPE}}^2(x) \, dx
+  \label{eq:ch22:phase_shift}
+  \end{equation}
+
+  \item \textbf{Gravitomagnetic effects} from Pais GEM in $K_{\text{Lab}}$:
+  \begin{equation}
+  \vec{F}_{\text{GEM}} = \rho \vec{g} + \frac{1}{c^2} \vec{J} \times \vec{B}_g
+  \label{eq:ch22:gem}
+  \end{equation}
+\end{enumerate}
+
+\paragraph{Experimental Strategy.}
+Three complementary apparatus probe different aspects of scalar-ZPE physics:
+\begin{itemize}
+  \item \textbf{Fabry--Perot interferometry}: Direct phase shift measurement from \eqref{eq:ch22:phase_shift}
+  \item \textbf{Casimir force experiments}: Test force modification \eqref{eq:ch22:casimir_mod} with fractal geometries
+  \item \textbf{Gravitational gradiometry}: Search for curvature perturbations and GEM effects
+\end{itemize}
+
+\section{Experimental Objectives}\label{sec:ch22:objectives}
+
+\subsection{Primary Objectives}
+
+\begin{itemize}
+  \item \textbf{Detect curvature perturbations} induced by scalar--ZPE coupling \eqref{eq:ch22:interaction} in high-precision interferometers
+
+  \item \textbf{Measure phase shifts} associated with time-crystal modulation of ZPE density (Ch8):
+  \begin{equation}
+  \rho_{\text{ZPE}}(t) = \rho_0 \cos^2(\omega t) + \Delta\rho \sin(2\gamma t)
+  \end{equation}
+
+  \item \textbf{Bound or observe} gravitomagnetic responses predicted by \eqref{eq:ch22:gem} in rotating mass configurations
+
+  \item \textbf{Test Casimir enhancement} predicted in Ch17: up to 25\% deviation with fractal/anisotropic geometries
+\end{itemize}
+
+\subsection{Validation Criteria}
+
+\paragraph{Positive Detection.}
+Claimed detection requires:
+\begin{enumerate}
+  \item Statistical significance $> 5\sigma$ above background
+  \item Signal consistent with theoretical prediction \eqref{eq:ch22:interaction} functional form
+  \item Reproducibility across independent apparatus
+  \item Exclusion of known systematic effects (thermal drift, electromagnetic pickup, vibrations)
+\end{enumerate}
+
+\paragraph{Null Result Interpretation.}
+If signals not detected, experiments constrain coupling constants:
+\begin{itemize}
+  \item Scalar-ZPE coupling: $g < g_{\text{limit}}(\text{sensitivity})$
+  \item Casimir enhancement parameter: $\kappa < \kappa_{\text{limit}}$
+  \item GEM coupling: $\eta_{\text{GEM}} < \eta_{\text{limit}}$
+\end{itemize}
+Limits feed back into unified kernel parameter space (Ch19).
+
+\section{Scalar-ZPE Interferometry}\label{sec:ch22:interferometry}
+
+\subsection{Apparatus Design}
+
+\paragraph{Fabry--Perot Configuration.}
+Ultra-high-finesse optical cavity with mirrors separated by $L \approx 10$~cm:
+\begin{itemize}
+  \item \textbf{Mirrors}: Super-polished fused silica, reflectivity $R > 0.99995$ at $\lambda = 1064$~nm
+  \item \textbf{Laser}: Frequency-stabilized Nd:YAG, linewidth $< 1$~Hz
+  \item \textbf{Finesse}: $\mathcal{F} \sim 10^5$ yielding effective path length $L_{\text{eff}} = \mathcal{F} L \sim 10$~km
+  \item \textbf{Vacuum}: $< 10^{-8}$~mbar to eliminate air refractive index fluctuations
+\end{itemize}
+
+\paragraph{Thermal Stabilization.}
+Temperature fluctuations couple to cavity length via thermal expansion. Requirements:
+\begin{align}
+\Delta T &< 1~\text{mK} \quad \text{(short term, $< 100$~s)} \\
+\frac{dT}{dt} &< 10~\mu\text{K/hour} \quad \text{(long term drift)}
+\end{align}
+Achieved via: (1) triple-stage vacuum chamber insulation, (2) active PID temperature control, (3) vibration-isolated optical table.
+
+\subsection{Measurement Procedure}
+
+\paragraph{Phase Extraction.}
+Transmitted intensity through Fabry--Perot cavity:
+\begin{equation}
+I_{\text{trans}} = I_0 \frac{T^2}{(1-R)^2 + 4R \sin^2(\delta/2)}
+\end{equation}
+where phase $\delta = \frac{4\pi}{\lambda} L_{\text{eff}}$. Scalar-ZPE coupling modifies effective optical path:
+\begin{equation}
+L_{\text{eff}} \to L_{\text{eff}} + \delta L_{\text{scalar-ZPE}} = L_{\text{eff}} \left(1 + \frac{\Delta \phi_{\text{phase}}}{2\pi}\right)
+\end{equation}
+
+Lock cavity to laser frequency using Pound--Drever--Hall technique. Monitor transmitted intensity fluctuations:
+\begin{equation}
+\frac{\delta I}{I_0} \propto \frac{\delta L}{L_{\text{eff}}} \propto \frac{\Delta \phi_{\text{phase}}}{2\pi}
+\end{equation}
+
+\paragraph{Data Acquisition.}
+\begin{enumerate}
+  \item Sample photodetector output at $f_s = 10$~kHz
+  \item Apply digital low-pass filter (cutoff 1~Hz) to remove shot noise
+  \item Compute power spectral density (PSD) via Welch method
+  \item Search for peaks at predicted time-crystal modulation frequencies $\omega, 2\gamma$ from Ch8
+\end{enumerate}
+
+\subsection{Sensitivity Analysis}
+
+\paragraph{Fundamental Noise Limit.}
+Shot noise limited sensitivity:
+\begin{equation}
+\delta L_{\text{min}} = \frac{\lambda}{4\pi \mathcal{F} \sqrt{N_{\text{photon}}}} \approx \frac{1064~\text{nm}}{4\pi \cdot 10^5 \sqrt{10^{12}}} \approx 10^{-15}~\text{m}
+\end{equation}
+for $N_{\text{photon}} \sim 10^{12}$ circulating photons per second.
+
+\paragraph{Target Sensitivity.}
+To observe scalar-ZPE phase shift \eqref{eq:ch22:phase_shift} with $g \sim 10^{-3} M_{\text{Planck}}^{-1}$ (upper limit from Ch17), require:
+\begin{equation}
+\delta L < 10^{-12}~\text{m} \quad \text{over integration time } \tau = 10^3~\text{s}
+\end{equation}
+
+Achieved sensitivity includes: shot noise ($10^{-15}$~m/$\sqrt{\text{Hz}}$), thermal noise ($10^{-14}$~m/$\sqrt{\text{Hz}}$), seismic noise ($10^{-13}$~m/$\sqrt{\text{Hz}}$ at 1~Hz). Total:
+\begin{equation}
+\delta L_{\text{total}} = \sqrt{\delta L_{\text{shot}}^2 + \delta L_{\text{thermal}}^2 + \delta L_{\text{seismic}}^2} \sqrt{\tau} \approx 3 \times 10^{-12}~\text{m}
+\end{equation}
+Marginal for detection; improvement strategies: (1) increase finesse, (2) cryogenic operation, (3) vibration isolation.
+
+\subsection{Expected Signatures}
+
+\paragraph{Time-Crystal Modulation.}
+If \aether{} time crystals exist (Ch8), ZPE density oscillates:
+\begin{equation}
+\rho_{\text{ZPE}}(t) = \rho_0 \cos^2(\omega t)
+\end{equation}
+Phase shift PSD shows peaks at $\omega$ and harmonics $2\omega, 3\omega, \ldots$
+
+\paragraph{Null Hypothesis Test.}
+If no peaks detected above noise floor, place upper limit:
+\begin{equation}
+g < g_{\text{limit}} = \frac{\delta L_{\text{total}} \cdot 2\pi}{L_{\text{eff}} \cdot \langle \phi \rho_{\text{ZPE}}^2 \rangle_{\text{predicted}}}
+\end{equation}
+
+\section{Casimir-Enhanced Cavity Experiments}\label{sec:ch22:casimir}
+
+\subsection{Apparatus Design}
+
+\paragraph{MEMS Force Sensor.}
+Micro-electromechanical system with adjustable plate separation:
+\begin{itemize}
+  \item \textbf{Plates}: Gold-coated silicon, dimensions $100 \times 100~\mu\text{m}^2$
+  \item \textbf{Separation}: Piezo-controlled, range $d = 100$--$500$~nm
+  \item \textbf{Force sensor}: Capacitive displacement, resolution $\sim 10$~fN
+  \item \textbf{Surface roughness}: RMS $< 1$~nm (critical for accurate Casimir prediction)
+\end{itemize}
+
+\paragraph{Fractal Geometry Plates.}
+To test Ch17 prediction that 25\% enhancement occurs in fractal/anisotropic geometries:
+\begin{itemize}
+  \item Fabricate plates with fractal surface patterns (e.g., Sierpinski carpet at $\mu$m scale)
+  \item Compare Casimir force to flat reference plates
+  \item Vary fractal dimension $D_{\text{frac}} = 1.5, 1.7, 1.9$ via lithography
+\end{itemize}
+
+\subsection{Measurement Procedure}
+
+\paragraph{Force Calibration.}
+\begin{enumerate}
+  \item Measure capacitive force vs.\ separation for reference (flat) plates
+  \item Fit to standard Casimir prediction:
+  \begin{equation}
+  F_C(d) = \frac{\pi^2 \hbar c}{240 d^4} A_{\text{plate}}
+  \end{equation}
+  Extract calibration factor accounting for finite conductivity, roughness corrections
+
+  \item Replace with fractal plates, repeat measurement
+  \item Compute fractional deviation:
+  \begin{equation}
+  \frac{\Delta F}{F_C} = \frac{F_{\text{fractal}} - F_C}{F_C}
+  \end{equation}
+\end{enumerate}
+
+\paragraph{Systematic Error Control.}
+\begin{itemize}
+  \item \textbf{Electrostatic patches}: Nulled via voltage compensation
+  \item \textbf{Temperature gradients}: $< 10$~mK across plates
+  \item \textbf{Residual gas pressure}: $< 10^{-9}$~mbar
+  \item \textbf{Parallelism}: Plate tilt $< 10^{-4}$~rad monitored via interferometry
+\end{itemize}
+
+\subsection{Expected Signatures}
+
+\paragraph{Aether Prediction (Ch17).}
+For fractal plates with $D_{\text{frac}} \approx 1.8$:
+\begin{equation}
+\frac{\Delta F}{F_C} \approx \kappa \frac{\langle \phi \rangle}{M_P} + \alpha \langle \nabla^2 \phi \rangle \approx 5\%\text{--}25\%
+\end{equation}
+depending on fractal geometry details and scalar field strength $\langle \phi \rangle$.
+
+\paragraph{Standard Model + Corrections.}
+Without scalar-ZPE coupling, deviations from flat-plate Casimir limited to:
+\begin{itemize}
+  \item Roughness correction: $\sim 1\%$ at $d = 100$~nm
+  \item Finite conductivity: $\sim 0.5\%$ for gold
+  \item Temperature correction: $< 0.1\%$ at room temperature
+  \item \textbf{Total}: $\lesssim 2\%$
+\end{itemize}
+
+\textbf{Discriminating power}: If fractal geometry produces $> 5\%$ deviation, strong evidence for \aether{} scalar-ZPE coupling. If $< 2\%$, consistent with SM; revise coupling constant $\kappa$ downward.
+
+\subsection{Validation Protocol}
+
+\paragraph{Multi-Geometry Scan.}
+Test plates with varying fractal dimensions:
+\begin{align}
+D_{\text{frac}} &= 1.5 \quad \Rightarrow \quad \Delta F/F_C = ? \\
+D_{\text{frac}} &= 1.7 \quad \Rightarrow \quad \Delta F/F_C = ? \\
+D_{\text{frac}} &= 1.9 \quad \Rightarrow \quad \Delta F/F_C = ?
+\end{align}
+Unified kernel prediction (Ch19): $\Delta F/F_C \propto f(D_{\text{frac}})$ where $f$ depends on $\mathcal{H}^{d_{\text{frac}}}$ measure. If observed trend matches $f$, validates framework.
+
+\section{Gravitational Gradiometry}\label{sec:ch22:gradiometry}
+
+\subsection{Apparatus Design}
+
+\paragraph{Superconducting Gradiometer.}
+Measures second derivative of gravitational potential $\Phi$:
+\begin{equation}
+\Gamma_{ij} = \frac{\partial^2 \Phi}{\partial x_i \partial x_j}
+\end{equation}
+Scalar-ZPE coupling modulates local curvature:
+\begin{equation}
+\Gamma_{ij}^{\text{total}} = \Gamma_{ij}^{\text{Newtonian}} + \delta \Gamma_{ij}^{\text{scalar-ZPE}}
+\end{equation}
+
+\paragraph{Configuration.}
+\begin{itemize}
+  \item \textbf{Sensor}: SQUID-based superconducting accelerometer pair, baseline $L = 1$~m
+  \item \textbf{Sensitivity}: $\sim 10^{-11}$~s$^{-2}$ per $\sqrt{\text{Hz}}$ in $0.1$--$1$~Hz band
+  \item \textbf{Shielding}: Mu-metal magnetic shielding, seismic isolation table
+  \item \textbf{Active scalar source}: High-Q dielectric resonator driven at $\omega \sim$ MHz
+\end{itemize}
+
+\subsection{Measurement Procedure}
+
+\paragraph{Baseline Measurement.}
+With scalar source OFF:
+\begin{enumerate}
+  \item Record gradiometer output $\Gamma_{ij}^{\text{baseline}}(t)$ for $10^4$~s
+  \item Compute noise PSD, identify dominant sources (seismic, EM pickup)
+  \item Subtract known Newtonian contributions (building mass, Earth tides)
+\end{enumerate}
+
+\paragraph{Active Source Measurement.}
+With scalar source ON at frequency $\omega$:
+\begin{enumerate}
+  \item Modulate source amplitude $\phi_0(t) = \phi_{\text{max}} \sin(\omega_{\text{mod}} t)$, $\omega_{\text{mod}} = 0.1$~Hz
+  \item Record gradiometer response $\Gamma_{ij}(t)$
+  \item Lock-in amplify at $\omega_{\text{mod}}$ to extract correlated signal
+  \item Compare amplitude to prediction from \eqref{eq:ch22:interaction}:
+  \begin{equation}
+  \delta \Gamma_{ij}^{\text{scalar-ZPE}} \propto g \phi_{\text{max}} \rho_{\text{ZPE}}^2
+  \end{equation}
+\end{enumerate}
+
+\subsection{Expected Signatures}
+
+\paragraph{Scalar-ZPE Curvature Perturbation.}
+For $\phi_{\text{max}} \sim 10^{-6} M_{\text{Planck}}$, $g \sim 10^{-3} M_{\text{Planck}}^{-1}$:
+\begin{equation}
+\delta \Gamma \sim g \phi_{\text{max}} \rho_{\text{ZPE}}^2 \sim 10^{-12}~\text{s}^{-2}
+\end{equation}
+Marginally detectable with $10^4$~s integration.
+
+\paragraph{GEM Effect (Pais).}
+Rotating mass ($M \sim 100$~kg, $\omega_{\text{rot}} = 10$~Hz) produces gravitomagnetic field:
+\begin{equation}
+\vec{B}_g \sim \frac{G}{c^2} \frac{\vec{L}}{r^3}, \quad \vec{L} = I \vec{\omega}
+\end{equation}
+Test mass moving through $\vec{B}_g$ experiences force \eqref{eq:ch22:gem}. Expected signal $\sim 10^{-13}$~s$^{-2}$, below current sensitivity. Requires cryogenic operation and longer integration.
+
+\section{Measurement Roadmap}\label{sec:ch22:roadmap}
+
+\subsection{Phased Implementation}
+
+\paragraph{Phase 1 (Months 1--6): Interferometry Commissioning.}
+\begin{enumerate}
+  \item Assemble Fabry--Perot cavity, achieve finesse $\mathcal{F} > 10^5$
+  \item Characterize noise sources, optimize thermal/seismic isolation
+  \item Establish unit conventions, calibration procedures
+  \item Baseline sensitivity measurement: $\delta L < 10^{-12}$~m over $10^3$~s
+\end{enumerate}
+
+\paragraph{Phase 2 (Months 7--12): Casimir Force Experiments.}
+\begin{enumerate}
+  \item Fabricate fractal geometry plates via electron-beam lithography
+  \item Measure Casimir force for $D_{\text{frac}} = 1.5, 1.7, 1.9$
+  \item Compare to flat-plate reference, compute $\Delta F/F_C$
+  \item If $> 5\%$ deviation observed, proceed to confirmation with independent apparatus
+\end{enumerate}
+
+\paragraph{Phase 3 (Months 13--18): Gradiometry Validation.}
+\begin{enumerate}
+  \item Deploy superconducting gradiometer with active scalar source
+  \item Search for modulated curvature perturbations
+  \item If detected, vary source parameters ($\phi_{\text{max}}, \omega$) to confirm functional form
+  \item Attempt GEM measurement with rotating mass (challenging, may require upgrade)
+\end{enumerate}
+
+\subsection{Data Analysis Pipeline}
+
+\paragraph{Automated Export.}
+Implement data pipelines exporting directly to LaTeX tables/figures via scripts in \texttt{synthesis/scripts/}:
+\begin{itemize}
+  \item Python script \texttt{process\_interferometry\_data.py}: Raw photodetector $\to$ PSD plot
+  \item Python script \texttt{casimir\_analysis.py}: Force vs.\ separation $\to$ $\Delta F/F_C$ table
+  \item Python script \texttt{gradiometry\_analysis.py}: Time-series $\to$ lock-in amplitude
+\end{itemize}
+
+\paragraph{Uncertainty Propagation.}
+For each measurement, document:
+\begin{itemize}
+  \item Statistical uncertainty (from repeatability, $N$ runs)
+  \item Systematic uncertainty (calibration, environmental drift)
+  \item Total uncertainty via quadrature sum: $\delta_{\text{total}} = \sqrt{\delta_{\text{stat}}^2 + \delta_{\text{sys}}^2}$
+  \item Include in all plots as error bars
+\end{itemize}
+
+\subsection{Environmental Controls}
+
+\paragraph{Temperature.}
+\begin{itemize}
+  \item Interferometry: $\Delta T < 1$~mK
+  \item Casimir: $\Delta T < 10$~mK
+  \item Gradiometry: Ambient (seismic isolation more critical)
+\end{itemize}
+
+\paragraph{Vibration Isolation.}
+\begin{itemize}
+  \item Optical tables: Passive isolation, transmissibility $< 10^{-2}$ above 1~Hz
+  \item Active feedback for gradiometer: LVDT-based actuators, $< 10$~nm RMS motion
+\end{itemize}
+
+\paragraph{Electromagnetic Shielding.}
+\begin{itemize}
+  \item RF shielding: Copper enclosures, attenuation $> 60$~dB at 1~MHz
+  \item Magnetic shielding: Mu-metal, residual field $< 1$~nT
+\end{itemize}
+
+\section{Cosmological Boundary Conditions}\label{sec:ch22:cosmology}
+
+\paragraph{DESI BAO Constraint.}
+Recent DESI Baryon Acoustic Oscillation data suggests $5\%$ kinetic scalar energy contribution at $2.6$--$2.9\sigma$ significance (ref: DESI Collaboration 2024). Interpret laboratory scalar field $\phi$ in context:
+
+If laboratory experiments measure coupling $g$, and cosmological scalar energy density is:
+\begin{equation}
+\rho_{\text{scalar,cosmo}} = \frac{1}{2} \dot{\phi}^2 + V(\phi)
+\end{equation}
+consistency requires:
+\begin{equation}
+\frac{\rho_{\text{scalar,cosmo}}}{\rho_{\text{critical}}} \approx 0.05 \quad \Rightarrow \quad \langle \phi \rangle_{\text{cosmo}} \sim ?
+\end{equation}
+
+Extrapolate laboratory $\phi$ to cosmological scales using unified kernel (Ch19). Boundary condition constrains allowed parameter space for $g, \kappa, \beta$.
+
+\section{Outstanding Tasks and Future Directions}
+
+\paragraph{Immediate Priorities.}
+\begin{enumerate}
+  \item Attach primary literature references for each experimental setup (Casimir: Lamoreaux 2005, interferometry: LIGO collaboration techniques)
+  \item Derive expected signal amplitudes explicitly using unified kernel $K_{\text{Lab}}$ factor (Ch19 \eqref{eq:ch19:unified_kernel})
+  \item Determine threshold sensitivities required to confirm ($> 5\sigma$) or refute ($< 2\sigma$) proposed couplings
+\end{enumerate}
+
+\paragraph{Advanced Extensions.}
+\begin{itemize}
+  \item \textbf{Cryogenic operation}: Cool Casimir apparatus to $T < 4$~K, reduce thermal noise by factor $\sim 100$
+  \item \textbf{Optical lattice traps}: Use ultracold atoms as test masses in gradiometer, gain factor $\sim 10$ sensitivity
+  \item \textbf{Space-based interferometry}: Eliminate seismic noise, enable $10^{-15}$~m sensitivity over $10^6$~s integration
+  \item \textbf{Metamaterial Casimir plates}: Engineer negative refractive index regions, amplify scalar-ZPE coupling via resonance
+\end{itemize}
+
+\section{Conclusion}
+
+This chapter presented comprehensive laboratory protocols for testing scalar-ZPE coupling predictions from the \aether{} framework and unified kernel (Ch19). Three complementary experiments probe:
+
+\begin{enumerate}
+  \item \textbf{Interferometry}: Direct phase shift measurement, sensitivity $\sim 10^{-12}$~m
+  \item \textbf{Casimir force}: Test 5--25\% enhancement in fractal geometries, validate Ch17 critical prediction
+  \item \textbf{Gradiometry}: Search for curvature perturbations and GEM effects, sensitivity $\sim 10^{-11}$~s$^{-2}$
+\end{enumerate}
+
+All experiments are feasible with current technology. Phased 18-month roadmap progresses from apparatus commissioning through validation measurements. Data analysis pipelines integrate with synthesis project LaTeX infrastructure for automated figure generation.
+
+\paragraph{Critical Test.}
+Casimir force experiments with fractal plates provide the most direct test of Ch17's \textit{only irreconcilable conflict}: the magnitude of force modification. If $\Delta F/F_C > 5\%$ observed, revolutionary validation of \aether{} scalar-ZPE coupling. If $< 2\%$, coupling constant $\kappa$ requires downward revision, but framework remains viable with weaker coupling.
+
+\paragraph{Forward Reference.}
+Chapter 23 presents complementary time-crystal protocols targeting the temporal modulation aspects of ZPE dynamics, while Chapter 26 addresses dimensional spectroscopy experiments testing the harmonic factor $F_{\text{harmonic}}$ from the unified kernel.

@@ -1,0 +1,21 @@
+%==============================================================================
+% Equation: Riemann curvature tensor
+% Source: Standard general relativity (MTW Box 11.4, Carroll Eq. 3.102, Wald Eq. 3.2.16)
+% Provenance: Tensor calculus preliminaries
+%==============================================================================
+\begin{equation}
+  R^\rho{}_{\sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma}
+  - \partial_\nu \Gamma^\rho_{\mu\sigma}
+  + \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma}
+  - \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma}
+  \eqtag{M}{MATH}{T}
+  \label{eq:prelim:riemann-curvature-tensor}
+\end{equation}
+% Notes:
+%   * Measures non-commutativity of covariant derivatives: $[\nabla_\mu, \nabla_\nu] V^\rho = R^\rho{}_{\sigma\mu\nu} V^\sigma$
+%   * Antisymmetric in last two indices: $R^\rho{}_{\sigma\mu\nu} = -R^\rho{}_{\sigma\nu\mu}$
+%   * Satisfies Bianchi identity: $R_{\rho[\sigma\mu\nu]} = 0$ (cyclic sum)
+%   * Vanishes in flat spacetime
+%   * Ricci tensor: $R_{\mu\nu} = R^\rho{}_{\mu\rho\nu}$
+%   * Ricci scalar: $R = g^{\mu\nu} R_{\mu\nu}$
+%==============================================================================

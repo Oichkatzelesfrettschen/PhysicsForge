@@ -1,0 +1,148 @@
+%==============================================================================
+% Figure: Scalar Field Evolution (3D to 8D)
+% Purpose: Visualize multi-dimensional scalar field progression
+% Chapter: Ch08 - Aether Framework: Scalar Fields and ZPE Coupling
+% Type: Multi-dimensional visualization / Stacked projections
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=0.9,
+    layer/.style={
+      draw=black,
+      line width=0.5pt,
+      fill opacity=0.4
+    }
+  ]
+
+    % 3D Space (bottom layer - most concrete)
+    \begin{scope}[shift={(0,0)}]
+      % 3D cube representation
+      \draw[layer, fill=blue!20] (0,0) -- (3,0) -- (3,3) -- (0,3) -- cycle;
+      \draw[layer, fill=blue!30] (3,0) -- (4,0.7) -- (4,3.7) -- (3,3) -- cycle;
+      \draw[layer, fill=blue!40] (0,3) -- (1,3.7) -- (4,3.7) -- (3,3) -- cycle;
+
+      % Scalar field contours in 3D
+      \draw[blue!70, thick] (0.5,0.5) .. controls (1,1.5) and (2,1.5) .. (2.5,0.5);
+      \draw[blue!70, thick] (0.5,1.5) .. controls (1,2) and (2,2) .. (2.5,1.5);
+      \draw[blue!70, thick] (0.5,2.5) .. controls (1,2.8) and (2,2.8) .. (2.5,2.5);
+
+      \node[font=\small\bfseries, text=blue!70!black] at (1.5,-0.5) {3D Space};
+      \node[font=\scriptsize, align=center] at (1.5,-1) {$\phi(x,y,z)$\\Classical field};
+    \end{scope}
+
+    % 4D Spacetime (second layer)
+    \begin{scope}[shift={(5,1)}]
+      % 4D representation (3D + time as opacity variation)
+      \draw[layer, fill=blue!25] (0,0) -- (3,0) -- (3,3) -- (0,3) -- cycle;
+      \draw[layer, fill=blue!35] (3,0) -- (4,0.7) -- (4,3.7) -- (3,3) -- cycle;
+      \draw[layer, fill=blue!45] (0,3) -- (1,3.7) -- (4,3.7) -- (3,3) -- cycle;
+
+      % Time evolution indicated by fading contours
+      \draw[blue!50, thick, opacity=0.4] (0.5,0.5) .. controls (1,1.5) and (2,1.5) .. (2.5,0.5);
+      \draw[blue!60, thick, opacity=0.7] (0.5,1.5) .. controls (1,2) and (2,2) .. (2.5,1.5);
+      \draw[blue!70, thick, opacity=1.0] (0.5,2.5) .. controls (1,2.8) and (2,2.8) .. (2.5,2.5);
+
+      % Time arrow
+      \draw[->, ultra thick, blue!50] (4.5,0) -- (4.5,3.5) node[right, font=\scriptsize] {$t$};
+
+      \node[font=\small\bfseries, text=blue!70!black] at (1.5,-0.5) {4D Spacetime};
+      \node[font=\scriptsize, align=center] at (1.5,-1) {$\phi(x,y,z,t)$\\Relativistic field};
+    \end{scope}
+
+    % 5D (third layer - adding one compactified dimension)
+    \begin{scope}[shift={(10,2)}]
+      \draw[layer, fill=green!20] (0,0) -- (3,0) -- (3,3) -- (0,3) -- cycle;
+      \draw[layer, fill=green!30] (3,0) -- (4,0.7) -- (4,3.7) -- (3,3) -- cycle;
+      \draw[layer, fill=green!40] (0,3) -- (1,3.7) -- (4,3.7) -- (3,3) -- cycle;
+
+      % Extra dimension as circular pattern
+      \foreach \r in {0.3,0.6,0.9} {
+        \draw[green!60, thick, dashed] (1.5,1.5) circle (\r);
+      }
+
+      % Wave patterns
+      \draw[green!70, thick] (0.5,2.5) .. controls (1.5,2.8) and (2,2.8) .. (2.5,2.5);
+
+      \node[font=\small\bfseries, text=green!70!black] at (1.5,-0.5) {5D};
+      \node[font=\scriptsize, align=center] at (1.5,-1) {$\phi(x^\mu, w)$\\+ 1 compact dim};
+    \end{scope}
+
+    % 8D (top layer - full Aether structure)
+    \begin{scope}[shift={(0,7)}]
+      \draw[layer, fill=red!20] (0,0) -- (4,0) -- (4,4) -- (0,4) -- cycle;
+      \draw[layer, fill=red!30] (4,0) -- (5.2,0.9) -- (5.2,4.9) -- (4,4) -- cycle;
+      \draw[layer, fill=red!40] (0,4) -- (1.2,4.9) -- (5.2,4.9) -- (4,4) -- cycle;
+
+      % Complex internal structure - octonion representation
+      \draw[red!60, ultra thick] (2,2) -- (2.7,2.7);
+      \draw[red!60, ultra thick] (2,2) -- (1.3,2.7);
+      \draw[red!60, ultra thick] (2,2) -- (2.7,1.3);
+      \draw[red!60, ultra thick] (2,2) -- (1.3,1.3);
+      \draw[red!60, ultra thick] (2,2) -- (2,3);
+      \draw[red!60, ultra thick] (2,2) -- (2,1);
+      \draw[red!60, ultra thick] (2,2) -- (2.8,2);
+      \draw[red!60, ultra thick] (2,2) -- (1.2,2);
+
+      % Octonion basis label
+      \node[font=\tiny, text=red!60!black] at (3.5,3.5) {$e_1,\ldots,e_7$};
+
+      % Multiple field components
+      \foreach \x/\y in {0.5/0.5, 1.5/0.7, 2.5/0.6, 3.5/0.8, 0.7/3.2, 1.8/3.5, 2.8/3.3, 3.6/3.1} {
+        \fill[red!70, opacity=0.6] (\x,\y) circle (0.15);
+      }
+
+      \node[font=\small\bfseries, text=red!70!black] at (2,-0.7) {8D Octonionic};
+      \node[font=\scriptsize, align=center] at (2,-1.2) {$\phi(x^\mu, w^a)$, $a=1,\ldots,4$\\Full Aether lattice};
+    \end{scope}
+
+    % Vertical arrows showing progression
+    \draw[->, ultra thick, gray!60] (2,4) -- node[left, font=\small, text width=2cm, align=right] {Add time dimension} (6.5,5);
+
+    \draw[->, ultra thick, gray!60] (7.5,5.5) -- node[right, font=\small, text width=2cm, align=left] {Add compact dimension} (11,6.5);
+
+    \draw[->, ultra thick, gray!60] (11,6) -- node[left, font=\small, text width=2.5cm, align=right] {Add 3 more compact dimensions (octonions)} (3,8);
+
+    % Dimensional labels on right
+    \node[
+      draw,
+      rounded corners,
+      fill=white,
+      align=left,
+      font=\scriptsize,
+      text width=3.5cm
+    ] at (15,3.5) {
+      \textbf{Dimensional Hierarchy:}\\
+      3D: Observable space\\
+      4D: + time (Minkowski)\\
+      5D: Kaluza-Klein\\
+      8D: Octonion algebra\\
+      \quad (Aether lattice basis)\\
+      \\
+      \textbf{Field Content:}\\
+      $\phi$: Scalar field\\
+      Couples to ZPE, metric
+    };
+
+    % Bottom caption box
+    \node[
+      draw,
+      rounded corners,
+      fill=yellow!10,
+      text width=14cm,
+      align=center,
+      font=\footnotesize
+    ] at (7.5,-2) {
+      \textbf{Scalar Field Dimensional Progression:} Starting from classical 3D scalar field $\phi(x,y,z)$,
+      we add time (4D relativistic field), then compactified dimensions (5D), culminating in the full
+      8D octonionic structure of the Aether framework. Each layer shows projections of the higher-dimensional
+      field. The 8D structure uses octonion algebra basis ($e_0, e_1, \ldots, e_7$) and couples to
+      crystalline lattice geometry. Blue: classical/spacetime. Green: intermediate. Red: full Aether.
+    };
+
+  \end{tikzpicture}
+
+  \caption{Multi-dimensional scalar field evolution from 3D to 8D in the Aether framework. Bottom layer (blue) shows classical 3D scalar field with contours. Second layer (blue, shifted) adds time dimension for 4D relativistic treatment. Third layer (green) represents 5D Kaluza-Klein structure with one compactified dimension (circular patterns). Top layer (red) shows full 8D octonionic field structure with basis vectors radiating from center. Arrows indicate progressive dimensional augmentation. The 8D structure provides the mathematical foundation for scalar-ZPE coupling in crystalline spacetime (Ch08).}
+  \label{fig:scalar-field-hierarchy}
+\end{figure>

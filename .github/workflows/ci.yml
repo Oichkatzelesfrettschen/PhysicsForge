@@ -1,0 +1,207 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-test.txt', 'requirements-optional.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-test.txt
+      - name: Run tests
+        run: pytest -q
+      - name: Lint sweep (ASCII + plan + metrics validate)
+        run: |
+          make lint
+
+  windows_tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Cache pip (Windows)
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-test.txt', 'requirements-optional.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-test.txt
+      - name: Run tests (Windows)
+        run: pytest -q
+      - name: ASCII guard (Windows)
+        run: |
+          python scripts/ascii_guard.py --base-dir .
+      - name: Quick metrics and validation (Windows)
+        run: |
+          python scripts/equation_extractor.py --base-dir . --scan-dir notes --max-files 20 --max-lines 200 --parallel-workers 2 --no-csv --no-ndjson --metrics-output metrics.json
+          python scripts/validate_metrics_schema.py metrics.json
+      - name: Quick reports (Windows)
+        shell: pwsh
+        run: |
+          .\win_make.ps1 -Target quick_reports -BaseDir .
+      - name: Upload metrics (Windows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: metrics-windows
+          path: metrics.json
+      - name: Upload quick reports (Windows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: quick-reports-windows
+          path: |
+            DEPS_REPORT.md
+            TODO_TRACKER.md
+      - name: Cleanup workspace artifacts (Windows)
+        shell: pwsh
+        run: |
+          if (Test-Path metrics.json) { Remove-Item -Force metrics.json }
+          if (Test-Path DEPS_REPORT.md) { Remove-Item -Force DEPS_REPORT.md }
+          if (Test-Path TODO_TRACKER.md) { Remove-Item -Force TODO_TRACKER.md }
+
+  ascii_guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run ASCII guard
+        run: |
+          python scripts/ascii_guard.py --base-dir .
+
+  latex_strict:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache apt metadata
+        uses: actions/cache@v4
+        with:
+          path: |
+            /var/cache/apt
+            /var/lib/apt/lists
+          key: ${{ runner.os }}-apt-texlive-${{ hashFiles('.github/workflows/ci.yml') }}
+      - name: Cache TeX Live user tree
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.texlive
+            ~/.texmf-var
+            ~/.cache/texmf
+          key: ${{ runner.os }}-texlive-usertree-${{ hashFiles('synthesis/scripts/compile_strict.sh') }}
+      - name: Install TeX Live (subset)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+      - name: Strict compile
+        run: |
+          bash synthesis/scripts/compile_strict.sh
+
+  reports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate reports and metrics
+        run: |
+          python -m pip install --upgrade pip
+          python scripts/dependency_audit.py --base-dir .
+          python scripts/todowrite.py --base-dir .
+          python scripts/repo_audit.py --base-dir .
+          python scripts/equation_extractor.py --base-dir . --scan-dir notes --scan-dir . --max-files 50 --max-lines 400 --parallel-workers 4 --no-csv --no-ndjson --metrics-output metrics.json
+          python scripts/validate_metrics_schema.py metrics.json
+      - name: Generate quick plan
+        run: |
+          python scripts/equation_extractor.py --base-dir . --scan-dir notes --plan-only --plan-output plan.json
+          python scripts/validate_plan_schema.py plan.json
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            DEPS_REPORT.md
+            TODO_TRACKER.md
+            REPO_AUDIT.md
+            metrics.json
+            plan.json
+      - name: Cleanup workspace artifacts
+        run: |
+          rm -f metrics.json plan.json DEPS_REPORT.md TODO_TRACKER.md REPO_AUDIT.md || true
+          rm -f data/README.md || true
+
+  quick_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run quick pipeline
+        run: |
+          make quick_pipeline
+      - name: Upload quick artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: quick-pipeline-artifacts
+          path: |
+            CATALOG_PARITY.md
+            equation_summary.txt
+            notation_conflicts.txt
+
+  quick_reports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run quick reports
+        run: |
+          make quick_reports
+      - name: Upload quick reports artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: quick-reports
+          path: |
+            DEPS_REPORT.md
+            TODO_TRACKER.md
+
+  metrics_only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate metrics only
+        run: |
+          make metrics_only
+      - name: Upload metrics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: metrics-only
+          path: |
+            metrics.json

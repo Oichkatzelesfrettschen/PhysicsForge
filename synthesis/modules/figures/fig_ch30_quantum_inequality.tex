@@ -1,0 +1,257 @@
+% fig_ch30_quantum_inequality.tex
+% Author: Computernonymouse
+% Description: 2D plot showing quantum inequality constraints on negative energy
+% Demonstrates forbidden and allowed regions for exotic matter
+% Mathematical basis: Integral of rho dt >= -c*hbar/(24*pi^2*a^4)
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,patterns,calc,decorations.pathreplacing,backgrounds,shapes,positioning}
+\usepgfplotslibrary{fillbetween}
+
+% Define custom colors
+\definecolor{allowed}{RGB}{100,200,100}
+\definecolor{forbidden}{RGB}{200,100,100}
+\definecolor{required}{RGB}{100,100,200}
+\definecolor{quantum}{RGB}{150,50,150}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{axis}[
+    width=14cm,
+    height=11cm,
+    xmode=log,
+    ymode=log,
+    xmin=1e-35,xmax=1e10,
+    ymin=1e-10,ymax=1e60,
+    xlabel={Spatial Scale $a$ [meters]},
+    ylabel={Negative Energy Magnitude $|E_{\text{exotic}}|$ [Joules]},
+    xlabel style={font=\large\bfseries},
+    ylabel style={font=\large\bfseries},
+    xtick={1e-35,1e-30,1e-25,1e-20,1e-15,1e-10,1e-5,1e0,1e5,1e10},
+    xticklabels={
+        $10^{-35}$,
+        $10^{-30}$,
+        $10^{-25}$,
+        $10^{-20}$,
+        $10^{-15}$,
+        $10^{-10}$,
+        $10^{-5}$,
+        $10^{0}$,
+        $10^{5}$,
+        $10^{10}$
+    },
+    ytick={1e-10,1e0,1e10,1e20,1e30,1e40,1e50,1e60},
+    yticklabels={
+        $10^{-10}$,
+        $10^{0}$,
+        $10^{10}$,
+        $10^{20}$,
+        $10^{30}$,
+        $10^{40}$,
+        $10^{50}$,
+        $10^{60}$
+    },
+    grid=major,
+    grid style={gray!20,dashed},
+    title={{\Large\bfseries Quantum Inequality Constraints on Exotic Matter}\\[2mm]
+           {\normalsize $\displaystyle\int \rho(x,t)\,dt \geq -\frac{c\hbar}{24\pi^2 a^4}$ (Ford-Roman bound)}},
+    title style={at={(0.5,1.08)}},
+    legend pos=north west,
+    legend style={
+        draw=gray!40,
+        fill=white,
+        fill opacity=0.95,
+        font=\small,
+        row sep=2pt
+    },
+    clip=false,
+]
+
+% Quantum inequality bound: |E| < hbar*c/a^3
+\addplot[
+    name path=quantum_bound,
+    ultra thick,
+    quantum,
+    domain=1e-35:1e10,
+    samples=100,
+]
+{1.055e-34 * 3e8 / x^3};
+\addlegendentry{Quantum inequality bound}
+
+% Fill forbidden region (above quantum bound)
+\addplot[
+    name path=top,
+    draw=none,
+] {1e60};
+
+\addplot[
+    forbidden!30,
+    opacity=0.5,
+] fill between[
+    of=quantum_bound and top,
+];
+
+% Fill allowed region (below quantum bound)
+\addplot[
+    name path=bottom,
+    draw=none,
+] {1e-10};
+
+\addplot[
+    allowed!30,
+    opacity=0.3,
+] fill between[
+    of=quantum_bound and bottom,
+];
+
+% Morris-Thorne wormhole requirement (horizontal line)
+\addplot[
+    name path=wormhole,
+    ultra thick,
+    required,
+    dashed,
+    domain=1e-35:1e10,
+]
+{1e30 * 9e16}; % Approximately 10^30 kg * c^2
+\addlegendentry{Wormhole requirement}
+
+% Alcubierre warp drive requirement (varying with size)
+\addplot[
+    thick,
+    red!70!black,
+    densely dashed,
+    domain=1e-30:1e3,
+    samples=50,
+]
+{1e47 * (x/100)^2}; % Scales with bubble size
+\addlegendentry{Warp drive (size-dependent)}
+
+% Casimir effect actual values (points)
+\addplot[
+    mark=*,
+    mark size=3pt,
+    only marks,
+    orange!80!black,
+] coordinates {
+    (1e-9, 1e-20)   % 1 nm gap
+    (1e-7, 1e-15)   % 100 nm gap
+    (1e-6, 1e-12)   % 1 micron gap
+};
+\addlegendentry{Casimir measurements}
+
+% Add scale reference lines
+\draw[thin,gray,dashed] (axis cs:1e-35,1e-10) -- (axis cs:1e-35,1e60)
+    node[above,rotate=90,midway,font=\tiny] {Planck scale};
+
+\draw[thin,gray,dashed] (axis cs:1e-15,1e-10) -- (axis cs:1e-15,1e60)
+    node[above,rotate=90,midway,font=\tiny] {Nuclear scale};
+
+\draw[thin,gray,dashed] (axis cs:1e-9,1e-10) -- (axis cs:1e-9,1e60)
+    node[above,rotate=90,midway,font=\tiny] {Atomic scale};
+
+\draw[thin,gray,dashed] (axis cs:1e0,1e-10) -- (axis cs:1e0,1e60)
+    node[above,rotate=90,midway,font=\tiny] {Human scale};
+
+\draw[thin,gray,dashed] (axis cs:1e7,1e-10) -- (axis cs:1e7,1e60)
+    node[above,rotate=90,midway,font=\tiny] {Planetary scale};
+
+% Add annotations for regions
+\node[
+    anchor=center,
+    font=\large\bfseries,
+    forbidden!80!black,
+    rotate=45
+] at (axis cs:1e-10,1e30) {FORBIDDEN};
+
+\node[
+    anchor=center,
+    font=\large\bfseries,
+    allowed!80!black,
+    rotate=45
+] at (axis cs:1e-20,1e-5) {ALLOWED};
+
+% Add gap indicator
+\draw[<->,ultra thick,blue!60!black] (axis cs:1e-5,1e10) -- (axis cs:1e-5,1e47)
+    node[midway,right,align=left,font=\small] {
+        \textbf{The Gap:}\\
+        56 orders of\\
+        magnitude!
+    };
+
+% Mark intersection point (shows scale limit)
+\pgfplotsextra{
+    \path (axis cs:1e-16,{1.055e-34 * 3e8 / (1e-16)^3}) coordinate (intersection);
+}
+\node[
+    circle,
+    fill=red,
+    inner sep=3pt,
+    label={[font=\small,align=center]right:Critical scale\\$a \sim 10^{-16}$ m}
+] at (intersection) {};
+
+% Add explanatory notes
+\node[
+    anchor=south east,
+    draw=black!40,
+    fill=white,
+    rounded corners,
+    text width=5cm,
+    align=left,
+    font=\footnotesize
+] at ([xshift=-5mm,yshift=5mm]current axis.south east) {
+    \textbf{Key Insights:}\\[2mm]
+    $\bullet$ Quantum inequalities severely\\
+    \phantom{$\bullet$} limit negative energy density\\[2mm]
+    $\bullet$ Macroscopic wormholes require\\
+    \phantom{$\bullet$} vastly more exotic matter than\\
+    \phantom{$\bullet$} quantum mechanics allows\\[2mm]
+    $\bullet$ Only microscopic violations\\
+    \phantom{$\bullet$} are permitted ($a < 10^{-15}$ m)\\[2mm]
+    $\bullet$ Casimir effect confirms\\
+    \phantom{$\bullet$} quantum predictions
+};
+
+% Add mathematical details box
+\node[
+    anchor=north west,
+    draw=black!40,
+    fill=white,
+    rounded corners,
+    text width=4.5cm,
+    align=left,
+    font=\footnotesize
+] at ([xshift=5mm,yshift=-5mm]current axis.north west) {
+    \textbf{Quantum Bound:}\\[1mm]
+    $|E| \lesssim \frac{\hbar c}{a^3}$\\[2mm]
+    \textbf{Wormhole Need:}\\[1mm]
+    $E \sim -M_{\odot}c^2$\\[1mm]
+    for $r_0 \sim 1$ km throat\\[2mm]
+    \textbf{Conclusion:}\\[1mm]
+    Traversable wormholes\\
+    violate quantum bounds\\
+    by $\sim 10^{56}$ fold!
+};
+
+\end{axis}
+
+% Add bottom caption
+\node[
+    below=8mm of current axis.south,
+    text width=13cm,
+    align=center,
+    font=\small
+] {
+    \textbf{Figure:} The quantum inequality places fundamental limits on the magnitude and duration
+    of negative energy densities. While the Casimir effect demonstrates that small negative energies
+    are possible at microscopic scales, the requirements for macroscopic wormholes or warp drives
+    exceed quantum limits by many orders of magnitude, suggesting these phenomena may be impossible.
+};
+
+\end{tikzpicture}
+\end{document}

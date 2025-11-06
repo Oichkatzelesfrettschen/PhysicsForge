@@ -1,0 +1,26 @@
+% Equation Module: Master Equation 1 - Combined Field Equation
+% Purpose: Unified stress-energy tensor for all three frameworks
+% Chapter: 19 (Master Equation)
+% Auto-numbered equation
+
+\begin{equation}\label{eq:master_combined_field}
+\boxed{
+\begin{aligned}
+T_{\mu\nu}^{unified} &= \underbrace{\partial_\mu\phi\,\partial_\nu\phi - \frac{1}{2}g_{\mu\nu}\left[(\partial\phi)^2 + m_\phi^2\phi^2\right]}_{\text{Aether scalar field}} \\
+&\quad + \underbrace{\frac{1}{\kappa}\left(\partial_\mu\mathcal{F}\,\partial_\nu\mathcal{F}^* + \partial_\nu\mathcal{F}\,\partial_\mu\mathcal{F}^*\right) - g_{\mu\nu}\mathcal{L}_{nodespace}}_{\text{Genesis nodespace}} \\
+&\quad + \underbrace{\frac{1}{\mu_0}\left(F_{\mu\rho}F_\nu^{\ \rho} - \frac{1}{4}g_{\mu\nu}F^2\right) + T_{\mu\nu}^{grav} - \rho_{vac}g_{\mu\nu}}_{\text{Pais GEM + vacuum}} \\
+&\quad + \underbrace{g_{AG}\phi|\mathcal{F}|^2 g_{\mu\nu} - g_{GP}|\mathcal{F}|^2 T_{\mu\nu}^{EM} - g_{PA}\frac{\phi^2}{M_P^2}\rho_{vac}g_{\mu\nu}}_{\text{Cross-framework couplings}}
+\end{aligned}
+}
+\end{equation}
+
+\noindent\textbf{Physical Meaning:} This is the complete stress-energy tensor appearing in Einstein's field equations $G_{\mu\nu} = (8\pi G/c^4)T_{\mu\nu}^{unified}$. It includes contributions from all three frameworks plus cross-coupling terms that arise from their interactions.
+
+\noindent\textbf{Parameters:}
+\begin{itemize}
+  \item $\phi$: Aether scalar field
+  \item $\mathcal{F}(x,t,D,z)$: Genesis nodespace amplitude (complex)
+  \item $F_{\mu\nu}$: Electromagnetic field tensor (Pais)
+  \item $\rho_{vac}$: Vacuum energy density (Pais)
+  \item $g_{AG}, g_{GP}, g_{PA}$: Cross-framework coupling constants
+\end{itemize}

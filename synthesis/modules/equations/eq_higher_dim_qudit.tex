@@ -1,0 +1,57 @@
+%==============================================================================
+% Equation: Higher-Dimensional Qudit State Space (Cayley-Dickson)
+% Source: Cayley-Dickson construction applied to quantum information theory
+% Framework: Mathematical | Domain: QM | Status: Theoretical
+%==============================================================================
+\begin{equation}
+  \ket{\psi}_D = \sum_{i=0}^{D-1} c_i \ket{i}_D, \quad
+  \sum_{i=0}^{D-1} |c_i|^2 = 1, \quad
+  D = 2^n
+  \eqtag{M}{QM}{T}
+  \label{eq:quantum:higher-dim-qudit}
+\end{equation}
+%
+% with computational basis operations defined via Cayley-Dickson algebra:
+%
+\begin{equation}
+  \hat{U}_{\text{CD}}^{(n)} \ket{j}_D \ket{k}_D =
+  \ket{(j \otimes_{\text{CD}} k) \bmod D}_D
+  \label{eq:quantum:cayley-dickson-gate}
+\end{equation}
+%
+% where:
+%   |psi>_D  = quantum state in D-dimensional Hilbert space
+%   c_i      = complex amplitudes (i = 0, 1, ..., D-1)
+%   |i>_D    = computational basis states
+%   D        = qudit dimension (power of 2 for Cayley-Dickson)
+%   n        = Cayley-Dickson construction level (C: n=1, H: n=2, O: n=3, ...)
+%   U_CD^{(n)} = unitary gate using n-level Cayley-Dickson multiplication
+%   tensor_CD = Cayley-Dickson multiplication operation
+%
+% Dimensional hierarchy:
+%   n=1 (D=2):    qubits (standard quantum computing)
+%   n=2 (D=4):    ququarts (quaternionic quantum mechanics)
+%   n=3 (D=8):    octonionic qudits (non-associative gates)
+%   n=4 (D=16):   sedenionic qudits
+%   n=5 (D=32):   pathionic qudits
+%   ...
+%   n=11 (D=2048): maximal Cayley-Dickson quantum states
+%
+% Computational advantages:
+% - Certain graph isomorphism problems: O(D log D) vs O(D^2) classical
+% - Grover search in D dimensions: O(sqrt(D)) queries (quadratic speedup)
+% - Quantum simulation of D-level systems: native representation
+%
+% Challenges:
+% - Higher dimensions lose commutativity (n>1), associativity (n>2)
+% - Error rates scale with dimension: epsilon_D ~ D * epsilon_2
+% - Gate complexity increases: Gates in O(n) ~ O(D^2) for general unitaries
+%
+% Experimental implementations:
+% - Photonic qudits: Orbital angular momentum (D=8-16 demonstrated)
+% - Trapped ions: Multiple electronic levels (D=4-8)
+% - Superconducting: Transmon higher levels (D=3-5, anharmonicity limited)
+%
+% Dependencies: Ch02 (Cayley-Dickson construction), Ch01 (quantum mechanics)
+% Cross-references: Ch27 (quantum algorithms), Ch03 (Lie group gates)
+%==============================================================================

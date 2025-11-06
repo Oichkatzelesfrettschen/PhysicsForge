@@ -1,0 +1,5 @@
+======================================================================
+NOTATION DISAMBIGUATION GUIDE
+======================================================================
+
+Critical ASCII tokens to standardize: \phi, \psi, rho, G, H, E, c, h.\n

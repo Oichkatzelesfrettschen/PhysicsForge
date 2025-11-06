@@ -1,0 +1,195 @@
+%==============================================================================
+% Figure: E7 vs E8 Root System Comparison
+% Purpose: Side-by-side comparison of E7 (126 roots) and E8 (240 roots)
+% Chapter: Ch03 - Exceptional Lie Groups
+% Type: Mathematical
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=1.0,
+    node/.style={circle, draw=black, fill=blue!30, thick, minimum size=10mm, font=\small\bfseries},
+    edge/.style={thick, black}
+  ]
+
+    %========== E7 Dynkin Diagram (Left Side) ==========
+    \begin{scope}[shift={(0, 0)}]
+      % E7 Dynkin diagram:
+      %       o (alpha_7)
+      %       |
+      % o---o---o---o---o---o
+      % (1) (2) (3) (4) (5) (6)
+
+      \node[node] (e7a1) at (0, 0) {$\alpha_1$};
+      \node[node] (e7a2) at (1.5, 0) {$\alpha_2$};
+      \node[node] (e7a3) at (3, 0) {$\alpha_3$};
+      \node[node] (e7a4) at (4.5, 0) {$\alpha_4$};
+      \node[node] (e7a5) at (6, 0) {$\alpha_5$};
+      \node[node] (e7a6) at (7.5, 0) {$\alpha_6$};
+      \node[node] (e7a7) at (3, 1.5) {$\alpha_7$};
+
+      \draw[edge] (e7a1) -- (e7a2);
+      \draw[edge] (e7a2) -- (e7a3);
+      \draw[edge] (e7a3) -- (e7a4);
+      \draw[edge] (e7a4) -- (e7a5);
+      \draw[edge] (e7a5) -- (e7a6);
+      \draw[edge] (e7a3) -- (e7a7);
+
+      % Title
+      \node[anchor=south, font=\Large\bfseries] at (3.75, 2.5) {E7 Dynkin Diagram};
+
+      % Properties box
+      \node[anchor=north west, align=left, font=\footnotesize, draw=black, fill=blue!10, rounded corners, thick]
+        at (-0.5, -0.8) {
+        \textbf{E7 Properties:} \\
+        $\bullet$ Dimension: 133 \\
+        $\bullet$ Rank: 7 \\
+        $\bullet$ Roots: \textbf{126} (CORRECTED) \\
+        $\bullet$ Simple roots: 7 \\
+        $\bullet$ Weyl group: $|W| = 2903040$ \\
+        \\
+        \textbf{Gosset 3\_21:} \\
+        $\bullet$ 56 vertices \\
+        $\bullet$ 7D polytope \\
+        \\
+        \textbf{Physics:} \\
+        $\bullet$ Supergravity theories \\
+        $\bullet$ M-theory on $T^7$
+      };
+
+      % Root diagram (schematic)
+      \begin{scope}[shift={(10, -1)}, scale=0.6]
+        \foreach \r in {1.2, 2.0, 2.8} {
+          \foreach \angle in {0, 51.4, 102.8, 154.2, 205.6, 257, 308.4} {
+            \pgfmathsetmacro\x{\r * cos(\angle)}
+            \pgfmathsetmacro\y{\r * sin(\angle)}
+            \fill[blue!60] (\x, \y) circle (1.5pt);
+          }
+        }
+        % Additional intermediate roots
+        \foreach \angle in {25.7, 77.1, 128.5, 179.9, 231.3, 282.7, 334.1} {
+          \fill[green!60] (2.4 * cos(\angle), 2.4 * sin(\angle)) circle (1.5pt);
+        }
+        \fill[red!70] (0, 0) circle (2pt);
+        \draw[blue!20, dashed] (2.8, 0) \foreach \a in {51.4, 102.8, 154.2, 205.6, 257, 308.4, 360} {
+          -- ({2.8*cos(\a)}, {2.8*sin(\a)})
+        };
+        \node[anchor=south, font=\scriptsize] at (0, 3.2) {126 roots (7-fold)};
+      \end{scope}
+    \end{scope}
+
+    %========== E8 Dynkin Diagram (Right Side) ==========
+    \begin{scope}[shift={(0, -7)}]
+      % E8 Dynkin diagram:
+      %             o (alpha_8)
+      %             |
+      % o---o---o---o---o---o---o
+      % (1) (2) (3) (4) (5) (6) (7)
+
+      \node[node] (e8a1) at (0, 0) {$\alpha_1$};
+      \node[node] (e8a2) at (1.5, 0) {$\alpha_2$};
+      \node[node] (e8a3) at (3, 0) {$\alpha_3$};
+      \node[node] (e8a4) at (4.5, 0) {$\alpha_4$};
+      \node[node] (e8a5) at (6, 0) {$\alpha_5$};
+      \node[node] (e8a6) at (7.5, 0) {$\alpha_6$};
+      \node[node] (e8a7) at (9, 0) {$\alpha_7$};
+      \node[node] (e8a8) at (3, 1.5) {$\alpha_8$};
+
+      \draw[edge] (e8a1) -- (e8a2);
+      \draw[edge] (e8a2) -- (e8a3);
+      \draw[edge] (e8a3) -- (e8a4);
+      \draw[edge] (e8a4) -- (e8a5);
+      \draw[edge] (e8a5) -- (e8a6);
+      \draw[edge] (e8a6) -- (e8a7);
+      \draw[edge] (e8a3) -- (e8a8);
+
+      % Title
+      \node[anchor=south, font=\Large\bfseries] at (4.5, 2.5) {E8 Dynkin Diagram};
+
+      % Properties box
+      \node[anchor=north west, align=left, font=\footnotesize, draw=black, fill=orange!10, rounded corners, thick]
+        at (-0.5, -0.8) {
+        \textbf{E8 Properties:} \\
+        $\bullet$ Dimension: 248 \\
+        $\bullet$ Rank: 8 \\
+        $\bullet$ Roots: \textbf{240} \\
+        $\bullet$ Simple roots: 8 \\
+        $\bullet$ Weyl group: $|W| = 696729600$ \\
+        \\
+        \textbf{Gosset 4\_21:} \\
+        $\bullet$ 240 vertices \\
+        $\bullet$ 8D polytope \\
+        \\
+        \textbf{Physics:} \\
+        $\bullet$ Heterotic string theory \\
+        $\bullet$ TOE candidate \\
+        $\bullet$ Lisi's E8 theory
+      };
+
+      % Root diagram (schematic)
+      \begin{scope}[shift={(11, -1)}, scale=0.6]
+        \foreach \r in {1.0, 1.6, 2.2, 2.8, 3.4} {
+          \foreach \angle in {0, 45, 90, 135, 180, 225, 270, 315} {
+            \pgfmathsetmacro\x{\r * cos(\angle)}
+            \pgfmathsetmacro\y{\r * sin(\angle)}
+            \fill[orange!70] (\x, \y) circle (1.5pt);
+          }
+        }
+        % Dense intermediate structure
+        \foreach \angle in {22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5} {
+          \foreach \r in {1.3, 1.9, 2.5, 3.1} {
+            \pgfmathsetmacro\x{\r * cos(\angle)}
+            \pgfmathsetmacro\y{\r * sin(\angle)}
+            \fill[yellow!80] (\x, \y) circle (1.2pt);
+          }
+        }
+        \fill[red!70] (0, 0) circle (2pt);
+        \draw[orange!20, dashed] (3.4, 0) -- (2.4, 2.4) -- (0, 3.4) -- (-2.4, 2.4) -- (-3.4, 0) -- (-2.4, -2.4) -- (0, -3.4) -- (2.4, -2.4) -- cycle;
+        \node[anchor=south, font=\scriptsize] at (0, 3.8) {240 roots (8-fold)};
+      \end{scope}
+    \end{scope}
+
+    %========== Comparison Annotations ==========
+    \draw[->, ultra thick, purple!70, dashed] (3.75, -5.5) -- (4.5, -5.5)
+      node[midway, above, font=\small, align=center] {Extension \\ $E_7 \subset E_8$};
+
+    % Key differences box
+    \node[anchor=north, align=left, font=\small, draw=black, fill=purple!10, rounded corners, thick]
+      at (15, -3.5) {
+      \textbf{Key Differences:} \\
+      \\
+      \textbf{Root Count:} \\
+      $E_7$: 126 roots \\
+      $E_8$: 240 roots \\
+      Ratio: 240/126 $\approx$ 1.9 \\
+      \\
+      \textbf{Embedding:} \\
+      $E_7$ embeds in $E_8$ \\
+      via deletion of node 1 \\
+      \\
+      \textbf{Symmetry:} \\
+      $E_7$: 7-fold \\
+      $E_8$: 8-fold \\
+      \\
+      \textbf{Weyl Group:} \\
+      $|W_{E_8}|/|W_{E_7}| = 240$
+    };
+
+    % Overall title
+    \node[anchor=south, font=\huge\bfseries] at (8, 4.5) {E7 vs E8 Comparison};
+
+  \end{tikzpicture}
+  \caption{Side-by-side comparison of exceptional Lie algebras $\mathfrak{e}_7$ (133 dimensions,
+    126 roots) and $\mathfrak{e}_8$ (248 dimensions, 240 roots). The Dynkin diagrams show the
+    characteristic branching structure: E7 has 7 simple roots with the 7th branching from the 3rd,
+    while E8 extends this to 8 simple roots with the 8th branching from the 3rd. The root systems
+    exhibit 7-fold and 8-fold symmetries respectively (shown schematically on the right). E7 embeds
+    naturally into E8, making E8 the maximal exceptional group. \textbf{CRITICAL CORRECTION:}
+    E7 has \textbf{126 roots} (not 127). The confusion arose from the 127 E7-symmetric uniform
+    polytopes or $2^7-1$ configurations in certain algebraic contexts. Both algebras appear in
+    string theory: E7 in supergravity compactifications, E8 in heterotic string theory as a gauge
+    symmetry. The associated Gosset polytopes $3_{21}$ (56 vertices) and $4_{21}$ (240 vertices)
+    live in 7D and 8D respectively.}
+  \label{fig:e7-e8-comparison}
+\end{figure>

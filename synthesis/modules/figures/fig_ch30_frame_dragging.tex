@@ -1,0 +1,181 @@
+% fig_ch30_frame_dragging.tex
+% Author: Computernonymouse
+% Description: 3D visualization of frame-dragging (Lense-Thirring effect)
+% Shows gravitomagnetic field around rotating mass with vector field
+% Mathematical basis: B_g = (2G/c^2*r^3) J x r
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz-3dplot}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing,calc,patterns,backgrounds,shapes.geometric,positioning}
+
+% Define custom colors
+\definecolor{earth}{RGB}{100,150,200}
+\definecolor{fieldline}{RGB}{200,100,50}
+\definecolor{gyro}{RGB}{150,50,150}
+\definecolor{satellite}{RGB}{50,150,50}
+
+% Set 3D perspective
+\tdplotsetmaincoords{70}{45}
+
+\begin{document}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.2]
+
+% Title
+\node[font=\Large\bfseries] at (0,8,0) {Frame-Dragging (Lense-Thirring Effect)};
+\node[font=\normalsize] at (0,7.3,0) {$\vec{B}_g = \frac{2G}{c^2 r^3}(\vec{J} \times \vec{r})$};
+
+% Draw Earth as central rotating sphere
+\shade[ball color=earth,opacity=0.8] (0,0,0) circle (1.5cm);
+
+% Add rotation axis arrow
+\draw[-{Latex[length=4mm,width=3mm]},ultra thick,blue!80!black]
+    (0,0,-2.5) -- (0,0,2.5)
+    node[above] {\bfseries Rotation axis $\vec{\omega}$};
+
+% Add angular momentum vector
+\draw[-{Latex[length=3mm,width=2mm]},thick,blue!60!black]
+    (0,0,0) -- (0,0,1.8)
+    node[right,midway] {$\vec{J}$};
+
+% Draw equatorial plane (faint)
+\begin{scope}[canvas is xy plane at z=0]
+    \draw[gray!30,dashed] (0,0) circle (4cm);
+    \node[gray,font=\small] at (4.3,0) {Equatorial plane};
+\end{scope}
+
+% Draw field lines (circular around rotation axis)
+\foreach \z in {-1.5,-0.75,0,0.75,1.5} {
+    \begin{scope}[canvas is xy plane at z=\z]
+        \draw[fieldline,thick,decoration={markings,
+            mark=at position 0.125 with {\arrow{Latex[length=2mm]}},
+            mark=at position 0.375 with {\arrow{Latex[length=2mm]}},
+            mark=at position 0.625 with {\arrow{Latex[length=2mm]}},
+            mark=at position 0.875 with {\arrow{Latex[length=2mm]}}
+        },postaction={decorate}] (0,0) circle ({2.5+0.3*abs(\z)});
+    \end{scope}
+}
+
+% Draw velocity field vectors in a grid pattern
+\foreach \theta in {0,45,90,135,180,225,270,315} {
+    \foreach \r in {2.5,3.5} {
+        % Calculate position
+        \pgfmathsetmacro{\px}{\r*cos(\theta)}
+        \pgfmathsetmacro{\py}{\r*sin(\theta)}
+        % Calculate field direction (perpendicular to radial)
+        \pgfmathsetmacro{\vx}{-0.4*sin(\theta)}
+        \pgfmathsetmacro{\vy}{0.4*cos(\theta)}
+
+        % Upper hemisphere vectors
+        \draw[-{Latex[length=2mm]},fieldline!70,thick]
+            (\px,\py,0.7) -- ({\px+\vx},{\py+\vy},0.7);
+
+        % Lower hemisphere vectors
+        \draw[-{Latex[length=2mm]},fieldline!70,thick]
+            (\px,\py,-0.7) -- ({\px+\vx},{\py+\vy},-0.7);
+    }
+}
+
+% Draw Gravity Probe B satellite orbit
+\begin{scope}[rotate around z=30]
+    \draw[satellite,thick,dashed] (0,0,0) circle (3.5cm);
+
+    % Draw satellite
+    \node[circle,fill=satellite,inner sep=3pt] (sat) at (3.5,0,0) {};
+    \node[anchor=west,font=\small\bfseries,satellite!80!black] at (3.7,0,0) {Gravity Probe B};
+
+    % Draw gyroscope precession
+    \draw[-{Latex[length=2mm]},gyro,ultra thick] (3.5,0,0) -- (3.5,0,0.8)
+        node[above,font=\small] {Gyroscope};
+
+    % Precession cone
+    \draw[gyro,dashed] (3.5,0,0) -- (3.3,0.2,0.8);
+    \draw[gyro,dashed] (3.5,0,0) -- (3.7,-0.2,0.8);
+
+    % Precession arc
+    \draw[gyro,thick,->] (3.4,0.1,0.8) arc (150:210:0.2);
+    \node[gyro,font=\tiny] at (3.5,-0.3,0.8) {Precession};
+\end{scope}
+
+% Add electromagnetic analogy diagram (bottom right)
+\begin{scope}[shift={(6,-3,0)},scale=0.8]
+    \node[font=\small\bfseries] at (0,2.5,0) {EM Analogy};
+
+    % Current-carrying wire
+    \draw[ultra thick,gray] (0,0,-1.5) -- (0,0,1.5);
+    \draw[-{Latex[length=2mm]},thick,blue!80!black] (0,0,-1) -- (0,0,1)
+        node[right,midway,font=\tiny] {Current $I$};
+
+    % Magnetic field circles
+    \foreach \z in {-0.5,0,0.5} {
+        \begin{scope}[canvas is xy plane at z=\z]
+            \draw[red!60,thick,decoration={markings,
+                mark=at position 0.25 with {\arrow{Latex[length=1.5mm]}},
+                mark=at position 0.75 with {\arrow{Latex[length=1.5mm]}}
+            },postaction={decorate}] (0,0) circle (1cm);
+        \end{scope}
+    }
+
+    \node[font=\tiny,align=center] at (0,-2,0) {
+        Magnetic field $\vec{B}$\\
+        around current
+    };
+\end{scope}
+
+% Add parameter box
+\node[anchor=north west,draw=black!40,fill=white,rounded corners,text width=5cm,align=left,font=\footnotesize]
+    at (-7,5,0) {
+    \textbf{Frame-Dragging Parameters:}\\[2mm]
+    \textbf{Earth:}\\
+    $\bullet$ $M = 5.97 \times 10^{24}$ kg\\
+    $\bullet$ $R = 6.37 \times 10^6$ m\\
+    $\bullet$ $J = 2MR^2\omega/5$\\
+    $\bullet$ $\omega = 7.3 \times 10^{-5}$ rad/s\\[2mm]
+    \textbf{Effect magnitude:}\\
+    $\bullet$ $|\vec{B}_g| \sim 10^{-11}$ (Earth surface)\\
+    $\bullet$ Precession: 6.6 arcsec/year\\
+    $\bullet$ Measured by GP-B: 2004-2011\\[2mm]
+    \textbf{Gravitomagnetic field:}\\
+    $\vec{B}_g = \frac{2G}{c^2 r^3}(\vec{J} \times \vec{r})$\\[1mm]
+    Analogous to $\vec{B} = \frac{\mu_0}{4\pi r^3}(\vec{\mu} \times \vec{r})$
+};
+
+% Add effect strength indicator
+\begin{scope}[shift={(0,-5,0)}]
+    \draw[thick,->] (-4,0,0) -- (4,0,0) node[right,font=\small] {Distance from center};
+    \draw[thick,->] (-4,0,0) -- (-4,2,0) node[above,font=\small] {Effect strength};
+
+    % Plot 1/r^3 falloff
+    \draw[ultra thick,orange!80!black,domain=-3.5:3.5,samples=50,smooth]
+        plot (\x,{0.8/(0.5+abs(\x))^1.5});
+
+    \node[font=\small] at (0,-0.5,0) {$|\vec{B}_g| \propto r^{-3}$ falloff};
+\end{scope}
+
+% Add detection methods box
+\node[anchor=south east,draw=black!40,fill=white,rounded corners,text width=4.5cm,align=left,font=\footnotesize]
+    at (7,-1,0) {
+    \textbf{Detection Methods:}\\[2mm]
+    1. \textbf{Gyroscope precession}\\
+    \phantom{1.} (Gravity Probe B)\\[2mm]
+    2. \textbf{Satellite orbit shifts}\\
+    \phantom{2.} (LAGEOS, LARES)\\[2mm]
+    3. \textbf{Pulsar timing}\\
+    \phantom{3.} (Binary systems)\\[2mm]
+    4. \textbf{Ring laser gyros}\\
+    \phantom{4.} (Future terrestrial)
+};
+
+% Bottom caption
+\node[below=6cm of current bounding box.center,text width=14cm,align=center,font=\small] {
+    \textbf{Figure:} Visualization of frame-dragging around a rotating mass (Earth). The gravitomagnetic
+    field $\vec{B}_g$ forms circular patterns around the rotation axis, analogous to the magnetic field
+    around a current-carrying wire. The Gravity Probe B satellite measured gyroscope precession of
+    6.6 arcseconds per year, confirming general relativity predictions to within 0.3\%.
+};
+
+\end{tikzpicture}
+\end{document}

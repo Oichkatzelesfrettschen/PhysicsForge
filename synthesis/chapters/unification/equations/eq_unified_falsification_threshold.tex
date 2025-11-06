@@ -1,0 +1,94 @@
+% Equation Module: Unified Falsification Threshold
+% Chapter 18: Validation Roadmap - Falsification Criteria
+% Purpose: General criterion for experimental falsification
+
+\begin{equation}
+\boxed{
+\text{Falsify if: } \quad \left|\frac{X_{measured} - X_{predicted}}{X_{predicted}}\right| > \epsilon_{threshold} \quad \text{at } n\sigma \text{ significance}
+}
+\label{eq:unified_falsification_threshold}
+\end{equation}
+
+Quantitative criterion for declaring a framework prediction falsified by experimental data.
+
+\vspace{0.5em}
+\noindent\textbf{Parameters:}
+\begin{itemize}
+  \item $X_{measured}$: Experimental measurement
+  \item $X_{predicted}$: Unified framework prediction
+  \item $\epsilon_{threshold}$: Fractional deviation threshold
+    \begin{itemize}
+      \item Depends on observable type
+      \item Casimir force: $\epsilon_{threshold} = 0.20$ (allow 20\% theory uncertainty)
+      \item Fifth force: $\epsilon_{threshold} = 0.50$ (Yukawa form flexible)
+      \item Coherence time: $\epsilon_{threshold} = 0.30$ (material variations)
+      \item GW dispersion: $\epsilon_{threshold} = 0.10$ (precise prediction)
+    \end{itemize}
+
+  \item $n\sigma$ significance: Statistical requirement
+    \begin{itemize}
+      \item $n = 3$: Evidence against (suggestive)
+      \item $n = 5$: Discovery threshold (definitive falsification)
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Statistical Calculation:}
+\begin{equation*}
+n = \frac{|X_{measured} - X_{predicted}|}{\sqrt{\sigma_{stat}^2 + \sigma_{syst}^2}}
+\end{equation*}
+
+Where:
+\begin{itemize}
+  \item $\sigma_{stat}$: Statistical uncertainty (random errors)
+  \item $\sigma_{syst}$: Systematic uncertainty (calibration, backgrounds)
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Decision Rules:}
+
+\begin{enumerate}
+  \item \textbf{Agreement} ($n < 3$):
+    \begin{itemize}
+      \item Framework prediction consistent with data
+      \item Continue to next test
+    \end{itemize}
+
+  \item \textbf{Tension} ($3 < n < 5$):
+    \begin{itemize}
+      \item Suggestive discrepancy
+      \item Refine theory or improve experiment
+      \item Accumulate more data
+    \end{itemize}
+
+  \item \textbf{Falsification} ($n > 5$ AND $|\Delta X/X| > \epsilon_{threshold}$):
+    \begin{itemize}
+      \item Framework prediction definitively ruled out
+      \item Revise or discard theory
+    \end{itemize}
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent\textbf{Multiple Observables:}
+When testing $N$ independent predictions, require:
+\begin{equation*}
+\text{Falsify if: } \quad \frac{1}{N}\sum_{i=1}^N \left|\frac{X_i^{measured} - X_i^{predicted}}{X_i^{predicted}}\right| > \epsilon_{threshold}
+\end{equation*}
+
+Average fractional deviation exceeds threshold. This prevents single outlier from falsifying otherwise successful theory.
+
+\vspace{0.5em}
+\noindent\textbf{Example: Casimir Force}
+\begin{itemize}
+  \item Prediction: $F^{unified} = 1.40 \times F_0$
+  \item Measurement: $F^{measured} = 1.05 \times F_0 \pm 0.02$
+  \item Deviation: $|(1.05 - 1.40)/1.40| = 0.25 > \epsilon_{threshold} = 0.20$
+  \item Significance: $n = |1.05 - 1.40|/0.02 = 17.5 > 5$
+  \item \textbf{Decision}: FALSIFIED
+\end{itemize}
+
+This is an example where the prediction is too large. If measured, this result would require revising the unified Casimir prediction or abandoning the framework.
+
+\vspace{0.5em}
+\noindent\textbf{Philosophical Note:}
+Falsifiability is the hallmark of scientific theories. We proudly specify how our framework can be proven wrong---this distinguishes legitimate science from unfalsifiable metaphysics.

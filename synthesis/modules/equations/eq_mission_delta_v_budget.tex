@@ -1,0 +1,20 @@
+%==============================================================================
+% Equation: Mission Delta-V Budget for Field Propulsion
+% Framework: Pais | Domain: PROP | Status: Speculative
+%==============================================================================
+\begin{equation}
+  \Delta v_{\text{total}} = \int_0^{t_{\text{burn}}} \frac{F_T(t)}{m(t)}dt = v_{\text{exhaust}}\ln\frac{m_0}{m_f} + \Delta v_{\text{field}}\left[1 - \exp\left(-\frac{E_{\text{field}}}{m_0 c^2}\right)\right]
+  \eqtag{P}{PROP}{S}
+  \label{eq:mission:delta-v-budget}
+\end{equation}
+% Notes: Total velocity change available for spacecraft using combined chemical and field
+% propulsion. The first term is the classical Tsiolkovsky rocket equation with exhaust velocity
+% $v_{\text{exhaust}}$, initial mass $m_0$, and final mass $m_f$. The second term represents
+% additional delta-v from field propulsion with characteristic velocity $\Delta v_{\text{field}}$
+% and field energy $E_{\text{field}}$. The exponential factor captures relativistic limitations
+% and energy-to-mass conversion efficiency. Conventional rockets achieve $\Delta v \lesssim 15$ km/s;
+% field propulsion could provide $\Delta v_{\text{field}} \sim 0.1c$ if $E_{\text{field}}/m_0c^2 \gtrsim 0.1$.
+% Interstellar missions to Proxima Centauri require $\Delta v \sim 0.3c$, demanding GW-class
+% power systems and Pais-effect thrust generation.
+% Dependencies: eq:propulsion:power-budget, eq:pais:inertia-reduction
+%==============================================================================

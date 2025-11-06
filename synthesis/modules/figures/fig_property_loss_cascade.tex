@@ -1,0 +1,114 @@
+%==============================================================================
+% Figure: Property Loss Cascade in Cayley-Dickson Construction
+% Purpose: Visualize algebraic properties lost at each doubling
+% Chapter: Ch02 - Cayley-Dickson Algebras
+% Type: Conceptual
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=1.0,
+    algebra/.style={rectangle, draw=black, thick, minimum width=3cm, minimum height=1.2cm, align=center, font=\bfseries},
+    property/.style={font=\small, align=center},
+    arrow/.style={->, >=stealth, ultra thick}
+  ]
+
+    % Vertical positions for each algebra
+    \def\ystart{8}
+    \def\ystep{2.2}
+
+    % R: Real numbers (dimension 1)
+    \node[algebra, fill=gray!20] (R) at (0, \ystart) {$\mathbb{R}$ \\ \small Reals (1D)};
+    \node[property, right=0.3cm of R, anchor=west] (Rprop) {
+      \textcolor{green!60!black}{\checkmark} Ordered field \\
+      \textcolor{green!60!black}{\checkmark} Commutative \\
+      \textcolor{green!60!black}{\checkmark} Associative \\
+      \textcolor{green!60!black}{\checkmark} Normed division
+    };
+
+    % C: Complex numbers (dimension 2)
+    \pgfmathsetmacro\yC{\ystart - \ystep}
+    \node[algebra, fill=blue!15] (C) at (0, \yC) {$\mathbb{C}$ \\ \small Complex (2D)};
+    \node[property, right=0.3cm of C, anchor=west] (Cprop) {
+      \textcolor{red!70}{\ding{55}} Ordered field \\
+      \textcolor{green!60!black}{\checkmark} Commutative \\
+      \textcolor{green!60!black}{\checkmark} Associative \\
+      \textcolor{green!60!black}{\checkmark} Normed division
+    };
+
+    % H: Quaternions (dimension 4)
+    \pgfmathsetmacro\yH{\yC - \ystep}
+    \node[algebra, fill=blue!30] (H) at (0, \yH) {$\mathbb{H}$ \\ \small Quaternions (4D)};
+    \node[property, right=0.3cm of H, anchor=west] (Hprop) {
+      \textcolor{red!70}{\ding{55}} Ordered field \\
+      \textcolor{red!70}{\ding{55}} Commutative \\
+      \textcolor{green!60!black}{\checkmark} Associative \\
+      \textcolor{green!60!black}{\checkmark} Normed division
+    };
+
+    % O: Octonions (dimension 8)
+    \pgfmathsetmacro\yO{\yH - \ystep}
+    \node[algebra, fill=blue!45] (O) at (0, \yO) {$\mathbb{O}$ \\ \small Octonions (8D)};
+    \node[property, right=0.3cm of O, anchor=west] (Oprop) {
+      \textcolor{red!70}{\ding{55}} Ordered field \\
+      \textcolor{red!70}{\ding{55}} Commutative \\
+      \textcolor{red!70}{\ding{55}} Associative \\
+      \textcolor{green!60!black}{\checkmark} Normed division \\
+      \textcolor{orange!80}{\sim} Alternative
+    };
+
+    % S: Sedenions (dimension 16)
+    \pgfmathsetmacro\yS{\yO - \ystep}
+    \node[algebra, fill=blue!60] (S) at (0, \yS) {$\mathbb{S}$ \\ \small Sedenions (16D)};
+    \node[property, right=0.3cm of S, anchor=west] (Sprop) {
+      \textcolor{red!70}{\ding{55}} Ordered field \\
+      \textcolor{red!70}{\ding{55}} Commutative \\
+      \textcolor{red!70}{\ding{55}} Associative \\
+      \textcolor{red!70}{\ding{55}} Normed division \\
+      \textcolor{red!70}{\ding{55}} Alternative
+    };
+
+    % P: Pathions (dimension 32) and beyond
+    \pgfmathsetmacro\yP{\yS - \ystep}
+    \node[algebra, fill=blue!75] (P) at (0, \yP) {$\mathbb{P}, \ldots, 2048D$};
+    \node[property, right=0.3cm of P, anchor=west] (Pprop) {
+      \textcolor{red!70}{\ding{55}} All structure \\
+      \textcolor{red!70}{\ding{55}} Zero divisors exist
+    };
+
+    % Arrows showing doubling
+    \draw[arrow, blue!70] (R.south) -- (C.north) node[midway, left, font=\small] {$\times 2$};
+    \draw[arrow, blue!70] (C.south) -- (H.north) node[midway, left, font=\small] {$\times 2$};
+    \draw[arrow, blue!70] (H.south) -- (O.north) node[midway, left, font=\small] {$\times 2$};
+    \draw[arrow, blue!70] (O.south) -- (S.north) node[midway, left, font=\small] {$\times 2$};
+    \draw[arrow, blue!70] (S.south) -- (P.north) node[midway, left, font=\small] {$\times 2^n$};
+
+    % Title
+    \node[anchor=south, font=\Large\bfseries] at (0, \ystart + 0.8) {Cayley-Dickson Property Loss Cascade};
+
+    % Legend
+    \node[anchor=north east, align=left, font=\footnotesize, draw=black, fill=yellow!10, thick, rounded corners]
+      at (8.5, \ystart + 0.5) {
+      \textbf{Legend:} \\
+      \textcolor{green!60!black}{\checkmark} Property retained \\
+      \textcolor{red!70}{\ding{55}} Property lost \\
+      \textcolor{orange!80}{\sim} Weakened form \\
+      \\
+      \textbf{Hurwitz Theorem:} \\
+      Only $\mathbb{R}, \mathbb{C}, \mathbb{H}, \mathbb{O}$ \\
+      are normed division algebras
+    };
+
+  \end{tikzpicture}
+  \caption{Property loss cascade in the Cayley-Dickson construction. Each doubling of dimension
+    (from $n$ to $2n$) results in the loss of a fundamental algebraic property. The reals
+    $\mathbb{R}$ possess all properties including ordering. Complex numbers $\mathbb{C}$ lose
+    ordering but retain commutativity and associativity. Quaternions $\mathbb{H}$ lose
+    commutativity ($ij \neq ji$). Octonions $\mathbb{O}$ lose associativity but maintain
+    alternativity (weaker property). Sedenions $\mathbb{S}$ and higher lose even normed division,
+    introducing zero divisors. By Hurwitz's theorem, only the first four algebras are normed
+    division algebras. This cascade fundamentally constrains the mathematical structures
+    available for physics at different dimensional scales.}
+  \label{fig:property-loss-cascade}
+\end{figure}

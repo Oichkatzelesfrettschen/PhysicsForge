@@ -1,0 +1,33 @@
+======================================================================
+EQUATION CATALOG SUMMARY - Math_Science Repository
+======================================================================
+
+Total Equations: 1412
+
+BY FRAMEWORK:
+  Unified             :  779
+  Literature          :  500
+  Tourmaline          :   57
+  Pais                :   32
+  Genesis             :   25
+  OCR                 :   19
+
+BY DOMAIN:
+  General             :  827
+  QM                  :  153
+  Math                :  143
+  GR                  :  112
+  EM                  :   75
+  Thermo              :   38
+  Experimental        :   32
+  Math/OCR            :   32
+
+BY CATEGORY:
+  Derived             : 1113
+  Fundamental         :  184
+  Experimental        :   90
+  Phenomenological    :   25
+
+BY VERIFICATION STATUS:
+  Theoretical         : 1380
+  OCR_Pending         :   32

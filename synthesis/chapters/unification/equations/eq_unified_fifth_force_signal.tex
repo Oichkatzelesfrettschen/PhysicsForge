@@ -1,0 +1,85 @@
+% Equation Module: Fifth Force Signal
+% Chapter 18: Validation Roadmap - Laboratory Experiments
+% Purpose: Aether scalar-mediated fifth force prediction
+
+\begin{equation}
+\boxed{
+F_{5th}(r) = G_N \frac{m_1 m_2}{r^2}\left(1 + \alpha e^{-r/\lambda}\right)
+}
+\label{eq:unified_fifth_force_signal}
+\end{equation}
+
+The Aether scalar field $\phi$ mediates a Yukawa-type fifth force beyond standard gravity.
+
+\vspace{0.5em}
+\noindent\textbf{Parameters:}
+\begin{itemize}
+  \item $G_N = 6.674 \times 10^{-11}$ m$^3$kg$^{-1}$s$^{-2}$: Newtonian gravitational constant
+
+  \item $\alpha$: Fifth force coupling strength
+    \begin{itemize}
+      \item Theoretical range: $\alpha \sim 10^{-3}$ to $10^{-2}$ (0.1--1\% of gravity)
+      \item Derived from scalar field VEV and curvature coupling
+      \item $\alpha = \kappa\phi^2/(M_P c^2)$
+    \end{itemize}
+
+  \item $\lambda$: Interaction range (Compton wavelength of scalar)
+    \begin{itemize}
+      \item Aether prediction: $\lambda \sim 100$ $\mu$m to 10 mm
+      \item Set by scalar field mass: $\lambda = \hbar/(m_\phi c)$
+      \item Phenomenological constraint: $\lambda < 1$ cm (table-top scale)
+    \end{itemize}
+
+  \item $r$: Separation distance between test masses $m_1, m_2$
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Force Profile:}
+\begin{itemize}
+  \item \textbf{Short range} ($r \ll \lambda$): $F_{5th} \approx G_N m_1 m_2 (1 + \alpha)/r^2$
+    \begin{itemize}
+      \item Enhanced gravity by factor $(1 + \alpha)$
+      \item Difficult to distinguish from modified $G_N$
+    \end{itemize}
+
+  \item \textbf{Characteristic range} ($r \sim \lambda$): $F_{5th} \approx G_N m_1 m_2 (1 + \alpha/e)/r^2$
+    \begin{itemize}
+      \item Peak distinguishability
+      \item Yukawa exponential cuts in
+    \end{itemize}
+
+  \item \textbf{Long range} ($r \gg \lambda$): $F_{5th} \approx G_N m_1 m_2/r^2$
+    \begin{itemize}
+      \item Fifth force suppressed by $e^{-r/\lambda}$
+      \item Standard Newtonian gravity
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Observable Signatures:}
+\begin{enumerate}
+  \item \textbf{Torsion balance}: Measure torque $\tau(r)$ vs. distance
+    \begin{equation*}
+    \tau(r) = \tau_0\left(\frac{1}{r^2} + \alpha\frac{e^{-r/\lambda}}{r^2}\right)
+    \end{equation*}
+    Fit to extract $\alpha$ and $\lambda$
+
+  \item \textbf{Time modulation}: Scalar field oscillates (time crystal)
+    \begin{equation*}
+    \phi(t) = \phi_0[1 + \epsilon\cos(\omega t)], \quad \omega \sim \text{Hz}
+    \end{equation*}
+    Fifth force modulates at same frequency
+
+  \item \textbf{Composition dependence}: Different materials couple differently
+    \begin{equation*}
+    \alpha \to \alpha_{ij} \quad (\text{material-dependent})
+    \end{equation*}
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent\textbf{Current Experimental Constraints:}
+\begin{itemize}
+  \item Washington torsion balance (2012): $\alpha < 10^{-3}$ for $\lambda \sim 1$ mm
+  \item Microscopic gap tests (2020): $\alpha < 10^{-4}$ for $\lambda \sim 10$ $\mu$m
+  \item Aether prediction ($\alpha \sim 10^{-3}$) is near current limits---testable now!
+\end{itemize}

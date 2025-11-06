@@ -1,0 +1,29 @@
+EqID,Equation,Framework,Domain,SourceDoc,SourceLine,Description,VerificationStatus,RelatedEqs,ExperimentalTest
+PE001,SF = m_P c^2 / L_P = M_U c^2 / R_U,Pais,GR,SUPERFORCE ---S.C.Pais---2023.pdf,Page 1,Superforce energy gradient at Planck and Horizon scales,Theoretical,,Planck scale measurements
+PE002,G_uv ~ (1/SF) T_uv,Pais,GR,SUPERFORCE ---S.C.Pais---2023.pdf,Page 1,Einstein field equations with Superforce coupling,Theoretical,,Gravitational wave analysis
+PE003,SF = c^4/G,Pais,GR,SUPERFORCE ---S.C.Pais---2023.pdf,Page 1-2,Superforce as Planck force,Theoretical,,Force unification measurements
+PE004,ih*dψ/dt = -(h*^2/2m)d^2(ψ)/dx^2 + Vψ,Pais,QM,SUPERFORCE ---S.C.Pais---2023.pdf,Page 2,Schrodinger equation showing Superforce emergence,Validated,,Quantum mechanical validation
+PE005,E_T^2 = m_0^2 c^4 + p^2 c^2,Pais,QM,SUPERFORCE ---S.C.Pais---2023.pdf,Page 2,Total energy relation for Dirac equation,Validated,,Relativistic quantum mechanics
+PE006,c^2 = 1/(μ_0με_0ε),Pais,EM,SUPERFORCE ---S.C.Pais---2023.pdf,Page 3,Speed of light in medium for Superforce engineering,Validated,,Electromagnetic permittivity measurements
+PE007,F_SN/F_EM = 1/α,Pais,QM,SUPERFORCE ---S.C.Pais---2023.pdf,Page 2,Strong nuclear to electromagnetic force ratio,Validated,,Nuclear force measurements
+PE008,F_G = Gm_P^2/L_P^2 = c^4/G,Pais,GR,SUPERFORCE ---S.C.Pais---2023.pdf,Page 2,Gravitational force at Planck scale equals Superforce,Theoretical,,Planck scale force unification
+PE009,R_γμ - (1/2)g_γμ R = (8πG/c^4) T_γμ,Pais,GR,Comment on the Pais Superforce Theory.pdf,Page 3,Einstein field equations in standard form,Validated,,General relativity tests
+PE010,r_P = sqrt(Gh*/c^3),Pais,QM,Comment on the Pais Superforce Theory.pdf,Page 2,Planck length definition,Theoretical,,Planck scale physics
+PE011,M_P = sqrt(h*c/G),Pais,QM,Comment on the Pais Superforce Theory.pdf,Page 2,Planck mass definition,Theoretical,,Planck scale physics
+PE012,q_P = sqrt(h*c),Pais,QM,Comment on the Pais Superforce Theory.pdf,Page 2,Planck charge definition,Theoretical,,Quantum charge measurements
+PE013,S^2/(uc^2) - g^2/(2πG) = K,Pais,GR,Comment on the Pais Superforce Theory.pdf,Page 8,GEM Vacuum Bernoulli equation for gravity control,Speculative,,Gravity-EM coupling experiments
+PE014,F_G = c^4/G = (h*c/r_0^2)exp(2σ) = h*c/L_P^2,Pais,GR,Comment on the Pais Superforce Theory.pdf,Page 7,GEM Theory expression for Pais Superforce,Theoretical,,Unified force measurements
+PE015,G = (e^2/(m_p m_e))α exp(-2(m_p/m_e)^(1/2)) = 6.668×10^-8 dyne-cm^2 gm^-2,Pais,GR,Comment on the Pais Superforce Theory.pdf,Page 7,Gravitational constant from GEM theory,Speculative,,Precision G measurements
+TE001,H = Σ(-h*^2/(2m_i)∇^2 + V(r_i)),Tourmaline,QM,Tourmaline.pdf,Page 4,Hamiltonian for quantum lattice dynamics,Theoretical,,Lattice vibration spectroscopy
+TE002,ω^2 u = D·u,Tourmaline,Math,Tourmaline.pdf,Page 4,Phonon propagation in tourmaline lattice,Theoretical,,Phonon dispersion measurements
+TE003,C_ijkl = ∂^2 E/(∂ε_ij ∂ε_kl),Tourmaline,Math,Tourmaline.pdf,Page 4,Elastic tensor for lattice properties,Experimental,,Elastic modulus measurements
+TE004,κ = (π^2 k_B^2 T)/(3e^2) σ,Tourmaline,Thermo,Tourmaline.pdf,Page 4,Wiedemann-Franz law for thermal conductivity,Validated,,Thermal conductivity measurements
+TE005,∇^2 E - (1/c^2)(∂^2 E/∂t^2) = μ_0(∂^2 P_NL/∂t^2),Tourmaline,EM,Tourmaline.pdf,Page 6,Nonlinear wave equation for optical behavior,Theoretical,,Nonlinear optics measurements
+TE006,P^(2)(2ω) = ε_0 χ^(2):E(ω)E(ω),Tourmaline,EM,Tourmaline.pdf,Page 6,Second-harmonic generation polarization,Experimental,,SHG spectroscopy
+TE007,P^(3)(3ω) = ε_0 χ^(3):E(ω)E(ω)E(ω),Tourmaline,EM,Tourmaline.pdf,Page 6,Third-harmonic generation polarization,Experimental,,THG spectroscopy
+TE008,P_i = d_ijk σ_jk,Tourmaline,EM,Tourmaline.pdf,Page 9,Piezoelectric polarization from stress,Validated,,Piezoelectric coefficient measurement
+TE009,P_i = γ_i ΔT,Tourmaline,Thermo,Tourmaline.pdf,Page 9,Pyroelectric polarization from temperature change,Validated,,Pyroelectric coefficient measurement
+TE010,P_i = d_ijk σ_jk + γ_i ΔT,Tourmaline,EM,Tourmaline.pdf,Page 10,Coupled piezoelectric-pyroelectric behavior,Experimental,,Coupled electromechanical-thermal measurement
+TE011,"H_e-ph = Σ g_k,q c_k† c_k+q (a_q + a_q†)",Tourmaline,QM,Tourmaline.pdf,Page 12,Electron-phonon coupling Hamiltonian,Theoretical,,Electron-phonon spectroscopy
+TE012,E_n = (h*^2 π^2 n^2)/(2mL^2),Tourmaline,QM,Tourmaline.pdf,Page 13,Quantum confined states in nanostructured tourmaline,Theoretical,,Quantum confinement spectroscopy
+TE013,C_v = 9Nk_B(T/Θ_D)^3 ∫_0^(Θ_D/T) (x^4 e^x)/(e^x - 1)^2 dx,Tourmaline,Thermo,Tourmaline.pdf,Page 15,Debye model heat capacity,Validated,,Heat capacity measurements

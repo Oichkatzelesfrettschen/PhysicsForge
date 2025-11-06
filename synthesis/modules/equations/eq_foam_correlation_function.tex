@@ -1,0 +1,33 @@
+%==============================================================================
+% Equation: Quantum foam two-point correlation function (Genesis framework)
+% Source: math5GenesisFrameworkUnveiled.md (Section 3.2, nodespace correlations)
+%         Alpha003.02 (Section 7.3, lines 1458-1468)
+% Framework: Genesis | Domain: QM/GR | Status: Theoretical prediction
+%==============================================================================
+\begin{equation}
+  \langle \delta g_{\mu\nu}(x, t) \delta g_{\alpha\beta}(y, t') \rangle
+  = \frac{G \hbar}{\ell_{\text{node}}^4 c^3}
+  \cdot f\left(\frac{|x - y|}{\ell_{\text{node}}}\right)
+  \cdot \delta(t - t' - |x - y| / c)
+  \eqtag{G}{QM}{T}
+  \label{eq:foam:correlation-genesis}
+\end{equation}
+% Notes:
+%   * Two-point correlation of metric perturbations at spacetime points $(x,t)$ and $(y,t')$
+%   * $\ell_{\text{node}}$ = nodespace characteristic length (may exceed Planck length)
+%   * $f(r/\ell_{\text{node}})$ = correlation function with cutoff at nodespace scale
+%   * Genesis prediction: $f(r) \propto r^{-\alpha}$ with $\alpha \sim 0.3$ to 0.7 (power-law)
+%   * Standard QFT: $f(r) \propto \exp(-r/\ell_P)$ (exponential decay)
+%   * Aether: $f(r) \propto \cos(\omega_\phi r/c) \exp(-r/\lambda_{\text{foam}})$ (oscillatory)
+%   * Delta function enforces lightlike correlation (no FTL correlations)
+%   * Dimensionally consistent: $[G\hbar/(c^3 \ell^4)] = [\text{metric}]^2$
+% Experimental signature:
+%   * Non-Gaussian statistics in higher-order correlators
+%   * Fractal dimension $D_{\text{fractal}} \approx 3.7$ from power spectrum slope
+%   * See Ch24 (Section 24.4.4) for Genesis protocol distinguishing power-law tails
+% Dependencies:
+%   * Ch01: Fundamental constants ($G$, $\hbar$, $c$)
+%   * Ch11: Genesis nodespace formulation
+%   * Ch18: Framework comparison (correlation function predictions)
+%   * Ch24: Quantum foam experimental protocols (Steps 4-5)
+%==============================================================================

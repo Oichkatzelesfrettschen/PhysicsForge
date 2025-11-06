@@ -1,0 +1,96 @@
+%==============================================================================
+% Equation: Zero-Point Energy Thrust via Casimir-like Effects
+% Source: Casimir effect derivation + Alpha003.02 ZPE extraction concepts
+% Framework: Aether | Domain: QM | Status: Experimental
+%==============================================================================
+\begin{equation}
+  F_{\text{thrust}} = \frac{\hbar c \pi^2}{240 d^4} A_{\text{plate}} \xi_{\text{geom}}
+  \eqtag{A}{QM}{E}
+  \label{eq:propulsion:zpe-thrust}
+  \label{eq:zpe:thrust-casimir}
+\end{equation}
+%
+% where:
+%   F_thrust = thrust force from ZPE extraction (N)
+%   hbar     = reduced Planck constant (1.055 x 10^{-34} J*s)
+%   c        = speed of light (3 x 10^8 m/s)
+%   d        = separation between parallel plates (m)
+%   A_plate  = plate area (m^2)
+%   xi_geom  = geometry enhancement factor (dimensionless)
+%
+% Standard Casimir force (xi_geom = 1):
+% For parallel conducting plates, attractive force per unit area:
+%   P_Casimir = -hbar*c*pi^2 / (240*d^4)
+%
+% This equation generalizes to thrust generation via asymmetric geometries:
+%
+% Geometry enhancement factors (examples):
+%   xi_geom = 1.0   : Parallel plates (standard Casimir, no net thrust)
+%   xi_geom = 1.5   : Tilted plates (angle ~ 10 degrees)
+%   xi_geom = 3.0   : Curved surfaces (parabolic reflectors)
+%   xi_geom = 10    : Fractal microstructures (resonant cavity modes)
+%   xi_geom = 100   : Metamaterial cavities (negative index, slow light)
+%
+% Thrust scaling examples:
+%
+% 1. Laboratory demonstration (microscale):
+%    - d = 100 nm, A = 1 cm^2 = 10^{-4} m^2, xi_geom = 10
+%    - F_thrust ~ (10^{-34} * 3e8 * 10) / (240 * (10^{-7})^4) * 10^{-4} * 10
+%    - F_thrust ~ 1.3 x 10^{-15} N (1.3 femtonewtons)
+%    - Measurable with AFM cantilevers (force resolution ~ 10^{-15} N)
+%
+% 2. Small spacecraft (optimistic engineering):
+%    - d = 10 nm, A = 1 m^2, xi_geom = 100 (metamaterial cavity array)
+%    - F_thrust ~ (10^{-34} * 3e8 * 10) / (240 * (10^{-8})^4) * 1 * 100
+%    - F_thrust ~ 1.3 x 10^{-6} N (1.3 micronewtons)
+%    - Compare: Ion thruster ~ 10-100 mN (10^4 - 10^5 times higher)
+%
+% 3. Extreme parameters (highly speculative):
+%    - d = 1 nm, A = 100 m^2, xi_geom = 1000 (active ZPE manipulation)
+%    - F_thrust ~ 1.3 x 10^{-3} N (1.3 millinewtons)
+%
+% Efficiency analysis:
+% Energy input (to maintain field configuration) vs. momentum output:
+%   eta = (F_thrust * v) / P_input
+%
+% For passive Casimir structures, P_input ~ 0 (no energy consumption after
+% fabrication), but thrust is extremely small. For active systems (dynamic
+% cavity tuning, field modulation), P_input ~ kW to MW, limiting efficiency.
+%
+% Specific impulse comparison:
+%   I_sp = F_thrust / (mdot * g_0)
+%
+% ZPE thruster (no propellant mass ejection, mdot = 0):
+%   I_sp -> infinity (in principle)
+%
+% However, practical systems require power supply mass, structure, etc.:
+%   I_sp_effective ~ F_thrust / (P_input/c^2) / g_0
+%
+% For F_thrust = 10^{-6} N, P_input = 1 kW:
+%   I_sp_effective ~ 10^{-6} / (1000 / (3e8)^2) / 9.8 ~ 10^7 s
+%
+% This is 10^4 times higher than chemical rockets (I_sp ~ 300 s) and 100 times
+% higher than ion thrusters (I_sp ~ 10^5 s), but thrust level is 10^6 times lower.
+%
+% Applications:
+% - Microspacecraft (CubeSats, chip satellites): acceleration ~ F/m ~ 10^{-6} N / 0.1 kg = 10^{-5} m/s^2
+%   - Delta-v accumulation: 1 m/s per ~10^5 s ~ 1 day of continuous operation
+% - Attitude control for larger spacecraft (torque generation via differential thrust)
+% - Long-duration missions (decades) where cumulative delta-v matters more than instantaneous thrust
+%
+% Experimental status:
+% - Static Casimir force measured to <1% accuracy (Lamoreaux 1997, et al.)
+% - Dynamic Casimir effect demonstrated (Wilson et al., Nature 2011)
+% - Directional thrust from ZPE: NO confirmed experiments to date
+%
+% Critical challenges:
+% - Thrust-to-weight ratio: F_thrust / (m_structure * g_0) << 1 for all known designs
+% - Power supply mass: Solar panels or nuclear batteries add 10-100 kg
+% - Thermal management: Waste heat dissipation in vacuum (radiative cooling only)
+% - Material stability: Nanoscale gaps require atomic-precision fabrication and vibration isolation
+%
+% Dependencies: Ch01 (quantum field theory), Ch07-Ch09 (ZPE theory),
+%               Ch22 (Casimir force measurements)
+% Cross-references: Ch28 (energy extraction), Ch29 (propulsion system integration),
+%                   Ch30 (vacuum engineering)
+%==============================================================================

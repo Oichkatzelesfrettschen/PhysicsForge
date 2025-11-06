@@ -1,0 +1,29 @@
+{
+  "stats": {
+    "total": 2,
+    "by_framework": {"Unified": 2},
+    "by_domain": {"General": 2},
+    "by_source": {"sample.md": 2}
+  },
+  "metrics": {
+    "files_scanned": 1,
+    "files_skipped_size": 0,
+    "files_skipped_excluded": 0,
+    "files_skipped_decode": 0,
+    "bytes_scanned": 128,
+    "candidate_equations": 2,
+    "unique_equations": 2,
+    "elapsed_s": 0.015,
+    "by_domain": {"General": 2},
+    "timing": {
+      "total_elapsed_s": 0.015,
+      "read_s": 0.003,
+      "extract_s": 0.010,
+      "classify_s": 0.002
+    },
+    "timing_by_framework": {"Unified": 0.013},
+    "timing_by_framework_breakdown": {
+      "Unified": {"read_s": 0.003, "extract_s": 0.010, "classify_s": 0.002}
+    }
+  }
+}

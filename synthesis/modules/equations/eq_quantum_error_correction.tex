@@ -1,0 +1,21 @@
+%==============================================================================
+% Equation: Quantum Error Correction Threshold with Scalar Decoherence
+% Framework: Genesis | Domain: QM | Status: Experimental
+%==============================================================================
+\begin{equation}
+  p_{\text{thresh}} = \frac{1}{2}\left[1 - \sqrt{1 - \frac{4\Gamma_{\text{dec}}\tau_{\text{gate}}}{1 + \chi_{\text{nodespace}}}}\right], \quad
+  \chi_{\text{nodespace}} = \frac{g_{\text{NS}}^2}{\Gamma_{\text{dec}}\gamma_{\text{stab}}}
+  \eqtag{G}{QM}{E}
+  \label{eq:qec:threshold}
+\end{equation}
+% Notes: Error correction threshold for quantum computers operating in Genesis nodespace
+% background. The threshold error probability $p_{\text{thresh}}$ below which QEC succeeds
+% depends on scalar decoherence rate $\Gamma_{\text{dec}}$, gate time $\tau_{\text{gate}}$, and
+% nodespace stabilization factor $\chi_{\text{nodespace}}$ combining coupling $g_{\text{NS}}$ and
+% stabilization rate $\gamma_{\text{stab}}$. Standard surface codes require $p_{\text{thresh}} \sim 1\%$,
+% but nodespace coherence ($\chi_{\text{nodespace}} > 1$) can raise this to $\sim 5\%$, dramatically
+% reducing qubit overhead. Conversely, strong nodespace fluctuations ($\chi_{\text{nodespace}} \ll 1$)
+% lower the threshold, making QEC impossible. Measurements of $p_{\text{thresh}}$ vs. environmental
+% parameters test Genesis framework predictions.
+% Dependencies: eq:genesis:quasiparticle-excitation, eq:decoherence:measurement
+%==============================================================================

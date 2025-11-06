@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-optional.txt
+        pip install pytest flake8 mypy
+    - name: Run Flake8 Lint
+      run: flake8 .
+    - name: Run MyPy Type Check
+      run: mypy .
+    - name: Run Make CI
+      run: make ci
+
+  latex_strict_check:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up TeX Live
+      uses: xu-cheng/latex-action@v2
+      with:
+        latexmk_use_xelatex: true
+        latexmk_use_lualatex: true
+    - name: Run Make Latex Strict
+      run: make latex_strict

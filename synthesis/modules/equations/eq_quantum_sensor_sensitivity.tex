@@ -1,0 +1,20 @@
+%==============================================================================
+% Equation: Quantum Sensor Sensitivity to Scalar Fields
+% Framework: Genesis | Domain: QM | Status: Experimental
+%==============================================================================
+\begin{equation}
+  \delta\phi_{\text{min}} = \frac{\hbar}{\sqrt{N}\tau g}\sqrt{1 + \frac{T_2^*}{T_2}\left(\frac{\tau}{T_2}\right)^2}, \quad
+  S_{\phi}(\omega) = \frac{2\delta\phi_{\text{min}}^2}{\Delta f}
+  \eqtag{G}{QM}{E}
+  \label{eq:sensor:quantum-sensitivity}
+\end{equation}
+% Notes: Minimum detectable scalar field amplitude using quantum sensors (NV centers,
+% atomic clocks, or SQUIDs). The sensitivity $\delta\phi_{\text{min}}$ scales with number of
+% qubits $N$, interrogation time $\tau$, coupling strength $g$, and coherence times
+% $T_2$ (spin echo) and $T_2^*$ (free induction decay). The power spectral density $S_{\phi}$
+% measures field fluctuations over bandwidth $\Delta f$. Diamond NV magnetometers achieve
+% $\delta\phi_{\text{min}} \sim 10^{-19}$ eV with $N \sim 10^6$ spins, sufficient to detect
+% Genesis nodespace oscillations if $g \gtrsim 10^{-3}$ Hz/eV. Decoherence from scalar
+% noise ($T_2 < T_2^*$) degrades sensitivity but also provides a detection mechanism.
+% Dependencies: eq:genesis:quasiparticle-excitation, eq:qubit-coherence-enhanced
+%==============================================================================

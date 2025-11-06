@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+   Citation: X. Mi et al. (Google AI Quantum and collaborators)
+             "Time-crystalline eigenstate order on a quantum processor"
+             Nature 601, 531-536 (2022)
+
+   DOI: https://doi.org/10.1038/s41586-021-04257-w
+   arXiv: https://arxiv.org/abs/2107.13571
+
+   Experimental Platform:
+   - System: Google Sycamore superconducting quantum processor
+   - Qubits: Array of superconducting qubits
+   - Gate operations: Tunable CPHASE gates
+
+   Key Observables Measured:
+   - Eigenstate-ordered discrete time crystal (DTC) phase
+   - Quantum correlations throughout many-body spectrum
+   - Long-range order in late-time dynamics from all initial states
+
+   Coherence/Lifetime:
+   - Time crystal oscillations observed for ~100-200 cycles
+   - Limited by finite coherence time of superconducting qubits
+   - Typical qubit coherence: T1 ~ 15-30 microseconds, T2 ~ 10-20 microseconds
+
+   Theoretical Framework:
+   - Eigenstate order in periodically driven MBL systems
+   - Out-of-equilibrium dynamical phases
+   - Time-reversal protocol to discriminate decoherence from thermalization
+   - Quantum typicality to sample eigenspectrum
+
+   Key Innovation:
+   - Scalable approach for engineering DTC phases
+   - Continuous family of tunable interactions
+   - Demonstrates eigenstate order (not just a few eigenstates)
+
+   Anomalous Behavior:
+   - Entire many-body spectrum exhibits coherent oscillations
+   - Characteristic signatures persist in late-time dynamics
+   - Robust against typical quantum processor noise

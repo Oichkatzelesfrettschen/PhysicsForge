@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Extractor Plan (Dry-Run)",
+  "type": "object",
+  "required": ["base_dir", "elapsed_s", "items"],
+  "properties": {
+    "base_dir": {"type": "string"},
+    "elapsed_s": {"type": "number"},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "rel", "framework", "action", "reason", "size"],
+        "properties": {
+          "path": {"type": "string"},
+          "rel": {"type": "string"},
+          "framework": {"type": "string"},
+          "action": {"type": "string", "enum": ["scan", "skip"]},
+          "reason": {
+            "type": "string",
+            "enum": [
+              "selected",
+              "glob_exclude",
+              "glob_not_included",
+              "excluded_dir",
+              "max_size",
+              "limit_reached",
+              "framework_include_mismatch",
+              "framework_excluded"
+            ]
+          },
+          "size": {"type": ["integer", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

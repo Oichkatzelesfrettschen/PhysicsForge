@@ -1,0 +1,136 @@
+%==============================================================================
+% Figure: Genesis Nodespace Network Graph
+% Purpose: Visualize nodespace as dynamic graph with formation dynamics
+% Chapter: Ch12 - Genesis Framework Nodespace
+% Type: Conceptual
+%==============================================================================
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    scale=1.0,
+    node/.style={circle, draw=black, fill=green!30, thick, minimum size=8mm, font=\small},
+    active_node/.style={circle, draw=green!60!black, fill=green!60, ultra thick, minimum size=10mm, font=\small\bfseries},
+    dormant_node/.style={circle, draw=gray, fill=gray!20, thick, minimum size=6mm, font=\tiny},
+    edge/.style={thick, green!70},
+    weak_edge/.style={thin, dashed, gray!50},
+    formation/.style={ultra thick, orange!80, ->, >=stealth}
+  ]
+
+    % Central active nodes (high connectivity)
+    \node[active_node] (n1) at (0, 0) {$N_1$};
+    \node[active_node] (n2) at (3, 1) {$N_2$};
+    \node[active_node] (n3) at (2, -2) {$N_3$};
+
+    % Secondary nodes (medium connectivity)
+    \node[node] (n4) at (-2, 2) {$N_4$};
+    \node[node] (n5) at (5, 0) {$N_5$};
+    \node[node] (n6) at (1, -4) {$N_6$};
+    \node[node] (n7) at (-1, -2.5) {$N_7$};
+    \node[node] (n8) at (4, 3) {$N_8$};
+
+    % Dormant nodes (low connectivity)
+    \node[dormant_node] (d1) at (-3, -1) {$D_1$};
+    \node[dormant_node] (d2) at (6, 2) {$D_2$};
+    \node[dormant_node] (d3) at (3, -4.5) {$D_3$};
+    \node[dormant_node] (d4) at (-2, 4) {$D_4$};
+
+    % Strong edges (active connections)
+    \draw[edge, line width=2pt] (n1) -- (n2);
+    \draw[edge, line width=2pt] (n1) -- (n3);
+    \draw[edge, line width=2pt] (n2) -- (n3);
+    \draw[edge, line width=1.5pt] (n1) -- (n4);
+    \draw[edge, line width=1.5pt] (n2) -- (n5);
+    \draw[edge, line width=1.5pt] (n3) -- (n6);
+    \draw[edge, line width=1.5pt] (n1) -- (n7);
+    \draw[edge, line width=1.5pt] (n2) -- (n8);
+    \draw[edge, line width=1pt] (n4) -- (n8);
+    \draw[edge, line width=1pt] (n5) -- (n8);
+    \draw[edge, line width=1pt] (n6) -- (n7);
+    \draw[edge, line width=1pt] (n3) -- (n7);
+
+    % Weak edges (potential connections)
+    \draw[weak_edge] (n4) -- (d1);
+    \draw[weak_edge] (n5) -- (d2);
+    \draw[weak_edge] (n6) -- (d3);
+    \draw[weak_edge] (n8) -- (d2);
+    \draw[weak_edge] (n4) -- (d4);
+    \draw[weak_edge] (d1) -- (n7);
+
+    % Formation dynamics arrows
+    \draw[formation, bend left=20] (d4) to node[midway, above, font=\tiny, sloped] {Activation} (n4);
+    \draw[formation, bend right=20] (n8) to node[midway, right, font=\tiny, sloped] {Strengthening} (n2);
+
+    % Highlight central triangle (core structure)
+    \draw[blue!50, ultra thick, dashed, rounded corners=5mm]
+      ($(n1) + (-0.6, -0.6)$) -- ($(n2) + (0.6, 0.6)$) -- ($(n3) + (0.6, -0.6)$) -- cycle;
+    \node[font=\small, text=blue!70, align=center] at (1.5, 0.5) {Core\\structure};
+
+    % Connectivity annotation
+    \node[anchor=north west, align=left, font=\footnotesize, draw=orange!80, fill=orange!10, rounded corners]
+      at (-4, 4.5) {
+      \textbf{Node Properties:} \\
+      \textcolor{green!60!black}{\textbullet} Active: $k > k_{\text{crit}}$ \\
+      \textcolor{gray!70}{\textbullet} Dormant: $k < k_{\text{crit}}$ \\
+      \\
+      $k$: connectivity (degree) \\
+      $k_{\text{crit}}$: activation threshold
+    };
+
+    % Dynamics box
+    \node[anchor=north east, align=left, font=\footnotesize, draw=green!60!black, fill=green!10, rounded corners]
+      at (7.5, 4.5) {
+      \textbf{Formation Dynamics:} \\
+      $\bullet$ Node creation: spontaneous \\
+      $\bullet$ Edge formation: distance-dependent \\
+      $\bullet$ Strengthening: usage/interaction \\
+      $\bullet$ Pruning: weak edges decay \\
+      $\bullet$ Emergent geometry from connectivity
+    };
+
+    % Graph metrics
+    \node[anchor=south west, align=left, font=\footnotesize, draw=black, fill=yellow!10, rounded corners]
+      at (-4, -5.5) {
+      \textbf{Graph Metrics:} \\
+      $N$: total nodes \\
+      $E$: total edges \\
+      $\langle k \rangle$: average degree \\
+      $C$: clustering coefficient \\
+      $\ell$: characteristic path length \\
+      \\
+      Small-world property: \\
+      $C \gg C_{\text{random}}$, $\ell \approx \ell_{\text{random}}$
+    };
+
+    % Physics interpretation
+    \node[anchor=south east, align=left, font=\footnotesize, draw=black, fill=blue!5, rounded corners]
+      at (7.5, -5.5) {
+      \textbf{Physical Meaning:} \\
+      Nodes $\leftrightarrow$ spacetime regions \\
+      Edges $\leftrightarrow$ causal connections \\
+      Connectivity $\leftrightarrow$ metric \\
+      Shortest paths $\leftrightarrow$ geodesics \\
+      Graph Laplacian $\leftrightarrow$ d'Alembertian \\
+      \\
+      Geometry emerges from topology
+    };
+
+    % Title
+    \node[anchor=south, font=\Large\bfseries] at (1.5, 5.5) {Genesis Nodespace: Dynamic Network Graph};
+
+  \end{tikzpicture}
+  \caption{Genesis framework nodespace represented as a dynamic network graph. Nodes represent
+    discrete spacetime regions with varying activity levels: active nodes (green, high connectivity
+    $k > k_{\text{crit}}$) form the core geometric structure, while dormant nodes (gray, low
+    connectivity) represent potential spacetime that may activate. Edges encode causal connections
+    with varying strengths (thick solid = strong, thin solid = medium, dashed = weak potential
+    connections). The central triangle (blue dashed outline) shows a highly-connected core structure
+    that stabilizes the local geometry. Formation dynamics (orange arrows) include node activation,
+    edge strengthening through interaction, and pruning of weak connections. The graph exhibits
+    small-world properties with high clustering and short path lengths. Physical geometry emerges
+    from the connectivity pattern: the graph Laplacian acts as a discrete d'Alembertian operator,
+    geodesics correspond to shortest paths, and the metric is encoded in node degrees and edge
+    weights. This provides a pre-geometric foundation where spacetime arises from combinatorial
+    structure.}
+  \label{fig:nodespace-graph}
+\end{figure>

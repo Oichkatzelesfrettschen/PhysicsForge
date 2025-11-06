@@ -1,0 +1,49 @@
+%==============================================================================
+% Equation Module: Genesis String Worldsheet
+% Source: Chapter 14 - Genesis Superforce Applications
+% Date: 2025-10-23
+%==============================================================================
+
+\begin{equation}
+  \boxed{
+  S_{\text{string}} = \lim_{N \to \infty} \sum_{(i,j) \in \mathcal{E}} \mathcal{L}_{\text{Genesis}}[X_i, X_j]
+  }
+  \eqtag{G}{ST}{WE}
+  \label{eq:module:genesis-string-worldsheet}
+\end{equation}
+
+\noindent where:
+\begin{itemize}[noitemsep]
+  \item $S_{\text{string}}$: String worldsheet action
+  \item $\mathcal{E}$: Edge set of nodespace graph $\mathcal{N} = (V, \mathcal{E})$
+  \item $\mathcal{L}_{\text{Genesis}}$: Genesis Lagrangian on discrete nodes
+  \item $X_i, X_j$: Positions of adjacent nodes
+  \item $N$: Number of nodes (continuum limit as $N \to \infty$)
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Continuum Limit:}
+\begin{equation}
+  S = -\frac{1}{4\pi\alpha'} \int d^2\sigma \sqrt{-h} h^{ab} \partial_a X^\mu \partial_b X_\mu + \Delta S_{\text{Genesis}}
+  \eqtag{G}{ST}{CL}
+\end{equation}
+
+\vspace{0.5em}
+\noindent\textbf{D-brane Action with Folding:}
+\begin{equation}
+  S_{\text{Dp}} = -T_p \int d^{p+1}\xi \, e^{-\Phi} \sqrt{-\det(G_{ab} + \mathcal{F}_{ab} + \mathcal{M}_{\text{fold}})}
+  \eqtag{G}{ST}{DB}
+\end{equation}
+
+\vspace{0.5em}
+\noindent\textbf{String Coupling from Genesis:}
+\begin{equation}
+  g_s = \left(\frac{\beta}{\varphi}\right)^{1/2} \exp\left(\sum_{k=1}^{\infty} \frac{c_k}{k!} \langle G^k \rangle\right)
+  \eqtag{G}{ST}{SC}
+\end{equation}
+
+\noindent\textbf{Physical Significance:} String theory emerges naturally from the continuum limit of nodespace dynamics. The worldsheet is not fundamental but arises from paths through the discrete nodespace graph. Genesis corrections encode the underlying discreteness, potentially observable at trans-Planckian energies.
+
+%==============================================================================
+% End of Equation Module
+%==============================================================================

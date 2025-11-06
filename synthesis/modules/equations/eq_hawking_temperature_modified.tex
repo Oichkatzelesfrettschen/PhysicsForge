@@ -1,0 +1,37 @@
+%==============================================================================
+% Equation: Modified Hawking temperature (Genesis framework)
+% Source: Alpha003.02 (Section 1.13, lines 415-432, black hole scalar coupling)
+%         Loop quantum gravity area quantization (Rovelli, Smolin)
+% Framework: Genesis | Domain: GR/QM | Status: Theoretical + experimental test
+%==============================================================================
+\begin{equation}
+  T_H = \frac{\hbar \kappa}{2\pi k_B c}
+  \left( 1 + \beta \frac{\ell_{\text{node}}^2}{A} + \gamma \frac{\ell_{\text{node}}^4}{A^2} \right)
+  \eqtag{G}{GR}{T}
+  \label{eq:holo:hawking-temp-modified}
+\end{equation}
+% Notes:
+%   * $\kappa$ = surface gravity at horizon (determines baseline temperature)
+%   * $A$ = event horizon area
+%   * $\ell_{\text{node}}$ = nodespace characteristic length (discrete spacetime scale)
+%   * $\beta, \gamma$ = framework-dependent coefficients (predicted $\beta \sim 1$ to 10, $\gamma \sim 0.1$ to 1)
+%   * First term: Standard Hawking temperature $T_H^0 = \hbar \kappa / (2\pi k_B c)$
+%   * Second/third terms: Corrections from nodespace discreteness at small $A$
+%   * Standard GR: $\beta = \gamma = 0$ (no discrete corrections)
+%   * Aether framework: Different correction via ZPE coupling (not discreteness)
+% Limiting behavior:
+%   * Large $A \gg \ell_{\text{node}}^2$: $T_H \to T_H^0$ (standard GR recovered)
+%   * Small $A \sim \ell_{\text{node}}^2$: Discrete corrections become $\mathcal{O}(1)$
+% Experimental test:
+%   * Measure Hawking radiation spectrum in analog black holes (BEC, optical)
+%   * Vary effective horizon area $A_{\text{eff}}$ and test scaling
+%   * Expected signature: $\Delta T_H / T_H \sim 10\%$ for $A \sim$ mm$^2$ in BEC
+% Relation to entropy:
+%   * Via thermodynamic relation: $S = \int (dM / T_H)$ yields modified $S(A)$
+%   * Consistent with Genesis entropy formula (Eq.~\ref{eq:theory:genesis-series})
+% Dependencies:
+%   * Ch01: Fundamental constants ($\hbar$, $k_B$, $c$)
+%   * Ch11: Genesis nodespace formulation ($\ell_{\text{node}}$ definition)
+%   * Ch18: Framework comparison (distinguishing Hawking temperature predictions)
+%   * Ch25: Holographic entropy experimental protocols
+%==============================================================================

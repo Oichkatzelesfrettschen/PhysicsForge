@@ -1,0 +1,95 @@
+%==============================================================================
+% Figure: Monster Group and Griess Algebra Representation Structure
+% Source: Ch06 (Advanced Topics - Monster Group)
+% Framework: M (Mathematical) | Type: Representation diagram
+% Date: 2025-10-21
+%==============================================================================
+
+\begin{tikzpicture}[scale=1.0]
+  % Title
+  \node[anchor=north, font=\large\bfseries] at (6,9) {Monster Group: Griess Algebra \& Moonshine};
+
+  % Central Monster Group
+  \node[draw, circle, fill=red!30, minimum size=2cm, font=\footnotesize, align=center] (M) at (6,6.5) {
+    \textbf{Monster Group} \\[2pt]
+    $\mathbb{M}$ \\[2pt]
+    Order: $\approx 8 \times 10^{53}$
+  };
+
+  % Griess Algebra
+  \node[draw, rectangle, fill=blue!20, minimum width=3cm, minimum height=1.5cm, font=\footnotesize, align=center] (G) at (2,6.5) {
+    \textbf{Griess Algebra} \\[2pt]
+    196,884-dimensional \\
+    commutative algebra
+  };
+
+  % Vertex Operator Algebra
+  \node[draw, rectangle, fill=green!20, minimum width=3cm, minimum height=1.5cm, font=\footnotesize, align=center] (VOA) at (10,6.5) {
+    \textbf{Vertex Operator} \\
+    \textbf{Algebra (VOA)} \\[2pt]
+    $V^\natural$
+  };
+
+  % Connection arrows
+  \draw[->, thick] (G) -- (M) node[midway, above, font=\tiny] {automorphisms};
+  \draw[->, thick] (M) -- (VOA) node[midway, above, font=\tiny] {acts on};
+
+  % j-invariant
+  \node[draw, ellipse, fill=purple!20, minimum width=3cm, minimum height=1.2cm, font=\footnotesize, align=center] (j) at (6,3.5) {
+    \textbf{j-Invariant} \\[2pt]
+    $j(\tau) = q^{-1} + 744 + \cdots$
+  };
+
+  \draw[->, thick, dashed] (VOA) to[bend left=20] (j);
+  \node[anchor=west, font=\tiny] at (8.5,4.8) {Moonshine};
+
+  % Fourier expansion box
+  \node[draw, rectangle, fill=yellow!20, font=\footnotesize, align=left, text width=5cm] at (2,1.5) {
+    \textbf{Monstrous Moonshine:} \\[3pt]
+    $j(\tau) = \sum_{n=-1}^{\infty} c_n q^n$ \\[2pt]
+    where $q = e^{2\pi i \tau}$ \\[4pt]
+    Fourier coefficients: \\
+    $c_{-1} = 1$ \\
+    $c_0 = 744$ \\
+    $c_1 = 196,884 = \mathbf{196,883 + 1}$ \\
+    $c_2 = 21,493,760 = 1 + 196,883 + 21,296,876$
+  };
+
+  % Dimension decomposition
+  \node[draw, rectangle, fill=orange!20, font=\footnotesize, align=left, text width=5cm] at (10,1.5) {
+    \textbf{Representation Dimensions:} \\[3pt]
+    Trivial representation: $\mathbf{1}$ \\
+    Smallest non-trivial: $\mathbf{196,883}$ \\[4pt]
+    Sum appears in $j(\tau)$: \\
+    $1 + 196,883 = 196,884$ \\[2pt]
+    (Griess algebra dimension)
+  };
+
+  % Visual decomposition diagram
+  \begin{scope}[shift={(6,-1.5)}]
+    \draw[thick, blue] (0,0) rectangle (0.1,0.5);
+    \node[below, font=\tiny] at (0.05,-0.1) {1};
+
+    \draw[thick, blue] (0.2,0) rectangle (4,0.5);
+    \node[below, font=\tiny] at (2.1,-0.1) {196,883};
+
+    \draw[thick, red, <->] (-0.2,0.7) -- (4.2,0.7);
+    \node[above, font=\footnotesize] at (2,0.7) {196,884 total};
+  \end{scope}
+
+  % Exceptional properties
+  \node[draw, rectangle, rounded corners, fill=cyan!15, font=\footnotesize, align=left, text width=11cm] at (6,-3.5) {
+    \textbf{Exceptional Properties:} \\
+    $\bullet$ Largest sporadic simple group (26 total sporadic groups) \\
+    $\bullet$ Contains 20 of 26 sporadic groups as subquotients \\
+    $\bullet$ Connects modular functions to finite group theory (Moonshine conjecture, proved 1992) \\
+    $\bullet$ Griess algebra provides geometric realization of Monster symmetries
+  };
+
+\end{tikzpicture}
+
+% Usage: \input{modules/figures/fig_monster_griess_algebra.tex}
+% Notes: Illustrates the deep connection between the Monster group's smallest
+%        representations and the Fourier coefficients of the j-invariant.
+%        The "196,883+1" decomposition is central to Monstrous Moonshine.
+%==============================================================================

@@ -1,0 +1,20 @@
+%==============================================================================
+% Equation: Decoherence Rate Measurement for Aether Coupling
+% Framework: Aether | Domain: QM | Status: Experimental
+%==============================================================================
+\begin{equation}
+  \Gamma_{\text{dec}} = \frac{1}{T_2} - \frac{1}{T_{2,\text{int}}} = \frac{g_{\phi}^2}{\hbar^2}\int_0^\infty d\omega\, S_{\phi}(\omega)\left[1 - \cos(\omega\tau)\right], \quad
+  P(t) = e^{-\Gamma_{\text{dec}} t}\cos(\omega_0 t)
+  \eqtag{A}{QM}{E}
+  \label{eq:decoherence:measurement}
+\end{equation}
+% Notes: Excess decoherence rate induced by coupling to Aether scalar field fluctuations.
+% The measured dephasing rate $1/T_2$ exceeds intrinsic rate $1/T_{2,\text{int}}$ due to
+% scalar noise with spectral density $S_{\phi}(\omega)$, coupling strength $g_{\phi}$, and
+% pulse spacing $\tau$. The coherence decay envelope $P(t)$ oscillates at qubit frequency $\omega_0$
+% with exponential damping. Ramsey interferometry measures $T_2$ by varying $\tau$, while
+% dynamical decoupling sequences (Hahn echo, CPMG) refocus different noise sources to
+% isolate the scalar contribution. Observation of anomalous $T_2$ scaling with magnetic field,
+% temperature, or isotope substitution provides evidence for Aether-matter coupling.
+% Dependencies: eq:aether:field-quantization, eq:qubit-coherence-enhanced
+%==============================================================================

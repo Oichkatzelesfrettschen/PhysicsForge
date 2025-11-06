@@ -1,0 +1,148 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.hypothesis/
+.pytest_cache/
+pytest-cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.log
+*.pdf  # Keep PDFs out of git by default, add back selectively
+*.dvi
+*.ps
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+*.idx
+*.ilg
+*.ind
+
+# LaTeX temporary files
+synthesis/*.aux
+synthesis/*.log
+synthesis/*.pdf
+synthesis/*.synctex.gz
+synthesis/*.toc
+synthesis/*.out
+synthesis/*.lot
+synthesis/*.lof
+synthesis/*.bbl
+synthesis/*.blg
+synthesis/*.fdb_latexmk
+synthesis/*.fls
+
+# But DO include final outputs in releases/
+!releases/*.pdf
+
+# OS-specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Project-specific temporary
+extracted_data/
+output/
+logs/*.log
+*.tmp
+*.bak
+
+# Large data files (use Git LFS if needed)
+*.csv.gz
+*.tar.gz
+*.zip
+data/*.csv  # Exclude large CSV files, keep catalog CSVs
+
+# Keep important catalogs
+!equation_catalog.csv
+!equation_catalog_pdfs.csv
+!equation_catalog_pdfs_ocr.csv
+!equation_catalog_preliminary.csv
+
+# Node (if using for GitHub Pages)
+node_modules/
+package-lock.json
+
+# Jekyll (GitHub Pages)
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Claude Code
+.claude/
+
+# Test outputs
+test_*.pdf
+test_*.tex
+test_*.log

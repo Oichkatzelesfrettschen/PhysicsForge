@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Equation Extractor Metrics",
+  "type": "object",
+  "required": ["stats", "metrics"],
+  "properties": {
+    "stats": {
+      "type": "object",
+      "required": ["total", "by_framework", "by_domain", "by_source"],
+      "properties": {
+        "total": {"type": "integer"},
+        "by_framework": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "by_domain": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "by_source": {"type": "object", "additionalProperties": {"type": "integer"}}
+      },
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "required": [
+        "files_scanned", "bytes_scanned", "candidate_equations", "unique_equations", "elapsed_s",
+        "by_domain", "timing", "timing_by_framework", "timing_by_framework_breakdown"
+      ],
+      "properties": {
+        "files_scanned": {"type": "integer"},
+        "files_skipped_size": {"type": "integer"},
+        "files_skipped_excluded": {"type": "integer"},
+        "files_skipped_decode": {"type": "integer"},
+        "bytes_scanned": {"type": "integer"},
+        "candidate_equations": {"type": "integer"},
+        "unique_equations": {"type": "integer"},
+        "elapsed_s": {"type": "number"},
+        "by_domain": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "timing": {
+          "type": "object",
+          "required": ["total_elapsed_s", "read_s", "extract_s", "classify_s"],
+          "properties": {
+            "total_elapsed_s": {"type": "number"},
+            "read_s": {"type": "number"},
+            "extract_s": {"type": "number"},
+            "classify_s": {"type": "number"}
+          },
+          "additionalProperties": true
+        },
+        "timing_by_framework": {"type": "object", "additionalProperties": {"type": "number"}},
+        "timing_by_framework_breakdown": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["read_s", "extract_s", "classify_s"],
+            "properties": {
+              "read_s": {"type": "number"},
+              "extract_s": {"type": "number"},
+              "classify_s": {"type": "number"}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

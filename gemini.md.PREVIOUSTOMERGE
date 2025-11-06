@@ -1,0 +1,80 @@
+# GEMINI Integration Guide
+
+This guide outlines how to use Google Gemini (and other local/remote LLM agents) to assist research, auditing, and code tasks within this repository.
+
+Last updated: 2025‑10‑23
+
+---
+
+## Scope
+
+- Summarize and refactor notes, generate cross‑references, and create literature syntheses
+- Validate claims with citations and produce experiment design drafts
+- Generate tests, TODOs, and structured checklists (see `scripts/todowrite.py`)
+- Coordinate with local agents (e.g., Ollama) for offline tasks
+
+---
+
+## Setup
+
+Gemini access may be used via:
+
+- Web UI: https://aistudio.google.com/
+- REST API: https://ai.google.dev/ (set `GEMINI_API_KEY`)
+- Python SDK: `pip install google-generativeai`
+
+Example (Python):
+
+```
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+model = genai.GenerativeModel("gemini-1.5-pro")
+resp = model.generate_content("Summarize notes/ in 5 bullets with citations if present.")
+print(resp.text)
+```
+
+---
+
+## Local Agents (Ollama)
+
+If you prefer local models:
+
+1) Install Ollama: https://ollama.com/
+2) Pull a model (example): `ollama pull llama3`  
+3) Query via CLI:
+
+```
+echo "Summarize docs/PROJECT_ROADMAP.md" | ollama run llama3
+```
+
+You can script agent workflows that invoke `ollama` and write results to `extracted_data/reports/` for provenance.
+
+---
+
+## Best Practices
+
+- Treat warnings as errors: keep generated outputs reproducible and re‑runnable.
+- Attribute claims to sources; extract primary references when possible.
+- Keep data flow explicit: input files → prompts → outputs written under `extracted_data/`.
+- Record parameters, model versions, and seeds in report headers for reproducibility.
+
+---
+
+## Useful Automation
+
+- Generate/refresh TODO tracker:
+  - `python scripts/todowrite.py --base-dir .`
+- Run repo audit:
+  - `python scripts/repo_audit.py --base-dir .`
+- Build extraction pipeline (requires optional deps for PDF/OCR):
+  - `python scripts/build_catalog_pipeline.py --base-dir . --scan-dir notes --scan-dir .`
+
+---
+
+## Security and Privacy
+
+- Do not send proprietary PDFs or notes to remote models unless permitted.
+- For sensitive workflows, prefer local models via Ollama and keep artifacts local.
+

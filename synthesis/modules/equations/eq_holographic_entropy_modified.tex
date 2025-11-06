@@ -1,0 +1,31 @@
+%==============================================================================
+% Equation: Modified holographic entropy (Aether framework)
+% Source: Alpha003.02 (Section 0.10, lines 132-141)
+%         Ch21 (unified predictions for holographic corrections)
+% Framework: Aether | Domain: GR/QM | Status: Experimental test
+%==============================================================================
+\begin{equation}
+  S_{\text{holo}} = \frac{k_B c^3 A}{4 G \hbar}
+  + \alpha \int_{\mathcal{V}} \rho_{\text{ZPE}}(x) \, d^3 x
+  \eqtag{A}{GR}{E}
+  \label{eq:holo:entropy-modified-aether}
+\end{equation}
+% Notes:
+%   * First term: Standard Bekenstein-Hawking entropy (area law)
+%   * Second term: Volumetric correction from scalar-ZPE coupling
+%   * $A$ = event horizon area (or effective horizon area in analog systems)
+%   * $\rho_{\text{ZPE}}$ = zero-point energy density within horizon volume $\mathcal{V}$
+%   * $\alpha$ = coupling constant (predicted $\alpha \sim 10^{-2}$ to $10^{-1}$ in natural units)
+%   * Dimensionally: $[S] = [k_B] = \text{energy} / \text{temperature}$
+%   * Standard GR: $\alpha = 0$ (no volumetric term)
+%   * Genesis framework uses different correction: $S \propto (1 + \beta \ell_{\text{node}}^2 / A)$
+% Experimental test:
+%   * Vary horizon volume $\mathcal{V}$ at fixed area $A$ in BEC analog systems
+%   * Measure ZPE density independently via Casimir force (Ch22)
+%   * Expected sensitivity: $\Delta S / S \sim 10^{-2}$ to $10^{-1}$ in analog BH
+% Dependencies:
+%   * Ch01: Fundamental constants and Planck scale
+%   * Ch07: Aether scalar-ZPE coupling formalism
+%   * Ch22: Scalar-ZPE experimental protocols (ZPE density measurement)
+%   * Ch25: Holographic entropy tests in analog black holes
+%==============================================================================

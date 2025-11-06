@@ -1,0 +1,50 @@
+%==============================================================================
+% Equation Module: Genesis FoldMerge Operator
+% Source: Chapter 13 - Genesis Origami Dimensions
+% Date: 2025-10-23
+%==============================================================================
+
+\begin{equation}
+  \boxed{
+  \mathcal{M}_{\text{fold}}(d_1, d_2) = \int_{\mathcal{N}} K_{\text{fold}}(x_1, x_2) \cdot \mathcal{F}[d_1] \otimes \mathcal{F}[d_2] \, d\mu(x)
+  }
+  \eqtag{G}{FM}{OP}
+  \label{eq:module:genesis-foldmerge-operator}
+\end{equation}
+
+\noindent where:
+\begin{itemize}[noitemsep]
+  \item $\mathcal{M}_{\text{fold}}$: FoldMerge operator mapping dimension pairs to folded configurations
+  \item $d_1, d_2$: Initial dimensions to be folded
+  \item $K_{\text{fold}}$: Folding kernel incorporating all 64 Genesis kernels
+  \item $\mathcal{F}[d_i]$: Dimensional field operators
+  \item $\mathcal{N}$: Nodespace manifold
+  \item $d\mu(x)$: Invariant measure on nodespace
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Kernel Decomposition:}
+\begin{equation}
+  K_{\text{fold}} = \prod_{k=1}^{26} K_{\text{primary}}^{(k)} \cdot \prod_{s=1}^{28} K_{\text{sub}}^{(s)} \cdot \prod_{ss=1}^{10} K_{\text{sub-sub}}^{(ss)}
+  \eqtag{G}{FM}{KD}
+\end{equation}
+
+\vspace{0.5em}
+\noindent\textbf{Effective Dimension:}
+\begin{equation}
+  d_{\text{eff}} = d_1 + d_2 - \Delta d_{\text{fold}}, \quad \Delta d_{\text{fold}} \geq 0
+  \eqtag{G}{FM}{EF}
+\end{equation}
+
+\vspace{0.5em}
+\noindent\textbf{Information Conservation:}
+\begin{equation}
+  S[\mathcal{M}_{\text{fold}}(d_1, d_2)] = S[d_1] + S[d_2] + \Delta S_{\text{entanglement}}
+  \eqtag{G}{FM}{IC}
+\end{equation}
+
+\noindent\textbf{Physical Significance:} The FoldMerge operator orchestrates dimensional transitions in the Genesis Framework, preserving information while creating entanglement between folded dimensions. It generalizes Kaluza-Klein compactification to dynamic, fractal folding patterns.
+
+%==============================================================================
+% End of Equation Module
+%==============================================================================

@@ -1,0 +1,184 @@
+%==============================================================================
+% Equation: Complete Dimensional Mapping (Unified Framework)
+% Source: Alpha001.06 (Cayley-Dickson sections), Maximal_Extraction_SET1_SET2.md
+% Framework: Unified | Domain: MATH | Status: Theoretical
+%==============================================================================
+% Establishes the complete dimensional transformation mapping between:
+%   - Integer Cayley-Dickson dimensions (2^n: 1, 2, 4, 8, ..., 2048)
+%   - Fractal/origami dimensions (non-integer Hausdorff dimension)
+%   - Negative dimensions (virtual/dual spaces)
+%   - Exceptional Lie group embedding dimensions (E_8 = 248, etc.)
+%
+% This mapping resolves the apparent conflict between Aether's integer
+% dimensional hierarchy and Genesis's fractal dimensional structure,
+% showing they are complementary descriptions at different scales.
+%==============================================================================
+
+\begin{equation}
+  \mathcal{D}_{\text{unified}}: \mathbb{D}_{\text{CD}} \leftrightarrow \mathbb{D}_{\text{fractal}}
+    \leftrightarrow \mathbb{D}_{\text{negative}} \leftrightarrow \mathbb{D}_{\text{Lie}}
+  \eqtag{U}{MATH}{T}
+  \label{eq:unified:dimensional-mapping}
+\end{equation}
+
+%==============================================================================
+% MAPPING COMPONENTS
+%==============================================================================
+
+% 1. Cayley-Dickson to Fractal Dimension Mapping
+% Integer dimensions 2^n map to effective fractal dimensions via logarithmic scaling:
+\begin{equation}
+  D_{\text{fractal}}(n) = D_0 + \alpha \log_2(2^n) + \beta \sum_{k=1}^{n} \frac{1}{2^k}
+  \label{eq:unified:cd-to-fractal}
+\end{equation}
+where:
+\begin{itemize}
+  \item $D_0$: Base fractal dimension (typically 3-4 for physical space)
+  \item $\alpha$: Logarithmic scaling coefficient
+  \item $\beta$: Fractal correction coefficient
+  \item $n$: Cayley-Dickson iteration level ($n = 0, 1, 2, \ldots, 11$ for up to 2048D)
+\end{itemize}
+
+% 2. Fractal to Negative Dimension Mapping
+% Fractal dimensions can extend into negative regime via analytic continuation:
+\begin{equation}
+  D_{\text{negative}}(D_f) = -\frac{D_f}{1 + D_f} \cdot \zeta(-D_f)
+  \label{eq:unified:fractal-to-negative}
+\end{equation}
+where $\zeta(s)$ is the Riemann zeta function, providing regularization.
+
+% 3. Lie Group Embedding Dimension Correspondence
+% Exceptional Lie groups embed in Cayley-Dickson hierarchy:
+\begin{equation}
+  \begin{aligned}
+    G_2 &\leftrightarrow \mathbb{O} \quad (\text{8D octonions}) \\
+    F_4 &\leftrightarrow \mathbb{S} \quad (\text{16D sedenions, Jordan algebra}) \\
+    E_6 &\leftrightarrow 2^5\text{D} \quad (\text{32D pathions}) \\
+    E_7 &\leftrightarrow 2^6\text{D} \quad (\text{64D chingons}) \\
+    E_8 &\leftrightarrow 2^7\text{D} \quad (\text{128D, extended to 248 roots})
+  \end{aligned}
+  \label{eq:unified:lie-cd-correspondence}
+\end{equation}
+
+%==============================================================================
+% COMPLETE TRANSFORMATION FORMULA
+%==============================================================================
+
+% General dimensional transformation operator:
+\begin{equation}
+  \mathcal{T}_{\text{dim}}: D_{\text{in}} \mapsto D_{\text{out}}
+    = \mathcal{F}_{\text{scale}}(D_{\text{in}}) \cdot \mathcal{P}_{\text{project}}
+    \cdot \mathcal{E}_{\text{embed}}
+  \label{eq:unified:dim-transform-operator}
+\end{equation}
+
+% Explicit components:
+\begin{align}
+  \mathcal{F}_{\text{scale}}(D) &= \exp\left( \gamma \log(D + 1) \right)
+    \label{eq:unified:scale-function} \\
+  \mathcal{P}_{\text{project}} &= \sum_{i} w_i \, P_i
+    \quad \text{(projection onto subspaces)}
+    \label{eq:unified:projection-operator} \\
+  \mathcal{E}_{\text{embed}} &= \prod_{j} E_j^{\alpha_j}
+    \quad \text{(exceptional group embeddings)}
+    \label{eq:unified:embedding-operator}
+\end{align}
+
+%==============================================================================
+% ORIGAMI DIMENSION FOLDING
+%==============================================================================
+
+% Origami folding relates higher dimensions to lower via geometric folding:
+\begin{equation}
+  D_{\text{origami}}(D_{\text{high}}, \theta)
+    = D_{\text{low}} + \left( D_{\text{high}} - D_{\text{low}} \right)
+      \cdot \cos^2\left( \frac{\theta}{2} \right)
+  \label{eq:unified:origami-folding}
+\end{equation}
+where:
+\begin{itemize}
+  \item $D_{\text{high}}$: Higher dimensional space (e.g., 2048D)
+  \item $D_{\text{low}}$: Lower dimensional projection (e.g., 4D)
+  \item $\theta$: Folding angle ($\theta = 0$ fully unfolded, $\theta = \pi$ fully folded)
+\end{itemize}
+
+%==============================================================================
+% SCALE-DEPENDENT DIMENSIONAL TRANSITION
+%==============================================================================
+
+% Effective dimension depends on probing scale (energy/length):
+\begin{equation}
+  D_{\text{eff}}(E) = D_{\text{base}} + \sum_{n=1}^{N} \Delta D_n
+    \cdot \Theta\left( E - E_{\text{threshold},n} \right)
+  \label{eq:unified:scale-dependent-dimension}
+\end{equation}
+where:
+\begin{itemize}
+  \item $D_{\text{base}}$: Macroscopic dimension (4D spacetime)
+  \item $\Delta D_n$: Dimensional increment at threshold $n$
+  \item $E_{\text{threshold},n}$: Energy scale where dimension $n$ becomes accessible
+  \item $\Theta(x)$: Heaviside step function
+\end{itemize}
+
+% Example hierarchy:
+\begin{equation}
+  \begin{aligned}
+    E < E_{\text{QCD}} &\implies D_{\text{eff}} = 4 \quad \text{(classical spacetime)} \\
+    E_{\text{QCD}} < E < E_{\text{EW}} &\implies D_{\text{eff}} \approx 4 + \epsilon_1
+      \quad \text{(fractal corrections)} \\
+    E_{\text{EW}} < E < E_{\text{Planck}} &\implies D_{\text{eff}} \approx 8-16
+      \quad \text{(hypercomplex structure)} \\
+    E > E_{\text{Planck}} &\implies D_{\text{eff}} \to 248-2048
+      \quad \text{(full dimensional hierarchy)}
+  \end{aligned}
+  \label{eq:unified:dimension-energy-hierarchy}
+\end{equation}
+
+%==============================================================================
+% INVERSE MAPPING (Effective to Fundamental Dimensions)
+%==============================================================================
+
+% Given an effective fractal dimension, recover underlying Cayley-Dickson level:
+\begin{equation}
+  n_{\text{CD}}(D_{\text{fractal}}) = \left\lfloor
+    \frac{D_{\text{fractal}} - D_0}{\alpha} + \mathcal{O}(\beta)
+  \right\rfloor
+  \label{eq:unified:inverse-cd-mapping}
+\end{equation}
+
+%==============================================================================
+% PHYSICAL INTERPRETATION
+%==============================================================================
+% This dimensional mapping resolves the apparent paradox:
+%   - Aether framework: Uses integer Cayley-Dickson dimensions (2, 4, 8, ..., 2048)
+%   - Genesis framework: Uses fractal/origami dimensions (non-integer Hausdorff)
+%   - Unified view: Integer dimensions are skeleton, fractal fills intermediate scales
+%
+% Physical meaning at different scales:
+%   1. Macroscopic (E < GeV): Effective 4D spacetime
+%   2. Nuclear (GeV < E < TeV): Fractal corrections, D ~ 4 + epsilon
+%   3. Electroweak (TeV scale): Hypercomplex 8D structure becomes relevant
+%   4. Planck scale: Full Cayley-Dickson hierarchy accessible
+%   5. Trans-Planckian: Origami folding mediates between 2048D and lower dimensions
+%
+% Origami folding allows smooth transition between discrete dimensional levels,
+% explaining how 2048D structure compactifies to observable 4D reality.
+%
+% Negative dimensions represent dual/virtual spaces (e.g., wormhole mouths,
+% quantum tunneling paths) regularized via zeta function.
+%
+% Experimental implications:
+%   - Dimensional transitions detectable via resonance spectroscopy
+%   - Fractal corrections to scattering amplitudes at high energies
+%   - Origami folding signatures in cosmic ray anomalies
+%   - E_8 lattice fingerprints in crystal vibrational spectra
+%
+% See Ch20 for detailed derivations of each mapping component.
+% See Ch02 for Cayley-Dickson construction details.
+% See Ch05 for fractal calculus foundations.
+%==============================================================================
+
+% Dependencies: Ch02 (Cayley-Dickson), Ch03 (Lie groups), Ch05 (fractals),
+%               Ch20 (dimensional reconciliation)
+% Forward references: Ch22-26 (experimental validation of dimensional transitions)
+%==============================================================================

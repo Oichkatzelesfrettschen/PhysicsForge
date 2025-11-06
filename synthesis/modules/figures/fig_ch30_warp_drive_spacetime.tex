@@ -1,0 +1,193 @@
+% fig_ch30_warp_drive_spacetime.tex
+% Author: Computernonymouse
+% Description: 3D visualization of Alcubierre warp drive spacetime metric
+% Shows spacetime contraction ahead and expansion behind the warp bubble
+% Mathematical basis: ds^2 = -c^2 dt^2 + [dx - v_s f(r) dt]^2 + dy^2 + dz^2
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{colorbrewer}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing,calc,patterns,backgrounds}
+
+% Define custom colormap for spacetime curvature
+\pgfplotsset{
+    colormap={warpspace}{
+        rgb255(0cm)=(26,26,120);     % Deep blue (contracted space)
+        rgb255(1cm)=(40,60,190);     % Blue
+        rgb255(2cm)=(70,130,255);    % Light blue
+        rgb255(3cm)=(255,255,255);   % White (flat space)
+        rgb255(4cm)=(255,200,100);   % Light orange
+        rgb255(5cm)=(255,100,50);    % Orange
+        rgb255(6cm)=(200,30,30)      % Red (expanded space)
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+% Main 3D plot showing warp bubble geometry
+\begin{axis}[
+    view={30}{25},
+    width=16cm,
+    height=12cm,
+    xlabel={$x$ [bubble radii]},
+    ylabel={$y$ [bubble radii]},
+    zlabel={$g_{tt}$ [metric component]},
+    xmin=-4,xmax=4,
+    ymin=-3,ymax=3,
+    zmin=-1.5,zmax=1.5,
+    xtick={-4,-3,-2,-1,0,1,2,3,4},
+    ytick={-3,-2,-1,0,1,2,3},
+    ztick={-1.5,-1,-0.5,0,0.5,1,1.5},
+    grid=major,
+    grid style={gray!20},
+    colormap name=warpspace,
+    colorbar,
+    colorbar style={
+        title={Spacetime\\curvature},
+        ylabel={},
+        ytick={-1.5,-1,-0.5,0,0.5,1,1.5},
+        yticklabels={Contracted,,,Flat,,,Expanded},
+        width=8pt,
+        at={(1.05,0.5)},
+        anchor=west
+    },
+    axis lines=center,
+    axis line style={-Latex,thick},
+    mesh/ordering=y varies,
+    mesh/cols=60,
+    samples=60,
+    samples y=45,
+    shader=interp,
+    title={{\Large\bfseries Alcubierre Warp Drive Metric}\\[2mm]
+           {\normalsize $ds^2 = -c^2dt^2 + [dx - v_s f(r_s)dt]^2 + dy^2 + dz^2$}},
+    title style={at={(0.5,1.08)}}
+]
+
+% Define warp bubble shape function
+% f(r) = tanh(sigma*(r + R)) - tanh(sigma*(r - R))
+% where r = sqrt(x^2 + y^2), R = bubble radius, sigma = sharpness
+\addplot3[
+    surf,
+    domain=-4:4,
+    domain y=-3:3,
+    point meta=z,
+]
+{
+    % Alcubierre metric component g_tt
+    % Creates contraction ahead (negative z) and expansion behind (positive z)
+    0.8 * (tanh(2*(sqrt((x+1.5)^2 + y^2) - 1.2)) - tanh(2*(sqrt((x+1.5)^2 + y^2) + 1.2)))
+    * exp(-0.15*(x^2 + y^2))
+};
+
+% Add contour lines at key metric values
+\addplot3[
+    contour gnuplot={
+        levels={-1,-0.5,0,0.5,1},
+        draw color=black!40,
+        labels=false,
+    },
+    domain=-4:4,
+    domain y=-3:3,
+    samples=40,
+]
+{
+    0.8 * (tanh(2*(sqrt((x+1.5)^2 + y^2) - 1.2)) - tanh(2*(sqrt((x+1.5)^2 + y^2) + 1.2)))
+    * exp(-0.15*(x^2 + y^2))
+};
+
+% Mark bubble center
+\addplot3[
+    mark=*,
+    mark size=3pt,
+    color=black,
+    only marks,
+] coordinates {(-1.5,0,0)};
+
+% Add annotations
+\node[anchor=south] at (axis cs:-1.5,0,0.2) {\small\bfseries Bubble center};
+
+% Direction of motion arrow
+\draw[-{Latex[length=4mm,width=3mm]},ultra thick,red!80!black]
+    (axis cs:2,0,0) -- (axis cs:-3,0,0)
+    node[midway,below=3mm] {\small\bfseries Direction of motion};
+
+\end{axis}
+
+% Add side annotations with parameter explanations
+\begin{scope}[on background layer]
+    % Bubble radius indicator
+    \draw[<->,thick,blue!60!black] ([xshift=-5mm]current axis.south west) --
+        node[left,align=right] {Bubble\\radius\\$r_s$} ([xshift=-5mm]current axis.north west);
+
+    % Sharpness parameter indicator
+    \node[anchor=north west,align=left,draw=black!40,fill=white,rounded corners]
+        at ([xshift=5mm,yshift=-5mm]current axis.north east) {
+        \textbf{Parameters:}\\[1mm]
+        $r_s = 1.2$ (bubble radius)\\
+        $\sigma = 2$ (sharpness)\\
+        $v_s = $ warp velocity\\[1mm]
+        \textbf{Regions:}\\[1mm]
+        {\color{blue!70!black}Blue}: Contracted space\\
+        {\color{red!70!black}Red}: Expanded space\\
+        White: Flat spacetime
+    };
+\end{scope}
+
+% Add detailed caption-like description
+\node[below=8mm of current axis.south,text width=14cm,align=justify,font=\small] {
+    \textbf{Figure:} Spacetime geometry of an Alcubierre warp drive showing the metric
+    component $g_{tt}$ that creates spacetime contraction ahead of the bubble (blue region)
+    and expansion behind it (red region). The warp bubble moves in the negative $x$ direction
+    while the interior remains in flat spacetime. The shape function creates a smooth
+    transition controlled by the sharpness parameter $\sigma$.
+};
+
+% Add small inset showing cross-section
+\begin{scope}[shift={(11.5,-2)}]
+    \begin{axis}[
+        width=5cm,
+        height=3.5cm,
+        xlabel={$x$ [bubble radii]},
+        ylabel={$g_{tt}$},
+        xmin=-4,xmax=2,
+        ymin=-1.5,ymax=1.5,
+        grid=major,
+        grid style={gray!20},
+        title={\small Cross-section at $y=0$},
+        title style={at={(0.5,1.05)}},
+        axis lines=left,
+        xtick={-4,-3,-2,-1,0,1,2},
+        ytick={-1.5,-1,-0.5,0,0.5,1,1.5},
+        yticklabels={-1.5,-1,-0.5,0,0.5,1,1.5},
+        tick label style={font=\tiny},
+        label style={font=\small},
+        legend pos=south east,
+        legend style={font=\tiny,draw=none,fill=white,fill opacity=0.8}
+    ]
+
+    % Plot cross-section
+    \addplot[
+        thick,
+        blue!60!red,
+        domain=-4:2,
+        samples=100,
+    ]
+    {
+        0.8 * (tanh(2*(abs(x+1.5) - 1.2)) - tanh(2*(abs(x+1.5) + 1.2)))
+        * exp(-0.15*x^2)
+    };
+
+    % Mark key points
+    \addplot[mark=*,only marks,red] coordinates {(-2.7,{0.8 * (tanh(2*(abs(-2.7+1.5) - 1.2)) - tanh(2*(abs(-2.7+1.5) + 1.2))) * exp(-0.15*(-2.7)^2)})};
+    \addplot[mark=*,only marks,blue] coordinates {(-0.3,{0.8 * (tanh(2*(abs(-0.3+1.5) - 1.2)) - tanh(2*(abs(-0.3+1.5) + 1.2))) * exp(-0.15*(-0.3)^2)})};
+
+    \legend{Metric,$g_{tt} < 0$,$g_{tt} > 0$}
+    \end{axis}
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

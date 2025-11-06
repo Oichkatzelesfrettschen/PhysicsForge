@@ -1,0 +1,1 @@
+New-Item -Path "C:\Program Files\gemini_elevated_artifact.txt" -ItemType File -Value "Artifact from Gemini (Elevated)" -Force

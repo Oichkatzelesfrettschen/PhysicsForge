@@ -1,0 +1,17 @@
+%==============================================================================
+% Equation: Christoffel symbols (Levi-Civita connection)
+% Source: Standard general relativity (Carroll, Wald, MTW)
+% Provenance: Tensor calculus preliminaries
+%==============================================================================
+\begin{equation}
+  \Gamma^{\lambda}_{\mu\nu} = \frac{1}{2} g^{\lambda\rho}
+  \left( \partial_\mu g_{\nu\rho} + \partial_\nu g_{\rho\mu} - \partial_\rho g_{\mu\nu} \right)
+  \eqtag{M}{MATH}{T}
+  \label{eq:prelim:christoffel}
+\end{equation}
+% Notes:
+%   * Christoffel symbols define the Levi-Civita connection (torsion-free, metric-compatible)
+%   * Symmetric in lower indices: $\Gamma^{\lambda}_{\mu\nu} = \Gamma^{\lambda}_{\nu\mu}$
+%   * Transform non-tensorially under coordinate changes
+%   * Essential for covariant derivatives: $\nabla_\sigma V^\mu = \partial_\sigma V^\mu + \Gamma^\mu_{\sigma\rho} V^\rho$
+%==============================================================================

@@ -1,0 +1,87 @@
+% Equation Module: Gravitational Wave Modifications
+% Chapter 18: Validation Roadmap - Astrophysical Tests
+% Purpose: Unified GW propagation equation
+
+\begin{equation}
+\boxed{
+h_{unified}(\omega, L) = h_0 \cdot e^{-\alpha_{scalar}L} \cdot \left[1 + \beta_{nodespace}(\omega)\right] \cdot e^{i\phi_{vacuum}(\omega)}
+}
+\label{eq:unified_gw_modification}
+\end{equation}
+
+Gravitational wave amplitude after propagating distance $L$ through unified vacuum.
+
+\vspace{0.5em}
+\noindent\textbf{Baseline Amplitude:}
+\begin{equation*}
+h_0 = \frac{4G\mathcal{M}c^{-2}}{r} \quad \text{(chirp mass $\mathcal{M}$, distance $r$)}
+\end{equation*}
+
+\vspace{0.5em}
+\noindent\textbf{Framework Modifications:}
+
+\begin{enumerate}
+  \item \textbf{Aether scalar attenuation}: $e^{-\alpha_{scalar}L}$
+    \begin{itemize}
+      \item Scalar field $\phi$ couples to graviton propagation
+      \item Attenuation coefficient: $\alpha_{scalar} \sim \kappa\phi^2/c^3 \sim 10^{-28}$ m$^{-1}$
+      \item Negligible for local sources ($L < 100$ Mpc)
+      \item Observable for cosmological sources ($L \sim $ Gpc)
+      \item $e^{-\alpha L}|_{L=1\text{ Gpc}} \approx 0.9999$ (0.01\% effect)
+    \end{itemize}
+
+  \item \textbf{Genesis nodespace scattering}: $[1 + \beta_{nodespace}(\omega)]$
+    \begin{itemize}
+      \item GWs scatter off nodespace boundaries
+      \item Frequency-dependent: $\beta_{nodespace}(\omega) = \beta_0(\omega/\omega_0)^\gamma$
+      \item $\beta_0 \sim 10^{-5}$: Amplitude modulation
+      \item $\gamma \approx 0.5$: Power-law index
+      \item High-frequency waves scatter more (smaller wavelength)
+    \end{itemize}
+
+  \item \textbf{Pais vacuum phase shift}: $e^{i\phi_{vacuum}(\omega)}$
+    \begin{itemize}
+      \item Vacuum polarization modifies dispersion relation
+      \item Phase shift: $\phi_{vacuum}(\omega) = \phi_0(\omega/\omega_0)L/L_0$
+      \item $\phi_0 \sim 10^{-3}$ rad: Characteristic phase
+      \item $L_0 \sim 1$ Gpc: Characteristic distance
+      \item Frequency-dependent $\to$ polarization mixing
+    \end{itemize}
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent\textbf{Observable Signatures:}
+
+\begin{itemize}
+  \item \textbf{Dispersion relation modification:}
+    \begin{equation*}
+    \omega^2 = c^2 k^2[1 + \delta(\omega)], \quad \delta \sim \alpha_{scalar}c + \beta_{nodespace}
+    \end{equation*}
+    Causes frequency-dependent arrival time:
+    \begin{equation*}
+    \Delta t \approx \frac{L}{2c}[\delta(\omega_2) - \delta(\omega_1)]
+    \end{equation*}
+    For $\omega_2/\omega_1 = 10$, $L = 1$ Gpc: $\Delta t \sim 10^{-6}$ s
+
+  \item \textbf{Amplitude frequency dependence:}
+    \begin{equation*}
+    \frac{h(\omega_2)}{h(\omega_1)} \neq \frac{\omega_1}{\omega_2} \quad (\text{GR prediction})
+    \end{equation*}
+    Unified: Deviation $\sim 0.1\%$ for $\omega_2/\omega_1 = 10$
+
+  \item \textbf{Polarization rotation:}
+    \begin{equation*}
+    \theta_{pol} = \phi_{vacuum}(\omega) \sim 10^{-3} \text{ rad over 1 Gpc}
+    \end{equation*}
+    $+$ and $\times$ polarizations mix
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Required Experimental Sensitivity:}
+\begin{itemize}
+  \item \textbf{Current LIGO/Virgo}: $\Delta t/t \sim 10^{-6}$ (marginally sensitive)
+  \item \textbf{Next-gen (Einstein Telescope, Cosmic Explorer)}: $\Delta t/t \sim 10^{-8}$ (definitive)
+  \item \textbf{Timeline}: 2030--2040 (next-generation detectors operational)
+\end{itemize}
+
+Gravitational waves are a \textit{cosmological probe} of the unified framework, complementing laboratory tests.

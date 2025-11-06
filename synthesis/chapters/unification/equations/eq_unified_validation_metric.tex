@@ -1,0 +1,37 @@
+% Equation Module: Unified Validation Metric
+% Chapter 18: Validation Roadmap
+% Purpose: Protocol for reconciling multi-framework predictions
+
+\begin{equation}
+\boxed{
+X_{unified} = \sum_{i \in \{A, G, P\}} w_i X_i + X_{coupled}
+}
+\label{eq:unified_validation_metric}
+\end{equation}
+
+Protocol for calculating unified predictions from framework-specific values:
+
+\vspace{0.5em}
+\noindent\textbf{Terms:}
+\begin{itemize}
+  \item $X_i$: Framework-specific prediction ($i \in \{A, G, P\}$: Aether, Genesis, Pais)
+  \item $w_i$: Framework weights
+    \begin{itemize}
+      \item Scale-dependent (Chapter~\ref{ch:framework_comparison}, \S\ref{sec:ch17:scale_hierarchy})
+      \item $\sum w_i = 1$ (normalization)
+      \item Example: Laboratory scale $\to w_P = 0.7, w_A = 0.2, w_G = 0.1$
+    \end{itemize}
+  \item $X_{coupled}$: Non-linear cross-framework coupling
+    \begin{itemize}
+      \item Typically $|X_{coupled}| \sim 0.05 \times \max(X_i)$
+      \item Can be positive (synergistic) or negative (destructive interference)
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Validation Criterion:}
+\begin{equation*}
+\frac{|X_{measured} - X_{unified}|}{\sigma_{measured}} < 3 \quad \text{(pass)}
+\end{equation*}
+
+If measured value agrees with unified prediction but not individual $X_i$, this \textit{validates the unified framework} while showing individual frameworks are incomplete.

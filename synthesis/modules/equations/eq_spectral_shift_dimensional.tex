@@ -1,0 +1,46 @@
+%==============================================================================
+% Equation: Atomic spectral shift from dimensional coupling
+% Source: Ch26 (atomic/molecular spectroscopy section)
+%         Precision spectroscopy theory (Rydberg state sensitivity)
+% Framework: Aether | Domain: Atomic Physics | Status: Theoretical prediction
+%==============================================================================
+\begin{equation}
+  \Delta E_n^{\text{atom}} = E_n^{(3+1D)} \sum_{k} \epsilon_k
+  \left( \frac{a_n}{\ell_k} \right)^2
+  \left[ 1 + \mathcal{O}\left( \frac{a_n}{\ell_k} \right)^4 \right]
+  \eqtag{A}{MATH}{T}
+  \label{eq:spectro:dimensional-shift}
+\end{equation}
+% Notes:
+%   * $\Delta E_n^{\text{atom}}$ = energy shift of atomic level $n$ from dimensional coupling
+%   * $E_n^{(3+1D)}$ = standard quantum mechanics energy level (no extra dimensions)
+%   * $a_n = n^2 a_0$ = Bohr radius of level $n$ ($a_0 \approx 0.529$ Angstrom)
+%   * $\ell_k$ = dimensional transition length scale for dimension $D_k = 2^k$
+%   * $\epsilon_k$ = dimensionless coupling constant (predicted $\epsilon_k \ll 1$)
+%   * Sum over $k$: All dimensional transitions that can couple to atomic state
+% Scaling with principal quantum number:
+%   * Ground state ($n=1$): $\Delta E / E \sim \epsilon (a_0 / \ell_k)^2 \sim 10^{16} \epsilon$
+%   * Rydberg states ($n \sim 100$): $\Delta E / E \sim \epsilon (10^4 a_0 / \ell_k)^2 \sim 10^{24} \epsilon$
+%   * Enhanced sensitivity in Rydberg states by factor $n^4 \sim 10^8$
+% Observable signatures:
+%   * Deviation from QED predictions in hydrogen 1S-2S transition
+%   * Non-linear scaling of Rydberg energy levels with $n$ (expect $E_n \propto n^{-2}$)
+%   * Isotope shift anomalies if dimensional coupling depends on nuclear structure
+% Experimental requirements:
+%   * Precision: $\Delta E / E < 10^{-15}$ (optical atomic clocks achieve $\sim 10^{-18}$)
+%   * Systematic control: Electric fields $< 1$ mV/cm, magnetic fields $< 1$ mG
+%   * Comparison: Measure multiple Rydberg states ($n = 50$ to 300) and fit to $n^4$ scaling
+% Current constraints:
+%   * Hydrogen 1S-2S: $|\Delta E / E| < 10^{-14}$ constrains $\epsilon < 10^{-30}$
+%   * Rydberg spectroscopy: $|\Delta E / E| < 10^{-12}$ constrains $\epsilon < 10^{-36}$
+%   * Future: Rydberg optical lattice clocks may reach $10^{-18}$, probing $\epsilon \sim 10^{-42}$
+% Cross-validation:
+%   * If collider resonances found at $E_k = \hbar c / \ell_k$ (Ch26.3), predict $\epsilon_k$
+%   * Check consistency with atomic shifts via Eq.~\ref{eq:spectro:dimensional-shift}
+%   * Inconsistency indicates resonances are not dimensional (could be new particles)
+% Dependencies:
+%   * Ch01: Atomic physics fundamentals (Bohr radius, Rydberg formula)
+%   * Ch02: Cayley-Dickson dimensions (defines $\ell_k$ scales)
+%   * Ch20: Dimensional projection (determines coupling $\epsilon_k$)
+%   * Ch26: Experimental atomic spectroscopy protocols
+%==============================================================================

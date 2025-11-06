@@ -1,0 +1,19 @@
+%==============================================================================
+% Equation: Genesis Quasiparticle Excitation Spectrum
+% Framework: Genesis | Domain: QM | Status: Theoretical
+%==============================================================================
+\begin{equation}
+  E_{\text{qp}}(k) = \sqrt{\Delta^2 + v_F^2(k - k_F)^2} + \sum_{n=1}^{\infty} \frac{\alpha_n}{k^n} \cos(nk d_{\text{node}})
+  \eqtag{G}{QM}{T}
+  \label{eq:genesis:quasiparticle-excitation}
+\end{equation}
+% Notes: Dispersion relation for quasiparticle excitations in the Genesis nodespace.
+% The first term represents the gapped spectrum with gap $\Delta$ and Fermi velocity $v_F$
+% at Fermi momentum $k_F$, analogous to BCS-type excitations. The sum captures
+% lattice effects from the discrete nodespace structure with inter-node distance $d_{\text{node}}$
+% and coupling coefficients $\alpha_n$. These quasiparticles emerge as collective
+% excitations of the nodespace vacuum and carry quantum numbers corresponding to
+% symmetries of the underlying network. The spectrum exhibits both gapped and gapless
+% phases depending on the nodespace connectivity and can support topological modes.
+% Dependencies: eq:genesis:graph-laplacian, eq:genesis:nodespace-curvature
+%==============================================================================

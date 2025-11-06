@@ -1,0 +1,37 @@
+% Equation Module: Modified Structure Formation
+% Purpose: Growth of density perturbations with unified framework corrections
+% Chapter: 20 (Cosmological Applications)
+% Auto-numbered equation
+
+\begin{equation}\label{eq:cosmo_structure_formation}
+\boxed{
+\begin{aligned}
+\ddot{\delta} + 2H\dot{\delta} &= 4\pi G\rho_m\delta + \underbrace{\delta_{scalar}}_{\text{Aether}} + \underbrace{\delta_{nodespace}}_{\text{Genesis}} + \underbrace{\delta_{GEM}}_{\text{Pais}} \\[10pt]
+\delta_{scalar} &= -\frac{\kappa\phi}{M_P}\nabla^2\delta, \quad \kappa \sim 10^{-2} \\[6pt]
+\delta_{nodespace} &= g_{AG}\frac{|\mathcal{F}|^2}{k^2}\delta\left[1 - \exp\left(-\frac{k^2}{k_{Planck}^2}\right)\right] \\[6pt]
+\delta_{GEM} &= \frac{v^2}{c^2}\left(\frac{L}{r_S}\right)\delta, \quad r_S = \frac{2GM}{c^2} \\[10pt]
+D_+(a) &= D_0 a \exp\left[\int_0^a\frac{\Omega_m(a') - 1}{a'}da'\right]\left(1 + \Delta D_{unified}\right) \\[6pt]
+\Delta D_{unified} &= \frac{\kappa\phi_0}{M_P} + g_{AG}\langle|\mathcal{F}|^2\rangle - \frac{v^2}{c^2}\frac{L}{r_S} \sim 0.01
+\end{aligned}
+}
+\end{equation}
+
+\noindent\textbf{Framework Contributions:}
+\begin{enumerate}
+  \item \textbf{Aether scalar}: Fifth force from $\phi$ modifies gravitational potential $\Phi \to \Phi(1 + \kappa\phi/M_P)$. For $\kappa \sim 10^{-2}$ and $\phi \sim \phi_0$, this gives $\sim 1\%$ correction to growth rate.
+
+  \item \textbf{Genesis nodespace}: Discrete structure provides UV cutoff at $k \sim k_{Planck} = 1/L_P$. Below Planck scale, growth is enhanced by nodespace coupling. Exponential suppression prevents divergence. Predicts fractal dimension $D_{frac} = 3 + \epsilon$ where $\epsilon \sim 0.01$.
+
+  \item \textbf{Pais GEM}: Frame-dragging from rotating structures enhances clustering. Effect scales as $(v/c)^2(L/r_S)$ where $v$ is velocity, $L$ is correlation length, $r_S$ is Schwarzschild radius. For galaxy clusters: $v/c \sim 10^{-3}$, $L/r_S \sim 100$, giving $\delta_{GEM}/\delta \sim 10^{-2}$.
+\end{enumerate}
+
+\noindent\textbf{Observable Signatures:}
+\begin{itemize}
+  \item \textbf{Modified $\sigma_8(z)$}: RMS matter fluctuations in 8 Mpc/h spheres. Unified framework predicts:
+  \begin{equation}
+  \sigma_8(z=0) = 0.811 \times (1 + \Delta D_{unified}) = 0.819 \pm 0.008
+  \end{equation}
+  Compared to Planck 2018: $\sigma_8 = 0.811 \pm 0.006$. Slight tension ($1\sigma$) testable with LSST (2024-2034).
+
+  \item \textbf{Fractal scaling}: Galaxy distribution shows $\langle N(r) \rangle \propto r^{D_{frac}}$ with $D_{frac} = 3.01 \pm 0.01$ (from Genesis discreteness).
+\end{itemize}

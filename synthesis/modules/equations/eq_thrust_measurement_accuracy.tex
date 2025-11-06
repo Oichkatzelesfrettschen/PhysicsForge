@@ -1,0 +1,21 @@
+%==============================================================================
+% Equation: Propulsion Thrust Measurement Accuracy
+% Framework: Pais | Domain: PROP | Status: Experimental
+%==============================================================================
+\begin{equation}
+  \Delta F_T = \sqrt{\sigma_{\text{cal}}^2 + \sigma_{\text{drift}}^2 + \sigma_{\text{seismic}}^2 + \sigma_{\text{thermal}}^2}, \quad
+  F_T = \frac{dP}{dt}\bigg|_{\text{meas}} - F_{\text{baseline}}
+  \eqtag{P}{PROP}{E}
+  \label{eq:thrust:measurement-accuracy}
+\end{equation}
+% Notes: Total measurement uncertainty for anomalous thrust experiments testing Pais-effect
+% propulsion. The uncertainty $\Delta F_T$ combines calibration error $\sigma_{\text{cal}}$,
+% balance drift $\sigma_{\text{drift}}$, seismic noise $\sigma_{\text{seismic}}$, and thermal
+% expansion $\sigma_{\text{thermal}}$. The thrust $F_T$ is the measured rate of momentum change
+% $dP/dt$ minus baseline electromagnetic/acoustic forces $F_{\text{baseline}}$. Torsion pendulums
+% and null-force balances achieve $\Delta F_T \sim 10$ $\mu$N in vacuum for integration times
+% $\sim 100$ s. Detection of $F_T > 3\Delta F_T$ would constitute evidence for field propulsion.
+% Systematic error mitigation requires thrust reversal tests, Faraday cage shielding, and
+% rotation/flip measurements to eliminate artifacts.
+% Dependencies: eq:pais:propulsion-thrust, eq:pais:inertia-reduction
+%==============================================================================

@@ -1,0 +1,35 @@
+%==============================================================================
+% Table: Tensor Calculus Notation Reference
+% Purpose: Quick reference for tensor notation used throughout the monograph
+%==============================================================================
+\begin{table}[ht]
+\centering
+\caption{Tensor Calculus and Differential Geometry Notation}
+\label{tab:notation:tensor}
+\begin{tabular}{@{}llp{7cm}@{}}
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Description} \\
+\midrule
+$x^\mu$ & Spacetime coordinates & Contravariant coordinates, $\mu = 0,1,2,3$ \\
+$x^0 \equiv t$ & Time coordinate & In natural units: $c = 1$ \\
+$x^i$ & Spatial coordinates & Latin indices: $i,j,k = 1,2,3$ \\
+$g_{\mu\nu}$ & Metric tensor & Covariant metric, signature $(-,+,+,+)$ \\
+$g^{\mu\nu}$ & Inverse metric & Contravariant metric, $g^{\mu\rho} g_{\rho\nu} = \delta^\mu_\nu$ \\
+$\dd s^2$ & Line element & Invariant spacetime interval \\
+$\partial_\mu$ & Partial derivative & $\partial_\mu \equiv \frac{\partial}{\partial x^\mu}$ \\
+$\nabla_\mu$ & Covariant derivative & Metric-compatible, torsion-free connection \\
+$\Gamma^\lambda_{\mu\nu}$ & Christoffel symbols & Connection coefficients, symmetric in $\mu,\nu$ \\
+$R^\rho{}_{\sigma\mu\nu}$ & Riemann tensor & Curvature tensor (rank-4) \\
+$R_{\mu\nu}$ & Ricci tensor & Contraction of Riemann: $R_{\mu\nu} = R^\rho{}_{\mu\rho\nu}$ \\
+$R$ & Ricci scalar & Full contraction: $R = g^{\mu\nu} R_{\mu\nu}$ \\
+$G_{\mu\nu}$ & Einstein tensor & $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R$ \\
+$T_{\mu\nu}$ & Stress-energy tensor & Source of gravitational field \\
+$\Box$ & d'Alembertian & Curved-space wave operator: $\Box = \nabla_\mu \nabla^\mu$ \\
+$\nabla^2$ & Laplacian & Flat-space: $\nabla^2 = \partial_i \partial^i$ \\
+$\sqrt{-g}$ & Metric determinant & $g = \det(g_{\mu\nu})$, volume element: $\dd^4 x \sqrt{-g}$ \\
+$\epsilon_{\mu\nu\rho\sigma}$ & Levi-Civita tensor & Totally antisymmetric, $\epsilon_{0123} = +1$ \\
+$\delta^\mu_\nu$ & Kronecker delta & $\delta^\mu_\nu = 1$ if $\mu = \nu$, else $0$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+%==============================================================================
