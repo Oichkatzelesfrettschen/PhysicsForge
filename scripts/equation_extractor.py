@@ -77,7 +77,37 @@ def _worker_process(args: tuple[int, tuple[str, str], int | None]) -> tuple[int,
 
 
 class EquationExtractor:
+    """Extracts equations from text files and LaTeX modules.
+
+    This class scans specified directories for text and Markdown files,
+    extracts equations based on a set of regular expression patterns,
+    and catalogs them. It also builds a map of LaTeX equations from
+    the `synthesis/modules/equations` directory to link extracted
+    equations with their formal LaTeX representations.
+
+    Attributes:
+        base_dir (str): The root directory of the repository.
+        equations (list[dict]): A list of dictionaries, each representing a
+            found equation.
+        eq_counter (dict[str, int]): A counter for generating unique equation IDs
+            for each framework.
+        seen_equations (set[str]): A set of normalized equations to avoid
+            duplicates.
+        latex_map (dict[str, str]): A mapping from normalized LaTeX equation
+            bodies to their source file and label.
+        had_errors (bool): A flag indicating if any errors occurred during
+            extraction.
+        plan_items (list[dict]): A list of dictionaries detailing the scan plan.
+        metrics (dict[str, object]): A dictionary of metrics collected during
+            the scan.
+    """
     def __init__(self, base_dir: str | None = None):
+        """Initializes the EquationExtractor.
+
+        Args:
+            base_dir: The base directory of the repository. If not provided,
+                it is resolved automatically.
+        """
         self.base_dir = resolve_base_dir(base_dir)
         self.equations: list[dict] = []
         self.eq_counter: dict[str, int] = defaultdict(int)
@@ -103,6 +133,18 @@ class EquationExtractor:
 
     @staticmethod
     def _canonicalize(eq_str: str) -> str:
+        """DEPRECATED: Normalizes an equation string using a basic method.
+
+        This method performs a series of simple string replacements to
+        normalize an equation string for comparison. It is less robust than
+        `_canonicalize_v2`.
+
+        Args:
+            eq_str: The equation string to normalize.
+
+        Returns:
+            The normalized equation string.
+        """
         replacements = [
             (r"\\cdot", "*"),
             (r"\\times", "*"),
@@ -125,6 +167,18 @@ class EquationExtractor:
 
     @staticmethod
     def _canonicalize_v2(eq_str: str) -> str:
+        """Normalizes an equation string using an enhanced method.
+
+        This method performs a series of advanced string replacements to
+        normalize an equation string for comparison, including handling
+        nested LaTeX macros.
+
+        Args:
+            eq_str: The equation string to normalize.
+
+        Returns:
+            The normalized equation string.
+        """
         replacements = [
             (r"\\cdot", "*"),
             (r"\\times", "*"),
@@ -184,12 +238,33 @@ class EquationExtractor:
 
     @staticmethod
     def normalize_equation(eq_str: str) -> str:
+        """Normalizes an equation string for duplicate checking.
+
+        This method uses `_canonicalize_v2` to normalize the equation,
+        then removes all whitespace and converts to lowercase.
+
+        Args:
+            eq_str: The equation string to normalize.
+
+        Returns:
+            A compact, normalized version of the equation string.
+        """
         # Use enhanced canonicalization that handles nested macros
         s = EquationExtractor._canonicalize_v2(eq_str)
         return re.sub(r"\s+", "", s.strip()).lower()
 
     @staticmethod
     def _strip_tex(text: str) -> str:
+        """Strips LaTeX commands and comments from a string.
+
+        This is used to clean up LaTeX equation bodies before normalization.
+
+        Args:
+            text: The string containing LaTeX markup.
+
+        Returns:
+            The cleaned string.
+        """
         t = re.sub(r"%.*", "", text)  # comments
         t = re.sub(r"\\label\{[^}]*\}", "", t)
         t = t.replace("\\begin{equation}", "").replace("\\end{equation}", "")
@@ -204,6 +279,17 @@ class EquationExtractor:
         return t
 
     def _build_latex_map(self) -> dict[str, str]:
+        """Builds a map of LaTeX equations from the synthesis modules.
+
+        This method scans the `synthesis/modules/equations` directory for
+        `.tex` files, extracts the equation bodies and labels, and creates
+        a mapping from a normalized version of the equation to its source
+        location.
+
+        Returns:
+            A dictionary mapping normalized equation strings to their
+            source file and label.
+        """
         latex_dir = Path(self.base_dir) / "synthesis" / "modules" / "equations"
         mapping: dict[str, str] = {}
         if not latex_dir.exists():
@@ -260,6 +346,14 @@ class EquationExtractor:
         return mapping
 
     def _generate_eq_id(self, framework: str) -> str:
+        """Generates a unique equation ID for a given framework.
+
+        Args:
+            framework: The framework name (e.g., "Aether", "Genesis").
+
+        Returns:
+            A unique equation ID string (e.g., "AE001").
+        """
         prefix_map = {
             "Aether": "AE",
             "Genesis": "GE",
@@ -276,6 +370,17 @@ class EquationExtractor:
 
     @staticmethod
     def _extract_description(lines: list[str], line_num: int, context_window: int = 3) -> str:
+        """Extracts a description for an equation from its context.
+
+        Args:
+            lines: A list of all lines in the source file.
+            line_num: The line number of the equation.
+            context_window: The number of lines before and after the
+                equation to include in the context.
+
+        Returns:
+            A string containing the context of the equation.
+        """
         start = max(0, line_num - context_window - 1)
         end = min(len(lines), line_num + context_window)
         context = " ".join(lines[start:end])
@@ -286,6 +391,15 @@ class EquationExtractor:
 
     @staticmethod
     def _classify_domain(equation_str: str, description: str) -> str:
+        """Classifies the domain of an equation.
+
+        Args:
+            equation_str: The equation string.
+            description: The description of the equation.
+
+        Returns:
+            The classified domain string (e.g., "EM", "GR", "QM").
+        """
         combined = (equation_str + " " + description).lower()
         for dom, keys in DOMAIN_PRIORITIES:
             if any(k in combined for k in keys):
@@ -294,6 +408,16 @@ class EquationExtractor:
 
     @staticmethod
     def _suggest_experiment(equation_str: str, description: str) -> str:
+        """Suggests a potential experimental test for an equation.
+
+        Args:
+            equation_str: The equation string.
+            description: The description of the equation.
+
+        Returns:
+            A string with the suggested experiment or "Theoretical
+            validation required".
+        """
         suggestions = {
             "casimir": "Casimir force measurement with fractal geometries",
             "scalar": "Scalar field interferometry",
@@ -311,10 +435,30 @@ class EquationExtractor:
 
     @staticmethod
     def _has_math(expr: str) -> bool:
+        """Checks if a string contains mathematical symbols.
+
+        Args:
+            expr: The string to check.
+
+        Returns:
+            True if the string contains math symbols, False otherwise.
+        """
         return re.search(r"(=|\+|\-|\*|/|\^|\\(sum|int|frac|alpha|beta|gamma|sqrt|log|exp|partial|nabla))", expr) is not None
 
     @staticmethod
     def _is_valid_equation(eq_str: str) -> bool:  # used in tests
+        """Validates if a string is a plausible equation.
+
+        This method applies a series of heuristics to determine if a given
+        string is likely to be an equation, filtering out prose and other
+        non-equation text.
+
+        Args:
+            eq_str: The string to validate.
+
+        Returns:
+            True if the string is a valid equation, False otherwise.
+        """
         if len(eq_str) < 5 or len(eq_str) > 500:
             return False
         if eq_str.startswith(("- [", "* [", "C:\\Users\\")):
@@ -334,6 +478,15 @@ class EquationExtractor:
         return True
 
     def extract_from_text_file(self, filepath: str, framework_type: str) -> None:
+        """DEPRECATED: Extracts equations from a single text file.
+
+        This method is kept for backward compatibility and testing. The main
+        extraction logic is now in `process_dirs` and `_extract_entries_from_content`.
+
+        Args:
+            filepath: The path to the text file.
+            framework_type: The framework to assign to the extracted equations.
+        """
         print(f"Processing: {os.path.basename(filepath)}")
         try:
             with open(filepath, "r", encoding="utf-8", errors="strict") as f:
@@ -393,10 +546,25 @@ class EquationExtractor:
 
     @staticmethod
     def _extract_entries_from_content(content: str, framework_type: str, filename: str) -> tuple[list[dict], float]:
+        """Extracts equation entries from a string of content.
+
+        This method is called by `process_dirs` to perform the actual
+        extraction from file content.
+
+        Args:
+            content: The string content of the file.
+            framework_type: The framework to assign to the extracted equations.
+            filename: The name of the source file.
+
+        Returns:
+            A tuple containing a list of extracted equation dictionaries
+            and the time spent on classification.
+        """
         results: list[dict] = []
         classify_elapsed = 0.0
         lines = content.splitlines()
         patterns = [
+            (r"\$\$([^\$]+?)\$\$", "display_math"),  # Extract $$...$$ blocks
             (r"Energy\s+relation:\s*(.+)", "key_relation"),
             (r"^\s*([A-Za-z_][A-Za-z0-9_\s]*)\s*[=:]\s*(.+)$", "explicit"),
             (r"(.+?)\s*=\s*(.+)", "assignment"),
@@ -413,7 +581,8 @@ class EquationExtractor:
                 except re.error:
                     continue
                 for m in matches:
-                    eq_text = m.group(1).strip() if kind in ("governing", "key_relation") else m.group(0).strip()
+                    # Handle new 'display_math' kind
+                    eq_text = m.group(1).strip() if kind in ("governing", "key_relation", "display_math") else m.group(0).strip()
                     if not EquationExtractor._is_valid_equation(eq_text):
                         continue
                     _cs = time.perf_counter()
@@ -432,9 +601,32 @@ class EquationExtractor:
         return results, classify_elapsed
 
     def process_all_files(self) -> None:
+        """Processes all files in the base directory."""
         self.process_dirs([str(Path(self.base_dir))])
 
     def process_dirs(self, dirs: list[str], max_files: int | None = None, max_size_mb: float | None = None, max_lines: int | None = None, parallel_workers: int | None = None, exclude_dirs: list[str] | None = None, use_default_excludes: bool = True, framework_include: list[str] | None = None, framework_exclude: list[str] | None = None, include_globs: list[str] | None = None, exclude_globs: list[str] | None = None, plan_only: bool = False) -> None:
+        """Scans specified directories and extracts equations.
+
+        This is the main method for processing files. It gathers a list of
+        candidate files, then extracts equations from them, either serially
+        or in parallel.
+
+        Args:
+            dirs: A list of directories to scan.
+            max_files: The maximum number of files to process.
+            max_size_mb: The maximum size of files to process in megabytes.
+            max_lines: The maximum number of lines to read from each file.
+            parallel_workers: The number of parallel workers to use for extraction.
+            exclude_dirs: A list of directories to exclude from the scan.
+            use_default_excludes: Whether to use the default list of excluded
+                directories.
+            framework_include: A list of frameworks to include.
+            framework_exclude: A list of frameworks to exclude.
+            include_globs: A list of glob patterns to include.
+            exclude_globs: A list of glob patterns to exclude.
+            plan_only: If True, the method will only plan the scan and not
+                perform the extraction.
+        """
         size_limit = int((max_size_mb or 0) * 1024 * 1024)
         t0 = time.perf_counter()
         # Gather candidates deterministically
@@ -626,58 +818,48 @@ class EquationExtractor:
                             subset.append(line)
                             if i >= max_lines:
                                 break
-                    tmp = Path(self.base_dir) / "data" / "fixtures"
-                    tmp.mkdir(parents=True, exist_ok=True)
-                    tmp_path = tmp / ("_slice_" + os.path.basename(pstr))
-                    try:
-                        tmp_path.write_text("".join(subset), encoding="utf-8")
-                        # Read from slice (counting as read)
-                        _rs = time.perf_counter()
-                        content = "".join(subset)
-                        read_e = time.perf_counter() - _rs
-                        _es = time.perf_counter()
-                        entries, classify_e = self._extract_entries_from_content(content, fw, os.path.basename(pstr))
-                        extract_e = time.perf_counter() - _es
-                        # Integrate entries deterministically now
-                        for entry in entries:
-                            normalized = self.normalize_equation(entry["Equation"])
-                            if normalized in self.seen_equations:
-                                continue
-                            self.seen_equations.add(normalized)
-                            eq_id = self._generate_eq_id(entry["Framework"])
-                            tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
-                            related = f"module:{self.latex_map[tex_key]}" if tex_key in self.latex_map else ""
-                            entry_full = {
-                                "EqID": eq_id,
-                                "Equation": entry["Equation"],
-                                "Framework": entry["Framework"],
-                                "Domain": entry["Domain"],
-                                "SourceDoc": entry["SourceDoc"],
-                                "SourceLine": entry["SourceLine"],
-                                "Description": entry["Description"],
-                                "VerificationStatus": "Theoretical",
-                                "RelatedEqs": related,
-                                "ExperimentalTest": entry["ExperimentalTest"],
-                            }
-                            self.equations.append(entry_full)
-                        candidate_total_serial += len(entries)
-                        timing_fw_serial[fw] = timing_fw_serial.get(fw, 0.0) + (read_e + extract_e)
-                        if fw not in timing_fw_break_serial:
-                            timing_fw_break_serial[fw] = {'read_s': 0.0, 'extract_s': 0.0, 'classify_s': 0.0}
-                        timing_fw_break_serial[fw]['read_s'] += read_e
-                        timing_fw_break_serial[fw]['extract_s'] += extract_e
-                        timing_fw_break_serial[fw]['classify_s'] += float(classify_e)
-                        read_total_serial += read_e
-                        extract_total_serial += extract_e
-                        classify_total_serial += float(classify_e)
-                    except UnicodeDecodeError:
-                        print(f"Warning: Could not encode temporary file as UTF-8 (non-ASCII content?): {tmp_path}")
-                        self.had_errors = True
-                        continue
-                    except IOError as e:
-                        print(f"Error writing temporary file {tmp_path}: {e}")
-                        self.had_errors = True
-                        continue
+                    
+                    # Read from slice (counting as read)
+                    _rs = time.perf_counter()
+                    content = "".join(subset)
+                    read_e = time.perf_counter() - _rs
+                    _es = time.perf_counter()
+                    entries, classify_e = self._extract_entries_from_content(content, fw, os.path.basename(pstr))
+                    extract_e = time.perf_counter() - _es
+                    
+                    # Integrate entries deterministically now
+                    for entry in entries:
+                        normalized = self.normalize_equation(entry["Equation"])
+                        if normalized in self.seen_equations:
+                            continue
+                        self.seen_equations.add(normalized)
+                        eq_id = self._generate_eq_id(entry["Framework"])
+                        tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
+                        related = f"module:{self.latex_map[tex_key]}" if tex_key in self.latex_map else ""
+                        entry_full = {
+                            "EqID": eq_id,
+                            "Equation": entry["Equation"],
+                            "Framework": entry["Framework"],
+                            "Domain": entry["Domain"],
+                            "SourceDoc": entry["SourceDoc"],
+                            "SourceLine": entry["SourceLine"],
+                            "Description": entry["Description"],
+                            "VerificationStatus": "Theoretical",
+                            "RelatedEqs": related,
+                            "ExperimentalTest": entry["ExperimentalTest"],
+                        }
+                        self.equations.append(entry_full)
+                    candidate_total_serial += len(entries)
+                    timing_fw_serial[fw] = timing_fw_serial.get(fw, 0.0) + (read_e + extract_e)
+                    if fw not in timing_fw_break_serial:
+                        timing_fw_break_serial[fw] = {'read_s': 0.0, 'extract_s': 0.0, 'classify_s': 0.0}
+                    timing_fw_break_serial[fw]['read_s'] += read_e
+                    timing_fw_break_serial[fw]['extract_s'] += extract_e
+                    timing_fw_break_serial[fw]['classify_s'] += float(classify_e)
+                    read_total_serial += read_e
+                    extract_total_serial += extract_e
+                    classify_total_serial += float(classify_e)
+
                 except UnicodeDecodeError:
                     print(f"Warning: Could not decode file as UTF-8 (non-ASCII content?): {pstr}")
                     self.had_errors = True
@@ -935,5 +1117,3 @@ if __name__ == "__main__":
 
     if extractor.had_errors:
         raise SystemExit(1)
-
-
