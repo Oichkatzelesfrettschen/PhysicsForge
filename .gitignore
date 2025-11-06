@@ -110,6 +110,7 @@ Thumbs.db
 extracted_data/
 output/
 logs/*.log
+logs/*-audit.json
 *.tmp
 *.bak
 

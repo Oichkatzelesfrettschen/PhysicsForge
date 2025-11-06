@@ -1,80 +1,164 @@
 # Repository Audit
 
-- Base: `C:\Users\ericj\Git-Projects\Math_Science`
-- Total Size: 84.4 MB
+- Base: `/home/eirikr/Playground/PhysicsForge`
+- Total Size: 7.4 GB
 
 ## Key Documents
-- `notes\project_management\GETTING_STARTED_GUIDE.md`
-- `notes\project_management\README_SYNTHESIS_PROJECT.md`
-- `notes\project_management\SYNTHESIS_ARCHITECTURE.md`
-- `notes\project_management\SYNTHESIS_IMPLEMENTATION_PLAN.md`
-- `notes\project_management\SYNTHESIS_QUICK_REFERENCE.md`
+- `notes/project_management/GETTING_STARTED_GUIDE.md`
 
 ## Top Directories by Size
-- `synthesis` - 24.8 MB
-- `source_materials\pdfs` - 17.8 MB
-- `.` - 12.3 MB
-- `data\catalogs` - 11.8 MB
-- `extracted_data\reports` - 7.7 MB
-- `source_materials\text` - 6.0 MB
-- `synthesis\chapters\frameworks` - 687.3 KB
-- `synthesis\chapters\unification` - 408.1 KB
-- `synthesis\modules\figures` - 330.1 KB
-- `synthesis\modules\equations` - 325.1 KB
+- `venv/lib/python3.13/site-packages/torch/lib` - 1.5 GB
+- `venv/lib/python3.13/site-packages/nvidia/cudnn/lib` - 1004.4 MB
+- `venv/lib/python3.13/site-packages/nvidia/cublas/lib` - 828.6 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusparselt/lib` - 431.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/nccl/lib` - 409.7 MB
+- `venv/lib/python3.13/site-packages/triton/_C` - 400.1 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusolver/lib` - 386.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusparse/lib` - 370.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cufft/lib` - 268.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cuda_nvrtc/lib` - 211.8 MB
 
 ## Largest Files
-- `equation_catalog.csv` - 11.6 MB
-- `data\catalogs\equation_catalog.csv` - 11.3 MB
-- `extracted_data\reports\commutators_output.txt` - 6.9 MB
-- `source_materials\text\Alpha001.06_DRAFT_Aether_Framework.md` - 4.4 MB
-- `source_materials\pdfs\094101_1_accepted_manuscript.pdf` - 4.1 MB
-- `source_materials\pdfs\time_crystal_spin_systems.pdf` - 3.8 MB
-- `synthesis\main.pdf` - 3.5 MB
-- `source_materials\pdfs\Comment on the Pais Superforce Theory.pdf` - 2.8 MB
-- `source_materials\pdfs\time_crystal_continuous.pdf` - 2.2 MB
-- `source_materials\pdfs\scalar_tensor_gravity_arxiv.pdf` - 1.1 MB
-- `synthesis\test_part2_frameworks.pdf` - 1.1 MB
-- `synthesis\test_part1_foundations.pdf` - 982.0 KB
-- `synthesis\test_part4.pdf` - 795.3 KB
-- `synthesis\test_part5.pdf` - 742.8 KB
-- `source_materials\text\Maximal_Extraction_SET1_SET2.md` - 696.2 KB
+- `venv/lib/python3.13/site-packages/torch/lib/libtorch_cuda.so` - 975.3 MB
+- `venv/lib/python3.13/site-packages/nvidia/cublas/lib/libcublasLt.so.12` - 716.9 MB
+- `venv/lib/python3.13/site-packages/nvidia/cudnn/lib/libcudnn_engines_precompiled.so.9` - 522.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusparselt/lib/libcusparseLt.so.0` - 431.0 MB
+- `venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so` - 416.7 MB
+- `venv/lib/python3.13/site-packages/nvidia/nccl/lib/libnccl.so.2` - 409.7 MB
+- `venv/lib/python3.13/site-packages/triton/_C/libtriton.so` - 382.5 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusparse/lib/libcusparse.so.12` - 370.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cudnn/lib/libcudnn_adv.so.9` - 272.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cufft/lib/libcufft.so.11` - 266.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusolver/lib/libcusolver.so.11` - 232.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/cusolver/lib/libcusolverMg.so.11` - 154.0 MB
+- `venv/lib/python3.13/site-packages/nvidia/nvshmem/lib/libnvshmem_host.so.3` - 137.4 MB
+- `venv/lib/python3.13/site-packages/nvidia/curand/lib/libcurand.so.10` - 130.4 MB
+- `venv/lib/python3.13/site-packages/nvidia/cudnn/lib/libcudnn_ops.so.9` - 122.0 MB
 
 ## File Type Counts
-- .tex: 448
-- .md: 113
-- .py: 75
-- .pdf: 66
-- .pyc: 43
-- .log: 38
-- .aux: 36
+- .py: 11470
+- .pyc: 11431
+- .h: 9801
+- [no ext]: 2388
+- .tex: 454
+- .pyi: 404
+- .so: 231
+- .txt: 189
+- .hpp: 116
+- .md: 115
+- .mat: 110
+- .cuh: 82
+- .pdf: 68
+- .f90: 60
+- .sav: 47
+- .typed: 46
+- .cpp: 44
+- .csv: 40
+- .log: 39
+- .aux: 37
 - .idx: 36
 - .out: 36
-- .txt: 25
-- .ps1: 12
-- .csv: 10
-- [no ext]: 8
-- .json: 7
-- .sh: 4
+- .cmake: 30
+- .dat: 28
+- .0: 26
+- .f: 24
+- .npz: 22
+- .wav: 22
+- .pxd: 20
+- .xml: 18
+- .al: 16
+- .arff: 16
+- .json: 15
+- .sample: 14
+- .exe: 14
+- .ps1: 13
+- .png: 12
+- .12: 12
+- .pyx: 12
+- .3: 12
+- .1: 11
+- .npy: 11
+- .c: 10
+- .yaml: 9
+- .cu: 8
+- .tab: 8
+- .9: 8
+- .tpl: 7
+- .pyf: 7
+- .a: 6
+- .build: 6
+- .ini: 5
+- .sh: 5
+- .100: 5
+- .gz: 5
+- .bc: 5
+- .jinja: 5
 - .bat: 4
 - .backup: 4
-- .yml: 2
+- .yml: 4
+- .bsd: 4
+- .apache: 4
+- .bz2: 4
+- .11: 4
+- .cfg: 3
+- .pth: 3
+- .2: 3
+- .8: 3
+- .10: 3
+- .html: 3
+- .xsl: 3
+- .nc: 3
+- .js: 3
 - .toc: 2
-- .dat: 2
 - .script: 2
-- .yaml: 1
+- .13: 2
+- .7: 2
+- .4: 2
+- .17: 2
+- .tmpl: 2
+- .pem: 2
+- .zi: 2
+- .b99: 2
+- .a99: 2
+- .g4: 2
+- .lark: 2
+- .svg: 2
+- .mjs: 2
+- .db: 1
 - .previoustomerge: 1
-- .ini: 1
 - .tag: 1
-- .png: 1
-- .bib: 1
-- .bbl: 1
-- .blg: 1
-- .ilg: 1
-- .ind: 1
 - .lof: 1
 - .lot: 1
+- .ind: 1
 - .before_fix: 1
+- .bib: 1
+- .blg: 1
+- .bbl: 1
+- .ilg: 1
+- .fdb_latexmk: 1
+- .fls: 1
 - .bak: 1
+- .csh: 1
+- .fish: 1
+- .16: 1
+- .toml: 1
+- .bazel: 1
+- .bzl: 1
+- .in: 1
+- .css: 1
+- .ani: 1
+- .rst: 1
+- .fits: 1
+- .pkl: 1
+- .pc: 1
+- .template: 1
+- .inc: 1
+- .f95: 1
+- .qrc: 1
+- .ld: 1
+- .thrift: 1
+- .egg: 1
+- .zip: 1
 
 ## Immediate Opportunities
 - Parameterize hardcoded paths in scripts (done for --base-dir).

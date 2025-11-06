@@ -19,21 +19,22 @@ def main() -> None:
     except OSError as e:
         print(f"Error creating fixtures directory {fixtures}: {e}")
         had_errors = True
-        sample = fixtures / 'sample_doc.md'
-        try:
-            sample.write_text(
-                """
-    # Sample Document
-    
-    Governing Equation: E = mc^2
-    Prediction: ^2  = 0 in vacuum
-    H = T + V
-                """.strip(),
-                encoding='utf-8',
-            )
-        except IOError as e:
-            print(f"Error writing sample file {sample}: {e}")
-            had_errors = True
+
+    sample = fixtures / 'sample_doc.md'
+    try:
+        sample.write_text(
+            """
+# Sample Document
+
+Governing Equation: E = mc^2
+Prediction: ^2  = 0 in vacuum
+H = T + V
+            """.strip(),
+            encoding='utf-8',
+        )
+    except IOError as e:
+        print(f"Error writing sample file {sample}: {e}")
+        had_errors = True
 
     ex = EquationExtractor()
     ex.extract_from_text_file(str(sample), 'General')

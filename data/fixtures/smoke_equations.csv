@@ -1,6 +1,6 @@
 EqID,Equation,Framework,Domain,SourceDoc,SourceLine,Description,VerificationStatus,RelatedEqs,ExperimentalTest
-EQ001,Governing Equation: E = mc^2,General,General,sample_doc.md,3,# Sample Document Governing Equation: E = mc^2 Prediction: ∇^2 φ = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
-EQ002,E = mc^2,General,General,sample_doc.md,3,# Sample Document Governing Equation: E = mc^2 Prediction: ∇^2 φ = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
-EQ003,Prediction: ∇^2 φ = 0 in vacuum,General,General,sample_doc.md,4,# Sample Document Governing Equation: E = mc^2 Prediction: ∇^2 φ = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
-EQ004,∇^2 φ = 0 in vacuum,General,General,sample_doc.md,4,# Sample Document Governing Equation: E = mc^2 Prediction: ∇^2 φ = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
-EQ005,H = T + V,General,General,sample_doc.md,5,Governing Equation: E = mc^2 Prediction: ∇^2 φ = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
+EQ001,Governing Equation: E = mc^2,General,General,sample_doc.md,3,# Sample Document Governing Equation: E = mc^2 Prediction: ^2 = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
+EQ002,E = mc^2,General,General,sample_doc.md,3,# Sample Document Governing Equation: E = mc^2 Prediction: ^2 = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
+EQ003,Prediction: ^2  = 0 in vacuum,General,General,sample_doc.md,4,# Sample Document Governing Equation: E = mc^2 Prediction: ^2 = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
+EQ004,^2  = 0 in vacuum,General,General,sample_doc.md,4,# Sample Document Governing Equation: E = mc^2 Prediction: ^2 = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required
+EQ005,H = T + V,General,General,sample_doc.md,5,Governing Equation: E = mc^2 Prediction: ^2 = 0 in vacuum H = T + V,Theoretical,,Theoretical validation required

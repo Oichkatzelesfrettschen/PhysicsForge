@@ -11,8 +11,9 @@ This is a theoretical physics and advanced mathematics research repository synth
 - **Pais Framework**: Gravitational-electromagnetic unification with scalar-ZPE interactions
 - **Mathematical Foundations**: Non-associative algebras, hyperdimensional constructs (up to 2048D), Monster Group modular invariants
 
-**Platform**: Windows 11, PowerShell native environment
-**LaTeX Distribution**: MiKTeX
+**Platform**: Cross-platform (Windows 11 / Linux CachyOS)
+**Shell**: PowerShell (Windows) / Bash (Linux)
+**LaTeX Distribution**: MiKTeX (Windows) / TeX Live (Linux recommended)
 **Python**: 3.10+ (standard library only for current tools)
 
 ## Repository Structure
