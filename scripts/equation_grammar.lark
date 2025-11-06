@@ -1,0 +1,85 @@
+
+// scripts/equation_grammar.lark
+// Parser strategy: Earley + dynamic lexer (ambiguous-friendly)
+%import common.WS_INLINE
+%import common.CNAME
+%import common.SIGNED_NUMBER -> NUMBER
+%ignore WS_INLINE
+
+// Allow classic ASCII operators
+PLUS: "+"
+MINUS: "-"
+STAR: "*"
+SLASH: "/"
+EQUAL: "="
+CIRCUMFLEX: "^"
+LPAR: "("
+RPAR: ")"
+LBRACE: "{"
+RBRACE: "}"
+
+// Greek letters (Unicode)
+GREEK_LETTER: /[α-ωΑ-Ω]+/u
+
+// LaTeX-like command names \alpha, \sin, \cos, \sqrt, etc.
+LATEX_CMD: "\\" /[A-Za-z]+/
+
+// ---------- Start symbols ----------
+?start: equation
+      | expr     -> naked_expr
+
+equation: expr EQUAL expr
+
+// ---------- Expressions (with precedence) ----------
+// Sum and difference
+?expr: expr PLUS term   -> add
+     | expr MINUS term  -> sub
+     | term
+
+// Multiplication/division, explicit or implicit.
+// We model implicit multiplication by letting `factor` chain.
+?term: term STAR factor -> mul
+     | term SLASH factor -> div
+     | factor
+
+// Implicit multiplication by juxtaposition is represented by
+// folding a sequence of `atom` into left-associative mul nodes.
+?factor: power
+       | factor atom     -> mul    // implicit: justifies "m c^2" or "2 x"
+       | atom
+
+// Exponentiation: right-associative
+?power: atom CIRCUMFLEX superscript  -> pow
+      | atom
+
+// superscript can be a group or another atom (for ^2 or ^{...})
+superscript: atom
+           | group
+
+// Grouping: ( ... ) or { ... }
+?group: LPAR expr RPAR
+      | LBRACE expr RBRACE
+
+// ---------- Atoms ----------
+?atom: NUMBER               -> number
+     | symbol               -> symbol
+     | func_call            -> func
+     | group
+
+// Symbols: CNAME, greek, or LaTeX command symbol
+symbol: CNAME
+      | GREEK_LETTER
+      | LATEX_CMD
+
+// Simple function calls:
+//   f(x), \sin x, \sqrt{x}, \sqrt{...} etc.
+// We support both explicit parens and TeX brace forms.
+?func_call: func_name arg
+          | func_name group
+
+func_name: symbol
+
+// `arg` handles f x and f(x)
+?arg: atom
+    | LPAR expr RPAR
+    | LBRACE expr RBRACE

@@ -15,6 +15,8 @@ import argparse
 from pathlib import Path
 import fnmatch
 from collections import defaultdict
+from typing import Optional
+from lark import Lark, exceptions
 
 try:
     from scripts.common import resolve_base_dir
@@ -27,15 +29,60 @@ except Exception:
 
 
 BASE_DIR = str(Path(__file__).resolve().parents[1])
+_MATH_INLINE = re.compile(
+    r"""
+    (?P<dollars>\${1,2})(?P<body>.+?)\1   # $...$ or $$...$$
+    |\\\((?P<body_paren>.+?)\\\)          # \( ... \)
+    |\\\[(?P<body_brack>.+?)\\\]          # \[ ... \]
+    """,
+    re.VERBOSE | re.DOTALL,
+)
 
-# Compiled regex patterns (ASCII-safe)
-COMPILED_PATTERNS: list[tuple[re.Pattern, str]] = [
-    (re.compile(r"Energy\s+relation:\s*(.+)", re.IGNORECASE), "key_relation"),
-    (re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_\s]*)\s*[=:]\s*(.+)$", re.IGNORECASE), "explicit"),
-    (re.compile(r"(.+?)\s*=\s*(.+)", re.IGNORECASE), "assignment"),
-    (re.compile(r"Governing\s+(?:Equation|Relation|Dynamics):\s*(.+)", re.IGNORECASE), "governing"),
-    (re.compile(r"(?:Key\s+Relation|Prediction):\s*(.+)", re.IGNORECASE), "key_relation"),
-]
+# Symbols that typically signal “this is math starting here”
+_FIRST_MATH_OP = re.compile(r"[=≈≃≅≡∈≤≥↦→←÷×]")
+
+def extract_math_slice(text: str) -> Optional[str]:
+    r"""
+    Return the most likely math substring to parse, or None if nothing plausible.
+    Priority:
+      1) explicit TeX math spans: $...$, $$...$$, \( ... \), \[ ... \]
+      2) if starts with \label{...}, it's a math line
+      3) suffix after a label-colon *provided* the colon appears before the first math op
+      4) if the line starts mathy enough, return it as-is
+    """
+    s = text.strip()
+    if not s:
+        return None
+
+    # 1) explicit TeX spans
+    m = _MATH_INLINE.search(s)
+    if m:
+        body = m.group("body") or m.group("body_paren") or m.group("body_brack")
+        return body.strip()
+
+    # 2) TeX label command
+    if s.lstrip().startswith("\\label"):
+        return s
+
+    # 3) labeled prefix like "Energy relation: E = m c^2"
+    #    Only treat as a label if ':' appears before the first math op.
+    op = _FIRST_MATH_OP.search(s)
+    colon = s.find(":")
+    if colon != -1 and (op is None or colon < op.start()):
+        tail = s[colon + 1 :].strip()
+        if tail:
+            return tail
+
+    # 4) bare math line: allow starts with letters/greek followed by = ... etc.
+    if op:
+        # keep from the first math operator; tolerates stray words before it
+        return s[op.start() :].lstrip()
+
+    # final fallback: if it *looks* like an assignment with letters and numbers
+    if re.search(r"[A-Za-zα-ωΑ-Ω\\][^=]*=", s):
+        return s.split("=", 1)[1].strip()
+
+    return None
 
 # Prioritized domain keyword lists for classification
 DOMAIN_PRIORITIES: list[tuple[str, list[str]]] = [
@@ -72,6 +119,20 @@ class EquationExtractor:
             'timing_by_framework_breakdown': {},
         }
         self.latex_map = self._build_latex_map()
+        try:
+            grammar_path = Path(__file__).resolve().parent / "equation_grammar.lark"
+            self.equation_parser = Lark.open(
+                str(grammar_path),
+                start="start",
+                parser="earley",
+                lexer="dynamic_complete",
+                maybe_placeholders=False,
+            )
+        except Exception as e:
+            print(f"CRITICAL: Failed to load or compile Lark grammar: {e}")
+            print("         Please ensure 'scripts/equation_grammar.lark' exists and is valid.")
+            self.equation_parser = None
+            self.had_errors = True
 
     @staticmethod
     def _canonicalize(eq_str: str) -> str:
@@ -308,7 +369,7 @@ class EquationExtractor:
         print(f"Processing: {os.path.basename(filepath)}")
         try:
             with open(filepath, "r", encoding="utf-8", errors="strict") as f:
-                lines = f.readlines()
+                content = f.read()
         except UnicodeDecodeError:
             print(f"Warning: Could not decode text file as UTF-8 (non-ASCII content?): {filepath}")
             self.had_errors = True
@@ -318,87 +379,80 @@ class EquationExtractor:
             self.had_errors = True
             return
         filename = os.path.basename(filepath)
-
-        for line_num, line in enumerate(lines, 1):
-            s = line.strip()
-            if not s or len(s) < 5:
+        entries, _ = self._extract_entries_from_content(content, framework_type, filename)
+        for entry in entries:
+            normalized = self.normalize_equation(entry["Equation"])
+            self.metrics['candidate_equations'] = int(self.metrics.get('candidate_equations', 0)) + 1
+            if normalized in self.seen_equations:
                 continue
-            for pattern, kind in COMPILED_PATTERNS:
-                try:
-                    matches = pattern.finditer(s)
-                except re.error as e:
-                    print(f"Warning: Regex error for pattern '{pattern}' in {filepath} line {line_num}: {e}")
-                    self.had_errors = True
-                    continue
-                for m in matches:
-                    if kind in ("governing", "key_relation"):
-                        eq_text = m.group(1).strip()
-                    else:
-                        eq_text = m.group(0).strip()
-                    if not self._is_valid_equation(eq_text):
-                        continue
-                    normalized = self.normalize_equation(eq_text)
-                    self.metrics['candidate_equations'] = int(self.metrics.get('candidate_equations', 0)) + 1
-                    if normalized in self.seen_equations:
-                        continue
-                    self.seen_equations.add(normalized)
-                    eq_id = self._generate_eq_id(framework_type)
-                    description = self._extract_description(lines, line_num)
-                    domain = self._classify_domain(eq_text, description)
-                    entry = {
-                        "EqID": eq_id,
-                        "Equation": eq_text,
-                        "Framework": framework_type,
-                        "Domain": domain,
-                        "SourceDoc": filename,
-                        "SourceLine": line_num,
-                        "Description": description,
-                        "VerificationStatus": "Theoretical",
-                        "RelatedEqs": "",
-                        "ExperimentalTest": self._suggest_experiment(eq_text, description),
-                    }
-                    tex_key = self.normalize_equation(self._strip_tex(eq_text))
-                    if tex_key in self.latex_map:
-                        entry["RelatedEqs"] = f"module:{self.latex_map[tex_key]}"
-                    self.equations.append(entry)
+            self.seen_equations.add(normalized)
+            eq_id = self._generate_eq_id(framework_type)
+            entry["EqID"] = eq_id
+            entry["VerificationStatus"] = "Theoretical"
+            entry["RelatedEqs"] = ""
+            tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
+            if tex_key in self.latex_map:
+                entry["RelatedEqs"] = f"module:{self.latex_map[tex_key]}"
+            self.equations.append(entry)
 
     def _extract_entries_from_content(self, content: str, framework_type: str, filename: str) -> tuple[list[dict], float]:
         results: list[dict] = []
         classify_elapsed = 0.0
         lines = content.splitlines()
-        patterns = [
-            (r"Energy\s+relation:\s*(.+)", "key_relation"),
-            (r"^\s*([A-Za-z_][A-Za-z0-9_\s]*)\s*[=:]\s*(.+)$", "explicit"),
-            (r"(.+?)\s*=\s*(.+)", "assignment"),
-            (r"Governing\s+(?:Equation|Relation|Dynamics):\s*(.+)", "governing"),
-            (r"(?:Key\s+Relation|Prediction):\s*(.+)", "key_relation"),
-        ]
+
+        if not self.equation_parser:
+            return [], 0.0
+
         for line_num, raw in enumerate(lines, 1):
             s = raw.strip()
             if not s or len(s) < 5:
                 continue
-            for pattern, kind in patterns:
-                try:
-                    matches = re.finditer(pattern, s, re.IGNORECASE)
-                except re.error:
-                    continue
-                for m in matches:
-                    eq_text = m.group(1).strip() if kind in ("governing", "key_relation") else m.group(0).strip()
-                    if not self._is_valid_equation(eq_text):
-                        continue
-                    _cs = time.perf_counter()
-                    descr = self._extract_description(lines, line_num)
-                    domain = self._classify_domain(eq_text, descr)
-                    classify_elapsed += (time.perf_counter() - _cs)
-                    results.append({
-                        "Equation": eq_text,
-                        "Framework": framework_type,
-                        "Domain": domain,
-                        "SourceDoc": filename,
-                        "SourceLine": line_num,
-                        "Description": descr,
-                        "ExperimentalTest": self._suggest_experiment(eq_text, descr),
-                    })
+
+            extracted_eq_text = extract_math_slice(s)
+            if not extracted_eq_text:
+                continue
+
+            # --- NEW CLEANING STEP ---
+            # Before parsing, strip all \label{...} commands.
+            label_pattern = re.compile(r"\\label\{[^}]*\}")
+            clean_eq_text = label_pattern.sub("", extracted_eq_text).strip()
+
+            # Failsafe: if stripping the label left an empty string, skip.
+            if not clean_eq_text:
+                continue
+            # --- END NEW CLEANING STEP ---
+
+            # --- NEW LARK PARSING STAGE ---
+            try:
+                # 2. Validate the *clean string* with the formal parser
+                self.equation_parser.parse(clean_eq_text)
+
+                # If parsing succeeds, it's a valid equation.
+                # We save the *original* extracted text (with label) for context.
+                eq_text = extracted_eq_text
+
+            except exceptions.LarkError as e:
+                # The extracted string was NOT a valid equation.
+                continue # Skip this line
+            # --- END NEW LARK STAGE ---
+
+            if not self._is_valid_equation(eq_text):
+                continue
+
+            _cs = time.perf_counter()
+            descr = self._extract_description(lines, line_num)
+            domain = self._classify_domain(eq_text, descr)
+            classify_elapsed += (time.perf_counter() - _cs)
+            results.append({
+                "Equation": eq_text,
+                "Framework": framework_type,
+                "Domain": domain,
+                "SourceDoc": filename,
+                "SourceLine": line_num,
+                "Description": descr,
+                "ExperimentalTest": self._suggest_experiment(eq_text, descr),
+            })
+
         return results, classify_elapsed
 
     def process_all_files(self) -> None:
