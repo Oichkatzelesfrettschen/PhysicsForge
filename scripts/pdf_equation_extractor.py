@@ -29,7 +29,24 @@ DEFAULT_PAPERS_DIR_CANDIDATES = (
 )
 
 class PDFEquationExtractor:
+    """Extracts equations from PDF files.
+
+    This class scans PDF files for text patterns that are likely to be
+    equations, extracts them, and catalogs them. It uses PyMuPDF for PDF
+    text extraction.
+
+    Attributes:
+        equations (list[dict]): A list of dictionaries, each representing a
+            found equation.
+        eq_counter (defaultdict[str, int]): A counter for generating unique
+            equation IDs for each framework.
+        seen_equations (set[str]): A set of normalized equations to avoid
+            duplicates.
+        had_errors (bool): A flag indicating if any errors occurred during
+            extraction.
+    """
     def __init__(self):
+        """Initializes the PDFEquationExtractor."""
         self.equations = []
         self.eq_counter = defaultdict(int)
         self.seen_equations = set()  # For deduplication
@@ -50,13 +67,31 @@ class PDFEquationExtractor:
             'pi', 'alpha', 'beta', 'gamma'
         ]
 
-    def normalize_equation(self, eq_str):
-        """Normalize equation string for deduplication"""
+    def normalize_equation(self, eq_str: str) -> str:
+        """Normalizes an equation string for deduplication.
+
+        Args:
+            eq_str: The equation string to normalize.
+
+        Returns:
+            The normalized equation string with whitespace removed.
+        """
         eq_str = re.sub(r'\s+', '', eq_str.strip())
         return eq_str
 
-    def _is_valid_equation(self, eq_str):
-        """Check if string is likely a valid equation (adapted from equation_extractor.py)"""
+    def _is_valid_equation(self, eq_str: str) -> bool:
+        """Checks if a string is likely a valid equation.
+
+        This method applies a series of heuristics to determine if a given
+        string is likely to be an equation, filtering out prose and other
+        non-equation text.
+
+        Args:
+            eq_str: The string to validate.
+
+        Returns:
+            True if the string is a valid equation, False otherwise.
+        """
         if len(eq_str) < 5 or len(eq_str) > 500:
             return False
 
@@ -79,8 +114,15 @@ class PDFEquationExtractor:
 
         return True
 
-    def _generate_eq_id(self, framework_type):
-        """Generate unique equation ID (adapted from equation_extractor.py)"""
+    def _generate_eq_id(self, framework_type: str) -> str:
+        """Generates a unique equation ID for a given framework.
+
+        Args:
+            framework_type: The framework name (e.g., "Aether", "Genesis").
+
+        Returns:
+            A unique equation ID string (e.g., "AE001").
+        """
         prefix_map = {
             'Aether': 'AE',
             'Genesis': 'GE',
@@ -96,8 +138,18 @@ class PDFEquationExtractor:
         self.eq_counter[prefix] += 1
         return f"{prefix}{self.eq_counter[prefix]:03d}"
 
-    def _extract_description(self, lines, current_line_num, context_window=3):
-        """Extract description from surrounding context (adapted from equation_extractor.py)"""
+    def _extract_description(self, lines: list[str], current_line_num: int, context_window: int = 3) -> str:
+        """Extracts a description for an equation from its context.
+
+        Args:
+            lines: A list of all lines in the source file.
+            current_line_num: The line number of the equation.
+            context_window: The number of lines before and after the
+                equation to include in the context.
+
+        Returns:
+            A string containing the context of the equation.
+        """
         start = max(0, current_line_num - context_window - 1)
         end = min(len(lines), current_line_num + context_window)
 
@@ -109,8 +161,16 @@ class PDFEquationExtractor:
 
         return context
 
-    def _classify_domain(self, equation_str, description):
-        """Classify equation into physics/math domain (adapted from equation_extractor.py)"""
+    def _classify_domain(self, equation_str: str, description: str) -> str:
+        """Classifies the domain of an equation.
+
+        Args:
+            equation_str: The equation string.
+            description: The description of the equation.
+
+        Returns:
+            The classified domain string (e.g., "EM", "GR", "QM").
+        """
         domains = {
             'QM': ['quantum', 'wave', 'psi', 'hamiltonian', 'operator', 'qubit', 'entangle'],
             'GR': ['metric', 'curvature', 'einstein', 'ricci', 'tensor', 'spacetime', 'gravity'],
@@ -128,8 +188,17 @@ class PDFEquationExtractor:
 
         return 'General'
 
-    def _suggest_experiment(self, equation_str, description):
-        """Suggest experimental test based on equation content (adapted from equation_extractor.py)"""
+    def _suggest_experiment(self, equation_str: str, description: str) -> str:
+        """Suggests a potential experimental test for an equation.
+
+        Args:
+            equation_str: The equation string.
+            description: The description of the equation.
+
+        Returns:
+            A string with the suggested experiment or "Theoretical
+            validation required".
+        """
         suggestions = {
             'casimir': 'Casimir force measurement with fractal geometries',
             'scalar': 'Scalar field interferometry',
@@ -149,7 +218,14 @@ class PDFEquationExtractor:
         return 'Theoretical validation required'
 
     def extract_from_pdf(self, pdf_path: Path):
-        """Extract equations from a PDF file using PyMuPDF"""
+        """Extracts equations from a single PDF file.
+
+        This method uses PyMuPDF to extract text from each page of the PDF,
+        then applies the equation patterns to find and catalog equations.
+
+        Args:
+            pdf_path: The path to the PDF file.
+        """
         try:
             import fitz  # PyMuPDF
         except Exception as e:
@@ -222,36 +298,23 @@ class PDFEquationExtractor:
                             }
                             self.equations.append(entry)
 
-    def save_to_csv(self, output_file):
+    def save_to_csv(self, output_file: str):
+        """Saves the extracted equations to a CSV file.
 
-        """Save extracted PDF equations to CSV"""
-
+        Args:
+            output_file: The path to the output CSV file.
+        """
         fieldnames = ['EqID', 'Equation', 'Framework', 'Domain', 'SourceDoc',
-
                      'SourceLine', 'Description', 'VerificationStatus',
-
                      'RelatedEqs', 'ExperimentalTest']
-
-    
-
         try:
-
             with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
-
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
                 writer.writeheader()
-
                 writer.writerows(self.equations)
-
-    
-
             print(f"\nExtracted {len(self.equations)} equations from PDFs to {output_file}")
-
         except IOError as e:
-
             print(f"Error writing CSV file {output_file}: {e}")
-
             self.had_errors = True
 
 # Helpers for directory and file resolution (no heavy deps required)

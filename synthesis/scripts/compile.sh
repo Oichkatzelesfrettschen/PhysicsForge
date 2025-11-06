@@ -1,15 +1,52 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
+# --- Start Harmonized Block ---
+
+# 1. Use the 'feature' branch logic to cd to the project root (up one level).
+#    This is cleaner as all build files (.aux, .log, etc.) will be
+#    created in the project root, not in the script directory.
 cd "$(dirname "$0")/.."
+
+# 2. Define MAIN relative to the new CWD (the project root).
 MAIN="main.tex"
+
+# 3. Adopt the 'main' branch's logging enhancements, but *adapt* the
+#    paths to be relative to the new CWD (the project root).
+LOG_DIR="logs"
+mkdir -p "$LOG_DIR"
+LATEXMK_LOG="$LOG_DIR/latexmk_compile.log"
+PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"
+
+echo "Starting compilation of $MAIN..."
+
+# --- End Harmonized Block ---
+
 if command -v latexmk >/dev/null 2>&1; then
-  latexmk -pdf "$MAIN"
+  echo "Using latexmk for compilation."
+  # Note: Redirecting both stdout and stderr to the log file
+  if latexmk -pdf "$MAIN" > "$LATEXMK_LOG" 2>&1; then
+    echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
+  else
+    echo "Error: latexmk compilation failed. See log for details: $LATEXMK_LOG" >&2
+    echo "To debug, check for errors in the log file or run latexmk manually." >&2
+    exit 1
+  fi
 else
   if ! command -v pdflatex >/dev/null 2>&1; then
     echo "pdflatex not found. Install TeX Live or MiKTeX." >&2
     exit 1
   fi
-  pdflatex "$MAIN"
-  pdflatex "$MAIN"
-fi
 
+  echo "Using pdflatex for compilation."
+  # Note: Redirecting both stdout and stderr to the log file.
+  # Running pdflatex twice is necessary to resolve references/TOC.
+  if pdflatex -interaction=nonstopmode "$MAIN" > "$PDFLATEX_LOG" 2>&1 && \
+     pdflatex -interaction=nonstopmode "$MAIN" >> "$PDFLATEX_LOG" 2>&1; then
+    echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
+  else
+    echo "Error: pdflatex compilation failed. See log for details: $PDFLATEX_LOG" >&2
+    echo "To debug, check for common LaTeX errors like missing packages or syntax issues." >&2
+    exit 1
+  fi
+fi
