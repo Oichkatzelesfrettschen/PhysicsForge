@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/eirikr/Playground/PhysicsForge/logs/.f95959e4996b9013d00358ec5efe4a9bc8e59572-audit.json",
+    "files": [
+        {
+            "date": 1762406522558,
+            "name": "/home/eirikr/Playground/PhysicsForge/logs/mcp-puppeteer-2025-11-05.log",
+            "hash": "cd04e28b302dc2512858fff120afa52c21ee0172ba4011f9696659f80de3f4c3"
+        }
+    ],
+    "hashType": "sha256"
+}

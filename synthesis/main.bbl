@@ -1,0 +1,184 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{MKT{\etalchar{+}}22}
+
+\bibitem[Alc94]{Alcubierre1994WarpDrive}
+Miguel Alcubierre.
+\newblock The warp drive: hyper-fast travel within general relativity.
+\newblock {\em Classical and Quantum Gravity}, 11(5):L73--L77, 1994.
+\newblock Original Alcubierre warp drive metric. Ch30 for spacetime engineering
+  foundations.
+
+\bibitem[{ATL}23]{ScalarSearch2023}
+{ATLAS Collaboration}.
+\newblock Search for scalar resonances in the mass range 1-3 tev decaying to
+  scalar-photon pairs in pp collisions at 13 tev.
+\newblock {\em Physics Letters B}, 845:138123, 2023.
+\newblock LHC scalar field searches. Ch28 for fundamental scalar coupling
+  limits.
+
+\bibitem[C{\etalchar{+}}24]{RydbergFracDTC2024}
+Y.~Chen et~al.
+\newblock Fractal discrete time crystals in rydberg atom arrays.
+\newblock {\em Nature Communications}, 15:2341, 2024.
+\newblock Ch08 for fractal time crystal structures, connection to Ch05 fractal
+  geometry.
+
+\bibitem[C{\etalchar{+}}25]{CasimirMEMS2025}
+H.~B. Chan et~al.
+\newblock Casimir-actuated mems devices: From force measurement to
+  nanomechanical systems.
+\newblock {\em Nature Nanotechnology}, 20:123--130, 2025.
+\newblock MEMS applications of Casimir forces. Ch28 for alternative ZPE
+  applications.
+
+\bibitem[Cas48]{Casimir1948Original}
+Hendrik B.~G. Casimir.
+\newblock On the attraction between two perfectly conducting plates.
+\newblock {\em Proceedings of the Koninklijke Nederlandse Akademie van
+  Wetenschappen}, 51:793--795, 1948.
+\newblock Original Casimir effect prediction. Ch08 for ZPE-Casimir force
+  connection, Ch22 for experiments.
+
+\bibitem[EBN16]{Else2016Floquet}
+D.~V. Else, B.~Bauer, and C.~Nayak.
+\newblock Floquet time crystals.
+\newblock {\em Physical Review Letters}, 117:090402, 2016.
+\newblock arXiv:1603.08001.
+
+\bibitem[IHA23]{VacuumFriction2023}
+F.~Intravaia, C.~Henkel, and M.~Antezza.
+\newblock Friction forces on atoms and molecules moving near metallic surfaces.
+\newblock {\em Physical Review A}, 107(3):032822, 2023.
+\newblock Quantum vacuum friction mechanisms. Ch28 for non-extraction ZPE
+  applications.
+
+\bibitem[K{\etalchar{+}}21]{Kyprianidis2021Prethermal}
+A.~Kyprianidis et~al.
+\newblock Observation of a prethermal discrete time crystal.
+\newblock {\em Science}, 372(6547):1192--1196, 2021.
+\newblock arXiv:2102.01695.
+
+\bibitem[KLMS16]{Khemani2016TC}
+Vedika Khemani, Achilleas Lazarides, Roderich Moessner, and S.~L. Sondhi.
+\newblock Phase structure of driven quantum systems.
+\newblock {\em Physical Review Letters}, 116(25):250401, 2016.
+\newblock Ch08 for time crystal phase transitions and stability.
+
+\bibitem[Lam97]{Lamoreaux1997}
+Steven~K. Lamoreaux.
+\newblock Demonstration of the casimir force in the 0.6 to 6 micrometers range.
+\newblock {\em Physical Review Letters}, 78(1):5--8, 1997.
+\newblock First precision Casimir force measurement. Ch28 for experimental
+  validation.
+
+\bibitem[LW{\etalchar{+}}24]{SelfAssembly2024}
+Y.~Liu, G.~M. Whitesides, et~al.
+\newblock Self-assembly of hierarchical fractal nanostructures via dna origami.
+\newblock {\em Science}, 383(6680):456--462, 2024.
+\newblock DNA-based fractal self-assembly. Ch28 for advanced fabrication
+  pathways.
+
+\bibitem[M{\etalchar{+}}22]{Mi2022TimeCrystal}
+X.~Mi et~al.
+\newblock Time-crystalline eigenstate order on a quantum processor.
+\newblock {\em Nature}, 601:531--536, 2022.
+
+\bibitem[Mil01]{Milton2001}
+K.~A. Milton.
+\newblock The casimir effect: physical manifestations of zero-point energy.
+\newblock {\em World Scientific}, 2001.
+\newblock Comprehensive Casimir effect monograph. Ch28 for spherical cavity
+  calculations.
+
+\bibitem[MKT{\etalchar{+}}22]{Dielectrics2022}
+S.~Mueller, J.~Krupka, M.~Tobar, et~al.
+\newblock Low-loss dielectric materials for high-q resonators at cryogenic
+  temperatures.
+\newblock {\em Applied Physics Letters}, 121(14):144102, 2022.
+\newblock Cryogenic dielectric loss characterization. Ch28 for low-loss cavity
+  materials.
+
+\bibitem[MT88]{MorrisThorne1988Wormholes}
+Michael~S. Morris and Kip~S. Thorne.
+\newblock Wormholes in spacetime and their use for interstellar travel: A tool
+  for teaching general relativity.
+\newblock {\em American Journal of Physics}, 56(5):395--412, 1988.
+\newblock Foundational traversable wormhole paper. Ch30 for Morris-Thorne
+  geometry and exotic matter requirements.
+
+\bibitem[P{\etalchar{+}}24]{Patscheider2024DTC}
+A.~Patscheider et~al.
+\newblock Stabilization of discrete time-crystalline response on a
+  superconducting quantum computer by increasing the interaction range.
+\newblock {\em Physical Review Research}, 6:013311, 2024.
+
+\bibitem[Pad09]{Padamsee2008}
+Hasan Padamsee.
+\newblock Rf superconductivity: Science, technology and applications.
+\newblock {\em Wiley-VCH}, 2009.
+\newblock SRF cavity engineering handbook. Ch28 for Q-factor optimization.
+
+\bibitem[PF97]{Pfenning1997WarpOptimization}
+Michael~J. Pfenning and L.~H. Ford.
+\newblock The unphysical nature of 'warp drive'.
+\newblock {\em Classical and Quantum Gravity}, 14(7):1743--1751, 1997.
+\newblock Reduced warp drive energy requirements to 10$^{48}$ J via optimized
+  geometries. Ch30 for feasibility analysis.
+
+\bibitem[RCJ24]{CasimirEnhanced2024}
+A.~Rodriguez, F.~Capasso, and S.~G. Johnson.
+\newblock Enhanced casimir forces in nanostructured metamaterials.
+\newblock {\em Nature Photonics}, 18:234--240, 2024.
+\newblock Experimental proof-of-concept for geometry-enhanced Casimir. Ch28 for
+  TRL assessment.
+
+\bibitem[S{\etalchar{+}}24]{DTquasicrystal2025}
+M.~Schulz et~al.
+\newblock Discrete time quasicrystals in driven quantum systems.
+\newblock {\em Physical Review Letters}, 132(12):120401, 2024.
+\newblock Ch08 for time quasicrystal phases, Ch27 for topological quantum
+  computing.
+
+\bibitem[SP{\etalchar{+}}23]{Vacuum2023}
+R.~Schmidt, A.~Petersen, et~al.
+\newblock Ultra-high vacuum systems for precision casimir force measurements.
+\newblock {\em Review of Scientific Instruments}, 94(6):063201, 2023.
+\newblock UHV requirements for Casimir experiments. Ch28 for vacuum system
+  design.
+
+\bibitem[Whi13]{WhiteWarpDrive2013}
+Harold~G. White.
+\newblock Warp field mechanics 101.
+\newblock {\em Journal of the British Interplanetary Society}, 66:242--247,
+  2013.
+\newblock Ch30 for NASA Eagleworks warp drive feasibility study.
+
+\bibitem[X{\etalchar{+}}24]{NVtimecrystal2024}
+K.~Xu et~al.
+\newblock Observation of a continuous time crystal in a nitrogen-vacancy
+  ensemble.
+\newblock {\em Nature Physics}, 20:135--141, 2024.
+\newblock Ch08 for continuous time crystals in diamond NV centers.
+
+\bibitem[YS{\etalchar{+}}23]{THz2023}
+K.~Yamamoto, T.~Suzuki, et~al.
+\newblock High-efficiency superconducting thz rectifiers for energy harvesting.
+\newblock {\em Superconductor Science and Technology}, 36(8):085012, 2023.
+\newblock THz rectification efficiency. Ch28 for AC-to-DC conversion in
+  harvesters.
+
+\bibitem[ZHK{\etalchar{+}}17]{Zhang2017TrappedIons}
+J.~Zhang, P.~W. Hess, A.~Kyprianidis, P.~Becker, A.~Lee, J.~Smith, G.~Pagano,
+  I.~D. Potirniche, A.~C. Potter, A.~Vishwanath, N.~Y. Yao, and C.~Monroe.
+\newblock Observation of a discrete time crystal.
+\newblock {\em Nature}, 543:217--220, 2017.
+
+\bibitem[ZPC{\etalchar{+}}24]{NanoFab2024}
+L.~Zhang, J.~Park, W.~Chen, et~al.
+\newblock Sub-5nm patterning with extreme ultraviolet lithography at high
+  volume manufacturing.
+\newblock {\em Nature Nanotechnology}, 19:425--431, 2024.
+\newblock State-of-art nanofabrication resolution. Ch28 for fractal structure
+  manufacturing limits.
+
+\end{thebibliography}

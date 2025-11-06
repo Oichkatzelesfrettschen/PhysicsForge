@@ -1,0 +1,78 @@
+% Test compilation document for all Chapter 28 figures
+% Author: Dr. Computernonymouse
+% Compile with: pdflatex test_compile_all.tex
+
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+
+\title{Chapter 28 Figures: Energy Technologies\\Zero-Point Energy Harvesting}
+\author{Dr. Computernonymouse}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Resonant Cavity Designs}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_spherical_cavity.tex}
+\caption{Spherical resonant cavity for isotropic ZPE coupling. Electric field modes (arrows) couple to scalar field $\phi$ (color gradient) maximizing energy density at center.}
+\label{fig:spherical_cavity}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_cylindrical_cavity.tex}
+\caption{Cylindrical cavity with axial scalar field oscillations. Standing waves at resonance frequency $\omega_{\text{res}}$ enhance directional energy extraction.}
+\label{fig:cylindrical_cavity}
+\end{figure}
+
+\section{Advanced Coupling Structures}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_sierpinski_antenna.tex}
+\caption{Sierpinski triangle fractal antenna etched on metallic plate. Self-similar structure enhances multi-scale ZPE coupling with fractal dimension $D_f = \log(3)/\log(2) \approx 1.585$.}
+\label{fig:sierpinski}
+\end{figure}
+
+\section{System Architecture}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_extraction_schematic.tex}
+\caption{Energy extraction system architecture. Total efficiency $\eta_{\text{total}} = \eta_{\text{couple}} \times \eta_{\text{convert}} \times \eta_{\text{trans}} \approx 4\%$.}
+\label{fig:schematic}
+\end{figure}
+
+\section{Performance Analysis}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_power_vs_frequency.tex}
+\caption{Extractable power density vs. operating frequency. Realistic performance (blue) accounts for coupling, conversion, and transmission losses, yielding $\rho \sim 10^{-5}$ W/m³ at THz frequencies.}
+\label{fig:power_frequency}
+\end{figure}
+
+\section{Technology Development}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_trl_timeline.tex}
+\caption{Technology Readiness Level progression timeline. Current status (2025): TRL 2-3. Projected commercialization (TRL 8-9) by 2045 requires multiple breakthroughs.}
+\label{fig:trl}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\input{fig_ch28_efficiency_comparison.tex}
+\caption{Power density comparison across energy technologies. ZPE harvesting (4 × 10$^{-5}$ W/m³) is 10$^7$ times less dense than photovoltaics, limiting applications to niche scenarios.}
+\label{fig:comparison}
+\end{figure}
+
+\end{document}
