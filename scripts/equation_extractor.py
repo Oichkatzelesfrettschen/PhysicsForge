@@ -48,6 +48,34 @@ DOMAIN_PRIORITIES: list[tuple[str, list[str]]] = [
 ]
 
 
+def _read_content_worker(pstr: str, max_lines: int | None) -> tuple[str, int]:
+    try:
+        with open(pstr, "r", encoding="utf-8", errors="strict") as f:
+            if max_lines is not None:
+                buf: list[str] = []
+                for i, line in enumerate(f, 1):
+                    buf.append(line)
+                    if i >= max_lines:
+                        break
+                return "".join(buf), 0
+            return f.read(), 0
+    except Exception:
+        return "", 1
+
+
+def _worker_process(args: tuple[int, tuple[str, str], int | None]) -> tuple[int, list[dict], int, str, float, float, float]:
+    idx, (pstr, fw), max_lines = args
+    _rs = time.perf_counter()
+    content, skipped = _read_content_worker(pstr, max_lines)
+    read_elapsed = time.perf_counter() - _rs
+    if not content:
+        return idx, [], skipped, fw, read_elapsed, 0.0, 0.0
+    _es = time.perf_counter()
+    entries, classify_e = EquationExtractor._extract_entries_from_content(content, fw, os.path.basename(pstr))
+    extract_elapsed = time.perf_counter() - _es
+    return idx, entries, skipped, fw, read_elapsed, extract_elapsed, classify_e
+
+
 class EquationExtractor:
     def __init__(self, base_dir: str | None = None):
         self.base_dir = resolve_base_dir(base_dir)
@@ -285,12 +313,13 @@ class EquationExtractor:
     def _has_math(expr: str) -> bool:
         return re.search(r"(=|\+|\-|\*|/|\^|\\(sum|int|frac|alpha|beta|gamma|sqrt|log|exp|partial|nabla))", expr) is not None
 
-    def _is_valid_equation(self, eq_str: str) -> bool:  # used in tests
+    @staticmethod
+    def _is_valid_equation(eq_str: str) -> bool:  # used in tests
         if len(eq_str) < 5 or len(eq_str) > 500:
             return False
         if eq_str.startswith(("- [", "* [", "C:\\Users\\")):
             return False
-        if not self._has_math(eq_str):
+        if not EquationExtractor._has_math(eq_str):
             return False
         prose_indicators = [
             " the ", " and ", " or ", " is ", " are ", " that ",
@@ -335,7 +364,7 @@ class EquationExtractor:
                         eq_text = m.group(1).strip()
                     else:
                         eq_text = m.group(0).strip()
-                    if not self._is_valid_equation(eq_text):
+                    if not EquationExtractor._is_valid_equation(eq_text):
                         continue
                     normalized = self.normalize_equation(eq_text)
                     self.metrics['candidate_equations'] = int(self.metrics.get('candidate_equations', 0)) + 1
@@ -362,7 +391,8 @@ class EquationExtractor:
                         entry["RelatedEqs"] = f"module:{self.latex_map[tex_key]}"
                     self.equations.append(entry)
 
-    def _extract_entries_from_content(self, content: str, framework_type: str, filename: str) -> tuple[list[dict], float]:
+    @staticmethod
+    def _extract_entries_from_content(content: str, framework_type: str, filename: str) -> tuple[list[dict], float]:
         results: list[dict] = []
         classify_elapsed = 0.0
         lines = content.splitlines()
@@ -384,11 +414,11 @@ class EquationExtractor:
                     continue
                 for m in matches:
                     eq_text = m.group(1).strip() if kind in ("governing", "key_relation") else m.group(0).strip()
-                    if not self._is_valid_equation(eq_text):
+                    if not EquationExtractor._is_valid_equation(eq_text):
                         continue
                     _cs = time.perf_counter()
-                    descr = self._extract_description(lines, line_num)
-                    domain = self._classify_domain(eq_text, descr)
+                    descr = EquationExtractor._extract_description(lines, line_num)
+                    domain = EquationExtractor._classify_domain(eq_text, descr)
                     classify_elapsed += (time.perf_counter() - _cs)
                     results.append({
                         "Equation": eq_text,
@@ -397,7 +427,7 @@ class EquationExtractor:
                         "SourceDoc": filename,
                         "SourceLine": line_num,
                         "Description": descr,
-                        "ExperimentalTest": self._suggest_experiment(eq_text, descr),
+                        "ExperimentalTest": EquationExtractor._suggest_experiment(eq_text, descr),
                     })
         return results, classify_elapsed
 
@@ -497,34 +527,13 @@ class EquationExtractor:
 
         # Parallel path (optional)
         if (parallel_workers or 0) > 0 and candidates:
-            from concurrent.futures import ThreadPoolExecutor
-            # local extractor to avoid modifying global state in threads
-            def read_content(pstr: str) -> tuple[str, int]:
-                try:
-                    with open(pstr, "r", encoding="utf-8", errors="strict") as f:
-                        if max_lines is not None:
-                            buf: list[str] = []
-                            for i, line in enumerate(f, 1):
-                                buf.append(line)
-                                if i >= max_lines:
-                                    break
-                            return "".join(buf), 0
-                        return f.read(), 0
-                except Exception:
-                    return "", 1
+            import multiprocessing as mp
+            from functools import partial
 
-            def worker(idx_path_fw: tuple[int, tuple[str, str]]):
-                idx, (pstr, fw) = idx_path_fw
-                # measure read
-                _rs = time.perf_counter()
-                content, skipped = read_content(pstr)
-                read_elapsed = time.perf_counter() - _rs
-                if not content:
-                    return idx, [], skipped, fw, read_elapsed, 0.0, 0.0
-                _es = time.perf_counter()
-                entries, classify_e = self._extract_entries_from_content(content, fw, os.path.basename(pstr))
-                extract_elapsed = time.perf_counter() - _es
-                return idx, entries, skipped, fw, read_elapsed, extract_elapsed, classify_e
+            worker_func = partial(_worker_process, max_lines=max_lines)
+
+            # Map inputs for workers
+            worker_inputs = [(idx, item) for idx, item in enumerate(candidates)]
 
             results_by_index: list[list[dict]] = [[] for _ in candidates]
             skipped_decode_total = 0
@@ -533,20 +542,23 @@ class EquationExtractor:
             read_total = 0.0
             extract_total = 0.0
             classify_total = 0.0
-            with ThreadPoolExecutor(max_workers=parallel_workers) as ex:
-                futures = []
-                for idx, item in enumerate(candidates):
-                    futures.append(ex.submit(worker, (idx, item)))
-                for fut in futures:
-                    idx, entries, skipped, fw, read_e, extract_e, classify_e = fut.result()
+
+            with mp.Pool(processes=parallel_workers) as pool:
+                # Use map to maintain order and simplify processing
+                results = pool.map(worker_func, worker_inputs)
+
+                for idx, entries, skipped, fw, read_e, extract_e, classify_e in results:
                     results_by_index[idx] = entries
                     skipped_decode_total += int(skipped)
+
                     timing_fw[fw] = timing_fw.get(fw, 0.0) + float(read_e + extract_e)
                     if fw not in timing_fw_break:
                         timing_fw_break[fw] = {'read_s': 0.0, 'extract_s': 0.0, 'classify_s': 0.0}
+
                     timing_fw_break[fw]['read_s'] += float(read_e)
                     timing_fw_break[fw]['extract_s'] += float(extract_e)
                     timing_fw_break[fw]['classify_s'] += float(classify_e)
+
                     read_total += float(read_e)
                     extract_total += float(extract_e)
                     classify_total += float(classify_e)
