@@ -30,7 +30,32 @@ DEFAULT_PAPERS_DIR_CANDIDATES = (
 )
 
 class PDFImageEquationExtractor:
+    """Extracts equations from images within PDF files using OCR.
+
+    This class scans PDF files, extracts images from each page, and uses
+    the pix2tex OCR model to convert images that appear to be equations
+    into LaTeX strings.
+
+    Attributes:
+        base_dir (str): The root directory of the repository.
+        equations (list[dict]): A list of dictionaries, each representing a
+            found equation.
+        eq_counter (defaultdict[str, int]): A counter for generating unique
+            equation IDs for each framework.
+        seen_equations (set[str]): A set of normalized equations to avoid
+            duplicates.
+        had_errors (bool): A flag indicating if any errors occurred during
+            extraction.
+        ocr_model: The initialized pix2tex OCR model.
+        temp_image_dir (Path): The directory for storing temporary images
+            extracted from PDFs.
+    """
     def __init__(self, base_dir: str):
+        """Initializes the PDFImageEquationExtractor.
+
+        Args:
+            base_dir: The base directory of the repository.
+        """
         self.base_dir = base_dir
         self.equations = []
         self.eq_counter = defaultdict(int)
@@ -50,7 +75,15 @@ class PDFImageEquationExtractor:
             print(f"Error creating temporary image directory {self.temp_image_dir}: {e}")
             self.had_errors = True
 
-    def _generate_eq_id(self, framework_type):
+    def _generate_eq_id(self, framework_type: str) -> str:
+        """Generates a unique equation ID for a given framework.
+
+        Args:
+            framework_type: The framework name (e.g., "Aether", "Genesis").
+
+        Returns:
+            A unique equation ID string (e.g., "AE001").
+        """
         prefix_map = {
             'Aether': 'AE', 'Genesis': 'GE', 'Pais': 'PE',
             'Tourmaline': 'TE', 'Superforce': 'SE', 'Literature': 'LE',
@@ -60,7 +93,15 @@ class PDFImageEquationExtractor:
         self.eq_counter[prefix] += 1
         return f"{prefix}{self.eq_counter[prefix]:03d}"
 
-    def _classify_framework(self, pdf_name: str):
+    def _classify_framework(self, pdf_name: str) -> str:
+        """Classifies the framework based on the PDF filename.
+
+        Args:
+            pdf_name: The name of the PDF file.
+
+        Returns:
+            The classified framework string.
+        """
         lower_name = pdf_name.lower()
         if 'pais' in lower_name:
             return 'Pais'
@@ -72,14 +113,27 @@ class PDFImageEquationExtractor:
             return 'OCR' # Default for general OCR extraction
 
     def _post_process_latex_output(self, latex_str: str) -> str:
-        """Apply heuristic corrections to common OCR errors in LaTeX output."""
+        """Applies heuristic corrections to common OCR errors in LaTeX output.
+
+        Args:
+            latex_str: The raw LaTeX string from the OCR model.
+
+        Returns:
+            The corrected LaTeX string.
+        """
         # No heuristic corrections applied for now.
         # This method can be expanded later for specific post-processing needs.
         return latex_str
 
-    def extract_images_from_pdf(self, pdf_path: Path):
-        """
-        Extracts images from a PDF and attempts OCR on them.
+    def extract_images_from_pdf(self, pdf_path: Path) -> None:
+        """Extracts images from a PDF and attempts OCR on them.
+
+        This method uses PyMuPDF to extract images from each page of the PDF,
+        saves them as temporary files, and then runs them through the OCR
+        model.
+
+        Args:
+            pdf_path: The path to the PDF file.
         """
         print(f"Extracting images from PDF: {pdf_path.name}")
         framework = self._classify_framework(pdf_path.name)
@@ -158,12 +212,26 @@ class PDFImageEquationExtractor:
                         print(f"Warning: Could not remove temporary image file {image_filename}: {e}")
                         self.had_errors = True
 
-    def normalize_equation(self, eq_str):
-        """Normalize equation string for deduplication (simple version for OCR output)"""
+    def normalize_equation(self, eq_str: str) -> str:
+        """Normalizes an equation string for deduplication.
+
+        This is a simple version for OCR output, which removes all
+        whitespace and converts the string to lowercase.
+
+        Args:
+            eq_str: The equation string to normalize.
+
+        Returns:
+            The normalized equation string.
+        """
         return re.sub(r'\s+', '', eq_str.strip()).lower()
 
-    def save_to_csv(self, output_file):
-        """Save extracted OCR equations to CSV"""
+    def save_to_csv(self, output_file: str):
+        """Saves the extracted equations to a CSV file.
+
+        Args:
+            output_file: The path to the output CSV file.
+        """
         fieldnames = ['EqID', 'Equation', 'Framework', 'Domain', 'SourceDoc',
                      'SourceLine', 'Description', 'VerificationStatus',
                      'RelatedEqs', 'ExperimentalTest']
