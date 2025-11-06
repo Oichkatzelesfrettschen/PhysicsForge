@@ -64,6 +64,49 @@ pre-commit install
 
 ## Building and Running
 
+### Building from Source (Arch Linux)
+
+This project can be packaged for Arch Linux using the provided `PKGBUILD` file. The `PKGBUILD` creates a source package that contains the entire project directory.
+
+1.  **Install Dependencies:**
+
+    Before building the package, you need to install the required dependencies. A script is provided to automate this process.
+
+    ```bash
+    ./install_deps.sh
+    ```
+
+    This script will install all the necessary dependencies from the official repositories and the AUR. You will need to have an AUR helper like `yay` or `paru` installed.
+
+2.  **Build the Package:**
+
+    Once the dependencies are installed, you can build the source package using `makepkg`.
+
+    ```bash
+    makepkg
+    ```
+
+    This will create a package file with the `.pkg.tar.zst` extension.
+
+3.  **Install the Package:**
+
+    You can install the package using `pacman`.
+
+    ```bash
+    sudo pacman -U <package-file>.pkg.tar.zst
+    ```
+
+    This will install the source code to `/usr/src/physicsforge`.
+
+4.  **Build the Project:**
+
+    After installing the source package, you can build the project by navigating to the `/usr/src/physicsforge` directory and running `make`.
+
+    ```bash
+    cd /usr/src/physicsforge
+    make
+    ```
+
 The `Makefile` provides a comprehensive set of commands for various project tasks.
 
 ### Key `make` Commands
