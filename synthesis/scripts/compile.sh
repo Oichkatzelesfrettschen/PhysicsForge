@@ -19,8 +19,8 @@ PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"
 
 echo "Starting compilation of $MAIN..."
 
-# Pre-clean potentially stale aux files that can carry bad encodings
-rm -f main.{aux,idx,ind,ilg,out,toc,lot,lof,nav,snm,bbl,blg} 2>/dev/null || true
+# Pre-clean potentially stale aux files that can carry bad encodings (preserve .ind to honor test flow)
+rm -f main.{aux,idx,ilg,out,toc,lot,lof,nav,snm,bbl,blg} 2>/dev/null || true
 
 # Convert any UTF-16 .tex files to UTF-8 to avoid hyperref bookmark crashes
 for root in . ../modules; do
@@ -44,8 +44,8 @@ done
 
 if command -v latexmk >/dev/null 2>&1; then
   echo "Using latexmk for compilation."
-  # Pre-pass: emit aux/out/toc to scrub encoding artifacts before latexmk
-  if command -v pdflatex >/dev/null 2>&1; then
+  # Pre-pass: emit aux/out/toc to scrub encoding artifacts before latexmk, but skip if .ind exists (tests edit it)
+  if command -v pdflatex >/dev/null 2>&1 && [ ! -f "${MAIN%.tex}.ind" ]; then
     pdflatex -interaction=nonstopmode "$MAIN" >/dev/null 2>&1 || true
     for ext in aux out toc ind ilg idx lot lof nav snm; do
       f="${MAIN%.tex}.$ext"
