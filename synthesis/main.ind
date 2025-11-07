@@ -1,178 +1,178 @@
 \begin{theindex}
 
-  \item 32-dimensional algebra, \hyperxindexformat{\see{pathions}}{30}
+  \item 32-dimensional algebra, \hyperindexformat{\see{pathions}}{26}
 
   \indexspace
 
-  \item Albert algebra, \hyperpage{44}
+  \item Albert algebra, \hyperpage{38}
   \item associativity
-    \subitem loss of, \hyperpage{28}
+    \subitem loss of, \hyperpage{24}
   \item automorphism group
-    \subitem of octonions, \hyperpage{43}
+    \subitem of octonions, \hyperpage{37}
 
   \indexspace
 
-  \item canonical commutation relations, \hyperpage{16}
+  \item canonical commutation relations, \hyperpage{14}
   \item Cayley-Dickson
-    \subitem pathions, \hyperpage{30}
-    \subitem sedenions, \hyperpage{29}
-  \item Cayley-Dickson algebras, \hyperpage{23}
-  \item Christoffel symbols, \hyperpage{8}
-  \item commutation relations, \hyperpage{16}
-  \item complex numbers, \hyperpage{27}
-  \item CoNb$_2$O$_6$, \hyperpage{41}
+    \subitem pathions, \hyperpage{26}
+    \subitem sedenions, \hyperpage{25}
+  \item Cayley-Dickson algebras, \hyperpage{19}
+  \item Christoffel symbols, \hyperpage{6}
+  \item commutation relations, \hyperpage{14}
+  \item complex numbers, \hyperpage{23}
+  \item CoNb$_2$O$_6$, \hyperpage{35}
   \item connection coefficients, 
-		\hyperxindexformat{\see{Christoffel symbols}}{8}
-  \item covariant derivative, \hyperpage{10}
+		\hyperindexformat{\see{Christoffel symbols}}{6}
+  \item covariant derivative, \hyperpage{8}
   \item curvature
-    \subitem Riemann, \hyperpage{10}
-  \item curved spacetime, \hyperpage{5}
+    \subitem Riemann, \hyperpage{8}
+  \item curved spacetime, \hyperpage{3}
 
   \indexspace
 
-  \item d'Alembertian, \hyperpage{13}
+  \item d'Alembertian, \hyperpage{11}
   \item derivative
-    \subitem covariant, \hyperpage{10}
+    \subitem covariant, \hyperpage{8}
   \item division algebra
-    \subitem failure, \hyperpage{29}
-    \subitem octonions, \hyperpage{28}
-  \item Dynkin diagram, \hyperpage{43}
-    \subitem $G_2$, \hyperpage{43}
+    \subitem failure, \hyperpage{25}
+    \subitem octonions, \hyperpage{24}
+  \item Dynkin diagram, \hyperpage{37}
+    \subitem $G_2$, \hyperpage{37}
 
   \indexspace
 
-  \item E-series groups, \hyperpage{45}
-  \item $E_6$, \hyperpage{45}
-  \item $E_7$, \hyperpage{46}
-  \item $E_8$, \hyperpage{48}
-    \subitem as largest exceptional group, \hyperpage{48}
-    \subitem experimental observation, \hyperpage{41}
-    \subitem in string theory, \hyperpage{50}
-    \subitem sphere packing, \hyperpage{48}
-  \item Einstein field equations, \hyperpage{12}
-  \item Einstein tensor, \hyperpage{12}
-  \item exceptional Lie groups, \hyperpage{41}
+  \item E-series groups, \hyperpage{39}
+  \item $E_6$, \hyperpage{39}
+  \item $E_7$, \hyperpage{40}
+  \item $E_8$, \hyperpage{42}
+    \subitem as largest exceptional group, \hyperpage{42}
+    \subitem experimental observation, \hyperpage{35}
+    \subitem in string theory, \hyperpage{44}
+    \subitem sphere packing, \hyperpage{42}
+  \item Einstein field equations, \hyperpage{10}
+  \item Einstein tensor, \hyperpage{10}
+  \item exceptional Lie groups, \hyperpage{35}
 
   \indexspace
 
-  \item $F_4$, \hyperpage{44}
-  \item Fano plane, \hyperpage{28}
+  \item $F_4$, \hyperpage{38}
+  \item Fano plane, \hyperpage{24}
   \item field equations
-    \subitem Einstein, \hyperpage{12}
-  \item Fourier transform, \hyperpage{18}
+    \subitem Einstein, \hyperpage{10}
+  \item Fourier transform, \hyperpage{16}
 
   \indexspace
 
-  \item $G_2$, \hyperpage{43}
-  \item general relativity, \hyperpage{5}
+  \item $G_2$, \hyperpage{37}
+  \item general relativity, \hyperpage{3}
   \item GPS
-    \subitem gravitational corrections, \hyperpage{5}
-  \item Grand Unified Theory, \hyperxindexformat{\see{GUT}}{41}
-  \item gravitational time dilation, \hyperpage{5}
-  \item GUT, \hyperpage{41}
+    \subitem gravitational corrections, \hyperpage{3}
+  \item Grand Unified Theory, \hyperindexformat{\see{GUT}}{35}
+  \item gravitational time dilation, \hyperpage{3}
+  \item GUT, \hyperpage{35}
 
   \indexspace
 
-  \item Hamilton, William Rowan, \hyperpage{23}
-  \item Hamiltonian, \hyperpage{16}
-  \item Heisenberg uncertainty principle, \hyperpage{16}
-  \item Hermitian operator, \hyperpage{16}
-  \item heterotic strings, \hyperpage{50}
+  \item Hamilton, William Rowan, \hyperpage{19}
+  \item Hamiltonian, \hyperpage{14}
+  \item Heisenberg uncertainty principle, \hyperpage{14}
+  \item Hermitian operator, \hyperpage{14}
+  \item heterotic strings, \hyperpage{44}
   \item hypercomplex numbers, 
-		\hyperxindexformat{\see{Cayley-Dickson algebras}}{23}
+		\hyperindexformat{\see{Cayley-Dickson algebras}}{19}
 
   \indexspace
 
   \item Jordan algebra
-    \subitem exceptional, \hyperpage{44}
+    \subitem exceptional, \hyperpage{38}
 
   \indexspace
 
   \item Lie groups
-    \subitem exceptional, \hyperpage{41}
+    \subitem exceptional, \hyperpage{35}
 
   \indexspace
 
-  \item mathematical preliminaries, \hyperpage{5}
+  \item mathematical preliminaries, \hyperpage{3}
   \item metric
-    \subitem Schwarzschild, \hyperpage{7}
-  \item metric tensor, \hyperpage{7}
+    \subitem Schwarzschild, \hyperpage{5}
+  \item metric tensor, \hyperpage{5}
 
   \indexspace
 
-  \item non-associativity, \hyperpage{28}
+  \item non-associativity, \hyperpage{24}
 
   \indexspace
 
-  \item observable, \hyperxindexformat{\see{Hermitian operator}}{16}
-  \item octonions, \hyperpage{28}
+  \item observable, \hyperindexformat{\see{Hermitian operator}}{14}
+  \item octonions, \hyperpage{24}
   \item operator
-    \subitem Hamiltonian, \hyperpage{16}
-    \subitem Hermitian, \hyperpage{16}
+    \subitem Hamiltonian, \hyperpage{14}
+    \subitem Hermitian, \hyperpage{14}
 
   \indexspace
 
-  \item parallel transport, \hyperpage{8}
-  \item pathions, \hyperpage{30}
-  \item Planck length, \hyperpage{14}
-  \item Planck mass, \hyperpage{14}
-  \item Planck scale, \hyperpage{14}
-  \item proper time, \hyperxindexformat{\see{spacetime interval}}{7}
+  \item parallel transport, \hyperpage{6}
+  \item pathions, \hyperpage{26}
+  \item Planck length, \hyperpage{12}
+  \item Planck mass, \hyperpage{12}
+  \item Planck scale, \hyperpage{12}
+  \item proper time, \hyperindexformat{\see{spacetime interval}}{5}
 
   \indexspace
 
   \item quantum magnet
-    \subitem CoNb$_2$O$_6$, \hyperpage{41}
-  \item quaternions, \hyperpage{23}
+    \subitem CoNb$_2$O$_6$, \hyperpage{35}
+  \item quaternions, \hyperpage{19}
 
   \indexspace
 
-  \item Ricci scalar, \hyperpage{11}
-  \item Ricci tensor, \hyperpage{11}
-  \item Riemann curvature tensor, \hyperpage{10}
+  \item Ricci scalar, \hyperpage{9}
+  \item Ricci tensor, \hyperpage{9}
+  \item Riemann curvature tensor, \hyperpage{8}
 
   \indexspace
 
-  \item scalar curvature, \hyperxindexformat{\see{Ricci scalar}}{11}
-  \item Schr\"odinger equation, \hyperpage{16}
-  \item Schwarzschild metric, \hyperpage{7}
-  \item sedenions, \hyperpage{29}
-  \item spacetime interval, \hyperpage{7}
-  \item spectral decomposition, \hyperpage{18}
+  \item scalar curvature, \hyperindexformat{\see{Ricci scalar}}{9}
+  \item Schr\"odinger equation, \hyperpage{14}
+  \item Schwarzschild metric, \hyperpage{5}
+  \item sedenions, \hyperpage{25}
+  \item spacetime interval, \hyperpage{5}
+  \item spectral decomposition, \hyperpage{16}
   \item sphere packing
-    \subitem optimal, \hyperpage{48}
+    \subitem optimal, \hyperpage{42}
   \item string theory
-    \subitem heterotic, \hyperpage{50}
+    \subitem heterotic, \hyperpage{44}
   \item supergravity
-    \subitem $\mathcal{N}=8$, \hyperpage{46}
+    \subitem $\mathcal{N}=8$, \hyperpage{40}
 
   \indexspace
 
   \item tensor
-    \subitem Einstein, \hyperpage{12}
-    \subitem metric, \hyperpage{7}
-    \subitem Ricci, \hyperpage{11}
+    \subitem Einstein, \hyperpage{10}
+    \subitem metric, \hyperpage{5}
+    \subitem Ricci, \hyperpage{9}
   \item time dilation
-    \subitem gravitational, \hyperpage{5}
+    \subitem gravitational, \hyperpage{3}
   \item time evolution
-    \subitem quantum, \hyperpage{16}
+    \subitem quantum, \hyperpage{14}
 
   \indexspace
 
-  \item uncertainty principle, \hyperpage{16}
+  \item uncertainty principle, \hyperpage{14}
   \item unification
-    \subitem gauge forces, \hyperpage{41}
+    \subitem gauge forces, \hyperpage{35}
 
   \indexspace
 
-  \item Viazovska theorem, \hyperpage{48}
+  \item Viazovska theorem, \hyperpage{42}
 
   \indexspace
 
-  \item wave operator, \hyperxindexformat{\see{d'Alembertian}}{13}
+  \item wave operator, \hyperindexformat{\see{d'Alembertian}}{11}
 
   \indexspace
 
-  \item zero divisors, \hyperpage{29}
+  \item zero divisors, \hyperpage{25}
 
 \end{theindex}
