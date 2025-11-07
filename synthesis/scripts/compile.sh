@@ -19,6 +19,9 @@ PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"
 
 echo "Starting compilation of $MAIN..."
 
+# Pre-clean potentially stale aux files that can carry bad encodings
+rm -f main.{aux,idx,ind,ilg,out,toc,lot,lof,nav,snm,bbl,blg} 2>/dev/null || true
+
 # Convert any UTF-16 .tex files to UTF-8 to avoid hyperref bookmark crashes
 for root in . ../modules; do
   [ -d "$root" ] || continue
