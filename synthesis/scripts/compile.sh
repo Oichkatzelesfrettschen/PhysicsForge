@@ -20,12 +20,15 @@ PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"
 echo "Starting compilation of $MAIN..."
 
 # Convert any UTF-16 .tex files to UTF-8 to avoid hyperref bookmark crashes
-find . -type f -name "*.tex" -print0 | while IFS= read -r -d '' f; do
-  enc=$(file -bi "$f" || true)
-  bom=$(xxd -p -l 2 "$f" 2>/dev/null || echo "")
-  if [[ "$enc" == *"charset=utf-16"* ]] || [[ "$bom" == "feff" ]] || [[ "$bom" == "fffe" ]]; then
-    iconv -f utf-16 -t utf-8 "$f" > "$f".utf8 && mv "$f".utf8 "$f"
-  fi
+for root in . ../modules; do
+  [ -d "$root" ] || continue
+  find "$root" -type f -name "*.tex" -print0 | while IFS= read -r -d '' f; do
+    enc=$(file -bi "$f" || true)
+    bom=$(xxd -p -l 2 "$f" 2>/dev/null || echo "")
+    if [[ "$enc" == *"charset=utf-16"* ]] || [[ "$bom" == "feff" ]] || [[ "$bom" == "fffe" ]]; then
+      iconv -f utf-16 -t utf-8 "$f" > "$f".utf8 && mv "$f".utf8 "$f"
+    fi
+  done
 done
 
 # --- End Harmonized Block ---

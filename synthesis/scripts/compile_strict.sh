@@ -13,12 +13,15 @@ MAIN_LOG="main.log"
 echo "Starting strict compilation of $MAIN..."
 
 # Convert any UTF-16 .tex files to UTF-8 to avoid hyperref bookmark crashes
-find . -type f -name "*.tex" -print0 | while IFS= read -r -d '' f; do
-  enc=$(file -bi "$f" || true)
-  bom=$(xxd -p -l 2 "$f" 2>/dev/null || echo "")
-  if [[ "$enc" == *"charset=utf-16"* ]] || [[ "$bom" == "feff" ]] || [[ "$bom" == "fffe" ]]; then
-    iconv -f utf-16 -t utf-8 "$f" > "$f".utf8 && mv "$f".utf8 "$f"
-  fi
+for root in . ../modules; do
+  [ -d "$root" ] || continue
+  find "$root" -type f -name "*.tex" -print0 | while IFS= read -r -d '' f; do
+    enc=$(file -bi "$f" || true)
+    bom=$(xxd -p -l 2 "$f" 2>/dev/null || echo "")
+    if [[ "$enc" == *"charset=utf-16"* ]] || [[ "$bom" == "feff" ]] || [[ "$bom" == "fffe" ]]; then
+      iconv -f utf-16 -t utf-8 "$f" > "$f".utf8 && mv "$f".utf8 "$f"
+    fi
+  done
 done
 
 if ! command -v pdflatex >/dev/null 2>&1 && ! command -v latexmk >/dev/null 2>&1; then
