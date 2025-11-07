@@ -44,6 +44,16 @@ done
 
 if command -v latexmk >/dev/null 2>&1; then
   echo "Using latexmk for compilation."
+  # Pre-pass: emit aux/out/toc to scrub encoding artifacts before latexmk
+  if command -v pdflatex >/dev/null 2>&1; then
+    pdflatex -interaction=nonstopmode "$MAIN" >/dev/null 2>&1 || true
+    for ext in aux out toc ind ilg idx lot lof nav snm; do
+      f="${MAIN%.tex}.$ext"
+      if [ -f "$f" ]; then
+        perl -0777 -pe 's/\x{FEFF}//g; s/\x00//g' "$f" > "$f".clean && mv "$f".clean "$f"
+      fi
+    done
+  fi
   # Note: Redirecting both stdout and stderr to the log file
   if latexmk -pdf "$MAIN" > "$LATEXMK_LOG" 2>&1; then
     echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
