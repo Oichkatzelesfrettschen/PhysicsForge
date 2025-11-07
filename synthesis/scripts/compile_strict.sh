@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd "$(dirname "$0")"
-MAIN="../main.tex"
-LOG_DIR="../logs"
+# Change to the synthesis directory
+cd "$(dirname "$0")/.."
+MAIN="main.tex"
+LOG_DIR="logs"
 mkdir -p "$LOG_DIR"
 LATEXMK_LOG="$LOG_DIR/latexmk_strict_compile.log"
 PDFLATEX_LOG="$LOG_DIR/pdflatex_strict_compile.log"
-MAIN_LOG="../main.log"
+MAIN_LOG="main.log"
 
 echo "Starting strict compilation of $MAIN..."
 

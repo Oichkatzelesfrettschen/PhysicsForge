@@ -1,0 +1,15 @@
+
+# LaTeX artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.bbl
+*.blg
+*.toc
+*.lof
+*.lot
+*.idx
+*.ilg
+*.ind
+*.pdf
