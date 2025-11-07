@@ -59,6 +59,9 @@
 %------------------------------------------------------------------------------
 % CROSS-REFERENCING AND HYPERLINKS
 %------------------------------------------------------------------------------
+% Neutralize stray zero-width BOM/ZWSP if they sneak into sources
+\DeclareUnicodeCharacter{FEFF}{}
+\DeclareUnicodeCharacter{200B}{}
 \usepackage[unicode=false,bookmarks=false]{hyperref}
 \hypersetup{
   colorlinks=true,
