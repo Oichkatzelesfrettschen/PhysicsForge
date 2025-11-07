@@ -86,8 +86,7 @@ Starting from the real numbers $\mathbb{R}$ (1D), each doubling creates a new al
 
 \begin{equation}
   \mathbb{R} \xrightarrow{2\text{D}} \mathbb{C} \xrightarrow{4\text{D}} \mathbb{H} \xrightarrow{8\text{D}} \mathbb{O} \xrightarrow{16\text{D}} \mathbb{S} \xrightarrow{32\text{D}} \mathbb{P} \xrightarrow{\dots} 2^n\text{D}
-  \label{eq:cayley:recursion}
-  \label{eq:cayley:doubling-formula}
+  \label{eq:cayley:recursion} % single label to avoid amsmath duplicate
   \eqtag{M}{MATH}{T}
 \end{equation}
 
@@ -109,7 +108,7 @@ At each step, the dimension doubles: $\dim(\mathcal{A}_{n+1}) = 2 \cdot \dim(\ma
 \subsection{The Universal Multiplication Rule}
 
 The Cayley-Dickson construction uses a single multiplication formula that works for all doublings. Elements of the new algebra $\mathcal{A}_{n+1}$ are pairs $(a,b)$ with $a,b \in \mathcal{A}_n$. The multiplication rule is:
-\input{modules/equations/eq_cayley_dickson_multiplication.tex}
+\input{modules/equations/eq_cayley_dickson_multiplication.tex} % provides eq:cayley-dickson label
 
 \textbf{Decoding this formula}:
 \begin{itemize}
