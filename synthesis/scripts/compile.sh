@@ -58,9 +58,21 @@ if command -v latexmk >/dev/null 2>&1; then
   if latexmk -pdf "$MAIN" > "$LATEXMK_LOG" 2>&1; then
     echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
   else
-    echo "Error: latexmk compilation failed. See log for details: $LATEXMK_LOG" >&2
-    echo "To debug, check for errors in the log file or run latexmk manually." >&2
-    exit 1
+    # Attempt one automatic scrub-and-rerun to handle stray BOM/NUL in aux files
+    echo "latexmk failed; attempting aux scrub and one retry..." >&2
+    for ext in aux out toc ind ilg idx lot lof nav snm; do
+      f="${MAIN%.tex}.$ext"
+      if [ -f "$f" ]; then
+        perl -0777 -pe 's/\x{FEFF}//g; s/\x00//g' "$f" > "$f".clean && mv "$f".clean "$f"
+      fi
+    done
+    if latexmk -pdf "$MAIN" >> "$LATEXMK_LOG" 2>&1; then
+      echo "Compilation successful after scrub retry. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
+    else
+      echo "Error: latexmk compilation failed. See log for details: $LATEXMK_LOG" >&2
+      echo "To debug, check for errors in the log file or run latexmk manually." >&2
+      exit 1
+    fi
   fi
 else
   if ! command -v pdflatex >/dev/null 2>&1; then
