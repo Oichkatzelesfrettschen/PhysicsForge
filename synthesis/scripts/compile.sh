@@ -8,12 +8,11 @@ set -euo pipefail
 #    created in the project root, not in the script directory.
 cd "$(dirname "$0")/.."
 
-# 2. Define MAIN relative to the new CWD (the project root).
+# We are now in synthesis/; MAIN is in this directory
 MAIN="main.tex"
 
-# 3. Adopt the 'main' branch's logging enhancements, but *adapt* the
-#    paths to be relative to the new CWD (the project root).
-LOG_DIR="logs"
+# Write logs to project root logs/ as tests expect
+LOG_DIR="../logs"
 mkdir -p "$LOG_DIR"
 LATEXMK_LOG="$LOG_DIR/latexmk_compile.log"
 PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"

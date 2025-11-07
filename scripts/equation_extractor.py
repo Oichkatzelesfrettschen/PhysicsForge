@@ -437,7 +437,8 @@ class EquationExtractor:
             entry["EqID"] = eq_id
             entry["VerificationStatus"] = "Theoretical"
             entry["RelatedEqs"] = ""
-            tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
+            math_only = extract_math_slice(entry["Equation"]) or entry["Equation"]
+            tex_key = self.normalize_equation(self._strip_tex(math_only))
             if tex_key in self.latex_map:
                 entry["RelatedEqs"] = f"module:{self.latex_map[tex_key]}"
             self.equations.append(entry)
@@ -481,8 +482,8 @@ class EquationExtractor:
                     # Validate the *clean string* with the formal parser
                     parser.parse(clean_eq_text)
                 except exceptions.LarkError:
-                    # The extracted string was NOT a valid equation.
-                    continue # Skip this line
+                    # Parser rejected; fall back to heuristic acceptance
+                    pass
             # If a leading label like "pythagoras:" precedes the first math op, keep the full line for tests
             op = _FIRST_MATH_OP.search(s)
             colon = s.find(":")
@@ -708,7 +709,8 @@ class EquationExtractor:
                             continue
                         self.seen_equations.add(normalized)
                         eq_id = self._generate_eq_id(entry["Framework"])
-                        tex_key = self.normalize_equation(self._strip_tex(entry["Equation"]))
+                        math_only = extract_math_slice(entry["Equation"]) or entry["Equation"]
+                        tex_key = self.normalize_equation(self._strip_tex(math_only))
                         related = f"module:{self.latex_map[tex_key]}" if tex_key in self.latex_map else ""
                         entry_full = {
                             "EqID": eq_id, "Equation": entry["Equation"], "Framework": entry["Framework"],
