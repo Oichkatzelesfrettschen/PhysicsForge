@@ -112,8 +112,8 @@ def _read_content_worker(pstr: str, max_lines: int | None) -> tuple[str, int]:
         return "", 1
 
 
-def _worker_process(args: tuple[int, tuple[str, str], int | None]) -> tuple[int, list[dict], int, str, float, float, float]:
-    idx, (pstr, fw), max_lines = args
+def _worker_process(args: tuple[int, tuple[str, str]], max_lines: int | None = None) -> tuple[int, list[dict], int, str, float, float, float]:
+    idx, (pstr, fw) = args
     _rs = time.perf_counter()
     content, skipped = _read_content_worker(pstr, max_lines)
     read_elapsed = time.perf_counter() - _rs
@@ -479,8 +479,13 @@ class EquationExtractor:
             try:
                 # Validate the *clean string* with the formal parser
                 parser.parse(clean_eq_text)
-                # Save the *original* extracted text (with label)
+                # Default to the extracted math slice
                 eq_text = extracted_eq_text
+                # If a leading label like "pythagoras:" precedes the first math op, keep the full line for tests
+                op = _FIRST_MATH_OP.search(s)
+                colon = s.find(":")
+                if colon != -1 and (op is None or colon < op.start()):
+                    eq_text = s
             except exceptions.LarkError:
                 # The extracted string was NOT a valid equation.
                 continue # Skip this line
@@ -920,8 +925,12 @@ if __name__ == "__main__":
             raise SystemExit(1)
         raise SystemExit(0)
 
-    output_csv = getattr(args, 'output', None) or os.path.join(BASE_DIR, "equation_catalog_preliminary.csv")
+    output_csv = getattr(args, 'output', None) or os.path.join(BASE_DIR, "data", "catalogs", "equation_catalog_preliminary.csv")
     if not getattr(args, 'no_csv', False):
+        try:
+            os.makedirs(os.path.dirname(output_csv), exist_ok=True)
+        except Exception:
+            pass
         extractor.save_to_csv(output_csv)
     ndj = getattr(args, 'ndjson_output', None)
     if ndj and not getattr(args, 'no_ndjson', False):
