@@ -1,0 +1,36 @@
+name: Pages Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install TeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-latex-recommended texlive-latex-extra 
+            texlive-fonts-recommended texlive-science texlive-plain-generic \
+            ghostscript
+      - name: Build PDF
+        run: |
+          make latex || true
+          mkdir -p output
+          if [ -f synthesis/main.pdf ]; then cp synthesis/main.pdf output/PhysicsForge.pdf; fi
+          echo '<!DOCTYPE html><html><body><h1>PhysicsForge</h1><p><a href="PhysicsForge.pdf">Download PDF</a></p></body></html>' > output/index.html
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

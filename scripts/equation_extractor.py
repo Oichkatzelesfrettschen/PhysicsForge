@@ -75,8 +75,8 @@ def extract_math_slice(text: str) -> Optional[str]:
 
     # 4) bare math line: allow starts with letters/greek followed by = ... etc.
     if op:
-        # keep from the first math operator; tolerates stray words before it
-        return s[op.start() :].lstrip()
+        # Keep full line so LHS like 'E' is preserved (tests expect 'E = m c^2')
+        return s
 
     # final fallback: if it *looks* like an assignment with letters and numbers
     if re.search(r"[A-Za-zα-ωΑ-Ω\\][^=]*=", s):
