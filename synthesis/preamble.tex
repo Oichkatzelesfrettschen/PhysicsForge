@@ -74,6 +74,10 @@
   pdfkeywords={E8, Aether, Genesis, Pais, Unified Theory}
 }
 \usepackage[capitalize,noabbrev]{cleveref}
+% Workaround: neutralize hyperref internal \@@BOOKMARK to avoid runaway argument from stray BOM remnants.
+\makeatletter
+\def\@@BOOKMARK#1#2#3#4#5{}% drop bookmark writes safely (bookmarks already disabled)
+\makeatother
 
 %------------------------------------------------------------------------------
 % BIBLIOGRAPHY
