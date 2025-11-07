@@ -455,8 +455,7 @@ class EquationExtractor:
         # --- HARMONIZED BLOCK 2: Keep 'refactor-equation-extraction' logic ---
         # Get the cached static parser. This is safe for parallel workers.
         parser = EquationExtractor._get_parser()
-        if not parser:
-            return [], 0.0
+        parser_available = bool(parser)
 
         for line_num, raw in enumerate(lines, 1):
             s = raw.strip()
@@ -476,19 +475,19 @@ class EquationExtractor:
             # --- END NEW CLEANING STEP ---
 
             # --- NEW LARK PARSING STAGE ---
-            try:
-                # Validate the *clean string* with the formal parser
-                parser.parse(clean_eq_text)
-                # Default to the extracted math slice
-                eq_text = extracted_eq_text
-                # If a leading label like "pythagoras:" precedes the first math op, keep the full line for tests
-                op = _FIRST_MATH_OP.search(s)
-                colon = s.find(":")
-                if colon != -1 and (op is None or colon < op.start()):
-                    eq_text = s
-            except exceptions.LarkError:
-                # The extracted string was NOT a valid equation.
-                continue # Skip this line
+            eq_text = extracted_eq_text
+            if parser_available:
+                try:
+                    # Validate the *clean string* with the formal parser
+                    parser.parse(clean_eq_text)
+                except exceptions.LarkError:
+                    # The extracted string was NOT a valid equation.
+                    continue # Skip this line
+            # If a leading label like "pythagoras:" precedes the first math op, keep the full line for tests
+            op = _FIRST_MATH_OP.search(s)
+            colon = s.find(":")
+            if colon != -1 and (op is None or colon < op.start()):
+                eq_text = s
             # --- END NEW LARK STAGE ---
 
             # Call static method explicitly
