@@ -64,6 +64,8 @@ if command -v latexmk >/dev/null 2>&1; then
   else
     # Attempt one automatic scrub-and-rerun to handle stray BOM/NUL in aux files
     echo "latexmk failed; attempting aux scrub and one retry..." >&2
+    # Hard-clean critical aux files that often get truncated on abort (keep .ind for tests)
+    rm -f "${MAIN%.tex}".{aux,out,toc,lof,lot,nav,snm} 2>/dev/null || true
     for ext in aux out toc ind ilg idx lot lof nav snm; do
       f="${MAIN%.tex}.$ext"
       if [ -f "$f" ]; then
