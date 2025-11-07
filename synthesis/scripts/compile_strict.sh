@@ -22,6 +22,12 @@ for root in . ../modules; do
       iconv -f utf-16 -t utf-8 "$f" > "$f".utf8 && mv "$f".utf8 "$f"
     fi
   done
+  # Strip stray BOM and NUL bytes anywhere in file (robust against mid-file BOM)
+  find "$root" -type f -name "*.tex" -print0 | while IFS= read -r -d '' g; do
+    if grep -Ua -q $'\x00' "$g" || grep -Ua -q $'\xFE\xFF' "$g" || grep -Ua -q $'\xFF\xFE' "$g"; then
+      perl -0777 -pe 's/\x{FEFF}//g; s/\x00//g' "$g" > "$g".utf8 && mv "$g".utf8 "$g"
+    fi
+  done
 done
 
 if ! command -v pdflatex >/dev/null 2>&1 && ! command -v latexmk >/dev/null 2>&1; then
