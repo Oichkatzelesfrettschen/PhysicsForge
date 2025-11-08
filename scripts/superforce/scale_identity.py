@@ -2,9 +2,9 @@
 Superforce Scale Identity
 
 Proof that F* = c^4/G via three independent constructions:
-1. Energy per length: (m_P c²)/ℓ_P
-2. Coulomb form: (1/4πε₀)(q_P²/ℓ_P²)
-3. Newton form: G(m_P²/ℓ_P²)
+1. Energy per length: (m_P c^2)/ell_P
+2. Coulomb form: (1/4*pi*eps_0)(q_P^2/ell_P^2)
+3. Newton form: G(m_P^2/ell_P^2)
 
 All three reduce exactly to F* = c^4/G.
 """
@@ -38,7 +38,7 @@ def construction_A(G: float = G_mean) -> float:
     """
     Construction A: Energy per length
 
-    F_A = (m_P c²)/ℓ_P = c^4/G
+    F_A = (m_P c^2)/ell_P = c^4/G
 
     Args:
         G: Gravitational constant
@@ -55,7 +55,7 @@ def construction_B(G: float = G_mean) -> float:
     """
     Construction B: Coulomb force at Planck length
 
-    F_B = (1/4πε₀)(q_P²/ℓ_P²) = c^4/G
+    F_B = (1/4*pi*eps_0)(q_P^2/ell_P^2) = c^4/G
 
     Args:
         G: Gravitational constant
@@ -73,7 +73,7 @@ def construction_C(G: float = G_mean) -> float:
     """
     Construction C: Newton force at Planck length
 
-    F_C = G(m_P²/ℓ_P²) = c^4/G
+    F_C = G(m_P^2/ell_P^2) = c^4/G
 
     Args:
         G: Gravitational constant
@@ -148,9 +148,9 @@ def print_verification(G: float = G_mean) -> None:
     print("=" * 80)
 
     constructions = [
-        ("A: (m_P c²)/ℓ_P", results['F_A'], results['error_A']),
-        ("B: (1/4πε₀)(q_P²/ℓ_P²)", results['F_B'], results['error_B']),
-        ("C: G(m_P²/ℓ_P²)", results['F_C'], results['error_C']),
+        ("A: (m_P c^2)/ell_P", results['F_A'], results['error_A']),
+        ("B: (1/4*pi*eps_0)(q_P^2/ell_P^2)", results['F_B'], results['error_B']),
+        ("C: G(m_P^2/ell_P^2)", results['F_C'], results['error_C']),
     ]
 
     for name, value, error in constructions:
@@ -173,12 +173,12 @@ def dimensional_analysis() -> None:
     print("=" * 80)
 
     print("\nStarting from Einstein's field equation:")
-    print("  G_μν = (8πG/c^4) T_μν")
+    print("  G_mu_nu = (8*pi*G/c^4) T_mu_nu")
     print("\nInverse coupling has units of force:")
     print("  c^4/G ~ [energy/length] = [force]")
     print("\nExplicit calculation:")
     print("  [c^4/G] = (m/s)^4 / (m^3 kg^-1 s^-2)")
-    print("          = (m^4/s^4) × (kg s^2/m^3)")
+    print("          = (m^4/s^4) * (kg s^2/m^3)")
     print("          = kg m s^-2")
     print("          = N (newtons)")
     print("=" * 80)
@@ -193,30 +193,30 @@ def symbolic_derivation() -> None:
     print("=" * 80)
 
     print("\nPlanck units (SI):")
-    print("  ℓ_P = √(ℏG/c³)")
-    print("  m_P = √(ℏc/G)")
-    print("  q_P = √(4πε₀ℏc)")
+    print("  ell_P = sqrt(hbar*G/c^3)")
+    print("  m_P = sqrt(hbar*c/G)")
+    print("  q_P = sqrt(4*pi*eps_0*hbar*c)")
     print()
 
     print("Construction A: Energy per length")
-    print("  F_A = (m_P c²)/ℓ_P")
-    print("      = [√(ℏc/G) × c²] / √(ℏG/c³)")
+    print("  F_A = (m_P c^2)/ell_P")
+    print("      = [sqrt(hbar*c/G) * c^2] / sqrt(hbar*G/c^3)")
     print("      = c^4/G")
     print()
 
     print("Construction B: Coulomb force")
-    print("  F_B = (1/4πε₀)(q_P²/ℓ_P²)")
-    print("      = (1/4πε₀) × (4πε₀ℏc) / (ℏG/c³)")
-    print("      = ℏc / (ℏG/c³)")
+    print("  F_B = (1/4*pi*eps_0)(q_P^2/ell_P^2)")
+    print("      = (1/4*pi*eps_0) * (4*pi*eps_0*hbar*c) / (hbar*G/c^3)")
+    print("      = hbar*c / (hbar*G/c^3)")
     print("      = c^4/G")
     print()
 
     print("Construction C: Newton force")
-    print("  F_C = G(m_P²/ℓ_P²)")
-    print("      = G × (ℏc/G) / (ℏG/c³)")
+    print("  F_C = G(m_P^2/ell_P^2)")
+    print("      = G * (hbar*c/G) / (hbar*G/c^3)")
     print("      = c^4/G")
     print()
-    print("∴ F_A = F_B = F_C = F* = c^4/G  ∎")
+    print("Therefore: F_A = F_B = F_C = F* = c^4/G (QED)")
     print("=" * 80)
 
 
@@ -233,12 +233,12 @@ if __name__ == "__main__":
     print_verification()
     print()
 
-    # Test with G ± 1σ
-    print("\nVerification at ±1σ bounds:")
+    # Test with G +/- 1*sigma
+    print("\nVerification at +/- 1*sigma bounds:")
     for label, G_val in [
-        ("G - σ", G_mean - G_std),
+        ("G - sigma", G_mean - G_std),
         ("G (nominal)", G_mean),
-        ("G + σ", G_mean + G_std)
+        ("G + sigma", G_mean + G_std)
     ]:
         results = verify_identity(G_val)
         print(f"\n{label}:")

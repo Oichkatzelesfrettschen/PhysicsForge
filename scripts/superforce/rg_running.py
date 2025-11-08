@@ -6,7 +6,7 @@ Demonstrates what "actual unification" requires beyond the scale identity.
 
 References:
 - PDG 2022: Particle Data Group gauge coupling inputs
-- Peskin & Schroeder: One-loop β functions
+- Peskin & Schroeder: One-loop beta functions
 """
 
 import math
@@ -20,9 +20,9 @@ from dataclasses import dataclass
 class Scenario:
     """RG running scenario parameters"""
     name: str
-    b1: float  # β-function coefficient for U(1)_Y (GUT normalized)
-    b2: float  # β-function coefficient for SU(2)_L
-    b3: float  # β-function coefficient for SU(3)_c
+    b1: float  # beta-function coefficient for U(1)_Y (GUT normalized)
+    b2: float  # beta-function coefficient for SU(2)_L
+    b3: float  # beta-function coefficient for SU(3)_c
     description: str = ""
 
 
@@ -58,16 +58,16 @@ def alpha_inv_running(mu: np.ndarray, b: float, alpha_inv_0: float, mu0: float) 
     """
     One-loop running of inverse gauge coupling.
 
-    1/α_i(μ) = 1/α_i(μ₀) - (b_i/2π) ln(μ/μ₀)
+    1/alpha_i(mu) = 1/alpha_i(mu_0) - (b_i/2*pi) ln(mu/mu_0)
 
     Args:
         mu: Energy scale array [GeV]
-        b: β-function coefficient
-        alpha_inv_0: 1/α at reference scale μ₀
+        b: beta-function coefficient
+        alpha_inv_0: 1/alpha at reference scale mu_0
         mu0: Reference scale [GeV]
 
     Returns:
-        1/α_i(μ) array
+        1/alpha_i(mu) array
     """
     return alpha_inv_0 - (b / (2 * math.pi)) * np.log(mu / mu0)
 
@@ -76,17 +76,17 @@ def meeting_scale(alpha_i0: float, alpha_j0: float, bi: float, bj: float, mu0: f
     """
     Calculate energy scale where two couplings meet.
 
-    Solve: α_i(μ) = α_j(μ)
+    Solve: alpha_i(mu) = alpha_j(mu)
 
     Args:
-        alpha_i0: 1/α_i at μ₀
-        alpha_j0: 1/α_j at μ₀
-        bi: β coefficient for coupling i
-        bj: β coefficient for coupling j
+        alpha_i0: 1/alpha_i at mu_0
+        alpha_j0: 1/alpha_j at mu_0
+        bi: beta coefficient for coupling i
+        bj: beta coefficient for coupling j
         mu0: Reference scale [GeV]
 
     Returns:
-        Meeting scale μ [GeV] (or np.nan if parallel)
+        Meeting scale mu [GeV] (or np.nan if parallel)
     """
     d_alpha0 = alpha_i0 - alpha_j0
     d_b = bi - bj
@@ -110,19 +110,19 @@ def analyze_scenario(
 
     Args:
         scenario: RG scenario (SM, 2HDM, MSSM, etc.)
-        alpha_inv_0: (1/α₁, 1/α₂, 1/α₃) at M_Z
+        alpha_inv_0: (1/alpha_1, 1/alpha_2, 1/alpha_3) at M_Z
         mu0: Reference scale M_Z [GeV]
 
     Returns:
         Dictionary with meeting scales and spread:
         {
-            'mu_12': Scale where α₁ = α₂,
-            'mu_23': Scale where α₂ = α₃,
-            'mu_13': Scale where α₁ = α₃,
-            'log10_mu_12': log₁₀(μ₁₂),
-            'log10_mu_23': log₁₀(μ₂₃),
-            'log10_mu_13': log₁₀(μ₁₃),
-            'spread': max(log₁₀ μ) - min(log₁₀ μ) [decades]
+            'mu_12': Scale where alpha_1 = alpha_2,
+            'mu_23': Scale where alpha_2 = alpha_3,
+            'mu_13': Scale where alpha_1 = alpha_3,
+            'log10_mu_12': log_10(mu_12),
+            'log10_mu_23': log_10(mu_23),
+            'log10_mu_13': log_10(mu_13),
+            'spread': max(log_10 mu) - min(log_10 mu) [decades]
         }
     """
     b = [scenario.b1, scenario.b2, scenario.b3]
@@ -132,7 +132,7 @@ def analyze_scenario(
     mu_23 = meeting_scale(alpha_inv_0[1], alpha_inv_0[2], b[1], b[2], mu0)
     mu_13 = meeting_scale(alpha_inv_0[0], alpha_inv_0[2], b[0], b[2], mu0)
 
-    # Log₁₀ scales
+    # Log_10 scales
     log_scales = []
     for mu, label in [(mu_12, '12'), (mu_23, '23'), (mu_13, '13')]:
         log_mu = np.log10(mu) if np.isfinite(mu) and mu > 0 else np.nan
@@ -164,9 +164,9 @@ def plot_running(
 
     Args:
         scenarios: List of RG scenarios to plot
-        alpha_inv_0: (1/α₁, 1/α₂, 1/α₃) at M_Z
+        alpha_inv_0: (1/alpha_1, 1/alpha_2, 1/alpha_3) at M_Z
         mu0: Reference scale M_Z [GeV]
-        mu_range: (μ_min, μ_max) energy range [GeV]
+        mu_range: (mu_min, mu_max) energy range [GeV]
         save_path: Optional path to save figure
     """
     mu_grid = np.logspace(np.log10(mu_range[0]), np.log10(mu_range[1]), 1200)
@@ -223,16 +223,16 @@ def print_comparison_table(
 
     Args:
         scenarios: List of RG scenarios
-        alpha_inv_0: (1/α₁, 1/α₂, 1/α₃) at M_Z
+        alpha_inv_0: (1/alpha_1, 1/alpha_2, 1/alpha_3) at M_Z
         mu0: Reference scale M_Z [GeV]
     """
     print("=" * 90)
     print("RG MEETING SCALES COMPARISON (One-Loop)")
     print("=" * 90)
-    print(f"Reference scale: μ₀ = {mu0:.4f} GeV (M_Z)")
-    print(f"Input couplings: 1/α₁ = {alpha_inv_0[0]:.2f}, 1/α₂ = {alpha_inv_0[1]:.2f}, 1/α₃ = {alpha_inv_0[2]:.2f}")
+    print(f"Reference scale: mu_0 = {mu0:.4f} GeV (M_Z)")
+    print(f"Input couplings: 1/alpha_1 = {alpha_inv_0[0]:.2f}, 1/alpha_2 = {alpha_inv_0[1]:.2f}, 1/alpha_3 = {alpha_inv_0[2]:.2f}")
     print("=" * 90)
-    print(f"{'Model':<12} {'log₁₀ μ₁₂':<12} {'log₁₀ μ₂₃':<12} {'log₁₀ μ₁₃':<12} {'Spread [dex]':<14}")
+    print(f"{'Model':<12} {'log_10 mu_12':<12} {'log_10 mu_23':<12} {'log_10 mu_13':<12} {'Spread [dex]':<14}")
     print("-" * 90)
 
     results = []
@@ -250,7 +250,7 @@ def print_comparison_table(
     print("\nInterpretation:")
     print("- Small spread (<< 1 decade): Good unification candidate")
     print("- Large spread (> 3 decades): No single-scale unification")
-    print("- MSSM typically achieves spread ~ 0.05 decades at ~2×10¹⁶ GeV")
+    print("- MSSM typically achieves spread ~ 0.05 decades at ~2*10^16 GeV")
     print("=" * 90)
 
 
