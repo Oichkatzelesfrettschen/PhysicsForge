@@ -10,9 +10,9 @@ Key Result (McKay 1978, Conway-Norton 1979, Borcherds 1992):
 The Fourier coefficients of the j-invariant equal sums of dimensions of
 Monster group irreducible representations.
 
-j(τ) = q^(-1) + 744 + 196884q + 21493760q^2 + ...
+j(tau) = q^(-1) + 744 + 196884q + 21493760q^2 + ...
 
-where q = e^(2πiτ) and:
+where q = exp(2*pi*i*tau) and:
   196884 = 1 + 196883  (trivial + smallest non-trivial rep)
   21493760 = 1 + 196883 + 21296876
   ...
@@ -76,14 +76,14 @@ MONSTER_DIMS = [
 
 def dedekind_eta(tau: complex, n_terms: int = 100) -> complex:
     """
-    Dedekind eta function: η(τ) = q^(1/24) ∏(1 - q^n)
+    Dedekind eta function: eta(tau) = q^(1/24) * product(1 - q^n)
 
     Args:
-        tau: Complex parameter in upper half-plane (Im(τ) > 0)
+        tau: Complex parameter in upper half-plane (Im(tau) > 0)
         n_terms: Number of product terms
 
     Returns:
-        η(τ) value
+        eta(tau) value
     """
     q = np.exp(2j * np.pi * tau)
     result = q**(1/24)
@@ -98,12 +98,12 @@ def j_invariant(tau: complex, n_terms: int = 100) -> complex:
     """
     Compute j-invariant using Fourier series expansion
 
-    j(τ) = E₄³/Δ = 1/q + 744 + 196884q + ...
+    j(tau) = E_4^3/Delta = 1/q + 744 + 196884q + ...
 
     where:
-      - E₄ is Eisenstein series of weight 4
-      - Δ = (2π)^12 η(τ)^24 is modular discriminant
-      - q = e^(2πiτ)
+      - E_4 is Eisenstein series of weight 4
+      - Delta = (2*pi)^12 * eta(tau)^24 is modular discriminant
+      - q = exp(2*pi*i*tau)
 
     Args:
         tau: Complex parameter in upper half-plane
@@ -153,7 +153,7 @@ def j_coefficients(n_terms: int = 20) -> List[int]:
     """
     Return first n Fourier coefficients of j-invariant
 
-    j(τ) = q^(-1) + ∑ c(n) q^n
+    j(tau) = q^(-1) + sum c(n) * q^n
 
     Args:
         n_terms: Number of coefficients (including q^(-1) term)

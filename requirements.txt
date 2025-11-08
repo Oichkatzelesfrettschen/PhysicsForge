@@ -1,0 +1,11 @@
+# Testing dependencies
+pytest==7.4.3
+pytest-cov>=4.1,<5
+
+# Optional dependencies for catalog pipeline
+pymupdf>=1.22,<2.0
+Pillow>=10,<12
+pix2tex>=0.1,<1.0
+jsonschema>=4.19,<5
+bibtexparser>=1.4.0,<2.0.0
+lark>=1.1.2

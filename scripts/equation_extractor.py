@@ -38,8 +38,8 @@ _MATH_INLINE = re.compile(
     re.VERBOSE | re.DOTALL,
 )
 
-# Symbols that typically signal “this is math starting here”
-_FIRST_MATH_OP = re.compile(r"[=≈≃≅≡∈≤≥↦→←÷×]")
+# Symbols that typically signal "this is math starting here"
+_FIRST_MATH_OP = re.compile(r"[=~<>]")
 
 def extract_math_slice(text: str) -> Optional[str]:
     r"""
@@ -79,7 +79,7 @@ def extract_math_slice(text: str) -> Optional[str]:
         return s
 
     # final fallback: if it *looks* like an assignment with letters and numbers
-    if re.search(r"[A-Za-zα-ωΑ-Ω\\][^=]*=", s):
+    if re.search(r"[A-Za-z\\][^=]*=", s):
         parts = s.split("=", 1)
         if len(parts) > 1:
             return parts[1].strip()

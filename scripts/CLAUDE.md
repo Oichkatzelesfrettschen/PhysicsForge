@@ -6,7 +6,7 @@
 
 Root-level Python utilities for equation extraction, catalog management, repository auditing, and validation. These scripts operate on the entire repository.
 
-## ⚠️ CRITICAL: Execution Context
+## WARNING: CRITICAL - Execution Context
 
 **Always run from project root:**
 

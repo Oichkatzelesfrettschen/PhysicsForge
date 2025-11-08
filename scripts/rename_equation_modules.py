@@ -171,14 +171,14 @@ def perform_renames(base_dir: Path, dry_run: bool = True) -> None:
             categories['ue'] += 1
 
     print("\nBreakdown by category:")
-    print(f"  - Aether → Scalar: {categories['aether']} files")
-    print(f"  - Genesis → Symmetry: {categories['genesis']} files")
-    print(f"  - Pais → GEM: {categories['pais']} files")
-    print(f"  - Unified → PhysicsForge: {categories['unified']} files")
-    print(f"  - Auto AE → SC: {categories['ae']} files")
-    print(f"  - Auto GE → SX: {categories['ge']} files")
-    print(f"  - Auto PE → GM: {categories['pe']} files")
-    print(f"  - Auto UE → PF: {categories['ue']} files")
+    print(f"  - Aether -> Scalar: {categories['aether']} files")
+    print(f"  - Genesis -> Symmetry: {categories['genesis']} files")
+    print(f"  - Pais -> GEM: {categories['pais']} files")
+    print(f"  - Unified -> PhysicsForge: {categories['unified']} files")
+    print(f"  - Auto AE -> SC: {categories['ae']} files")
+    print(f"  - Auto GE -> SX: {categories['ge']} files")
+    print(f"  - Auto PE -> GM: {categories['pe']} files")
+    print(f"  - Auto UE -> PF: {categories['ue']} files")
 
     if dry_run:
         print("\n" + "="*70)
@@ -189,7 +189,7 @@ def perform_renames(base_dir: Path, dry_run: bool = True) -> None:
         print("\nSample renames (first 20):")
         for i, (old_path, new_name) in enumerate(to_rename[:20]):
             print(f"  {old_path.name}")
-            print(f"    → {new_name}")
+            print(f"    -> {new_name}")
 
         if len(to_rename) > 20:
             print(f"\n  ... and {len(to_rename) - 20} more files")
@@ -218,7 +218,7 @@ def perform_renames(base_dir: Path, dry_run: bool = True) -> None:
                 old_path.rename(new_path)
                 renamed_files.append((old_path.name, new_name))
                 writer.writerow([old_path.name, new_name, timestamp])
-                print(f"  Renamed: {old_path.name} → {new_name}")
+                print(f"  Renamed: {old_path.name} -> {new_name}")
 
         print(f"\nRenamed {len(renamed_files)} files successfully")
         print(f"Log saved to: {log_file}")
