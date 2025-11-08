@@ -23,7 +23,7 @@ jobs:
       - name: Build PDF with LuaLaTeX
         uses: xu-cheng/latex-action@v4
         with:
-          root_file: synthesis/main.tex
+          root_file: main.tex
           working_directory: synthesis
           latexmk_shell_escape: true
           latexmk_use_lualatex: true
