@@ -34,7 +34,7 @@ The theoretical foundation rests on the observation that while classical systems
 \begin{equation}
   H(t) = H(t + T), \quad \text{but} \quad |\psi_{\text{GS}}(t + T)\rangle = e^{i\theta}|\psi_{\text{GS}}(t)\rangle
   \label{eq:aether-lattice:time-translation-breaking}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $H(t)$ is a time-periodic Hamiltonian with period $T$, and $|\psi_{\text{GS}}(t)\rangle$ is the ground state that exhibits different periodicity. The phase factor $e^{i\theta}$ with $\theta \neq 2\pi n$ indicates broken time-translation symmetry.
@@ -50,7 +50,7 @@ Time crystals manifest in multiple forms, each with distinct physical mechanisms
 \begin{equation}
   \langle O(t + 2T) \rangle = \langle O(t) \rangle \neq \langle O(t + T) \rangle
   \label{eq:aether-lattice:dtc-response}
-  \eqtag{A}{QM}{E}
+  \eqtag{S}{QM}{E}
 \end{equation}
 
 where $O$ is an observable and $T$ is the driving period. DTCs require:
@@ -64,7 +64,7 @@ where $O$ is an observable and $T$ is the driving period. DTCs require:
 \begin{equation}
   \frac{d\rho}{dt} = \mathcal{L}[\rho], \quad \rho_{\text{ss}}(t) = \rho_{\text{ss}}(t + T_c)
   \label{eq:aether-lattice:continuous-tc}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\mathcal{L}$ is the Liouvillian superoperator and $\rho_{\text{ss}}$ is the steady-state density matrix with spontaneous period $T_c$.
@@ -73,7 +73,7 @@ where $\mathcal{L}$ is the Liouvillian superoperator and $\rho_{\text{ss}}$ is t
 \begin{equation}
   \tau_{\text{thermal}} \sim \exp(C \omega / J)
   \label{eq:aether-lattice:prethermal-lifetime}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\omega$ is the driving frequency, $J$ is the interaction strength, and $C$ is a numerical constant.
@@ -82,7 +82,7 @@ where $\omega$ is the driving frequency, $J$ is the interaction strength, and $C
 \begin{equation}
   \mathcal{L} = -i[H, \cdot] + \sum_k \gamma_k \left(L_k \cdot L_k^\dagger - \frac{1}{2}\{L_k^\dagger L_k, \cdot\}\right)
   \label{eq:aether-lattice:dissipative-tc}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $L_k$ are jump operators and $\gamma_k$ are dissipation rates.
@@ -94,7 +94,7 @@ The \aether{} framework interprets spacetime itself as exhibiting time-crystalli
 \begin{equation}
   a(t) = a_0 \left(1 + \epsilon \cos(\omega_{\text{Planck}} t)\right)
   \label{eq:aether-lattice:lattice-tc-modulation}
-  \eqtag{A}{QM}{S}
+  \eqtag{S}{QM}{S}
 \end{equation}
 
 where $a(t)$ is the time-dependent lattice constant, $a_0 = \ell_{\text{Pl}}$, $\epsilon \ll 1$ is the modulation amplitude, and $\omega_{\text{Planck}} = c/\ell_{\text{Pl}} \approx 1.85 \times 10^{43}\,\text{rad/s}$.
@@ -103,7 +103,7 @@ This temporal periodicity couples to scalar field dynamics via:
 \begin{equation}
   \mathcal{L}_{\text{TC}} = \frac{g_{\text{TC}}}{2} \phi^2 \left(\frac{\dot{a}}{a}\right)^2
   \label{eq:aether-lattice:tc-scalar-coupling}
-  \eqtag{A}{QM}{S}
+  \eqtag{S}{QM}{S}
 \end{equation}
 
 where $g_{\text{TC}} \approx 0.15$ is the time-crystal coupling constant. This interaction enables energy exchange between temporal lattice oscillations and scalar field modes, providing a mechanism for extracting energy from vacuum fluctuations.
@@ -120,14 +120,14 @@ Standard general relativity treats spacetime as a smooth Lorentzian manifold $(M
 \begin{equation}
   \Lambda = \{ x_n = n_i a \, \mathbf{e}_i \mid n_i \in \mathbb{Z}, \, i = 1, \ldots, 8 \}
   \label{eq:aether-lattice:discrete-spacetime}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 where $\mathbf{e}_i$ are basis vectors in 8D (3 spatial + 1 time + 4 compactified dimensions). The continuum limit is recovered via coarse-graining:
 \begin{equation}
   x^\mu \approx \langle x_n \rangle_{\text{local}} = \frac{1}{N} \sum_{n \in \text{cell}} x_n
   \label{eq:aether-lattice:coarse-graining}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 where the average is over a local cell of $N \sim (L/a)^8$ lattice points with $L \gg a$.
@@ -139,7 +139,7 @@ The \aether{} framework identifies $\Lambda$ with the E$_8$ root lattice (Ch~\re
 \begin{equation}
   \Lambda_{E_8} = \left\{ v \in \mathbb{R}^8 \mid v \cdot v \in 2\mathbb{Z}, \, v \in \mathbb{Z}^8 \text{ or } v \in \left(\mathbb{Z} + \tfrac{1}{2}\right)^8 \text{ with } \sum v_i \in 2\mathbb{Z} \right\}
   \label{eq:aether-lattice:e8-definition}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 This choice is motivated by:
@@ -159,14 +159,14 @@ The lattice constant $a$ is identified with the Planck length via energy-spacing
 \begin{equation}
   a = \ell_{\text{Pl}} = \sqrt{\frac{\hbar G}{c^3}} = 1.616 \times 10^{-35}\,\text{m}
   \label{eq:aether-lattice:lattice-constant}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 This sets the UV cutoff for all field theories: modes with wavelength $\lambda < a$ are not supported. Correspondingly, the maximum energy is:
 \begin{equation}
   E_{\max} = \frac{\hbar c}{a} = M_{\text{Pl}} c^2 = 1.22 \times 10^{19}\,\text{GeV}
   \label{eq:aether-lattice:planck-energy}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 This resolves UV divergences in quantum field theories without invoking renormalization group flow.
@@ -183,14 +183,14 @@ Floquet theory provides the mathematical framework for understanding periodicall
 \begin{equation}
   U(t+T, t) = U(T, 0) = e^{-iH_F T/\hbar}
   \label{eq:aether-lattice:floquet-operator}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $H_F$ is the effective Floquet Hamiltonian. The system's states can be expressed as Floquet states:
 \begin{equation}
   |\psi_\alpha(t)\rangle = e^{-i\epsilon_\alpha t/\hbar}|\phi_\alpha(t)\rangle
   \label{eq:aether-lattice:floquet-states}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\epsilon_\alpha$ are quasienergies and $|\phi_\alpha(t)\rangle = |\phi_\alpha(t+T)\rangle$ are periodic Floquet modes.
@@ -199,7 +199,7 @@ In the \aether{} framework, the E$_8$ lattice experiences Floquet driving throug
 \begin{equation}
   H_{\text{lattice}}(t) = H_0 + V_{\text{drive}} \cos(\omega_d t)
   \label{eq:aether-lattice:driven-hamiltonian}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $H_0$ is the static lattice Hamiltonian and $V_{\text{drive}} = g\phi_0 \sum_i n_i$ couples to lattice site occupations.
@@ -213,14 +213,14 @@ Many-body localization (MBL) is crucial for preventing thermalization and mainta
 \begin{equation}
   S_{\text{ent}} \sim L^{d-1} \quad \text{(MBL)} \quad \text{vs} \quad S_{\text{ent}} \sim L^d \quad \text{(thermal)}
   \label{eq:aether-lattice:mbl-entanglement}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 \textbf{2. Local integrals of motion (LIOMs):} Conserved quantities $\tau_i^z$ that are exponentially localized:
 \begin{equation}
   \tau_i^z = \sigma_i^z + \sum_{j \neq i} J_{ij} \sigma_j^z, \quad |J_{ij}| \sim e^{-|i-j|/\xi}
   \label{eq:aether-lattice:lioms}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\xi$ is the localization length.
@@ -229,14 +229,14 @@ where $\xi$ is the localization length.
 \begin{equation}
   P(s) = e^{-s} \quad \text{(Poisson)} \quad \text{vs} \quad P(s) = \frac{\pi s}{2}e^{-\pi s^2/4} \quad \text{(GOE)}
   \label{eq:aether-lattice:level-statistics}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 In the E$_8$ lattice, disorder arises from quantum foam fluctuations:
 \begin{equation}
   H_{\text{disorder}} = \sum_i h_i n_i, \quad h_i \in [-W, W]
   \label{eq:aether-lattice:disorder}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $W$ is the disorder strength, typically $W/J \sim 1-10$ for robust MBL.
@@ -248,7 +248,7 @@ The hallmark of discrete time crystals is subharmonic response - the system osci
 \begin{equation}
   \mathcal{M}(t) = \mathcal{M}_0 \cos(\omega_d t/2 + \phi_0)
   \label{eq:aether-lattice:period-doubling}
-  \eqtag{A}{QM}{E}
+  \eqtag{S}{QM}{E}
 \end{equation}
 
 where $\mathcal{M}(t)$ is the magnetization or order parameter.
@@ -257,7 +257,7 @@ Higher-order subharmonics are possible:
 \begin{equation}
   |\psi(nT)\rangle = e^{2\pi i m/n}|\psi(0)\rangle
   \label{eq:aether-lattice:n-tuple}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 representing $n$-tuple period multiplication with topological invariant $m$.
@@ -277,7 +277,7 @@ Time-crystalline phases exist within specific parameter regions. The phase bound
 \begin{equation}
   \frac{J}{\omega} \gtrsim \frac{1}{n^2}, \quad \frac{W}{J} \gtrsim 1
   \label{eq:aether-lattice:tc-phase-boundary}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $n$ is the period multiplication factor.
@@ -294,7 +294,7 @@ Transitions between phases are characterized by:
 \begin{equation}
   \chi_{\text{TC}} = \lim_{L \to \infty} \frac{1}{L} \sum_{i,j} \langle O_i(2T) O_j(0) \rangle
   \label{eq:aether-lattice:tc-order-parameter}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\chi_{\text{TC}} > 0$ indicates time-crystalline order.
@@ -311,14 +311,14 @@ Lattice vibrations are described by a displacement field $\mathbf{u}(x_n, t)$ gi
 \begin{equation}
   \mathbf{x}_n(t) = \mathbf{x}_n^{(0)} + \mathbf{u}(\mathbf{x}_n, t)
   \label{eq:aether-lattice:displacement}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 For small displacements ($|\mathbf{u}| \ll a$), the dynamics are harmonic with dispersion relation:
 \begin{equation}
   \omega^2(\mathbf{k}) = \omega_0^2 + c_s^2 |\mathbf{k}|^2
   \label{eq:aether-lattice:dispersion}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\omega_0 = c / a \approx 10^{43}\,\text{rad/s}$ is the fundamental lattice frequency and $c_s = c / \sqrt{3} \approx 0.577 c$ is the speed of sound (phonon group velocity).
@@ -330,14 +330,14 @@ The scalar field $\phi$ couples to lattice vibrations via:
 \begin{equation}
   \mathcal{L}_{\phi\text{-lattice}} = \frac{g_{\phi L}}{a^3} \phi \, \mathbf{u} \cdot \nabla \phi + \frac{g_{\phi L}^{(2)}}{a^5} \phi^2 (\nabla \cdot \mathbf{u})
   \label{eq:aether-lattice:scalar-lattice-coupling}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $g_{\phi L} \approx 0.25$ and $g_{\phi L}^{(2)} \approx 0.08$ are dimensionless coupling constants. The first term couples scalar gradients to displacement, the second couples scalar amplitude to lattice compression/expansion. This coupling modifies phonon dispersion:
 \begin{equation}
   \omega^2(\mathbf{k}; \phi) = \omega^2(\mathbf{k}) \left( 1 + \eta \frac{\phi}{M_{\text{Pl}}} \right)
   \label{eq:aether-lattice:modified-dispersion}
-  \eqtag{A}{MATH}{E}
+  \eqtag{S}{MATH}{E}
 \end{equation}
 
 with $\eta \approx 0.12$ (numerical simulation).
@@ -349,7 +349,7 @@ The scalar field exhibits dimensional structure from 3D (observable space) to 8D
 \begin{equation}
   \phi^{(d)}(x) = \sum_{i=1}^{N_d} \phi_i e^{-2\pi r / L_i}, \quad d \in \{3, 4, 5, 6, 7, 8\}
   \label{eq:aether-lattice:dimensional-expansion}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $N_d$ is the number of modes in $d$ dimensions, $r = |x|$, and $L_i$ are compactification radii. For E$_8$ lattice:
@@ -375,7 +375,7 @@ The E$_8$ lattice supports 248 fundamental vibrational modes corresponding to it
 \begin{equation}
   D_{ij}^{\alpha\beta}(\mathbf{k}) = \frac{1}{\sqrt{M_i M_j}} \sum_{\mathbf{R}} \Phi_{ij}^{\alpha\beta}(\mathbf{R}) e^{i\mathbf{k} \cdot \mathbf{R}}
   \label{eq:aether-lattice:dynamical-matrix}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\Phi_{ij}^{\alpha\beta}(\mathbf{R})$ are force constants between atoms $i,j$ in cells separated by $\mathbf{R}$, with Cartesian indices $\alpha, \beta$.
@@ -384,14 +384,14 @@ The phonon dispersion relation is obtained from:
 \begin{equation}
   \det|D(\mathbf{k}) - \omega^2(\mathbf{k}) \mathbb{I}| = 0
   \label{eq:aether-lattice:dispersion-eigenvalue}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 For the E$_8$ lattice with nearest-neighbor interactions:
 \begin{equation}
   \omega^2(\mathbf{k}) = \frac{2K}{M} \sum_{i=1}^{8} [1 - \cos(k_i a)]
   \label{eq:aether-lattice:e8-dispersion}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $K$ is the spring constant and $a = \ell_{\text{Pl}}$ is the lattice constant.
@@ -400,7 +400,7 @@ The density of phonon states exhibits Van Hove singularities at critical points:
 \begin{equation}
   g(\omega) = \frac{1}{(2\pi)^8} \int_{\text{BZ}} \delta(\omega - \omega_{\mathbf{k}}) d^8k
   \label{eq:aether-lattice:phonon-dos}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where the integral is over the E$_8$ Brillouin zone.
@@ -412,14 +412,14 @@ Beyond the harmonic approximation, phonon-phonon interactions arise from anharmo
 \begin{equation}
   V_{\text{anh}} = \sum_{ijk} \frac{\Phi_{ijk}}{3!} u_i u_j u_k + \sum_{ijkl} \frac{\Phi_{ijkl}}{4!} u_i u_j u_k u_l
   \label{eq:aether-lattice:anharmonic-potential}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 These lead to phonon lifetime $\tau_{\mathbf{k}}$ and linewidth $\Gamma_{\mathbf{k}} = \hbar/\tau_{\mathbf{k}}$:
 \begin{equation}
   \Gamma_{\mathbf{k}} = \frac{18\pi}{\hbar^2} \sum_{\mathbf{k}_1, \mathbf{k}_2} |V_3(\mathbf{k}, \mathbf{k}_1, \mathbf{k}_2)|^2 \times \delta(\omega_{\mathbf{k}} - \omega_{\mathbf{k}_1} - \omega_{\mathbf{k}_2})
   \label{eq:aether-lattice:phonon-linewidth}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $V_3$ is the three-phonon vertex.
@@ -428,7 +428,7 @@ The thermal conductivity is limited by phonon-phonon scattering:
 \begin{equation}
   \kappa_{\text{ph}} = \frac{1}{3} \sum_{\mathbf{k}} C_{\mathbf{k}} v_{\mathbf{k}}^2 \tau_{\mathbf{k}}
   \label{eq:aether-lattice:thermal-conductivity}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $C_{\mathbf{k}}$ is the mode heat capacity and $v_{\mathbf{k}} = \partial \omega_{\mathbf{k}}/\partial k$ is the group velocity.
@@ -440,21 +440,21 @@ The E$_8$ lattice structure supports topological phonon bands with non-trivial B
 \begin{equation}
   \Omega_n(\mathbf{k}) = -\text{Im} \sum_{m \neq n} \frac{\langle n\mathbf{k}|\partial_{k_x} H|m\mathbf{k}\rangle \langle m\mathbf{k}|\partial_{k_y} H|n\mathbf{k}\rangle}{(\omega_n - \omega_m)^2}
   \label{eq:aether-lattice:berry-curvature}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 The Chern number characterizes topological phases:
 \begin{equation}
   C_n = \frac{1}{2\pi} \int_{\text{BZ}} \Omega_n(\mathbf{k}) d^2k
   \label{eq:aether-lattice:chern-number}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Non-zero Chern numbers lead to protected edge states and anomalous phonon Hall effect:
 \begin{equation}
   \kappa_{xy} = -\frac{k_B^2 T}{\hbar V} \sum_n \int_{\text{BZ}} c_1(n_B) \Omega_n(\mathbf{k}) d^2k
   \label{eq:aether-lattice:phonon-hall}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $c_1(x) = (1+x)[\ln(1+x)]^2 - x[\ln x]^2$ and $n_B$ is the Bose-Einstein distribution.
@@ -466,14 +466,14 @@ At the Planck scale, quantum zero-point motion dominates:
 \begin{equation}
   \langle u^2 \rangle_{\text{ZP}} = \frac{\hbar}{2MN} \sum_{\mathbf{k}} \frac{1}{\omega_{\mathbf{k}}}
   \label{eq:aether-lattice:zp-displacement}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 The Lindemann criterion for quantum melting:
 \begin{equation}
   \gamma_L = \frac{\sqrt{\langle u^2 \rangle_{\text{ZP}}}}{a} \approx 0.1-0.15
   \label{eq:aether-lattice:lindemann}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 suggests the E$_8$ lattice remains stable despite large zero-point fluctuations due to its exceptional symmetry and optimal packing.
@@ -490,7 +490,7 @@ The E$_8$ lattice supports 248 fundamental vibrational modes (240 roots + 8 Cart
 \begin{equation}
   \phi_{\text{phonon}}(x, t) = \phi_0 e^{-t/\tau} \cos(\omega t + \mathbf{k} \cdot \mathbf{x})
   \label{eq:aether-lattice:phonon-mode}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 with damping time $\tau = a^2 / (c_s \Gamma)$ where $\Gamma \approx 10^{-3}$ is the damping coefficient (ZPE-mediated dissipation). For Planck-scale lattice: $\tau \approx 10^{-43}\,\text{s}$ (extremely rapid damping at fundamental scale).
@@ -502,14 +502,14 @@ Scalar field coupling shifts vibrational frequencies via Eq.~\eqref{eq:aether-la
 \begin{equation}
   \phi_{\text{eff}} = \phi_{\text{background}} + \phi_{\text{induced}}
   \label{eq:aether-lattice:effective-scalar}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\phi_{\text{background}} \sim 10^{-15} M_{\text{Pl}}$ (Earth's scalar field) and $\phi_{\text{induced}}$ is generated via piezoelectric coupling (Section~\ref{sec:aether-lattice:tourmaline}). The frequency shift is:
 \begin{equation}
   \frac{\Delta \omega}{\omega_0} = \frac{\eta}{2} \frac{\phi_{\text{eff}}}{M_{\text{Pl}}}
   \label{eq:aether-lattice:frequency-shift}
-  \eqtag{A}{EXP}{E}
+  \eqtag{S}{EXP}{E}
 \end{equation}
 
 For $\phi_{\text{induced}} / M_{\text{Pl}} \sim 10^{-12}$ (achievable in high-Q cavities), $\Delta \omega / \omega_0 \sim 6 \times 10^{-14}$ (measurable with modern spectroscopy).
@@ -539,7 +539,7 @@ The \aether{} framework posits that gravitational interactions are emergent from
 \begin{equation}
   \delta g_{\mu\nu} = \frac{1}{M_{\text{Pl}}^2} \left( \partial_\mu u_i \, \partial_\nu u^i - \frac{1}{2} \eta_{\mu\nu} (\partial u)^2 \right)
   \label{eq:aether-lattice:metric-from-displacement}
-  \eqtag{A}{GR}{S}
+  \eqtag{S}{GR}{S}
 \end{equation}
 
 where $\mathbf{u}$ is the lattice displacement field. Gravitational waves correspond to coherent phonon excitations propagating through the lattice with group velocity $c_s \approx 0.577 c$ at Planck scale, approaching $c$ in the long-wavelength limit.
@@ -551,14 +551,14 @@ There is a one-to-one correspondence between phonon modes and graviton polarizat
 \begin{equation}
   \text{Phonon}(\mathbf{k}, \lambda) \quad \longleftrightarrow \quad \text{Graviton}(h_{\mu\nu}, \lambda)
   \label{eq:aether-lattice:phonon-graviton-map}
-  \eqtag{A}{GR}{S}
+  \eqtag{S}{GR}{S}
 \end{equation}
 
 where $\lambda$ denotes polarization. For transverse phonons ($\mathbf{k} \cdot \mathbf{u} = 0$), the duality gives:
 \begin{equation}
   u_i(\mathbf{k}) = \frac{1}{M_{\text{Pl}}} h_{ij}(\mathbf{k}) k^j
   \label{eq:aether-lattice:duality-relation}
-  \eqtag{A}{GR}{S}
+  \eqtag{S}{GR}{S}
 \end{equation}
 
 This establishes a microscopic origin for gravity: what we observe as gravitational waves are macroscopic averages of Planck-scale lattice vibrations.
@@ -588,14 +588,14 @@ The first experimental realization of discrete time crystals used chains of trap
 \begin{equation}
   |0\rangle = |F=0, m_F=0\rangle, \quad |1\rangle = |F=1, m_F=0\rangle
   \label{eq:aether-lattice:ion-states}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 The Hamiltonian includes Ising interactions and transverse field:
 \begin{equation}
   H = \sum_{i<j} J_{ij} \sigma_i^z \sigma_j^z + B \sum_i \sigma_i^x + h \sum_i \sigma_i^z
   \label{eq:aether-lattice:ion-hamiltonian}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 where $J_{ij} \propto 1/|i-j|^\alpha$ with $\alpha \approx 1.5$ for typical trap parameters.
@@ -604,7 +604,7 @@ Periodic driving is implemented via global spin flips:
 \begin{equation}
   U_F = \exp\left(-i\frac{\theta}{2} \sum_i \sigma_i^x\right)
   \label{eq:aether-lattice:spin-flip}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 with $\theta \approx \pi$ (imperfect $\pi$-pulse essential for DTC robustness).
@@ -624,7 +624,7 @@ Nitrogen-vacancy centers in diamond provide a solid-state platform for time crys
 \begin{equation}
   H_{NV} = D S_z^2 + \gamma_e B \cdot S + A \cdot I
   \label{eq:aether-lattice:nv-hamiltonian}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 where $D = 2.87\,\text{GHz}$ is zero-field splitting, $\gamma_e$ is gyromagnetic ratio, and $A$ is hyperfine coupling.
@@ -633,7 +633,7 @@ Dipolar interactions between NV centers:
 \begin{equation}
   H_{dd} = \sum_{i<j} \frac{\mu_0 \gamma_e^2 \hbar}{4\pi r_{ij}^3} \left[S_i \cdot S_j - 3(S_i \cdot \hat{r}_{ij})(S_j \cdot \hat{r}_{ij})\right]
   \label{eq:aether-lattice:dipolar}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 create the many-body interactions necessary for DTC formation.
@@ -653,7 +653,7 @@ Superconducting quantum processors enable programmable time crystals with tunabl
 \begin{equation}
   H_{SC} = \sum_i \frac{\omega_i}{2} \sigma_i^z + \sum_{i,j} g_{ij}(\sigma_i^+ \sigma_j^- + \text{h.c.})
   \label{eq:aether-lattice:sc-hamiltonian}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 where $\omega_i$ are qubit frequencies and $g_{ij}$ are tunable coupling strengths.
@@ -681,7 +681,7 @@ Rydberg atoms in optical tweezers provide strong, long-range interactions ideal 
 \begin{equation}
   H_{Ryd} = \sum_i \frac{\Omega}{2} \sigma_i^x - \sum_i \Delta n_i + \sum_{i<j} \frac{V_{ij}}{r_{ij}^6} n_i n_j
   \label{eq:aether-lattice:rydberg-hamiltonian}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 where $\Omega$ is Rabi frequency, $\Delta$ is detuning, and $V_{ij}$ is van der Waals interaction.
@@ -690,7 +690,7 @@ The Rydberg blockade mechanism:
 \begin{equation}
   R_b = \left(\frac{V}{\Omega}\right)^{1/6}
   \label{eq:aether-lattice:blockade-radius}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 creates effective hard-core bosons with radius $R_b \sim 10\,\mu\text{m}$.
@@ -709,7 +709,7 @@ Time crystals provide novel resources for quantum computation:
 \begin{equation}
   F(t) = |\langle \psi(0) | \psi(t) \rangle|^2 > 1 - \epsilon
   \label{eq:aether-lattice:fidelity}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 for times $t \gg T_2$ (conventional coherence time).
@@ -718,7 +718,7 @@ for times $t \gg T_2$ (conventional coherence time).
 \begin{equation}
   U_{TC}^{(n)} = \exp\left(2\pi i \sum_j \frac{j}{n} |j\rangle\langle j|\right)
   \label{eq:aether-lattice:tc-gate}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 \textbf{3. Quantum Sensors:} Enhanced sensitivity to AC fields at subharmonic frequencies:
@@ -728,7 +728,7 @@ for times $t \gg T_2$ (conventional coherence time).
     1 & \text{otherwise}
   \end{cases}
   \label{eq:aether-lattice:tc-sensing}
-  \eqtag{A}{QM}{E}
+  \eqtag{S}{QM}{E}
 \end{equation}
 
 where $N$ is the number of spins.
@@ -742,7 +742,7 @@ The \aether{} framework proposes using time crystals to extract zero-point energ
 \begin{equation}
   H_{TC-ZPE} = g \sum_{\mathbf{k}} \phi(\mathbf{k}) (a_{\mathbf{k}}^\dagger + a_{\mathbf{k}}) \mathcal{O}_{TC}(t)
   \label{eq:aether-lattice:tc-zpe-coupling}
-  \eqtag{A}{QM}{S}
+  \eqtag{S}{QM}{S}
 \end{equation}
 
 where $\mathcal{O}_{TC}(t)$ is the time crystal order parameter oscillating at $\omega_d/n$.
@@ -751,14 +751,14 @@ where $\mathcal{O}_{TC}(t)$ is the time crystal order parameter oscillating at $
 \begin{equation}
   P_{ext} = \frac{g^2 \hbar \omega_d}{2n} \sum_{\mathbf{k}} \delta(\omega_{\mathbf{k}} - \omega_d/n)
   \label{eq:aether-lattice:power-extraction}
-  \eqtag{A}{QM}{S}
+  \eqtag{S}{QM}{S}
 \end{equation}
 
 \textbf{Efficiency estimate:}
 \begin{equation}
   \eta = \frac{P_{ext}}{P_{drive}} \sim \frac{g^2 N}{(\omega_d/n)^2} \approx 10^{-6} - 10^{-4}
   \label{eq:aether-lattice:extraction-efficiency}
-  \eqtag{A}{QM}{E}
+  \eqtag{S}{QM}{E}
 \end{equation}
 
 While small, this represents net energy gain from vacuum.
@@ -772,14 +772,14 @@ Time crystals enable computation in the time domain:
 \begin{equation}
   |0\rangle_T = |\text{oscillation at } t\rangle, \quad |1\rangle_T = |\text{oscillation at } t + T/2\rangle
   \label{eq:aether-lattice:temporal-qubits}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 \textbf{Clock-free computation:} Self-oscillating time crystals provide intrinsic clock:
 \begin{equation}
   f_{clock} = \frac{\omega_d}{2\pi n} \times \left(1 \pm 10^{-9}\right)
   \label{eq:aether-lattice:tc-clock}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 achieving part-per-billion stability without external reference.
@@ -796,7 +796,7 @@ Tourmaline (NaFe$_3$Al$_6$(BO$_3$)$_3$Si$_6$O$_{18}$(OH)$_4$) is a pyroelectric/
 \begin{equation}
   u_i = d_{ijk} E_j \sigma_k
   \label{eq:aether-lattice:piezoelectric-coupling}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $d_{ijk}$ is the piezoelectric coefficient and $\sigma_k$ is applied stress. The lattice displacement sources scalar field via Eq.~\eqref{eq:aether-lattice:scalar-lattice-coupling}, creating an electric field $\to$ lattice $\to$ scalar field transduction chain.
@@ -914,7 +914,7 @@ The Leech lattice $\Lambda_{24}$ is an even self-dual lattice in 24D with no roo
 \begin{equation}
   \Lambda_{24} = \Lambda_{E_8} \oplus \Lambda_{E_8} \oplus \Lambda_{E_8} + \text{glue}
   \label{eq:aether-lattice:leech-construction}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where "glue" denotes coset representatives. The Leech lattice connects to the Monster Group (Ch~\ref{ch:genesis-monster}) via Moonshine, providing a unifying framework for modular symmetries.
@@ -926,7 +926,7 @@ Projection from 8D E$_8$ lattice to 3D observable space is not unique. The \aeth
 \begin{equation}
   \mathbf{x}_{3D} = P_{\text{Cox}} \cdot \mathbf{x}_{8D}
   \label{eq:aether-lattice:coxeter-projection}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $P_{\text{Cox}}$ is a $3 \times 8$ projection matrix preserving maximal symmetry. Different projections yield different low-energy effective theories, potentially explaining gauge group diversity in particle physics.

@@ -47,14 +47,14 @@ The mathematical formalism begins with the action principle. For a real scalar f
 \begin{equation}
   S[\phi] = \int d^4x \sqrt{-g} \left[ -\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi - V(\phi) - \xi R \phi^2 \right]
   \label{eq:aether:scalar-action}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 where $g = \det(g_{\mu\nu})$ is the metric determinant, $V(\phi)$ the potential, $R$ the Ricci scalar, and $\xi$ the curvature coupling constant. Variation with respect to $\phi$ yields the equation of motion:
 \begin{equation}
   \Box \phi + \frac{\partial V}{\partial \phi} + \xi R \phi = 0
   \label{eq:aether:eom-basic}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 where $\Box = g^{\mu\nu} \nabla_\mu \nabla_\nu$ is the covariant d'Alembertian operator.
@@ -70,7 +70,7 @@ The stress-energy tensor, obtained by varying the action with respect to the met
 \begin{equation}
   T_{\mu\nu} = \partial_\mu \phi \partial_\nu \phi - g_{\mu\nu} \left[ \frac{1}{2} g^{\alpha\beta} \partial_\alpha \phi \partial_\beta \phi + V(\phi) \right] + \xi G_{\mu\nu} \phi^2
   \label{eq:aether:stress-energy-full}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 where $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R$ is the Einstein tensor.
@@ -84,14 +84,14 @@ The foam-induced fluctuations modify the scalar field equation:
 \begin{equation}
   \Box \phi + \frac{\partial V}{\partial \phi} + \xi R \phi + \xi(x,t) = 0
   \label{eq:aether:foam-modified}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 where $\xi(x,t)$ represents stochastic foam perturbations with correlation function:
 \begin{equation}
   \langle \xi(x,t) \xi(x',t') \rangle = \sigma^2 \delta^4(x-x') \exp\left(-\frac{|t-t'|}{\tau_c}\right)
   \label{eq:aether:foam-correlation}
-  \eqtag{A}{QG}{S}
+  \eqtag{S}{QG}{S}
 \end{equation}
 
 with $\sigma^2 \sim \ell_P^2 / t_P$ the foam intensity and $\tau_c$ the coherence time.
@@ -100,7 +100,7 @@ The quantum foam energy density follows a modified Planck distribution:
 \begin{equation}
   \rho_{\text{foam}}(\omega) = \frac{\hbar \omega^3}{8\pi^2 c^3} \frac{1}{\exp(\hbar\omega/k_B T_{\text{foam}}) - 1}
   \label{eq:aether:foam-density}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 where $T_{\text{foam}} \sim T_P = 1.417 \times 10^{32}$ K is the Planck temperature.
@@ -118,35 +118,35 @@ The fundamental equation governing scalar field dynamics in the \aether{} framew
 \begin{equation}
   \left( \partial_\mu \partial^\mu + m^2 \right) \phi = 0
   \label{eq:aether:kg-flat}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 where $m$ is the scalar field mass. In curved spacetime, this becomes:
 \begin{equation}
   \left( \Box + m^2 \right) \phi = 0
   \label{eq:aether:kg-curved-simple}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 The covariant d'Alembertian operator expands as:
 \begin{equation}
   \Box \phi = \frac{1}{\sqrt{-g}} \partial_\mu \left( \sqrt{-g} g^{\mu\nu} \partial_\nu \phi \right)
   \label{eq:aether:dalembert-expansion}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 For the Friedmann-Robertson-Walker metric describing cosmological spacetime:
 \begin{equation}
   ds^2 = -dt^2 + a(t)^2 \left[ \frac{dr^2}{1-kr^2} + r^2(d\theta^2 + \sin^2\theta d\varphi^2) \right]
   \label{eq:aether:frw-metric}
-  \eqtag{A}{COSMO}{T}
+  \eqtag{S}{COSMO}{T}
 \end{equation}
 
 the scalar field equation becomes:
 \begin{equation}
   \ddot{\phi} + 3H\dot{\phi} - \frac{\nabla^2 \phi}{a^2} + m^2\phi + \xi R \phi = 0
   \label{eq:aether:kg-frw}
-  \eqtag{A}{COSMO}{T}
+  \eqtag{S}{COSMO}{T}
 \end{equation}
 
 where $H = \dot{a}/a$ is the Hubble parameter and dots denote time derivatives.
@@ -162,28 +162,28 @@ Let us derive this equation systematically from first principles. Starting with 
 \begin{equation}
   \mathcal{L} = -\frac{1}{2} g^{\mu\nu} \partial_\mu \phi \partial_\nu \phi - V(\phi) - \xi R \phi^2 + \mathcal{L}_{\text{drive}} + \mathcal{L}_{\text{foam}}
   \label{eq:aether:lagrangian-complete}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 The driving term represents external periodic forcing:
 \begin{equation}
   \mathcal{L}_{\text{drive}} = -\zeta \phi \cos(\omega t)
   \label{eq:aether:lagrangian-drive}
-  \eqtag{A}{QFT}{E}
+  \eqtag{S}{QFT}{E}
 \end{equation}
 
 The foam term introduces stochastic perturbations:
 \begin{equation}
   \mathcal{L}_{\text{foam}} = -\xi(x,t) \phi
   \label{eq:aether:lagrangian-foam}
-  \eqtag{A}{QG}{E}
+  \eqtag{S}{QG}{E}
 \end{equation}
 
 Applying the Euler-Lagrange equation:
 \begin{equation}
   \frac{\partial \mathcal{L}}{\partial \phi} - \partial_\mu \left( \frac{\partial \mathcal{L}}{\partial(\partial_\mu \phi)} \right) = 0
   \label{eq:aether:euler-lagrange}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Computing each term:
@@ -197,7 +197,7 @@ Combining yields the master equation:
 \begin{equation}
   \Box \phi + \frac{\partial V(\phi)}{\partial \phi} + \xi R \phi + \zeta \cos(\omega t) + \xi(x,t) = 0
   \label{eq:aether:master-derived}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 Note: We use $\xi$ for both curvature coupling constant and foam perturbation function; context distinguishes usage.
@@ -221,7 +221,7 @@ For cosmological applications, we often use the slow-roll potential:
 \begin{equation}
   V(\phi) = V_0 \left[ 1 + \left(\frac{\phi}{M_P}\right)^n \right]
   \label{eq:aether:slow-roll-potential}
-  \eqtag{A}{COSMO}{T}
+  \eqtag{S}{COSMO}{T}
 \end{equation}
 
 where $n$ determines the inflationary dynamics. The slow-roll parameters:
@@ -239,7 +239,7 @@ The fractal potential introduces multiscale structure:
 \begin{equation}
   V_{\text{fractal}}(\phi) = \sum_{n=1}^{N} \frac{\epsilon_n}{\gamma^n} \cos\left(\gamma^n \frac{\phi}{\phi_0}\right)
   \label{eq:aether:fractal-potential}
-  \eqtag{A}{FRACTAL}{T}
+  \eqtag{S}{FRACTAL}{T}
 \end{equation}
 
 where $\gamma = (1+\sqrt{5})/2 \approx 1.618$ is the golden ratio. This generates self-similar structure across scales, creating Julia-set-like basins in configuration space.
@@ -248,7 +248,7 @@ The fractal dimension of the potential landscape:
 \begin{equation}
   D_f = \lim_{r \to 0} \frac{\log N(r)}{\log(1/r)}
   \label{eq:aether:fractal-dimension}
-  \eqtag{A}{FRACTAL}{T}
+  \eqtag{S}{FRACTAL}{T}
 \end{equation}
 
 where $N(r)$ counts local minima within radius $r$. For the golden ratio fractal potential, $D_f \approx 1.585$, intermediate between line (1D) and plane (2D).
@@ -260,7 +260,7 @@ Consider the Mexican hat potential:
 \begin{equation}
   V(\phi) = -\frac{1}{2}\mu^2 \phi^2 + \frac{\lambda}{4} \phi^4
   \label{eq:aether:mexican-hat}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 with $\mu^2 > 0$ (note the negative sign). The potential minima occur at:
@@ -273,7 +273,7 @@ yielding $\phi = 0$ (unstable) or $\phi = \pm v$ where:
 \begin{equation}
   v = \sqrt{\frac{\mu^2}{\lambda}}
   \label{eq:aether:vev}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 Expanding around the vacuum $\phi = v + \sigma$:
@@ -296,14 +296,14 @@ The quantum vacuum exhibits irreducible energy from zero-point fluctuations. For
 \begin{equation}
   E_n = \hbar \omega \left( n + \frac{1}{2} \right)
   \label{eq:aether:ho-energy}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 Even the ground state ($n=0$) has energy $E_0 = \frac{1}{2}\hbar\omega$. For a quantum field, summing over all modes:
 \begin{equation}
   \rho_{\text{ZPE}} = \frac{1}{2} \int_0^{\infty} \frac{d^3k}{(2\pi)^3} \hbar \omega_k = \frac{1}{2} \int_0^{k_{\max}} \frac{4\pi k^2 dk}{(2\pi)^3} \hbar c k
   \label{eq:aether:zpe-integral}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 where we used $\omega_k = ck$ for massless fields. This integral diverges as $k_{\max}^4$, requiring regularization.
@@ -312,14 +312,14 @@ The \aether{} framework employs physical cutoffs based on the E$_8$ lattice stru
 \begin{equation}
   k_{\max} = \frac{\pi}{a_{E_8}} \approx \frac{\pi}{\ell_P} = 1.95 \times 10^{35} \text{ m}^{-1}
   \label{eq:aether:cutoff-e8}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 This yields finite ZPE density:
 \begin{equation}
   \rho_{\text{ZPE}} = \frac{\pi^2 \hbar c}{240 a_{E_8}^4} \approx 4.63 \times 10^{113} \text{ J/m}^3
   \label{eq:aether:zpe-finite}
-  \eqtag{A}{QG}{E}
+  \eqtag{S}{QG}{E}
 \end{equation}
 
 This enormous energy density is not directly observable due to the equivalence principle but manifests through differences (Casimir effect) and fluctuations.
@@ -335,14 +335,14 @@ This coupling modifies the effective ZPE density:
 \begin{equation}
   \rho_{\text{ZPE}}^{\text{eff}} = \rho_{\text{ZPE}} \left( 1 + \frac{g\phi}{M_P} \right)
   \label{eq:aether:zpe-effective}
-  \eqtag{A}{QFT}{E}
+  \eqtag{S}{QFT}{E}
 \end{equation}
 
 The coupling constant $g$ has been constrained by Casimir force measurements:
 \begin{equation}
   g = 0.15 \pm 0.03
   \label{eq:aether:coupling-value}
-  \eqtag{A}{EXP}{E}
+  \eqtag{S}{EXP}{E}
 \end{equation}
 
 \subsection{Energy Transfer Dynamics}
@@ -352,7 +352,7 @@ The power transfer between scalar fields and ZPE follows:
 \begin{equation}
   P_{\text{transfer}} = \kappa \phi^2 + \zeta F(t,\kappa) + \alpha \nabla^2 \phi
   \label{eq:aether:power-transfer}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 where:
@@ -366,7 +366,7 @@ The foam function:
 \begin{equation}
   F(t,\kappa) = \sin(t)e^{-\kappa^2} + \frac{1}{4\pi(1+\kappa/8\pi)} + \zeta\phi^2 e^{-|t_1-t_2|/\tau}
   \label{eq:aether:foam-function}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 captures temporal correlations and density-dependent damping.
@@ -378,14 +378,14 @@ Scalar fields enhance ZPE coherence through phase locking:
 \begin{equation}
   C(\omega) = \frac{|\langle \phi(\omega) \rho_{\text{ZPE}}(\omega) \rangle|^2}{\langle |\phi(\omega)|^2 \rangle \langle |\rho_{\text{ZPE}}(\omega)|^2 \rangle}
   \label{eq:aether:coherence-function}
-  \eqtag{A}{QFT}{T}
+  \eqtag{S}{QFT}{T}
 \end{equation}
 
 For optimal coupling $\xi = 1/4$, coherence peaks at:
 \begin{equation}
   C_{\max} = 0.85 \pm 0.05
   \label{eq:aether:coherence-max}
-  \eqtag{A}{QFT}{E}
+  \eqtag{S}{QFT}{E}
 \end{equation}
 
 This high coherence enables efficient energy extraction protocols.
@@ -402,14 +402,14 @@ Quantum foam emerges from uncertainty principle applied to spacetime:
 \begin{equation}
   \Delta g_{\mu\nu} \Delta x^\alpha \sim \ell_P^2
   \label{eq:aether:foam-uncertainty}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 This implies metric fluctuations:
 \begin{equation}
   \langle (\Delta g_{\mu\nu})^2 \rangle \sim \left( \frac{\ell_P}{L} \right)^2
   \label{eq:aether:metric-fluctuations}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 where $L$ is the observation scale. At Planck scale ($L \sim \ell_P$), fluctuations become order unity, creating foam-like topology.
@@ -418,7 +418,7 @@ The foam density parameter:
 \begin{equation}
   \kappa_{\text{foam}} = \frac{N_{\text{bubbles}}}{V_P}
   \label{eq:aether:foam-density-param}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 where $N_{\text{bubbles}}$ counts virtual black holes/wormholes in Planck volume $V_P = \ell_P^3$.
@@ -434,7 +434,7 @@ The lattice spacing emerges from energy minimization:
 \begin{equation}
   a_{\text{lattice}} = 2\pi \sqrt{\frac{\hbar}{m\omega}}
   \label{eq:aether:lattice-spacing}
-  \eqtag{A}{CM}{T}
+  \eqtag{S}{CM}{T}
 \end{equation}
 
 For scalar mass $m \sim 10^{-3}$ eV (axion scale), $a_{\text{lattice}} \sim 1$ mm, macroscopically observable.
@@ -446,7 +446,7 @@ The crystalline lattice supports phonon excitations with dispersion:
 \begin{equation}
   \omega^2(k) = \omega_0^2 + v_s^2 k^2 + \alpha k^4
   \label{eq:aether:phonon-dispersion}
-  \eqtag{A}{CM}{T}
+  \eqtag{S}{CM}{T}
 \end{equation}
 
 where $\omega_0$ is the optical phonon frequency, $v_s$ the sound velocity, and $\alpha$ accounts for dispersion.
@@ -455,7 +455,7 @@ The density of states:
 \begin{equation}
   g(\omega) = \frac{V}{2\pi^2} \frac{\omega^2}{v_s^3} \Theta(\omega - \omega_0)
   \label{eq:aether:phonon-dos}
-  \eqtag{A}{CM}{T}
+  \eqtag{S}{CM}{T}
 \end{equation}
 
 where $\Theta$ is the Heaviside function.
@@ -469,7 +469,7 @@ The crystalline lattice admits topological defects:
 \begin{equation}
   \phi_{\text{monopole}}(r) = v \frac{r_0}{r} \hat{r}
   \label{eq:aether:monopole}
-  \eqtag{A}{TOP}{T}
+  \eqtag{S}{TOP}{T}
 \end{equation}
 
 with topological charge $Q = 4\pi v r_0$.
@@ -478,7 +478,7 @@ with topological charge $Q = 4\pi v r_0$.
 \begin{equation}
   \phi_{\text{string}}(r,\theta) = v f(r) e^{in\theta}
   \label{eq:aether:string}
-  \eqtag{A}{TOP}{T}
+  \eqtag{S}{TOP}{T}
 \end{equation}
 
 with winding number $n \in \mathbb{Z}$.
@@ -487,7 +487,7 @@ with winding number $n \in \mathbb{Z}$.
 \begin{equation}
   \phi_{\text{wall}}(z) = v \tanh\left(\frac{z}{\delta}\right)
   \label{eq:aether:wall}
-  \eqtag{A}{TOP}{T}
+  \eqtag{S}{TOP}{T}
 \end{equation}
 
 with wall thickness $\delta = 1/m$.
@@ -521,14 +521,14 @@ For compactified extra dimensions with radius $R$:
 \begin{equation}
   \phi^{(D)}(x^\mu, y^i) = \sum_n \phi_n^{(4)}(x^\mu) Y_n(y^i)
   \label{eq:aether:kk-decomposition}
-  \eqtag{A}{STRING}{T}
+  \eqtag{S}{STRING}{T}
 \end{equation}
 
 where $Y_n$ are harmonics on the compact space. The 4D effective mass:
 \begin{equation}
   m_n^2 = m_0^2 + \frac{n^2}{R^2}
   \label{eq:aether:kk-mass}
-  \eqtag{A}{STRING}{T}
+  \eqtag{S}{STRING}{T}
 \end{equation}
 
 For $R \sim \ell_P$, tower spacing $\Delta m \sim M_P$, beyond current experiments.
@@ -541,7 +541,7 @@ The E$_8$ exceptional Lie group provides maximal symmetry in 8D. Its root lattic
 \begin{equation}
   \phi^{(8)}(x) = \sum_{i=1}^{248} A_i e^{i\alpha_i \cdot x}
   \label{eq:aether:e8-expansion}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 The E$_8$ Dynkin diagram encodes coupling structure:
@@ -567,7 +567,7 @@ Mode coupling follows E$_8$ structure constants:
 \begin{equation}
   [\phi_i, \phi_j] = f_{ijk} \phi_k
   \label{eq:aether:e8-coupling}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 \subsection{Dimensional Resonance Phenomena}
@@ -577,7 +577,7 @@ Cross-dimensional coupling generates resonances at specific frequencies:
 \begin{equation}
   \omega_{\text{res}}^{(d)} = \sqrt{\frac{2\pi d}{L_d}}
   \label{eq:aether:dimensional-resonance}
-  \eqtag{A}{PHYS}{T}
+  \eqtag{S}{PHYS}{T}
 \end{equation}
 
 For $d = 4, 6, 8$, strong resonances appear, observable in spectroscopy.
@@ -594,14 +594,14 @@ The holographic principle relates bulk physics to boundary information:
 \begin{equation}
   S = \frac{A}{4G\hbar}
   \label{eq:aether:bekenstein-hawking}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 Scalar fields modulate this entropy:
 \begin{equation}
   S_{\text{holo}} = \frac{A}{4G\hbar} + \kappa \phi^2 \cos(\omega t) + \alpha \nabla^2 \phi
   \label{eq:aether:modulated-entropy}
-  \eqtag{A}{QG}{T}
+  \eqtag{S}{QG}{T}
 \end{equation}
 
 The oscillatory term enables information encoding in vacuum fluctuations.
@@ -613,7 +613,7 @@ The crystalline lattice stores information at density:
 \begin{equation}
   I = \frac{S_{\text{lattice}}}{V} = \frac{k_B}{\lambda_{\text{thermal}}^3} \log(\Omega)
   \label{eq:aether:information-density}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 where $\lambda_{\text{thermal}} = h/\sqrt{2\pi m k_B T}$ and $\Omega$ counts microstates.
@@ -622,7 +622,7 @@ Maximum theoretical density (Planck scale):
 \begin{equation}
   I_{\max} = \frac{1}{\ell_P^3} \approx 10^{105} \text{ bits/m}^3
   \label{eq:aether:information-max}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 \subsection{Scalar-Driven Entropy Dynamics}
@@ -632,7 +632,7 @@ The entropy evolution equation:
 \begin{equation}
   \frac{\partial S}{\partial t} = -\kappa \phi \frac{\partial \phi}{\partial t} + \alpha \nabla^2 S + \sigma
   \label{eq:aether:entropy-evolution}
-  \eqtag{A}{THERMO}{T}
+  \eqtag{S}{THERMO}{T}
 \end{equation}
 
 where $\sigma \geq 0$ is the entropy production rate (second law).
@@ -641,7 +641,7 @@ For harmonic scalar oscillations $\phi = \phi_0 \cos(\omega t)$:
 \begin{equation}
   \langle \frac{dS}{dt} \rangle = \frac{\kappa \omega \phi_0^2}{2} \sin(2\omega t)
   \label{eq:aether:entropy-oscillation}
-  \eqtag{A}{THERMO}{E}
+  \eqtag{S}{THERMO}{E}
 \end{equation}
 
 Time-averaged entropy production vanishes, enabling reversible information processing.
@@ -659,7 +659,7 @@ Time crystals break time-translation symmetry while maintaining rigidity against
 \begin{equation}
   H(t) = H_0 + V \cos(\omega_D t)
   \label{eq:aether:floquet-hamiltonian}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 The system exhibits discrete time-translation symmetry with period $T = 2\pi/\omega_D$.
@@ -671,14 +671,14 @@ For many-body localized systems with interactions:
 \begin{equation}
   H = \sum_i h_i \sigma_i^z + \sum_{ij} J_{ij} \sigma_i^x \sigma_j^x + V(t) \sum_i \sigma_i^y
   \label{eq:aether:dtc-hamiltonian}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 The system responds at half the driving frequency (period doubling):
 \begin{equation}
   \langle O(t) \rangle = \langle O(t + 2T) \rangle \neq \langle O(t + T) \rangle
   \label{eq:aether:period-doubling}
-  \eqtag{A}{QM}{E}
+  \eqtag{S}{QM}{E}
 \end{equation}
 
 \subsection{Continuous Time Crystals}
@@ -697,7 +697,7 @@ Coupling strength between scalar fields and time crystals:
 \begin{equation}
   g_{\text{tc}} = \frac{\langle \phi \dot{\mathcal{O}}_{\text{tc}} \rangle}{\sqrt{\langle \phi^2 \rangle \langle \dot{\mathcal{O}}_{\text{tc}}^2 \rangle}}
   \label{eq:aether:tc-coupling}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\mathcal{O}_{\text{tc}}$ is the time crystal order parameter.
@@ -753,7 +753,7 @@ Experimental measurements yield $g_{\text{tc}} = 0.3 - 0.5$ for optimal configur
 \begin{equation}
   \omega_{\text{modified}} = \omega_0 \sqrt{1 + \frac{\kappa \phi^2}{M_{\text{lattice}}}}
   \label{eq:aether:phonon-modification}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 Extract coupling constant $\kappa$ from frequency shifts.
@@ -816,7 +816,7 @@ Extract coupling constant $\kappa$ from frequency shifts.
 \begin{equation}
   F_{\text{enhanced}} = F_{\text{Casimir}} \left( 1 + \eta \frac{\phi}{M_P} + \beta (\nabla \phi)^2 \right)
   \label{eq:aether:casimir-enhanced}
-  \eqtag{A}{EXP}{T}
+  \eqtag{S}{EXP}{T}
 \end{equation}
 
 \begin{itemize}
@@ -950,14 +950,14 @@ The multiplication rule for Cayley-Dickson pairs:
 \begin{equation}
   (a,b) \cdot (c,d) = (ac - d^*b, da + bc^*)
   \label{eq:aether:cayley-multiplication}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Applied to scalar modes:
 \begin{equation}
   \phi_n \otimes \phi_m = \sum_{k} C_{nm}^k \phi_k
   \label{eq:aether:mode-product}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $C_{nm}^k$ are structure constants determined by the Cayley-Dickson algebra.
@@ -971,7 +971,7 @@ The exceptional Lie groups constrain scalar field interactions:
 \begin{equation}
   \text{dim}(\text{G}_2) = 14 = 2 \times 7
   \label{eq:aether:g2-dimension}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Constrains 8D scalar field rotations preserving octonionic structure.
@@ -980,7 +980,7 @@ Constrains 8D scalar field rotations preserving octonionic structure.
 \begin{equation}
   \text{dim}(\text{F}_4) = 52 = 4 \times 13
   \label{eq:aether:f4-dimension}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Governs 16D sedenion scalar couplings.
@@ -989,7 +989,7 @@ Governs 16D sedenion scalar couplings.
 \begin{equation}
   \text{dim}(\text{E}_8) = 248 = 8 \times 31
   \label{eq:aether:e8-dimension}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Provides complete classification of 8D scalar harmonics.
@@ -1003,7 +1003,7 @@ The fractal structure of scalar potentials requires measure theory:
 \begin{equation}
   \mathcal{H}^s(E) = \lim_{\delta \to 0} \inf \left\{ \sum_{i} r_i^s : E \subset \bigcup_i B(x_i, r_i), r_i < \delta \right\}
   \label{eq:aether:hausdorff-measure}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 For the scalar potential landscape, $\mathcal{H}^{1.585}(V_{\text{fractal}}) < \infty$.
@@ -1012,7 +1012,7 @@ For the scalar potential landscape, $\mathcal{H}^{1.585}(V_{\text{fractal}}) < \
 \begin{equation}
   d_B = \lim_{\epsilon \to 0} \frac{\log N(\epsilon)}{\log(1/\epsilon)}
   \label{eq:aether:box-dimension}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $N(\epsilon)$ counts $\epsilon$-boxes covering the set.
@@ -1026,14 +1026,14 @@ Scalar field configurations carry topological charges:
 \begin{equation}
   n = \frac{1}{2\pi} \oint d\theta \, \partial_\theta \phi
   \label{eq:aether:winding-number}
-  \eqtag{A}{TOP}{T}
+  \eqtag{S}{TOP}{T}
 \end{equation}
 
 \textbf{Hopf invariant (3D):}
 \begin{equation}
   H = \int d^3x \, \epsilon^{ijk} A_i \partial_j A_k
   \label{eq:aether:hopf-invariant}
-  \eqtag{A}{TOP}{T}
+  \eqtag{S}{TOP}{T}
 \end{equation}
 
 where $A_i$ is the gauge potential associated with $\phi$.
@@ -1042,7 +1042,7 @@ where $A_i$ is the gauge potential associated with $\phi$.
 \begin{equation}
   P = \frac{1}{32\pi^2} \int d^4x \, \epsilon^{\mu\nu\rho\sigma} F_{\mu\nu} F_{\rho\sigma}
   \label{eq:aether:pontryagin}
-  \eqtag{A}{TOP}{T}
+  \eqtag{S}{TOP}{T}
 \end{equation}
 
 These invariants are preserved under continuous deformations, providing robust information encoding.
@@ -1061,7 +1061,7 @@ Scalar fields stabilize quantum coherence through multiple mechanisms:
 \begin{equation}
   \Gamma_{\text{decoherence}} = \Gamma_0 \left( 1 - \frac{\alpha \phi^2}{\phi_c^2} \right)
   \label{eq:aether:decoherence-rate}
-  \eqtag{A}{QC}{T}
+  \eqtag{S}{QC}{T}
 \end{equation}
 
 where $\phi_c$ is the critical field strength.
@@ -1070,7 +1070,7 @@ where $\phi_c$ is the critical field strength.
 \begin{equation}
   F = 1 - \epsilon_0 e^{-\beta \phi / \phi_0}
   \label{eq:aether:gate-fidelity}
-  \eqtag{A}{QC}{T}
+  \eqtag{S}{QC}{T}
 \end{equation}
 
 Achieving $F > 0.9995$ for $\phi > 3\phi_0$.
@@ -1079,7 +1079,7 @@ Achieving $F > 0.9995$ for $\phi > 3\phi_0$.
 \begin{equation}
   \mathcal{C}(t) = \mathcal{C}_0 \exp\left(-\frac{t}{T_2^{(0)}} + \frac{\gamma \phi t}{T_2^{(0)}} \right)
   \label{eq:aether:entanglement-protection}
-  \eqtag{A}{QC}{T}
+  \eqtag{S}{QC}{T}
 \end{equation}
 
 Extends entanglement lifetime by factor $(1 + \gamma \phi)$.
@@ -1091,7 +1091,7 @@ Extends entanglement lifetime by factor $(1 + \gamma \phi)$.
 \begin{equation}
   \eta_{\text{ZPE}} = \frac{P_{\text{out}}}{P_{\text{ZPE}}} = \tanh\left( \frac{\kappa \phi^2}{k_B T} \right)
   \label{eq:aether:zpe-efficiency}
-  \eqtag{A}{ENERGY}{T}
+  \eqtag{S}{ENERGY}{T}
 \end{equation}
 
 Maximum theoretical efficiency approaches 1\% for optimized configurations.
@@ -1100,7 +1100,7 @@ Maximum theoretical efficiency approaches 1\% for optimized configurations.
 \begin{equation}
   V_{\text{DC}} = \frac{1}{2} \alpha \phi_0^2 \omega^2 R C
   \label{eq:aether:rectification}
-  \eqtag{A}{ENERGY}{E}
+  \eqtag{S}{ENERGY}{E}
 \end{equation}
 
 Generates DC voltage from AC scalar oscillations.
@@ -1109,7 +1109,7 @@ Generates DC voltage from AC scalar oscillations.
 \begin{equation}
   Q_{\text{loaded}} = Q_0 \left( 1 + \frac{\beta \phi}{\phi_{\text{crit}}} \right)^2
   \label{eq:aether:cavity-q}
-  \eqtag{A}{ENERGY}{T}
+  \eqtag{S}{ENERGY}{T}
 \end{equation}
 
 Q-factor enhancement enables efficient energy storage.
@@ -1121,7 +1121,7 @@ Q-factor enhancement enables efficient energy storage.
 \begin{equation}
   w(z) = \frac{p_\phi}{\rho_\phi} = \frac{\dot{\phi}^2/2 - V(\phi)}{\dot{\phi}^2/2 + V(\phi)}
   \label{eq:aether:equation-of-state}
-  \eqtag{A}{COSMO}{T}
+  \eqtag{S}{COSMO}{T}
 \end{equation}
 
 Scalar field equation of state varies with redshift $z$.
@@ -1130,7 +1130,7 @@ Scalar field equation of state varies with redshift $z$.
 \begin{equation}
   \delta_k(a) = \delta_k(a_i) \left( \frac{a}{a_i} \right)^{1+3w_{\text{eff}}/5}
   \label{eq:aether:structure-growth}
-  \eqtag{A}{COSMO}{T}
+  \eqtag{S}{COSMO}{T}
 \end{equation}
 
 Scalar fields alter matter power spectrum growth.
@@ -1139,7 +1139,7 @@ Scalar fields alter matter power spectrum growth.
 \begin{equation}
   C_\ell^{TT} = C_\ell^{TT,\text{standard}} \left( 1 + f_\phi \frac{\ell(\ell+1)}{2000} \right)
   \label{eq:aether:cmb-modification}
-  \eqtag{A}{COSMO}{E}
+  \eqtag{S}{COSMO}{E}
 \end{equation}
 
 Predicts $\sim 0.1$\% modification at $\ell \sim 2000$.
@@ -1157,7 +1157,7 @@ The \aether{} scalar fields map to \genesis{} hypercomplex structures:
 \begin{equation}
   \phi^{(\text{Aether})} \leftrightarrow \Psi^{(\text{Genesis})} = \sum_{n} a_n \mathbf{e}_n
   \label{eq:aether:genesis-map}
-  \eqtag{A}{UNIFY}{T}
+  \eqtag{S}{UNIFY}{T}
 \end{equation}
 
 where $\mathbf{e}_n$ are Cayley-Dickson basis elements.
@@ -1166,7 +1166,7 @@ The origami folding operator in \genesis{} corresponds to dimensional projection
 \begin{equation}
   \mathcal{F}_{\text{origami}} \equiv \mathcal{P}_{8D \to 3D}
   \label{eq:aether:origami-equivalence}
-  \eqtag{A}{UNIFY}{T}
+  \eqtag{S}{UNIFY}{T}
 \end{equation}
 
 \subsection{Pais Framework Correspondence}
@@ -1177,14 +1177,14 @@ The origami folding operator in \genesis{} corresponds to dimensional projection
 \begin{equation}
   G_{\mu\nu}^{(\text{Pais})} = G_{\mu\nu} + \alpha T_{\mu\nu}^{(\phi)}
   \label{eq:aether:pais-modification}
-  \eqtag{A}{UNIFY}{T}
+  \eqtag{S}{UNIFY}{T}
 \end{equation}
 
 The superforce unification emerges when scalar VEV reaches GUT scale:
 \begin{equation}
   \langle \phi \rangle = M_{\text{GUT}} \implies g_1 = g_2 = g_3 = g_{\text{unified}}
   \label{eq:aether:gut-unification}
-  \eqtag{A}{UNIFY}{T}
+  \eqtag{S}{UNIFY}{T}
 \end{equation}
 
 %-----------------------------------------------------------------------------

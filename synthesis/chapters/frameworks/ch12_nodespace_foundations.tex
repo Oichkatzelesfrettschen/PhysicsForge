@@ -34,7 +34,7 @@ Graph theory provides the natural language for describing discrete structures. I
 For any Riemannian manifold $(\mathcal{M}, g_{\mu\nu})$, there exists a sequence of graphs $\{\mathcal{G}_n\}$ such that:
 \begin{equation}
   \lim_{n \to \infty} d_{\text{GH}}(\mathcal{G}_n, \mathcal{M}) = 0
-  \eqtag{G}{CORR}{T}
+  \eqtag{X}{CORR}{T}
   \label{eq:discrete-continuum-correspondence}
 \end{equation}
 where $d_{\text{GH}}$ is the Gromov-Hausdorff distance.
@@ -53,13 +53,13 @@ The Cayley-Dickson construction generates a hierarchy of algebras by iterative c
 Given an algebra $\mathbb{A}_n$ with conjugation $*$, the Cayley-Dickson algebra $\mathbb{A}_{n+1}$ is defined as:
 \begin{equation}
   \mathbb{A}_{n+1} = \mathbb{A}_n \oplus \mathbb{A}_n
-  \eqtag{G}{CD}{C}
+  \eqtag{X}{CD}{C}
   \label{eq:cayley-dickson-construction}
 \end{equation}
 with multiplication:
 \begin{equation}
   (a,b) \cdot (c,d) = (ac - d^*b, da + bc^*)
-  \eqtag{G}{CD}{M}
+  \eqtag{X}{CD}{M}
   \label{eq:cayley-dickson-multiplication}
 \end{equation}
 \end{definition}
@@ -96,7 +96,7 @@ In the Cayley-Dickson sequence:
 The associator measures deviation from associativity:
 \begin{equation}
   [x,y,z] = (xy)z - x(yz)
-  \eqtag{G}{ASSOC}{M}
+  \eqtag{X}{ASSOC}{M}
   \label{eq:associator}
 \end{equation}
 
@@ -115,7 +115,7 @@ The associator $[x,y,z]$ vanishes if any two arguments are equal:
 The dimension of $\mathbb{A}_n$ is:
 \begin{equation}
   \dim(\mathbb{A}_n) = 2^n
-  \eqtag{G}{DIM}{A}
+  \eqtag{X}{DIM}{A}
   \label{eq:algebra-dimension}
 \end{equation}
 
@@ -146,7 +146,7 @@ The Monster group $\mathbb{M}$ has:
 The $j$-invariant connects the Monster to modular functions:
 \begin{equation}
   j(\tau) = q^{-1} + 744 + 196884q + 21493760q^2 + \cdots
-  \eqtag{G}{MOON}{J}
+  \eqtag{X}{MOON}{J}
   \label{eq:j-invariant}
 \end{equation}
 where $q = e^{2\pi i \tau}$ and $\tau$ is in the upper half-plane.
@@ -161,7 +161,7 @@ Remarkably, the coefficients relate to Monster representations:
 For fractal expansions $F(x,\tau)$ incorporating modular forms:
 \begin{equation}
   F(x, \tau+1) = F(x, \tau), \quad F\left(x, -\frac{1}{\tau}\right) = \tau^k F(x, \tau)
-  \eqtag{G}{MOD}{A}
+  \eqtag{X}{MOD}{A}
   \label{eq:modular-alignment}
 \end{equation}
 preserving fractal invariances under modular transformations.
@@ -174,7 +174,7 @@ The golden ratio $\phi = (1+\sqrt{5})/2$ provides the fundamental scaling parame
 \begin{definition}[Fractal-Harmonic Transform]
 \begin{equation}
   F_H[f(x)] = \sum_{m=1}^{\infty} \frac{\sin(2\pi m x/\phi)}{m^{\gamma}}, \quad \gamma > 1
-  \eqtag{G}{FRAC}{H}
+  \eqtag{X}{FRAC}{H}
   \label{eq:fractal-harmonic}
 \end{equation}
 \end{definition}
@@ -194,7 +194,7 @@ for $\gamma > 1$.
 The golden ratio appears recursively:
 \begin{equation}
   \phi^n = F_n \phi + F_{n-1}
-  \eqtag{G}{GOLD}{R}
+  \eqtag{X}{GOLD}{R}
   \label{eq:golden-recursion}
 \end{equation}
 where $F_n$ are Fibonacci numbers.
@@ -209,7 +209,7 @@ Genesis extends dimension beyond positive integers:
 For a set $S$, the Hausdorff dimension is:
 \begin{equation}
   D_H = \lim_{\epsilon \to 0} \frac{\log N(\epsilon)}{\log(1/\epsilon)}
-  \eqtag{G}{HAUS}{D}
+  \eqtag{X}{HAUS}{D}
   \label{eq:hausdorff-dimension}
 \end{equation}
 where $N(\epsilon)$ is the number of balls of radius $\epsilon$ needed to cover $S$.
@@ -218,7 +218,7 @@ where $N(\epsilon)$ is the number of balls of radius $\epsilon$ needed to cover 
 Fractional integrals use Hausdorff measures:
 \begin{equation}
   I_{\text{frac}}[f] = \int f(x) \, d\mathcal{H}^{d_{\text{frac}}}(x)
-  \eqtag{G}{FRAC}{I}
+  \eqtag{X}{FRAC}{I}
   \label{eq:fractional-integral}
 \end{equation}
 
@@ -227,7 +227,7 @@ Fractional integrals use Hausdorff measures:
 Time-dependent fractional derivatives capture memory effects:
 \begin{equation}
   D_x^{\delta(t)} f(x) = \frac{1}{\Gamma(1-\delta(t))} \frac{d}{dx} \int_0^x \frac{f(u)}{(x-u)^{\delta(t)}} du
-  \eqtag{G}{FRAC}{D}
+  \eqtag{X}{FRAC}{D}
   \label{eq:variable-fractional}
 \end{equation}
 
@@ -236,7 +236,7 @@ Time-dependent fractional derivatives capture memory effects:
 Negative dimensions emerge through zeta regularization:
 \begin{equation}
   \zeta(-n) = -\frac{B_{n+1}}{n+1}
-  \eqtag{G}{NEG}{D}
+  \eqtag{X}{NEG}{D}
   \label{eq:negative-dimension}
 \end{equation}
 where $B_n$ are Bernoulli numbers.
@@ -256,42 +256,42 @@ The 26 primary kernels encode fundamental interactions:
   \item \textbf{Recursive Kernel}:
   \begin{equation}
     K_{\text{recursive}}(r,t) = \frac{\exp(-\alpha \|r\|^2)}{1 + \gamma \|r\|^{\eta}}
-    \eqtag{G}{K}{REC}
+    \eqtag{X}{K}{REC}
     \label{eq:kernel-recursive}
   \end{equation}
 
   \item \textbf{E$_8$ Superforce Kernel}:
   \begin{equation}
     K_{E_8}(r) = \sum_{\alpha \in \Phi_{E_8}} \exp(i\alpha \cdot r)
-    \eqtag{G}{K}{E8}
+    \eqtag{X}{K}{E8}
     \label{eq:kernel-e8}
   \end{equation}
 
   \item \textbf{Fractal Scaling Kernel}:
   \begin{equation}
     K_{\text{fractal}}(r) = \sum_{n=0}^{\infty} \phi^{-n} \delta(r - \phi^n r_0)
-    \eqtag{G}{K}{FRAC}
+    \eqtag{X}{K}{FRAC}
     \label{eq:kernel-fractal}
   \end{equation}
 
   \item \textbf{Modular Symmetry Kernel}:
   \begin{equation}
     K_{\text{modular}}(\tau) = \sum_{n,m} q^{an^2+bnm+cm^2}
-    \eqtag{G}{K}{MOD}
+    \eqtag{X}{K}{MOD}
     \label{eq:kernel-modular}
   \end{equation}
 
   \item \textbf{Golden Ratio Kernel}:
   \begin{equation}
     K_{\phi}(r) = \exp(-r/\phi) \cos(2\pi r \phi)
-    \eqtag{G}{K}{GOLD}
+    \eqtag{X}{K}{GOLD}
     \label{eq:kernel-golden}
   \end{equation}
 
   \item \textbf{Time Crystal Kernel}:
   \begin{equation}
     K_{\text{time}}(t) = \cos(\omega_0 t) \exp(-\Gamma t^2)
-    \eqtag{G}{K}{TIME}
+    \eqtag{X}{K}{TIME}
     \label{eq:kernel-time}
   \end{equation}
 \end{enumerate}
@@ -300,7 +300,7 @@ The 26 primary kernels encode fundamental interactions:
 For $\eta > d/2$ where $d$ is the spatial dimension:
 \begin{equation}
   \int_{\mathbb{R}^d} K_{\text{primary}}(r) \, d^d r < \infty
-  \eqtag{G}{INT}{K}
+  \eqtag{X}{INT}{K}
   \label{eq:kernel-integrability}
 \end{equation}
 \end{lemma}
@@ -312,7 +312,7 @@ For $\eta > d/2$ where $d$ is the spatial dimension:
   \item \textbf{Cayley-Dickson Kernel}:
   \begin{equation}
     K_{\text{CD}}(x) = \sum_{i=0}^{2^n-1} c_i e_i \exp(-\|x\|_{\mathbb{A}_n}^2)
-    \eqtag{G}{K}{CD}
+    \eqtag{X}{K}{CD}
   \end{equation}
 
   \item \textbf{Normed Division Kernel} (for algebras with division)
@@ -337,14 +337,14 @@ For $\eta > d/2$ where $d$ is the spatial dimension:
   \item \textbf{Scalar-ZPE Coupling Kernel}:
   \begin{equation}
     K_{\text{ZPE}}(k) = \frac{\hbar \omega_k}{2} \frac{1}{e^{\hbar \omega_k/k_B T} - 1}
-    \eqtag{G}{K}{ZPE}
+    \eqtag{X}{K}{ZPE}
   \end{equation}
 
   \item \textbf{Vacuum Polarization Kernel}
   \item \textbf{Gravitational Curvature Kernel}:
   \begin{equation}
     K_{\text{grav}}(r) = \exp\left(-\frac{GM}{c^2 r}\right)
-    \eqtag{G}{K}{GRAV}
+    \eqtag{X}{K}{GRAV}
   \end{equation}
 
   \item \textbf{Quantum Hamiltonian Kernel}
@@ -359,7 +359,7 @@ For $\eta > d/2$ where $d$ is the spatial dimension:
   \item \textbf{Fractional Dimension Kernel}:
   \begin{equation}
     K_{\text{frac-dim}}(r,D) = r^{D-d} \theta(r - l_P)
-    \eqtag{G}{K}{FDIM}
+    \eqtag{X}{K}{FDIM}
   \end{equation}
 
   \item \textbf{Negative Dimension Kernel}
@@ -444,7 +444,7 @@ The complete 64-kernel system combines via the FoldMerge operator:
 
 \begin{equation}
   \mathcal{F}_M = \prod_{k=1}^{26} K_{\text{primary}}^{(k)} \ast \prod_{s=1}^{28} K_{\text{sub}}^{(s)} \ast \prod_{ss=1}^{10} K_{\text{sub-sub}}^{(ss)}
-  \eqtag{G}{FOLD}{M}
+  \eqtag{X}{FOLD}{M}
   \label{eq:foldmerge}
 \end{equation}
 
@@ -469,7 +469,7 @@ Apply Banach Fixed Point Theorem with exponential damping $e^{-\alpha r}$ ensuri
 Formally, nodespace is represented as:
 \begin{equation}
   \mathcal{G} = (V, E, W, S)
-  \eqtag{G}{GRAPH}{R}
+  \eqtag{X}{GRAPH}{R}
   \label{eq:graph-representation}
 \end{equation}
 where:
@@ -489,7 +489,7 @@ The graph Laplacian governs nodespace evolution:
     -W_{ij} & i \neq j, (i,j) \in E \\
     0 & \text{otherwise}
   \end{cases}
-  \eqtag{G}{LAP}{D}
+  \eqtag{X}{LAP}{D}
   \label{eq:graph-laplacian-def}
 \end{equation}
 
@@ -507,7 +507,7 @@ The eigenvalues $\{\lambda_i\}$ of $L$ encode:
 For connected graph:
 \begin{equation}
   \frac{h^2}{2} \leq \lambda_1 \leq 2h
-  \eqtag{G}{CHEEG}{I}
+  \eqtag{X}{CHEEG}{I}
   \label{eq:cheeger}
 \end{equation}
 where $h$ is the Cheeger constant (isoperimetric number).
@@ -523,7 +523,7 @@ Nodespace exhibits optimal connectivity patterns:
 A graph is small-world if:
 \begin{equation}
   \langle d \rangle \sim \log N, \quad C \gg C_{\text{random}}
-  \eqtag{G}{SW}{C}
+  \eqtag{X}{SW}{C}
   \label{eq:small-world-def}
 \end{equation}
 where $\langle d \rangle$ is average path length and $C$ is clustering coefficient.
@@ -532,7 +532,7 @@ where $\langle d \rangle$ is average path length and $C$ is clustering coefficie
 For nodespace:
 \begin{equation}
   C = \frac{3 \times \text{number of triangles}}{\text{number of connected triples}}
-  \eqtag{G}{CLUST}{C}
+  \eqtag{X}{CLUST}{C}
   \label{eq:clustering}
 \end{equation}
 
@@ -541,14 +541,14 @@ For nodespace:
 The degree distribution follows:
 \begin{equation}
   P(k) = ck^{-\gamma}, \quad \gamma \in [2, 3]
-  \eqtag{G}{SF}{D}
+  \eqtag{X}{SF}{D}
   \label{eq:scale-free-dist}
 \end{equation}
 
 This emerges from preferential attachment:
 \begin{equation}
   \Pi(k_i) = \frac{k_i}{\sum_j k_j}
-  \eqtag{G}{PREF}{A}
+  \eqtag{X}{PREF}{A}
   \label{eq:preferential}
 \end{equation}
 
@@ -560,7 +560,7 @@ The continuous metric emerges from graph structure:
 Given nodespace graph $\mathcal{G}$, the effective metric tensor is:
 \begin{equation}
   g_{\mu\nu}(x) = \lim_{N \to \infty} \frac{1}{N} \sum_{i,j} W_{ij} \delta(x - x_i) \delta(x - x_j) e_{\mu}^i e_{\nu}^j
-  \eqtag{G}{MET}{E}
+  \eqtag{X}{MET}{E}
   \label{eq:metric-emergence}
 \end{equation}
 where $e_{\mu}^i$ are vielbein components.
@@ -575,14 +575,14 @@ Nodespaces form when energy density exceeds critical threshold:
 
 \begin{equation}
   \rho > \rho_{\text{crit}} = \frac{c^7}{\hbar G^2}
-  \eqtag{G}{FORM}{C}
+  \eqtag{X}{FORM}{C}
   \label{eq:formation-condition}
 \end{equation}
 
 The formation action is:
 \begin{equation}
   S_{\text{form}} = \int d^4x \sqrt{-g} \left[ \frac{c^4}{16\pi G} R + \mathcal{L}_{\text{node}} \right]
-  \eqtag{G}{FORM}{A}
+  \eqtag{X}{FORM}{A}
   \label{eq:formation-action}
 \end{equation}
 
@@ -591,7 +591,7 @@ The formation action is:
 The energy to create a nodespace of $N$ nodes:
 \begin{equation}
   E_{\text{form}} = N E_P f(N) = N \sqrt{\frac{\hbar c^5}{G}} f(N)
-  \eqtag{G}{FORM}{E}
+  \eqtag{X}{FORM}{E}
   \label{eq:formation-energy}
 \end{equation}
 where $f(N) \sim \log N$ for small-world topology.
@@ -604,21 +604,21 @@ Nodespace stability requires:
   \item \textbf{Topological Stability}:
   \begin{equation}
     \chi(\mathcal{G}) = |V| - |E| + |F| = \text{const}
-    \eqtag{G}{STAB}{T}
+    \eqtag{X}{STAB}{T}
     \label{eq:topological-stability}
   \end{equation}
 
   \item \textbf{Spectral Stability}:
   \begin{equation}
     \lambda_1(L) > \lambda_{\text{min}} > 0
-    \eqtag{G}{STAB}{S}
+    \eqtag{X}{STAB}{S}
     \label{eq:spectral-stability}
   \end{equation}
 
   \item \textbf{Energetic Stability}:
   \begin{equation}
     \frac{\delta^2 E}{\delta \mathcal{G}^2} > 0
-    \eqtag{G}{STAB}{E}
+    \eqtag{X}{STAB}{E}
     \label{eq:energetic-stability}
   \end{equation}
 \end{enumerate}
@@ -637,7 +637,7 @@ Defects in nodespace topology:
 Defect energy density:
 \begin{equation}
   \rho_{\text{defect}} = \frac{\sigma}{r^n}
-  \eqtag{G}{DEF}{E}
+  \eqtag{X}{DEF}{E}
   \label{eq:defect-energy}
 \end{equation}
 where $n$ depends on defect dimension.
@@ -648,14 +648,14 @@ Quantum fluctuations modify classical nodespace:
 
 \begin{equation}
   \langle \mathcal{G} \rangle = \mathcal{G}_{\text{classical}} + \hbar \mathcal{G}^{(1)} + \hbar^2 \mathcal{G}^{(2)} + \cdots
-  \eqtag{G}{Q}{CORR}
+  \eqtag{X}{Q}{CORR}
   \label{eq:quantum-corrections}
 \end{equation}
 
 Leading correction:
 \begin{equation}
   \mathcal{G}^{(1)} = \sum_n \frac{|\langle n|\hat{V}|0\rangle|^2}{E_0 - E_n}
-  \eqtag{G}{Q}{PERT}
+  \eqtag{X}{Q}{PERT}
   \label{eq:first-order}
 \end{equation}
 
@@ -668,14 +668,14 @@ Quantum tunneling connects distinct nodespaces:
 
 \begin{equation}
   \Gamma_{ij} = \omega_0 \exp\left(-\frac{S_{\text{inst}}}{\hbar}\right)
-  \eqtag{G}{TUNN}{R}
+  \eqtag{X}{TUNN}{R}
   \label{eq:tunneling-rate}
 \end{equation}
 
 where the instanton action is:
 \begin{equation}
   S_{\text{inst}} = \int_{\gamma_{ij}} \sqrt{2m[V(x) - E]} \, dx
-  \eqtag{G}{INST}{A}
+  \eqtag{X}{INST}{A}
   \label{eq:instanton}
 \end{equation}
 
@@ -685,14 +685,14 @@ Nodespaces resonate at characteristic frequencies:
 
 \begin{equation}
   \omega_n = \frac{c}{L} \sqrt{\lambda_n(L)}
-  \eqtag{G}{RES}{F}
+  \eqtag{X}{RES}{F}
   \label{eq:resonance-frequency}
 \end{equation}
 
 Resonance coupling:
 \begin{equation}
   H_{\text{int}} = g \sum_{i,j} \delta(\omega_i - \omega_j) \hat{a}_i^{\dagger} \hat{a}_j
-  \eqtag{G}{RES}{C}
+  \eqtag{X}{RES}{C}
   \label{eq:resonance-coupling}
 \end{equation}
 
@@ -702,14 +702,14 @@ Information capacity between nodespaces:
 
 \begin{equation}
   C = \max_{p(x)} I(X;Y) = \log_2(1 + \text{SNR})
-  \eqtag{G}{INFO}{C}
+  \eqtag{X}{INFO}{C}
   \label{eq:channel-capacity}
 \end{equation}
 
 Quantum channel capacity:
 \begin{equation}
   C_Q = \max_{\rho} S(\mathcal{N}(\rho)) - \sum_i p_i S(\mathcal{N}(\rho_i))
-  \eqtag{G}{Q}{CAP}
+  \eqtag{X}{Q}{CAP}
   \label{eq:quantum-capacity}
 \end{equation}
 
@@ -719,14 +719,14 @@ Inter-nodespace entanglement:
 
 \begin{equation}
   |\Psi_{12}\rangle = \sum_{ij} c_{ij} |i\rangle_1 \otimes |j\rangle_2
-  \eqtag{G}{ENT}{12}
+  \eqtag{X}{ENT}{12}
   \label{eq:bipartite-entanglement}
 \end{equation}
 
 Entanglement entropy:
 \begin{equation}
   S_{\text{ent}} = -\text{Tr}(\rho_1 \log \rho_1) = -\sum_i \lambda_i \log \lambda_i
-  \eqtag{G}{ENT}{S}
+  \eqtag{X}{ENT}{S}
   \label{eq:entanglement-entropy-def}
 \end{equation}
 
@@ -738,7 +738,7 @@ Information content bounded by surface area:
 For any nodespace region:
 \begin{equation}
   S \leq \frac{A}{4l_P^2}
-  \eqtag{G}{HOLO}{B}
+  \eqtag{X}{HOLO}{B}
   \label{eq:holographic-bound-theorem}
 \end{equation}
 where $A$ is boundary area in graph metric.
@@ -747,7 +747,7 @@ where $A$ is boundary area in graph metric.
 This implies maximum information density:
 \begin{equation}
   \rho_{\text{info}} \leq \frac{1 \text{ bit}}{l_P^2}
-  \eqtag{G}{INFO}{D}
+  \eqtag{X}{INFO}{D}
   \label{eq:info-density}
 \end{equation}
 

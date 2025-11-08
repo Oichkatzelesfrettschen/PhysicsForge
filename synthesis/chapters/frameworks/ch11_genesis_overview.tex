@@ -83,7 +83,7 @@ The correspondence principle states that in the limit of large node number $N \t
 
 \begin{equation}
   \lim_{N \to \infty} \lim_{a \to 0} \mathcal{L}_{\text{Genesis}}[N,a] = \mathcal{L}_{\text{Aether}}[\phi, g_{\mu\nu}]
-  \eqtag{G}{CORR}{L}
+  \eqtag{X}{CORR}{L}
   \label{eq:genesis:aether-limit}
 \end{equation}
 
@@ -118,7 +118,7 @@ The Planck force $F_P = c^4/G$ represents the maximum force allowed by general r
 All forces in nature can be expressed as fractal modulations of the Superforce:
 \begin{equation}
   F_i = F_{\text{Super}} \cdot \sum_{n=0}^{\infty} \beta_i^n \mathcal{F}_n(\phi)
-  \eqtag{G}{FORCE}{H}
+  \eqtag{X}{FORCE}{H}
   \label{eq:genesis:force-hierarchy}
 \end{equation}
 where $\beta_i < 1$ are force-specific damping factors and $\mathcal{F}_n(\phi)$ are fractal functions involving the golden ratio $\phi = (1+\sqrt{5})/2$.
@@ -147,7 +147,7 @@ This represents recursive fractal dynamics across scales:
 The fractal functions satisfy the recursion relation:
 \begin{equation}
   F_{n+1}(x) = \mathcal{T}[F_n](\phi x) + \delta F_n(x/\phi)
-  \eqtag{G}{FRAC}{R}
+  \eqtag{X}{FRAC}{R}
   \label{eq:genesis:fractal-recursion}
 \end{equation}
 where $\mathcal{T}$ is a nonlinear transformation operator and $\phi$ is the golden ratio.
@@ -164,7 +164,7 @@ This encodes non-integer dimensional dynamics:
 The Caputo fractional derivative is defined as:
 \begin{equation}
   \frac{d^{\alpha} f}{dt^{\alpha}} = \frac{1}{\Gamma(n-\alpha)} \int_0^t \frac{f^{(n)}(\tau)}{(t-\tau)^{\alpha-n+1}} d\tau
-  \eqtag{G}{CAPUTO}{D}
+  \eqtag{X}{CAPUTO}{D}
   \label{eq:genesis:caputo-derivative}
 \end{equation}
 where $n-1 < \alpha < n$ and $\Gamma$ is the gamma function.
@@ -181,7 +181,7 @@ This incorporates modular symmetries from the Monster group:
 The modular function satisfies:
 \begin{equation}
   R\left(\frac{az+b}{cz+d}\right) = (cz+d)^k R(z), \quad \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \text{SL}(2,\mathbb{Z})
-  \eqtag{G}{MOD}{T}
+  \eqtag{X}{MOD}{T}
   \label{eq:genesis:modular-transform}
 \end{equation}
 
@@ -190,7 +190,7 @@ The modular function satisfies:
 The Superforce exhibits exact scale invariance under the transformation:
 \begin{equation}
   x \to \lambda x, \quad t \to \lambda^z t, \quad G \to \lambda^{\Delta} G
-  \eqtag{G}{SCALE}{I}
+  \eqtag{X}{SCALE}{I}
   \label{eq:genesis:scale-invariance}
 \end{equation}
 where $z$ is the dynamical critical exponent and $\Delta$ is the scaling dimension.
@@ -199,7 +199,7 @@ where $z$ is the dynamical critical exponent and $\Delta$ is the scaling dimensi
 The Genesis Equation maintains self-similarity at all scales through the relation:
 \begin{equation}
   G(\lambda x, \lambda^z t, D, z) = \lambda^{\Delta} G(x, t, D, z)
-  \eqtag{G}{SELF}{S}
+  \eqtag{X}{SELF}{S}
   \label{eq:genesis:self-similarity}
 \end{equation}
 \end{lemma}
@@ -221,7 +221,7 @@ The Superforce generates a hierarchy of structures through recursive application
 Each scale is related by the recursive formula:
 \begin{equation}
   E_{n+1} = E_n \cdot \phi^{-\gamma_n}
-  \eqtag{G}{SCALE}{R}
+  \eqtag{X}{SCALE}{R}
   \label{eq:genesis:scale-recursion}
 \end{equation}
 where $\gamma_n$ are anomalous dimensions determined by the kernel hierarchy.
@@ -238,7 +238,7 @@ The complete Genesis Equation incorporating all 64 kernels is:
   &+ \sum_{k=1}^{26} \int K_{\text{primary}}^{(k)}(x-x') G(x',t,D,z) dx' \nonumber \\
   &+ \sum_{s=1}^{28} \int K_{\text{sub}}^{(s)}(x-x') \partial_t G(x',t,D,z) dx' \nonumber \\
   &+ \sum_{ss=1}^{10} \int K_{\text{sub-sub}}^{(ss)}(x-x') \nabla^2 G(x',t,D,z) dx'
-  \eqtag{G}{FULL}{E}
+  \eqtag{X}{FULL}{E}
   \label{eq:genesis:equation-full}
 \end{align}
 
@@ -253,7 +253,7 @@ The 26 primary kernels encode fundamental interactions across six categories:
 \paragraph{Category A: Recursive Foundation (6 kernels)}
 \begin{equation}
   K_{\text{recursive}}(r,t) = \exp(-\alpha \|r\|^2) / (1 + \gamma \|r\|^{\eta})
-  \eqtag{G}{KERN}{R}
+  \eqtag{X}{KERN}{R}
   \label{eq:genesis:kernel-recursive}
 \end{equation}
 Controls recursive dynamics with:
@@ -267,7 +267,7 @@ Controls recursive dynamics with:
 Based on Cayley-Dickson algebras:
 \begin{equation}
   K_{\text{Cayley}}(x) = \sum_{i=0}^{2^n-1} c_i e_i \exp(-\|x\|_{\mathbb{A}_n}^2)
-  \eqtag{G}{KERN}{C}
+  \eqtag{X}{KERN}{C}
   \label{eq:genesis:kernel-cayley}
 \end{equation}
 where $e_i$ are basis elements of the algebra $\mathbb{A}_n$.
@@ -276,7 +276,7 @@ where $e_i$ are basis elements of the algebra $\mathbb{A}_n$.
 Incorporating E$_8$, E$_9$, E$_{10}$, E$_{11}$ structures:
 \begin{equation}
   K_{E_8}(x) = \sum_{\alpha \in \Phi_{E_8}} \exp(i \alpha \cdot x)
-  \eqtag{G}{KERN}{E8}
+  \eqtag{X}{KERN}{E8}
   \label{eq:genesis:kernel-e8}
 \end{equation}
 where $\Phi_{E_8}$ is the root system of E$_8$.
@@ -285,7 +285,7 @@ where $\Phi_{E_8}$ is the root system of E$_8$.
 Coupling quantum and gravitational effects:
 \begin{equation}
   K_{\text{QG}}(x,t) = \exp\left(-\frac{m^2 c^2}{\hbar^2} \|x\|^2 - \frac{G M}{c^2 \|x\|}\right)
-  \eqtag{G}{KERN}{QG}
+  \eqtag{X}{KERN}{QG}
   \label{eq:genesis:kernel-qg}
 \end{equation}
 
@@ -293,7 +293,7 @@ Coupling quantum and gravitational effects:
 Managing fractional and negative dimensions:
 \begin{equation}
   K_{\text{dim}}(x,D) = \|x\|^{D-d} \theta(\|x\| - l_P)
-  \eqtag{G}{KERN}{DIM}
+  \eqtag{X}{KERN}{DIM}
   \label{eq:genesis:kernel-dimension}
 \end{equation}
 where $\theta$ is the Heaviside step function.
@@ -345,28 +345,28 @@ The Genesis Equation reduces to known physics in appropriate limits:
 \subsubsection{Classical Limit ($\hbar \to 0$)}
 \begin{equation}
   G \to \rho(x,t) \quad \text{(mass density)}
-  \eqtag{G}{LIM}{CL}
+  \eqtag{X}{LIM}{CL}
   \label{eq:genesis:classical-limit}
 \end{equation}
 
 \subsubsection{Quantum Limit (single particle)}
 \begin{equation}
   G \to \psi(x,t) \quad \text{(wavefunction)}
-  \eqtag{G}{LIM}{Q}
+  \eqtag{X}{LIM}{Q}
   \label{eq:genesis:quantum-limit}
 \end{equation}
 
 \subsubsection{Relativistic Limit ($c \to \infty$)}
 \begin{equation}
   G \to T_{\mu\nu}(x^{\mu}) \quad \text{(stress-energy tensor)}
-  \eqtag{G}{LIM}{R}
+  \eqtag{X}{LIM}{R}
   \label{eq:genesis:relativistic-limit}
 \end{equation}
 
 \subsubsection{Thermodynamic Limit ($N \to \infty$)}
 \begin{equation}
   G \to Z(\beta, V, N) \quad \text{(partition function)}
-  \eqtag{G}{LIM}{T}
+  \eqtag{X}{LIM}{T}
   \label{eq:genesis:thermodynamic-limit}
 \end{equation}
 
@@ -395,7 +395,7 @@ Space and time are quantized at the Planck scale:
 Each node occupies a minimum volume:
 \begin{equation}
   V_{\text{node}} = l_P^3 = \left(\frac{\hbar G}{c^3}\right)^{3/2}
-  \eqtag{G}{NODE}{V}
+  \eqtag{X}{NODE}{V}
   \label{eq:genesis:node-volume}
 \end{equation}
 
@@ -406,7 +406,7 @@ The connectivity between nodes $i$ and $j$ is quantified by:
     w_{ij} & \text{if } (v_i, v_j) \in E \\
     0 & \text{otherwise}
   \end{cases}
-  \eqtag{G}{CONN}{M}
+  \eqtag{X}{CONN}{M}
   \label{eq:genesis:connectivity-matrix}
 \end{equation}
 where $w_{ij} \in \mathbb{C}$ are complex edge weights encoding both strength and phase.
@@ -415,7 +415,7 @@ where $w_{ij} \in \mathbb{C}$ are complex edge weights encoding both strength an
 In the continuum limit, the discrete nodespace metric converges to the Riemannian metric:
 \begin{equation}
   \lim_{N \to \infty} d_{\text{graph}}(i,j) = \int_{\gamma_{ij}} \sqrt{g_{\mu\nu} dx^{\mu} dx^{\nu}}
-  \eqtag{G}{CONT}{L}
+  \eqtag{X}{CONT}{L}
   \label{eq:genesis:continuum-limit}
 \end{equation}
 
@@ -441,7 +441,7 @@ The eigenvalue spectrum of $L$ encodes:
 Nodespace exhibits small-world characteristics:
 \begin{equation}
   \langle d \rangle \sim \log N, \quad C \sim \text{const}
-  \eqtag{G}{SMALL}{W}
+  \eqtag{X}{SMALL}{W}
   \label{eq:genesis:small-world}
 \end{equation}
 where $\langle d \rangle$ is average path length and $C$ is clustering coefficient.
@@ -451,7 +451,7 @@ where $\langle d \rangle$ is average path length and $C$ is clustering coefficie
 The degree distribution follows a power law:
 \begin{equation}
   P(k) \sim k^{-\gamma}, \quad \gamma \approx 2.5
-  \eqtag{G}{SCALE}{F}
+  \eqtag{X}{SCALE}{F}
   \label{eq:genesis:scale-free}
 \end{equation}
 
@@ -462,7 +462,7 @@ The degree distribution follows a power law:
 The topology of nodespace is characterized by:
 \begin{equation}
   \chi = |V| - |E| + |F|
-  \eqtag{G}{EULER}{C}
+  \eqtag{X}{EULER}{C}
   \label{eq:genesis:euler-characteristic}
 \end{equation}
 where $|F|$ is the number of faces in a planar embedding.
@@ -482,7 +482,7 @@ At the Planck scale, nodespace fluctuates quantum mechanically, creating ``quant
 
 \begin{equation}
   \langle (\Delta x)^2 \rangle \sim l_P^2, \quad \langle (\Delta t)^2 \rangle \sim t_P^2
-  \eqtag{G}{FOAM}{F}
+  \eqtag{X}{FOAM}{F}
   \label{eq:genesis:quantum-foam}
 \end{equation}
 
@@ -492,7 +492,7 @@ These fluctuations connect Genesis nodespace to the Aether framework's vacuum fl
 The quantum foam of Genesis nodespace generates the zero-point energy fluctuations of the Aether scalar field:
 \begin{equation}
   \rho_{\text{ZPE}} = \frac{1}{2} \sum_{\mathbf{k}} \hbar \omega_{\mathbf{k}} = \frac{\hbar c}{l_P^4} \sum_{n} f(n)
-  \eqtag{G}{FOAM}{ZPE}
+  \eqtag{X}{FOAM}{ZPE}
   \label{eq:genesis:foam-zpe}
 \end{equation}
 where $f(n)$ is a regularization function.
@@ -529,14 +529,14 @@ where $|\mathcal{N}_i\rangle$ are basis states of the nodespace Hilbert space.
 The nodespace wavefunction evolves according to:
 \begin{equation}
   i\hbar \frac{\partial |\Psi\rangle}{\partial t} = \hat{H}_{\text{node}} |\Psi\rangle
-  \eqtag{G}{NODE}{EV}
+  \eqtag{X}{NODE}{EV}
   \label{eq:genesis:nodespace-evolution}
 \end{equation}
 
 where the nodespace Hamiltonian is:
 \begin{equation}
   \hat{H}_{\text{node}} = -\frac{\hbar^2}{2m_P} \nabla_{\text{graph}}^2 + V(\mathcal{N}) + \hat{H}_{\text{int}}
-  \eqtag{G}{NODE}{H}
+  \eqtag{X}{NODE}{H}
   \label{eq:genesis:nodespace-hamiltonian}
 \end{equation}
 
@@ -552,20 +552,20 @@ with:
 Nodespace exhibits quantum entanglement between regions:
 \begin{equation}
   |\Psi_{\text{total}}\rangle \neq |\Psi_A\rangle \otimes |\Psi_B\rangle
-  \eqtag{G}{ENT}{S}
+  \eqtag{X}{ENT}{S}
   \label{eq:genesis:entanglement}
 \end{equation}
 
 The entanglement entropy:
 \begin{equation}
   S_{\text{ent}} = -\text{Tr}(\rho_A \log \rho_A)
-  \eqtag{G}{ENT}{E}
+  \eqtag{X}{ENT}{E}
   \label{eq:genesis:entanglement-entropy}
 \end{equation}
 satisfies the area law:
 \begin{equation}
   S_{\text{ent}} \propto \frac{A_{\text{boundary}}}{l_P^2}
-  \eqtag{G}{AREA}{L}
+  \eqtag{X}{AREA}{L}
   \label{eq:genesis:area-law}
 \end{equation}
 

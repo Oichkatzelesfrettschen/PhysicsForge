@@ -1,55 +1,24 @@
-MIT License
+PhysicsForge - Unified Field Theory Synthesis
+Copyright (C) 2025 PhysicsForge Contributors
 
-Copyright (c) 2025 Oaich Research Group
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Repository: https://github.com/4orbians/PhysicsForge
 
----
+Credits:
+- Multiple LLMs including Claude (Anthropic), ChatGPT (OpenAI), and others
+- The 4orbians community
 
-ADDITIONAL ACADEMIC CITATION REQUIREMENT:
-
-If you use this work in academic research, please cite:
-
-  Oaich Research Group (2025). "CODATA Validation of Superforce Identity
-  with Exceptional Mathematics Integration". GitHub Repository.
-  https://github.com/[username]/Math_Science
-
-Mathematical frameworks referenced in this work:
-  - Aether Framework: Scalar field dynamics and ZPE lattice structures
-  - Genesis Framework: Higher-dimensional nodespace geometry
-  - Pais Framework: Gravitoelectromagnetic unification theory
-
-Primary mathematical results:
-  - Superforce identity: F* = c⁴/G = 1.213 × 10⁴⁴ N (CODATA 2018)
-  - E8 → SM symmetry breaking computational validation
-  - Monstrous moonshine McKay observation verification
-  - Octonion algebra Cayley-Dickson construction
-
----
-
-THIRD-PARTY ACKNOWLEDGMENTS:
-
-This work builds upon foundational mathematics from:
-  - CODATA 2018 fundamental constants (Tiesinga et al., Rev. Mod. Phys. 2021)
-  - E8 lattice theory (Conway & Sloane, 1999)
-  - Monstrous moonshine (Borcherds, Inventiones Mathematicae, 1992)
-  - Monster Group character tables (ATLAS of Finite Groups, 1985)
-
-LaTeX document class and packages used under their respective licenses.
-Python dependencies (NumPy, SciPy) used under BSD licenses.
+GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+Full license text available at: https://www.gnu.org/licenses/gpl-3.0.txt

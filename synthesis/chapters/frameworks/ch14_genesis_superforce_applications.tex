@@ -37,7 +37,7 @@ The fundamental equation governing all dynamics:
   \boxed{
   G(x, t, D, z) = \sum_{n=0}^{\infty} \beta^n \cdot F^n(x) + \int \frac{d^\alpha x}{dt^\alpha} \cdot D_f(D_n) + R(z)
   }
-  \eqtag{G}{GE}{F}
+  \eqtag{X}{GE}{F}
   \label{eq:genesis-superforce:genesis-equation}
 \end{equation}
 
@@ -74,7 +74,7 @@ The Genesis Framework provides a discrete foundation for string theory through n
 The string worldsheet action emerges from nodespace dynamics:
 \begin{equation}
   S_{\text{string}} = \lim_{N \to \infty} \sum_{(i,j) \in \mathcal{E}} \mathcal{L}_{\text{Genesis}}[X_i, X_j]
-  \eqtag{G}{ST}{WE}
+  \eqtag{X}{ST}{WE}
   \label{eq:genesis-superforce:worldsheet-emergence}
 \end{equation}
 where $(i,j)$ are edges in the nodespace graph $\mathcal{N} = (V, \mathcal{E})$.
@@ -111,7 +111,7 @@ A $p$-dimensional D-brane is a subgraph $\mathcal{B}_p \subset \mathcal{N}$ sati
 The D-brane action in Genesis:
 \begin{equation}
   S_{\text{Dp}} = -T_p \int d^{p+1}\xi \, e^{-\Phi} \sqrt{-\det(G_{ab} + \mathcal{F}_{ab} + \mathcal{M}_{\text{fold}})}
-  \eqtag{G}{ST}{DB}
+  \eqtag{X}{ST}{DB}
   \label{eq:genesis-superforce:dbrane-action}
 \end{equation}
 
@@ -125,7 +125,7 @@ Calabi-Yau manifolds emerge from nodespace topology:
 For appropriate nodespace configurations, the effective geometry converges to a Calabi-Yau manifold:
 \begin{equation}
   \lim_{N \to \infty} \mathcal{N}_{\text{compact}} \to \text{CY}_3
-  \eqtag{G}{ST}{CY}
+  \eqtag{X}{ST}{CY}
   \label{eq:genesis-superforce:emergent-cy}
 \end{equation}
 with holonomy SU(3) and vanishing first Chern class.
@@ -143,7 +143,7 @@ The string coupling constant emerges from Genesis parameters:
 
 \begin{equation}
   g_s = \exp(\langle \Phi \rangle) = \left(\frac{\beta}{\varphi}\right)^{1/2} \cdot \exp\left(\sum_{k=1}^{\infty} \frac{c_k}{k!} \langle G^k \rangle\right)
-  \eqtag{G}{ST}{SC}
+  \eqtag{X}{ST}{SC}
   \label{eq:genesis-superforce:string-coupling}
 \end{equation}
 
@@ -161,7 +161,7 @@ Supersymmetry breaking emerges from nodespace asymmetries:
 SUSY is broken when the nodespace vacuum state $|0\rangle_{\mathcal{N}}$ satisfies:
 \begin{equation}
   Q_\alpha |0\rangle_{\mathcal{N}} \neq 0
-  \eqtag{G}{SB}{BC}
+  \eqtag{X}{SB}{BC}
   \label{eq:genesis-superforce:susy-breaking-condition}
 \end{equation}
 where $Q_\alpha$ are supercharges.
@@ -170,7 +170,7 @@ where $Q_\alpha$ are supercharges.
 The breaking scale is determined by nodespace topology:
 \begin{equation}
   M_{\text{SUSY}} = M_{\text{Planck}} \cdot \exp\left(-\frac{8\pi^2}{g^2 N_{\text{nodes}}}\right)
-  \eqtag{G}{SB}{MS}
+  \eqtag{X}{SB}{MS}
   \label{eq:genesis-superforce:susy-scale}
 \end{equation}
 
@@ -182,7 +182,7 @@ F-term breaking arises from superpotential minima displaced from origin:
 
 \begin{equation}
   F_i = \frac{\partial W}{\partial \phi_i} + \mathcal{M}_{\text{fold}}[\phi_i] \neq 0
-  \eqtag{G}{SB}{FT}
+  \eqtag{X}{SB}{FT}
   \label{eq:genesis-superforce:f-term}
 \end{equation}
 
@@ -191,7 +191,7 @@ where $W$ is the superpotential and $\mathcal{M}_{\text{fold}}$ provides Genesis
 The F-term contribution to scalar masses:
 \begin{equation}
   m_{ij}^2 = m_{3/2}^2 K_{ij} + V_{ij} - F^k \partial_k \Gamma_{ij}
-  \eqtag{G}{SB}{FM}
+  \eqtag{X}{SB}{FM}
   \label{eq:genesis-superforce:f-term-masses}
 \end{equation}
 
@@ -201,7 +201,7 @@ D-term breaking from gauge symmetries:
 
 \begin{equation}
   D^a = g \phi^* T^a \phi + \xi^a \cdot \text{Tr}(\mathcal{N}_{\text{adj}})
-  \eqtag{G}{SB}{DT}
+  \eqtag{X}{SB}{DT}
   \label{eq:genesis-superforce:d-term}
 \end{equation}
 
@@ -216,13 +216,13 @@ The soft SUSY breaking Lagrangian:
 \begin{align}
   \mathcal{L}_{\text{soft}} &= -\frac{1}{2} \left(M_1 \lambda_1 \lambda_1 + M_2 \lambda_2 \lambda_2 + M_3 \lambda_3 \lambda_3 + \text{h.c.}\right) \nonumber \\
   &\quad - m_{ij}^2 \phi_i^* \phi_j - \left(A_{ijk} y_{ijk} \phi_i \phi_j \phi_k + \text{h.c.}\right)
-  \eqtag{G}{SB}{LS}
+  \eqtag{X}{SB}{LS}
   \label{eq:genesis-superforce:soft-lagrangian}
 \end{align}
 with ratios determined by Genesis parameters:
 \begin{equation}
   M_1 : M_2 : M_3 = 1 : \varphi : \varphi^2
-  \eqtag{G}{SB}{MR}
+  \eqtag{X}{SB}{MR}
   \label{eq:genesis-superforce:gaugino-ratios}
 \end{equation}
 \end{theorem}
@@ -235,7 +235,7 @@ Anomaly mediation receives Genesis corrections:
 
 \begin{equation}
   m_{\lambda}^{\text{AMSB}} = \frac{\beta_g}{g} m_{3/2} \left(1 + \sum_{n=1}^{\infty} \frac{a_n}{\varphi^n} \right)
-  \eqtag{G}{SB}{AM}
+  \eqtag{X}{SB}{AM}
   \label{eq:genesis-superforce:anomaly-mediation}
 \end{equation}
 
@@ -253,7 +253,7 @@ Cosmic inflation emerges from rapid nodespace expansion:
 Inflation occurs when the nodespace connectivity evolves as:
 \begin{equation}
   \langle k(t) \rangle = k_0 \exp(H_{\text{inf}} t)
-  \eqtag{G}{CO}{NI}
+  \eqtag{X}{CO}{NI}
   \label{eq:genesis-superforce:nodespace-inflation}
 \end{equation}
 where $k(t)$ is average node degree and $H_{\text{inf}}$ is Hubble parameter.
@@ -262,7 +262,7 @@ where $k(t)$ is average node degree and $H_{\text{inf}}$ is Hubble parameter.
 The inflaton field corresponds to nodespace coherence:
 \begin{equation}
   \phi_{\text{inflaton}} = M_P \sqrt{\frac{\langle k \rangle - k_{\text{critical}}}{k_{\text{critical}}}}
-  \eqtag{G}{CO}{IF}
+  \eqtag{X}{CO}{IF}
   \label{eq:genesis-superforce:inflaton-field}
 \end{equation}
 
@@ -282,7 +282,7 @@ The spectral index and tensor-to-scalar ratio:
 \begin{align}
   n_s &= 1 - 6\epsilon + 2\eta = 1 - \frac{2}{\varphi N} \approx 0.96 \\
   r &= 16\epsilon = \frac{8}{\varphi^2 N} \approx 0.12/N
-  \eqtag{G}{CO}{IP}
+  \eqtag{X}{CO}{IP}
   \label{eq:genesis-superforce:inflation-predictions}
 \end{align}
 For $N = 60$: $n_s \approx 0.979$, $r \approx 0.002$, consistent with Planck data.
@@ -294,7 +294,7 @@ Dark energy arises from residual nodespace fluctuations:
 
 \begin{equation}
   \rho_{\text{DE}} = \frac{1}{8\pi G} \sum_{n=0}^{\infty} \frac{E_n}{\varphi^n} \langle 0| \hat{n}_{\text{node}} |0 \rangle
-  \eqtag{G}{CO}{DE}
+  \eqtag{X}{CO}{DE}
   \label{eq:genesis-superforce:dark-energy}
 \end{equation}
 
@@ -303,7 +303,7 @@ where $\hat{n}_{\text{node}}$ is the node number operator.
 The equation of state:
 \begin{equation}
   w = \frac{p}{\rho} = -1 + \frac{1}{3\varphi^2} \sum_{k=1}^{\infty} \frac{(-1)^k}{k!} \left(\frac{\delta k}{\langle k \rangle}\right)^k
-  \eqtag{G}{CO}{EOS}
+  \eqtag{X}{CO}{EOS}
   \label{eq:genesis-superforce:dark-energy-eos}
 \end{equation}
 
@@ -317,7 +317,7 @@ Different nodespace topologies generate distinct universes:
 The multiverse consists of disconnected nodespace components:
 \begin{equation}
   \mathcal{M} = \bigcup_{\alpha} \mathcal{N}_\alpha, \quad \mathcal{N}_\alpha \cap \mathcal{N}_\beta = \emptyset \text{ for } \alpha \neq \beta
-  \eqtag{G}{CO}{ML}
+  \eqtag{X}{CO}{ML}
   \label{eq:genesis-superforce:multiverse}
 \end{equation}
 \end{definition}
@@ -325,14 +325,14 @@ The multiverse consists of disconnected nodespace components:
 The probability of universe type $\alpha$:
 \begin{equation}
   P(\alpha) = \frac{\exp(-S_{\text{Genesis}}[\mathcal{N}_\alpha])}{\sum_\beta \exp(-S_{\text{Genesis}}[\mathcal{N}_\beta])}
-  \eqtag{G}{CO}{MP}
+  \eqtag{X}{CO}{MP}
   \label{eq:genesis-superforce:multiverse-probability}
 \end{equation}
 
 Inter-universe tunneling amplitude:
 \begin{equation}
   \mathcal{T}_{\alpha\beta} = \exp\left(-\frac{S_{\text{instanton}}}{g_s}\right) \cdot \delta(\Delta Q)
-  \eqtag{G}{CO}{TU}
+  \eqtag{X}{CO}{TU}
   \label{eq:genesis-superforce:tunneling}
 \end{equation}
 
@@ -348,7 +348,7 @@ Nodespace provides a natural framework for loop quantum gravity:
 Genesis nodespace states correspond to LQG spin network states:
 \begin{equation}
   |\mathcal{N}\rangle_{\text{Genesis}} \leftrightarrow |\Gamma, j_e, i_v\rangle_{\text{LQG}}
-  \eqtag{G}{QG}{SN}
+  \eqtag{X}{QG}{SN}
   \label{eq:genesis-superforce:spin-network}
 \end{equation}
 where $\Gamma$ is a graph, $j_e$ are edge spins, and $i_v$ are vertex intertwiners.
@@ -357,7 +357,7 @@ where $\Gamma$ is a graph, $j_e$ are edge spins, and $i_v$ are vertex intertwine
 The area spectrum from nodespace:
 \begin{equation}
   A = 8\pi\gamma l_P^2 \sum_{e \in \partial S} \sqrt{j_e(j_e+1)}
-  \eqtag{G}{QG}{AS}
+  \eqtag{X}{QG}{AS}
   \label{eq:genesis-superforce:area-spectrum}
 \end{equation}
 
@@ -369,7 +369,7 @@ The Hamiltonian constraint in nodespace language:
 
 \begin{equation}
   \hat{H}_{\text{Genesis}} = \frac{1}{16\pi G} \sum_{v \in V} \epsilon_{ijk} \text{Tr}\left(F_{ij}^v \left[\hat{V}_v, F_{jk}^v\right]\right)
-  \eqtag{G}{QG}{HC}
+  \eqtag{X}{QG}{HC}
   \label{eq:genesis-superforce:hamiltonian-constraint}
 \end{equation}
 
@@ -401,7 +401,7 @@ Black hole entropy counts nodespace microstates:
 The black hole entropy:
 \begin{equation}
   S_{\text{BH}} = \frac{A}{4l_P^2} = \frac{k_B}{4} N_{\text{boundary}}
-  \eqtag{G}{QG}{BH}
+  \eqtag{X}{QG}{BH}
   \label{eq:genesis-superforce:bh-entropy}
 \end{equation}
 where $N_{\text{boundary}}$ is the number of nodes on the horizon.
@@ -410,7 +410,7 @@ where $N_{\text{boundary}}$ is the number of nodes on the horizon.
 Including quantum corrections:
 \begin{equation}
   S = \frac{A}{4l_P^2} - \frac{1}{2}\ln\left(\frac{A}{l_P^2}\right) + \sum_{k=1}^{\infty} \frac{c_k}{\varphi^k} \left(\frac{l_P^2}{A}\right)^k
-  \eqtag{G}{QG}{QC}
+  \eqtag{X}{QG}{QC}
   \label{eq:genesis-superforce:quantum-corrections}
 \end{equation}
 
@@ -430,19 +430,19 @@ At the LHC and future colliders:
   \item \textbf{Missing Energy}: From particles escaping to folded dimensions
   \begin{equation}
     \sigma(pp \to X + E_T^{\text{miss}}) = \sigma_{\text{SM}} \left(1 + \sum_d A_d(E) B_d\right)
-    \eqtag{G}{EX}{ME}
+    \eqtag{X}{EX}{ME}
   \end{equation}
 
   \item \textbf{Resonances}: KK excitations with golden ratio mass splitting
   \begin{equation}
     \frac{m_{n+1}}{m_n} \to \varphi \text{ as } n \to \infty
-    \eqtag{G}{EX}{KK}
+    \eqtag{X}{EX}{KK}
   \end{equation}
 
   \item \textbf{Black Hole Production}: For $\sqrt{s} > M_*$
   \begin{equation}
     \sigma_{\text{BH}} \sim \pi r_s^2 \left(\frac{M_{\text{BH}}}{M_*}\right)^{2/(d-3)}
-    \eqtag{G}{EX}{BH}
+    \eqtag{X}{EX}{BH}
   \end{equation}
 \end{enumerate}
 
@@ -454,19 +454,19 @@ Observable signatures in cosmology:
   \item \textbf{CMB Anomalies}: Non-Gaussianity from nodespace discreteness
   \begin{equation}
     f_{\text{NL}} = \frac{5}{3} \left(\frac{l_P}{H^{-1}}\right)^{1/\varphi} \approx 5
-    \eqtag{G}{EX}{NG}
+    \eqtag{X}{EX}{NG}
   \end{equation}
 
   \item \textbf{Primordial Gravitational Waves}: Modified spectrum
   \begin{equation}
     \Omega_{\text{GW}}(f) = \Omega_{\text{std}}(f) \left(1 + \sum_{n=1}^{\infty} a_n \sin\left(\frac{2\pi f}{f_n}\right)\right)
-    \eqtag{G}{EX}{GW}
+    \eqtag{X}{EX}{GW}
   \end{equation}
 
   \item \textbf{Dark Matter}: Stable KK particles
   \begin{equation}
     \Omega_{\text{DM}} h^2 = 0.12 \left(\frac{m_{\text{KK}}}{100\text{ GeV}}\right) \left(\frac{g_*}{100}\right)^{-1/2}
-    \eqtag{G}{EX}{DM}
+    \eqtag{X}{EX}{DM}
   \end{equation}
 \end{enumerate}
 

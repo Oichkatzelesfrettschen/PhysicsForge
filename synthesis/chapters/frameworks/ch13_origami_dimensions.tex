@@ -49,7 +49,7 @@ The \textit{folding operator} $\mathcal{F}_n: \mathbb{R}^n \to \mathbb{R}^{n-1}$
 
 \begin{equation}
   \mathcal{F}_n(\mathbf{x}_n) = \mathbf{x}_{n-1} + \mathbf{f}_{\text{origami}}(x_n)
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:folding-operator}
 \end{equation}
 
@@ -66,7 +66,7 @@ A typical folding function:
 
 \begin{equation}
   \mathbf{f}_{\text{origami}}(x_n) = A \sin\left(\frac{2\pi x_n}{\lambda_{\text{fold}}}\right) \mathbf{e}_{n-1}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:folding-function}
 \end{equation}
 
@@ -83,7 +83,7 @@ Dimensional folding is governed by an action:
 
 \begin{equation}
   S_{\text{origami}} = \int d^D x \, \mathcal{G}(x, \theta)
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:action}
 \end{equation}
 
@@ -100,7 +100,7 @@ The Lagrangian density:
 
 \begin{equation}
   \mathcal{L}_{\text{origami}} = \frac{1}{2} (\partial_\mu \theta)^2 - V(\theta) + \mathcal{L}_{\text{fractal}}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:lagrangian}
 \end{equation}
 
@@ -116,7 +116,7 @@ The folding angle evolves according to:
 
 \begin{equation}
   \frac{\partial \mathcal{A}_{\text{origami}}}{\partial t} = \kappa \cdot \sin\left(\frac{\theta}{2}\right)
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:fold-evolution}
 \end{equation}
 
@@ -138,7 +138,7 @@ Origami dimensions are characterized by \textit{Hausdorff dimension} $d_H$, whic
 
 \begin{equation}
   d_H = \lim_{\epsilon \to 0} \frac{\log N(\epsilon)}{\log(1/\epsilon)}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:hausdorff-dimension}
 \end{equation}
 
@@ -160,7 +160,7 @@ An alternative characterization:
 
 \begin{equation}
   d_B = \lim_{\epsilon \to 0} -\frac{\log N_{\text{box}}(\epsilon)}{\log \epsilon}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:box-counting}
 \end{equation}
 
@@ -174,7 +174,7 @@ Origami dimensions exhibit self-similarity:
 
 \begin{equation}
   \phi(r) = \lambda \phi(r/s)
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:self-similarity}
 \end{equation}
 
@@ -189,7 +189,7 @@ This implies:
 
 \begin{equation}
   d_H = \frac{\log N}{\log s}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:fractal-dimension-scaling}
 \end{equation}
 
@@ -208,7 +208,7 @@ Fold 2D plane $(x, y)$ into 3D cylinder:
 
 \begin{equation}
   \begin{pmatrix} X \\ Y \\ Z \end{pmatrix} = \begin{pmatrix} R \cos(x/R) \\ y \\ R \sin(x/R) \end{pmatrix}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:cylinder-fold}
 \end{equation}
 
@@ -220,7 +220,7 @@ More generally, fractal folding:
 
 \begin{equation}
   Z(x, y) = \sum_{n=1}^{\infty} \frac{A_n}{\phi^n} \sin\left(\frac{2\pi \phi^n x}{\lambda_0}\right) \cos\left(\frac{2\pi \phi^n y}{\lambda_0}\right)
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:fractal-2dto3d}
 \end{equation}
 
@@ -232,7 +232,7 @@ In Genesis, time emerges as the folding parameter of 3D space into 4D:
 
 \begin{equation}
   x^\mu_{\text{4D}} = (x, y, z, \theta(t))
-  \eqtag{G}{GR}{S}
+  \eqtag{X}{GR}{S}
   \label{eq:origami:time-as-fold}
 \end{equation}
 
@@ -244,7 +244,7 @@ The 4D metric:
 
 \begin{equation}
   ds^2 = -c^2 dt^2 + dx^2 + dy^2 + dz^2 + g_{\theta\theta} d\theta^2
-  \eqtag{G}{GR}{S}
+  \eqtag{X}{GR}{S}
   \label{eq:origami:4d-metric}
 \end{equation}
 
@@ -256,7 +256,7 @@ Successive folding generates higher dimensions:
 
 \begin{equation}
   d_{\text{effective}}(n) = d_0 + \sum_{k=1}^n \Delta d_k
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:origami:dimension-accumulation}
 \end{equation}
 
@@ -277,7 +277,7 @@ Dimensional transitions leave signatures in cosmic microwave background:
 
 \begin{equation}
   C_l^{\text{origami}} = C_l^{\text{LCDM}} + \sum_{n} A_n \delta(l - l_n)
-  \eqtag{G}{EXP}{S}
+  \eqtag{X}{EXP}{S}
   \label{eq:origami:cmb-resonances}
 \end{equation}
 
@@ -294,7 +294,7 @@ For $\lambda_{\text{fold}} \sim 10^{-2}$ Hubble radius:
 
 \begin{equation}
   l_n = \frac{2\pi R_{\text{horizon}}}{\lambda_{\text{fold}}} \cdot n \sim 50 n
-  \eqtag{G}{EXP}{S}
+  \eqtag{X}{EXP}{S}
   \label{eq:origami:resonance-multipoles}
 \end{equation}
 
@@ -306,7 +306,7 @@ Origami folding imprints fractal structure on galaxy distribution:
 
 \begin{equation}
   \xi(r) = \xi_0 \left(\frac{r}{r_0}\right)^{-(3 - d_H)}
-  \eqtag{G}{EXP}{E}
+  \eqtag{X}{EXP}{E}
   \label{eq:origami:lss-correlation}
 \end{equation}
 
@@ -325,7 +325,7 @@ Origami dimensions introduce additional GW polarization states beyond GR's two (
 
 \begin{equation}
   h_{\mu\nu}^{\text{origami}} = h_{\mu\nu}^{+} + h_{\mu\nu}^{\times} + \sum_{k=1}^{n_{\text{extra}}} h_{\mu\nu}^{(\text{fold},k)}
-  \eqtag{G}{EXP}{S}
+  \eqtag{X}{EXP}{S}
   \label{eq:origami:gw-polarization}
 \end{equation}
 
@@ -348,7 +348,7 @@ Genesis proposes:
 
 \begin{equation}
   d_{\text{Cayley-Dickson}} = \lfloor d_{\text{origami}} \rfloor_{\log_2}
-  \eqtag{U}{MATH}{S}
+  \eqtag{P}{MATH}{S}
   \label{eq:origami:dimension-map}
 \end{equation}
 
@@ -368,7 +368,7 @@ Both paradigms are projections of a \textit{unified dimensional structure}:
 
 \begin{equation}
   \mathcal{D}_{\text{unified}} = \mathcal{D}_{\text{origami}}(d_H) \cap \mathcal{D}_{\text{Cayley-Dickson}}(2^n)
-  \eqtag{U}{MATH}{S}
+  \eqtag{P}{MATH}{S}
   \label{eq:origami:unified-dimensions}
 \end{equation}
 

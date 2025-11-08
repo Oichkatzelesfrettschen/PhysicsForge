@@ -30,7 +30,7 @@ The Genesis Kernel is the product of five principal components:
 \begin{equation}
   K_{\text{Genesis}}(x, y, z, t) = K_{\text{base}}(x, y, t) \cdot K_{\text{scalar-ZPE}}(x, t) \cdot \mathcal{F}_M^{\text{extended}} \cdot \mathcal{M}_n(x) \cdot \Phi_{\text{total}}(x, y, z, t)
   \label{eq:aether-kernel:genesis-master}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where:
@@ -51,14 +51,14 @@ The Genesis Kernel $K_{\text{Genesis}}$ represents the probability amplitude for
 \begin{equation}
   \sqrt{-g} = |K_{\text{Genesis}}|^2
   \label{eq:aether-kernel:metric-determinant}
-  \eqtag{A}{GR}{S}
+  \eqtag{S}{GR}{S}
 \end{equation}
 
 Extremizing the kernel with respect to variations yields the field equations:
 \begin{equation}
   \frac{\delta}{\delta g_{\mu\nu}} \int d^4x \, K_{\text{Genesis}} = 0 \quad \implies \quad G_{\mu\nu} = 8\pi G \, T_{\mu\nu}^{\text{(total)}}
   \label{eq:aether-kernel:field-equations}
-  \eqtag{A}{GR}{S}
+  \eqtag{S}{GR}{S}
 \end{equation}
 
 where $T_{\mu\nu}^{\text{(total)}}$ includes contributions from scalar fields, ZPE, lattice stress, and fractal corrections.
@@ -70,7 +70,7 @@ The kernel exhibits dimensional scaling from 3D (observable) to 8D (E$_8$ lattic
 \begin{equation}
   K_{\text{Genesis}}^{(d)}(x^d) = \mathcal{P}_{d \to 3} \left[ K_{\text{Genesis}}^{(d_{\max})}(x^{d_{\max}}) \right]
   \label{eq:aether-kernel:dimensional-scaling}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\mathcal{P}_{d \to 3}$ is the projection operator (Ch~\ref{ch:aether-lattice}, Eq.~\ref{eq:aether-lattice:coxeter-projection}) and $d_{\max} \in \{8, 24\}$ depending on formulation. The 8D formulation is computationally tractable; 24D provides full Monster Group symmetry but requires extreme computational resources.
@@ -87,7 +87,7 @@ The E$_8$ root system (240 roots, Ch~\ref{ch:e8-lattice}) generates a kernel via
 \begin{equation}
   K_{E_8}(x) = \sum_{\alpha \in \Phi_{E_8}} \exp\left( i \, \alpha \cdot x / \ell_{\text{Pl}} \right) \exp\left( -|\alpha|^2 / \Lambda_{\text{UV}}^2 \right)
   \label{eq:aether-kernel:e8-root-kernel}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\Phi_{E_8}$ is the E$_8$ root system, $\Lambda_{\text{UV}} = M_{\text{Pl}}$ is the UV cutoff, and $|\alpha|^2 = 2$ for all E$_8$ roots. This kernel is 248-periodic in the E$_8$ lattice and encodes all lattice symmetries.
@@ -106,7 +106,7 @@ The \aether{} framework employs E$_9$ for time-dependent modulations:
 \begin{equation}
   K_{E_9}(x, t) = \sum_{n \in \mathbb{Z}} K_{E_8}(x) \, e^{i \omega_n t}
   \label{eq:aether-kernel:e9-kernel}
-  \eqtag{A}{MATH}{S}
+  \eqtag{S}{MATH}{S}
 \end{equation}
 
 with $\omega_n = 2\pi n / T_{\text{fund}}$ where $T_{\text{fund}} = \ell_{\text{Pl}} / c \approx 5.4 \times 10^{-44}\,\text{s}$ is the fundamental time scale.
@@ -118,14 +118,14 @@ The E$_8$ Lie algebra generators $T_a$ ($a = 1, \ldots, 248$) satisfy:
 \begin{equation}
   [T_a, T_b] = f_{abc} T_c
   \label{eq:aether-kernel:e8-commutator}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $f_{abc}$ are the E$_8$ structure constants. The kernel incorporates these via:
 \begin{equation}
   K_{E_8}^{\text{(alg)}}(x) = \exp\left( i \sum_{a=1}^{248} \theta_a(x) T_a \right)
   \label{eq:aether-kernel:e8-exponential-map}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\theta_a(x)$ are spacetime-dependent parameters. This is the Lie algebra exponential map, projecting the algebra onto the group manifold.
@@ -142,15 +142,15 @@ The Cayley-Dickson construction (Ch~\ref{ch:cayley-dickson}) extends from $\math
 \begin{equation}
   K_{CD}^{(n)}(x) = \left( K_{CD}^{(n-1)}(x_1), K_{CD}^{(n-1)}(x_2) \right)
   \label{eq:aether-kernel:cayley-recursive}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $(a, b)$ denotes the Cayley-Dickson doubling formula. Explicit forms:
 \begin{align}
-  K_{CD}^{(1)}(x) &= x \quad (\mathbb{R}) \label{eq:aether-kernel:cd-real} \eqtag{A}{MATH}{T} \\
-  K_{CD}^{(2)}(x, y) &= x + iy \quad (\mathbb{C}) \label{eq:aether-kernel:cd-complex} \eqtag{A}{MATH}{T} \\
-  K_{CD}^{(3)}(q) &= a + bi + cj + dk \quad (\mathbb{H}) \label{eq:aether-kernel:cd-quaternion} \eqtag{A}{MATH}{T} \\
-  K_{CD}^{(4)}(o) &= \sum_{i=0}^{7} o_i e_i \quad (\mathbb{O}) \label{eq:aether-kernel:cd-octonion} \eqtag{A}{MATH}{T}
+  K_{CD}^{(1)}(x) &= x \quad (\mathbb{R}) \label{eq:aether-kernel:cd-real} \eqtag{S}{MATH}{T} \\
+  K_{CD}^{(2)}(x, y) &= x + iy \quad (\mathbb{C}) \label{eq:aether-kernel:cd-complex} \eqtag{S}{MATH}{T} \\
+  K_{CD}^{(3)}(q) &= a + bi + cj + dk \quad (\mathbb{H}) \label{eq:aether-kernel:cd-quaternion} \eqtag{S}{MATH}{T} \\
+  K_{CD}^{(4)}(o) &= \sum_{i=0}^{7} o_i e_i \quad (\mathbb{O}) \label{eq:aether-kernel:cd-octonion} \eqtag{S}{MATH}{T}
 \end{align}
 
 The \aether{} framework employs octonions ($n=4$, 8D) for E$_8$ lattice embedding and sedenions ($n=5$, 16D) for extended scalar field modes.
@@ -162,14 +162,14 @@ The octonion algebra $\mathbb{O}$ has automorphism group G$_2$ (14D, Ch~\ref{ch:
 \begin{equation}
   \text{Aut}(\mathbb{O}) \cong G_2 \subset E_8
   \label{eq:aether-kernel:octonion-automorphism}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 to embed octonionic scalar field configurations into E$_8$ lattice structure. The kernel coupling is:
 \begin{equation}
   K_{\mathbb{O} \to E_8}(x) = \text{Tr}\left( K_{CD}^{(4)}(x) \cdot \Pi_{E_8} \right)
   \label{eq:aether-kernel:octonion-e8-coupling}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\Pi_{E_8}$ is a projection operator from $\mathbb{O}$ to E$_8$ Cartan subalgebra.
@@ -181,7 +181,7 @@ Beyond sedenions ($2^5 = 32$D), the Cayley-Dickson construction yields pathions 
 \begin{equation}
   K_{\text{pathion}}^{(64)}(x) = \sum_{i=1}^{64} p_i(x) \mathbf{e}_i
   \label{eq:aether-kernel:pathion}
-  \eqtag{A}{MATH}{S}
+  \eqtag{S}{MATH}{S}
 \end{equation}
 
 where $\mathbf{e}_i$ are basis elements and $p_i(x)$ are scalar field amplitudes. The 64D space accommodates 8D E$_8$ lattice $\times$ 8 copies, enabling octonion-valued E$_8$ configurations.
@@ -198,21 +198,21 @@ The modular j-invariant (Ch~\ref{ch:genesis-monster}) encodes Monster Group symm
 \begin{equation}
   j(\tau) = \frac{1}{q} + 744 + 196{,}884 q + 21{,}493{,}760 q^2 + \cdots
   \label{eq:aether-kernel:j-invariant}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $q = e^{2\pi i \tau}$ and $\tau$ is the modular parameter. The \aether{} framework couples $\tau$ to spacetime via:
 \begin{equation}
   \tau(x, t) = \frac{\phi(x, t) + i \, \rho_{\text{ZPE}}(x, t)}{M_{\text{Pl}}}
   \label{eq:aether-kernel:modular-parameter}
-  \eqtag{A}{MATH}{S}
+  \eqtag{S}{MATH}{S}
 \end{equation}
 
 yielding spacetime-dependent modular symmetry. The kernel is:
 \begin{equation}
   K_{\text{modular}}(x, t) = j(\tau(x, t))
   \label{eq:aether-kernel:modular-kernel}
-  \eqtag{A}{MATH}{S}
+  \eqtag{S}{MATH}{S}
 \end{equation}
 
 This couples scalar field $\phi$ and ZPE density $\rho_{\text{ZPE}}$ to Monster Group representations.
@@ -224,7 +224,7 @@ Monstrous moonshine relates j-invariant coefficients to Monster Group irreducibl
 \begin{equation}
   196{,}884 = 1 + 196{,}883 = \dim(\mathbf{1}) + \dim(\mathbf{V})
   \label{eq:aether-kernel:moonshine}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\mathbf{1}$ is the trivial representation and $\mathbf{V}$ is the smallest non-trivial irrep. The \aether{} framework interprets these as:
@@ -242,7 +242,7 @@ Beyond the j-invariant (weight 0), the \aether{} framework employs Eisenstein se
 \begin{equation}
   E_k(\tau) = 1 - \frac{2k}{B_k} \sum_{n=1}^{\infty} \sigma_{k-1}(n) q^n
   \label{eq:aether-kernel:eisenstein}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $B_k$ are Bernoulli numbers and $\sigma_{k-1}(n) = \sum_{d|n} d^{k-1}$. These encode higher-order corrections to spacetime geometry.
@@ -259,7 +259,7 @@ The scalar field $\phi$ couples to metric $g_{\mu\nu}$ via (Ch~\ref{ch:aether-sc
 \begin{equation}
   K_{\phi g}(x) = \exp\left( -\frac{\kappa}{M_{\text{Pl}}} \int d^4x \, \sqrt{-g} \, \phi \, R \right)
   \label{eq:aether-kernel:scalar-metric-coupling}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 where $R$ is the Ricci scalar and $\kappa \approx 0.25$ (Ch~\ref{ch:aether-scalar-fields}, $\xi = 1/4$ curvature coupling). This is the path integral representation of scalar-curvature interaction.
@@ -271,7 +271,7 @@ Zero-point energy fluctuations create quantum foam at Planck scales. The kernel 
 \begin{equation}
   K_{\text{foam}}(x, t) = \exp\left( -\frac{1}{2} \int d^4x \, \rho_{\text{ZPE}}(x, t) \, \delta g_{\mu\nu}(x) \delta g^{\mu\nu}(x) \right)
   \label{eq:aether-kernel:foam-kernel}
-  \eqtag{A}{QM}{T}
+  \eqtag{S}{QM}{T}
 \end{equation}
 
 where $\delta g_{\mu\nu}$ are metric fluctuations. The foam density parameter $\kappa_{\text{foam}} = 0.90$ (Ch~\ref{ch:aether-zpe-coupling}) governs fluctuation amplitude.
@@ -283,7 +283,7 @@ The phonon-graviton duality (Ch~\ref{ch:aether-lattice}) yields the graviton pro
 \begin{equation}
   D_{\mu\nu\rho\sigma}(k) = \frac{1}{M_{\text{Pl}}^2} \frac{P_{\mu\nu\rho\sigma}(k)}{k^2 + i\epsilon}
   \label{eq:aether-kernel:graviton-propagator}
-  \eqtag{A}{GR}{T}
+  \eqtag{S}{GR}{T}
 \end{equation}
 
 where $P_{\mu\nu\rho\sigma}(k)$ is the projection operator onto transverse-traceless modes. This emerges from E$_8$ lattice phonon Green's function in the long-wavelength limit.
@@ -295,14 +295,14 @@ The holographic principle states that entropy $S$ of a region scales with surfac
 \begin{equation}
   S = \frac{A}{4 \ell_{\text{Pl}}^2}
   \label{eq:aether-kernel:bekenstein-hawking}
-  \eqtag{A}{GR}{V}
+  \eqtag{S}{GR}{V}
 \end{equation}
 
 The \aether{} framework reproduces this via:
 \begin{equation}
   K_{\text{holo}}(\partial V) = \exp\left( -\frac{1}{4\ell_{\text{Pl}}^2} \int_{\partial V} d^3 x \, \sqrt{h} \right)
   \label{eq:aether-kernel:holographic-kernel}
-  \eqtag{A}{GR}{S}
+  \eqtag{S}{GR}{S}
 \end{equation}
 
 where $\partial V$ is the boundary surface, $h$ is the induced metric, and the kernel weights configurations by surface area. This arises from counting E$_8$ lattice surface states.
@@ -319,14 +319,14 @@ The golden ratio $\varphi = (1 + \sqrt{5})/2$ appears in fractal potentials (Ch~
 \begin{equation}
   V_{\text{fractal}}(\phi) = \sum_{n=1}^{N} \frac{\epsilon_n}{\varphi^n} \cos\left( \varphi^n \frac{\phi}{\phi_0} \right)
   \label{eq:aether-kernel:golden-fractal}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 The kernel incorporating this structure is:
 \begin{equation}
   K_{\varphi}(x) = \exp\left( -\int d^4x \, V_{\text{fractal}}(\phi(x)) \right)
   \label{eq:aether-kernel:golden-kernel}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 This generates fractal basin structure in configuration space, with Hausdorff dimension $d_H = 2 \log \varphi / \log 2 \approx 1.44$.
@@ -338,14 +338,14 @@ Viazovska's proof (2016) that E$_8$ achieves optimal sphere packing in 8D with d
 \begin{equation}
   \Delta_8 = \frac{\pi^4}{384} \approx 0.2537
   \label{eq:aether-kernel:e8-packing-density}
-  \eqtag{A}{MATH}{V}
+  \eqtag{S}{MATH}{V}
 \end{equation}
 
 translates to a kernel optimality condition:
 \begin{equation}
   K_{E_8}^{\text{(opt)}}(x) = \max_{\Lambda \in \mathcal{L}_8} \left[ \sum_{v \in \Lambda} \exp(-\pi |x - v|^2 / a^2) \right]
   \label{eq:aether-kernel:optimal-packing-kernel}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 where $\mathcal{L}_8$ is the space of 8D lattices and $a = \ell_{\text{Pl}}$. This maximizes vacuum energy density packing efficiency.
@@ -357,7 +357,7 @@ The Leech lattice $\Lambda_{24}$ (Ch~\ref{ch:aether-lattice}) extends E$_8$ to 2
 \begin{equation}
   K_{\text{Leech}}(x^{24}) = \sum_{v \in \Lambda_{24}} \exp\left( i \, v \cdot x^{24} / \ell_{\text{Pl}} \right) \exp\left( -|v|^2 / M_{\text{Pl}}^2 \right)
   \label{eq:aether-kernel:leech-kernel}
-  \eqtag{A}{MATH}{S}
+  \eqtag{S}{MATH}{S}
 \end{equation}
 
 This kernel encodes full Monster Group symmetry and connects to bosonic string theory compactifications.
@@ -404,7 +404,7 @@ Full 8D E$_8$ kernel requires $(N_{\text{grid}})^8$ evaluations. For $N_{\text{g
 \begin{equation}
   \mathcal{G}_{\text{sparse}} = \{ x \in \mathbb{R}^8 \mid x \in \Lambda_{E_8} \text{ and } |x| < R_{\max} \}
   \label{eq:aether-kernel:sparse-grid}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 reduces to $\sim 10^6$ points for $R_{\max} = 10 \, a$.
@@ -413,7 +413,7 @@ reduces to $\sim 10^6$ points for $R_{\max} = 10 \, a$.
 \begin{equation}
   K_{\text{Genesis}}^{(8D)}(x^8) \approx K_{\text{Genesis}}^{(3D)}(\mathcal{P}_{8 \to 3} x^8) \cdot \text{Correction}(x^8)
   \label{eq:aether-kernel:projective}
-  \eqtag{A}{MATH}{T}
+  \eqtag{S}{MATH}{T}
 \end{equation}
 
 Evaluate 3D projection, multiply by correction factor computed on coarser 8D grid.
@@ -459,7 +459,7 @@ The interaction between scalar fields and electromagnetic radiation produces obs
 \begin{equation}
   K_{\text{EM-scalar}} = \exp\left[-\int d^4x \sqrt{-g} \left(\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + g_{\text{EM}}\phi F_{\mu\nu}\tilde{F}^{\mu\nu}\right)\right]
   \label{eq:aether-kernel:em-scalar-kernel}
-  \eqtag{A}{EM}{T}
+  \eqtag{S}{EM}{T}
 \end{equation}
 
 where $\tilde{F}^{\mu\nu} = \frac{1}{2}\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}$ is the dual field tensor and $g_{\text{EM}} \approx 10^{-3}$ is the coupling constant.
@@ -468,7 +468,7 @@ This coupling modifies the dispersion relation for electromagnetic waves:
 \begin{equation}
   \omega^2 = k^2c^2\left(1 + \alpha_{\text{EM}}\phi + \beta_{\text{EM}}\phi^2\right)
   \label{eq:aether-kernel:em-dispersion}
-  \eqtag{A}{EM}{E}
+  \eqtag{S}{EM}{E}
 \end{equation}
 
 leading to:
@@ -483,14 +483,14 @@ The polarization modification kernel:
 \begin{equation}
   K_{\text{pol}}(\mathbf{E}, \phi) = \exp\left[i\gamma \phi \int_{\text{path}} \mathbf{E} \times \mathbf{B} \cdot d\mathbf{l}\right]
   \label{eq:aether-kernel:polarization}
-  \eqtag{A}{EM}{T}
+  \eqtag{S}{EM}{T}
 \end{equation}
 
 predicts rotation angle:
 \begin{equation}
   \Delta\theta = \frac{\gamma \phi \omega L}{c} \approx 10^{-6}\,\text{rad/m}
   \label{eq:aether-kernel:rotation-angle}
-  \eqtag{A}{EM}{E}
+  \eqtag{S}{EM}{E}
 \end{equation}
 
 for typical scalar field strengths.
@@ -502,14 +502,14 @@ The \aether{} framework incorporates information density as a fundamental quanti
 \begin{equation}
   K_{\text{info}} = \exp\left[-S_{\text{info}}\right]
   \label{eq:aether-kernel:information-kernel}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 where the information entropy is:
 \begin{equation}
   S_{\text{info}} = -k_B \int d^3x \rho(\mathbf{x})\ln\rho(\mathbf{x}) + \alpha_I \int d^3x |\nabla\phi|^2
   \label{eq:aether-kernel:info-entropy}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 The first term is Shannon entropy, the second couples information to scalar field gradients.
@@ -518,7 +518,7 @@ The first term is Shannon entropy, the second couples information to scalar fiel
 \begin{equation}
   \rho_{\text{quantum}} = \text{Tr}[\hat{\rho}\ln\hat{\rho}] + \beta_Q \langle\hat{\phi}^2\rangle
   \label{eq:aether-kernel:quantum-info}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 where $\hat{\rho}$ is the density matrix.
@@ -527,7 +527,7 @@ where $\hat{\rho}$ is the density matrix.
 \begin{equation}
   I_{\max} = \frac{A}{4\ell_{\text{Pl}}^2\ln 2} \times \left(1 + \epsilon_{\phi}\frac{\phi}{M_{\text{Pl}}}\right)
   \label{eq:aether-kernel:holographic-bound}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 The scalar field modifies the holographic bound, allowing slightly more information storage.
@@ -536,7 +536,7 @@ The scalar field modifies the holographic bound, allowing slightly more informat
 \begin{equation}
   \frac{dI}{dt} = \frac{c^5}{G\hbar} \times f(\phi) \times \Omega(\text{geometry})
   \label{eq:aether-kernel:info-transfer}
-  \eqtag{A}{IT}{T}
+  \eqtag{S}{IT}{T}
 \end{equation}
 
 where $f(\phi)$ encodes scalar field enhancement and $\Omega$ depends on spacetime curvature.
@@ -548,21 +548,21 @@ The entropy production kernel governs irreversible processes in the \aether{} fr
 \begin{equation}
   K_{\text{entropy}} = \exp\left[-\int dt \, \dot{S}_{\text{total}}\right]
   \label{eq:aether-kernel:entropy-kernel}
-  \eqtag{A}{TD}{T}
+  \eqtag{S}{TD}{T}
 \end{equation}
 
 with entropy production rate:
 \begin{equation}
   \dot{S}_{\text{total}} = \dot{S}_{\text{therm}} + \dot{S}_{\text{quantum}} + \dot{S}_{\text{scalar}}
   \label{eq:aether-kernel:entropy-production}
-  \eqtag{A}{TD}{T}
+  \eqtag{S}{TD}{T}
 \end{equation}
 
 Components:
 \begin{align}
-  \dot{S}_{\text{therm}} &= \int d^3x \frac{\mathbf{J}_q \cdot \nabla T}{T^2} \label{eq:aether-kernel:thermal-entropy} \eqtag{A}{TD}{T} \\
-  \dot{S}_{\text{quantum}} &= \frac{2\pi k_B}{\hbar} \sum_{i,j} \Gamma_{ij} |c_i|^2 |c_j|^2 \label{eq:aether-kernel:quantum-entropy} \eqtag{A}{TD}{T} \\
-  \dot{S}_{\text{scalar}} &= \kappa_S \int d^3x \phi \nabla^2 \phi \label{eq:aether-kernel:scalar-entropy} \eqtag{A}{TD}{T}
+  \dot{S}_{\text{therm}} &= \int d^3x \frac{\mathbf{J}_q \cdot \nabla T}{T^2} \label{eq:aether-kernel:thermal-entropy} \eqtag{S}{TD}{T} \\
+  \dot{S}_{\text{quantum}} &= \frac{2\pi k_B}{\hbar} \sum_{i,j} \Gamma_{ij} |c_i|^2 |c_j|^2 \label{eq:aether-kernel:quantum-entropy} \eqtag{S}{TD}{T} \\
+  \dot{S}_{\text{scalar}} &= \kappa_S \int d^3x \phi \nabla^2 \phi \label{eq:aether-kernel:scalar-entropy} \eqtag{S}{TD}{T}
 \end{align}
 
 where $\mathbf{J}_q$ is heat flux, $\Gamma_{ij}$ are decoherence rates, and $\kappa_S$ is the scalar dissipation coefficient.
@@ -574,7 +574,7 @@ The \aether{} framework spans from Planck to cosmological scales through hierarc
 \begin{equation}
   K_{\text{multi}}(x; \Lambda) = \prod_{n=0}^{N} K_n(x; \Lambda_n)
   \label{eq:aether-kernel:multiscale}
-  \eqtag{A}{MS}{T}
+  \eqtag{S}{MS}{T}
 \end{equation}
 
 where $\Lambda_n = \Lambda_{\text{Pl}} / 2^n$ are characteristic scales.
@@ -583,14 +583,14 @@ where $\Lambda_n = \Lambda_{\text{Pl}} / 2^n$ are characteristic scales.
 \begin{equation}
   \Gamma_{\text{eff}}[\phi; \Lambda] = \Gamma_0[\phi] + \sum_{n=1}^{\infty} \frac{1}{\Lambda^{2n}} \Gamma_n[\phi]
   \label{eq:aether-kernel:effective-action}
-  \eqtag{A}{MS}{T}
+  \eqtag{S}{MS}{T}
 \end{equation}
 
 \textbf{Renormalization Group Flow:}
 \begin{equation}
   \Lambda\frac{\partial g_i}{\partial \Lambda} = \beta_i(g_1, g_2, ..., g_n)
   \label{eq:aether-kernel:rg-flow}
-  \eqtag{A}{MS}{T}
+  \eqtag{S}{MS}{T}
 \end{equation}
 
 where $g_i$ are coupling constants and $\beta_i$ are beta functions.
@@ -599,7 +599,7 @@ where $g_i$ are coupling constants and $\beta_i$ are beta functions.
 \begin{equation}
   P(\Lambda_1 \to \Lambda_2) = \int d^3k \, T(k; \Lambda_1, \Lambda_2) E(k)
   \label{eq:aether-kernel:energy-transfer}
-  \eqtag{A}{MS}{T}
+  \eqtag{S}{MS}{T}
 \end{equation}
 
 where $T(k; \Lambda_1, \Lambda_2)$ is the transfer function between scales.
@@ -618,28 +618,28 @@ Kernels compose according to specific algebraic rules that preserve physical con
 \begin{equation}
   K_{\text{scalar}} \otimes K_{\text{ZPE}} = K_{\text{ZPE}} \otimes K_{\text{scalar}}
   \label{eq:aether-kernel:commutative}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 \textbf{2. Non-commutative kernels:} Geometric and matter kernels do not commute:
 \begin{equation}
   K_{\text{geom}} \otimes K_{\text{matter}} \neq K_{\text{matter}} \otimes K_{\text{geom}}
   \label{eq:aether-kernel:non-commutative}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 \textbf{3. Associative composition:}
 \begin{equation}
   (K_1 \otimes K_2) \otimes K_3 = K_1 \otimes (K_2 \otimes K_3)
   \label{eq:aether-kernel:associative}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 \textbf{4. Identity kernel:}
 \begin{equation}
   K_{\mathbb{I}} = \exp(0) = 1
   \label{eq:aether-kernel:identity}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 \subsection{Kernel Derivatives and Variations}
@@ -649,14 +649,14 @@ Functional derivatives of kernels yield field equations:
 \begin{equation}
   \frac{\delta K_{\text{Genesis}}}{\delta \phi(x)} = 0 \quad \Rightarrow \quad \text{Scalar field equation}
   \label{eq:aether-kernel:variation}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 The kernel gradient:
 \begin{equation}
   \nabla_\mu K = \frac{\partial K}{\partial x^\mu} + \Gamma_{\mu\nu}^\rho x^\nu \frac{\partial K}{\partial x^\rho}
   \label{eq:aether-kernel:gradient}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 includes connection terms from curved spacetime.
@@ -668,7 +668,7 @@ The kernel operator has eigenmodes:
 \begin{equation}
   \hat{K} |\psi_n\rangle = \lambda_n |\psi_n\rangle
   \label{eq:aether-kernel:eigenmodes}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 The spectrum $\{\lambda_n\}$ characterizes:
@@ -682,7 +682,7 @@ The spectral density:
 \begin{equation}
   \rho(\lambda) = \sum_n \delta(\lambda - \lambda_n)
   \label{eq:aether-kernel:spectral-density}
-  \eqtag{A}{ALG}{T}
+  \eqtag{S}{ALG}{T}
 \end{equation}
 
 exhibits structure related to E$_8$ root system.
@@ -699,14 +699,14 @@ For quantum information processing, specialized kernels suppress decoherence:
 \begin{equation}
   K_{\text{QC}} = \exp\left[-\int dt \left(\Gamma_{\text{decohere}} - g_{\text{protect}}\phi^2\right)\right]
   \label{eq:aether-kernel:qc-kernel}
-  \eqtag{A}{APP}{T}
+  \eqtag{S}{APP}{T}
 \end{equation}
 
 The protection factor:
 \begin{equation}
   f_{\text{protect}} = \exp\left(\frac{g_{\text{protect}}\langle\phi^2\rangle T}{\hbar}\right)
   \label{eq:aether-kernel:protection-factor}
-  \eqtag{A}{APP}{E}
+  \eqtag{S}{APP}{E}
 \end{equation}
 
 can extend coherence times by factors of 10-100.
@@ -718,7 +718,7 @@ For zero-point energy extraction:
 \begin{equation}
   K_{\text{harvest}} = \exp\left[-S_{\text{eff}} + \int d^3x \, \eta(\phi) \rho_{\text{ZPE}}\right]
   \label{eq:aether-kernel:harvest-kernel}
-  \eqtag{A}{APP}{T}
+  \eqtag{S}{APP}{T}
 \end{equation}
 
 where $\eta(\phi)$ is the extraction efficiency function.
@@ -727,7 +727,7 @@ Maximum power extraction:
 \begin{equation}
   P_{\max} = \frac{\hbar c^5}{G} \times \eta_{\max} \times A_{\text{eff}}
   \label{eq:aether-kernel:max-power}
-  \eqtag{A}{APP}{E}
+  \eqtag{S}{APP}{E}
 \end{equation}
 
 with $\eta_{\max} \sim 10^{-4}$ and $A_{\text{eff}}$ the effective area.
@@ -739,21 +739,21 @@ Metric engineering for propulsion uses:
 \begin{equation}
   K_{\text{prop}} = \exp\left[-\int d^4x \sqrt{-g} \left(\mathcal{L}_{\text{matter}} + \mathcal{L}_{\text{drive}}\right)\right]
   \label{eq:aether-kernel:propulsion}
-  \eqtag{A}{APP}{T}
+  \eqtag{S}{APP}{T}
 \end{equation}
 
 where:
 \begin{equation}
   \mathcal{L}_{\text{drive}} = \alpha \phi \nabla_\mu \phi \nabla^\mu \phi - \beta (\nabla_\mu \nabla^\mu \phi)^2
   \label{eq:aether-kernel:drive-lagrangian}
-  \eqtag{A}{APP}{T}
+  \eqtag{S}{APP}{T}
 \end{equation}
 
 This generates an effective "warp" metric:
 \begin{equation}
   ds^2 = -dt^2 + [dx - v_{\text{eff}}(t)dt]^2 + dy^2 + dz^2
   \label{eq:aether-kernel:warp-metric}
-  \eqtag{A}{APP}{T}
+  \eqtag{S}{APP}{T}
 \end{equation}
 
 with $v_{\text{eff}} = \alpha \phi^2 / M_{\text{Pl}}^2$.
@@ -770,7 +770,7 @@ The \genesis{} framework (Ch~\ref{ch:origami-dimensions}) describes dimensional 
 \begin{equation}
   K_{\text{Genesis}}^{(8D)} \xrightarrow{\mathcal{P}_{\text{origami}}} K_{\text{Genesis}}^{(3D)}
   \label{eq:aether:origami-projection}
-  \eqtag{U}{MATH}{S}
+  \eqtag{P}{MATH}{S}
 \end{equation}
 
 where $\mathcal{P}_{\text{origami}}$ is the origami folding operator (Ch~\ref{ch:aether-scalar-fields}, Eq.~\ref{eq:aether:origami-projection}). This establishes mathematical equivalence between \aether{} hyperdimensional embedding and \genesis{} origami folding.
@@ -782,7 +782,7 @@ The \genesis{} nodespace (Ch~\ref{ch:nodespace-theory}) corresponds to E$_8$ lat
 \begin{equation}
   \text{Node}_i \leftrightarrow v_i \in \Lambda_{E_8}
   \label{eq:aether-kernel:nodespace-map}
-  \eqtag{U}{MATH}{S}
+  \eqtag{P}{MATH}{S}
 \end{equation}
 
 Nodespace connectivity = E$_8$ lattice nearest-neighbor graph. This unifies the discrete (nodespace) and continuous (lattice) perspectives.
@@ -794,7 +794,7 @@ A fully unified kernel merging \aether{} and \genesis{} formalisms is:
 \begin{equation}
   K_{\text{Unified}}(x, t) = K_{\text{Genesis}}^{(\text{Aether})}(x, t) \cdot K_{\text{Superforce}}^{(\text{Genesis})}(x, t) \cdot \mathcal{C}(x, t)
   \label{eq:aether-kernel:unified-kernel}
-  \eqtag{U}{MATH}{S}
+  \eqtag{P}{MATH}{S}
 \end{equation}
 
 where $\mathcal{C}(x, t)$ is a consistency kernel ensuring no double-counting of degrees of freedom. Development of $\mathcal{C}$ is pursued in Ch~\ref{ch:conflict_resolution}.
@@ -811,7 +811,7 @@ Evaluating $K_{\text{scalar-ZPE}}$ between fractal plates yields (Ch~\ref{ch:aet
 \begin{equation}
   F_{\text{Casimir}}^{(\text{kernel})} = -\frac{\pi^2 \hbar c}{240 d^4} A \left| 1 + \frac{\partial K_{\text{scalar-ZPE}}}{\partial d} \right|^2
   \label{eq:aether-kernel:casimir-from-kernel}
-  \eqtag{A}{EXP}{E}
+  \eqtag{S}{EXP}{E}
 \end{equation}
 
 Numerical evaluation gives $\Delta F / F_0 = 0.18 \pm 0.04$ (18\% $\pm$ 4\%), consistent with Ch08 analytic prediction.
@@ -823,7 +823,7 @@ Phonon frequencies from $K_{\text{base}}$ lattice dynamics (Ch~\ref{ch:aether-la
 \begin{equation}
   \omega_{\text{phonon}}^{(\text{kernel})} = \omega_0 \sqrt{1 + \frac{\partial^2 K_{\text{base}}}{\partial u^2} \bigg|_{u=0}}
   \label{eq:aether-kernel:phonon-from-kernel}
-  \eqtag{A}{EXP}{E}
+  \eqtag{S}{EXP}{E}
 \end{equation}
 
 Gives $\Delta \omega / \omega_0 = 0.12 \pm 0.03$ (12\% $\pm$ 3\%), matching Ch09 prediction.
@@ -835,7 +835,7 @@ Phase shift in Mach-Zehnder interferometer from $\Phi_{\text{total}}$ (Ch~\ref{c
 \begin{equation}
   \Delta \varphi^{(\text{kernel})} = \frac{2\pi}{\lambda} \int_{\text{path}} \left( \frac{\partial \Phi_{\text{total}}}{\partial x} \right) ds
   \label{eq:aether-kernel:phase-shift-from-kernel}
-  \eqtag{A}{EXP}{E}
+  \eqtag{S}{EXP}{E}
 \end{equation}
 
 Numerical integration: $\Delta \varphi \approx 1.2 \times 10^{-9}\,\text{rad}$ for $L = 1\,\text{m}$ arm, massive object nearby.

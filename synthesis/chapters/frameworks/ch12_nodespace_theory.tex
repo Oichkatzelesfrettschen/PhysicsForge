@@ -51,7 +51,7 @@ Formally, nodespace is a \textit{directed graph} $\mathcal{N} = (V, E, w)$ where
 
 \begin{equation}
   \mathcal{N} = (V, E, w)
-  \eqtag{G}{TOPO}{T}
+  \eqtag{X}{TOPO}{T}
   \label{eq:nodespace:graph-definition}
 \end{equation}
 
@@ -85,7 +85,7 @@ The \textit{graph distance} $d_{\text{graph}}(i,j)$ is the length of the shortes
 
 \begin{equation}
   d_{\text{graph}}(i,j) = \min \left\{ n \,|\, \exists \text{ path } v_i = u_0, u_1, \ldots, u_n = v_j \right\}
-  \eqtag{G}{TOPO}{T}
+  \eqtag{X}{TOPO}{T}
   \label{eq:nodespace:graph-distance}
 \end{equation}
 
@@ -110,7 +110,7 @@ The graph structure is encoded in the \textit{adjacency matrix} $A$:
     w(v_i, v_j) & \text{if } (v_i, v_j) \in E \\
     0 & \text{otherwise}
   \end{cases}
-  \eqtag{G}{TOPO}{T}
+  \eqtag{X}{TOPO}{T}
   \label{eq:nodespace:adjacency-matrix}
 \end{equation}
 
@@ -126,7 +126,7 @@ The \textit{degree matrix} $D$ is diagonal:
 
 \begin{equation}
   D_{ii} = \sum_{j=1}^N A_{ij}, \quad D_{ij} = 0 \text{ for } i \neq j
-  \eqtag{G}{TOPO}{T}
+  \eqtag{X}{TOPO}{T}
   \label{eq:nodespace:degree-matrix}
 \end{equation}
 
@@ -149,7 +149,7 @@ The \textit{connectivity matrix} $C$ quantifies the strength of connection betwe
 
 \begin{equation}
   C_{ij} = \exp\left(-\frac{d_{\text{graph}}(i,j)}{\lambda_{\text{node}}}\right)
-  \eqtag{G}{TOPO}{T}
+  \eqtag{X}{TOPO}{T}
   \label{eq:nodespace:connectivity-matrix}
 \end{equation}
 
@@ -170,7 +170,7 @@ The nodespace lattice constant is estimated from dimensional analysis and quantu
 
 \begin{equation}
   \lambda_{\text{node}} \sim 10^{-15}~\text{m} = 1~\text{fm} \approx 10^3 \, l_{\text{Planck}}
-  \eqtag{G}{TOPO}{S}
+  \eqtag{X}{TOPO}{S}
   \label{eq:nodespace:lattice-constant}
 \end{equation}
 
@@ -238,7 +238,7 @@ The \textit{graph Laplacian} $L$ is defined as:
 
 \begin{equation}
   L = D - A
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:nodespace:graph-laplacian}
 \end{equation}
 
@@ -246,7 +246,7 @@ For functions $f: V \to \mathbb{R}$ on nodes, the Laplacian acts as:
 
 \begin{equation}
   (L f)_i = \sum_{j} A_{ij} (f_i - f_j) = D_{ii} f_i - \sum_{j} A_{ij} f_j
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:nodespace:laplacian-action}
 \end{equation}
 
@@ -256,7 +256,7 @@ For functions $f: V \to \mathbb{R}$ on nodes, the Laplacian acts as:
 As the nodespace graph refines ($N \to \infty$, $\lambda_{\text{node}} \to 0$) with nodes uniformly distributed in Euclidean space $\mathbb{R}^d$, the normalized graph Laplacian $\frac{1}{\lambda_{\text{node}}^2} L$ converges to the continuum Laplacian:
 \begin{equation}
   \frac{1}{\lambda_{\text{node}}^2} L f \to \nabla^2 f = \sum_{\mu=1}^d \frac{\partial^2 f}{\partial x^\mu \partial x^\mu}
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:nodespace:laplacian-limit}
 \end{equation}
 \end{theorem}
@@ -269,7 +269,7 @@ The metric tensor $g_{\mu\nu}$ emerges from the connectivity matrix via a functi
 
 \begin{equation}
   g_{\mu\nu}(x) = \mathcal{F}[C_{ij}] \Big|_{x \in \mathcal{M}}
-  \eqtag{G}{GR}{S}
+  \eqtag{X}{GR}{S}
   \label{eq:nodespace:metric-emergence}
 \end{equation}
 
@@ -293,7 +293,7 @@ In the continuum limit, Einstein's field equations emerge from nodespace dynamic
 
 \begin{equation}
   R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = \frac{8 \pi G}{c^4} T_{\mu\nu}
-  \eqtag{G}{GR}{T}
+  \eqtag{X}{GR}{T}
   \label{eq:nodespace:einstein-emergence}
 \end{equation}
 
@@ -310,7 +310,7 @@ At scales $\lambda \sim \lambda_{\text{node}}$, corrections appear:
 
 \begin{equation}
   G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu} + \delta G_{\mu\nu}(\lambda_{\text{node}})
-  \eqtag{G}{GR}{S}
+  \eqtag{X}{GR}{S}
   \label{eq:nodespace:modified-einstein}
 \end{equation}
 
@@ -325,7 +325,7 @@ Nodespaces interact through \textit{resonant tunneling}, governed by modular tra
 
 \begin{equation}
   T(z_i, z_j) = \exp\left(-\alpha \cdot \frac{|z_i - z_j|}{\lambda_{\text{res}}}\right)
-  \eqtag{G}{TOPO}{T}
+  \eqtag{X}{TOPO}{T}
   \label{eq:nodespace:tunneling-amplitude}
 \end{equation}
 
@@ -342,7 +342,7 @@ Nodespace coordinates transform under modular group $SL(2, \mathbb{Z})$:
 
 \begin{equation}
   z \to \frac{az + b}{cz + d}, \quad a,b,c,d \in \mathbb{Z}, \quad ad - bc = 1
-  \eqtag{G}{MATH}{T}
+  \eqtag{X}{MATH}{T}
   \label{eq:nodespace:modular-transform}
 \end{equation}
 
@@ -354,7 +354,7 @@ The nodespace action integrates over all nodes and edges:
 
 \begin{equation}
   S_{\text{nodespace}} = \int d^n x \, \sqrt{-g} \, \mathcal{F}(x, t, D, z)
-  \eqtag{G}{GR}{T}
+  \eqtag{X}{GR}{T}
   \label{eq:nodespace:action}
 \end{equation}
 
@@ -371,7 +371,7 @@ Extremizing the action with respect to connectivity yields nodespace field equat
 
 \begin{equation}
   \frac{\delta S_{\text{nodespace}}}{\delta C_{ij}} = 0 \implies \Box C_{ij} + V'(C_{ij}) = J_{ij}
-  \eqtag{G}{GR}{T}
+  \eqtag{X}{GR}{T}
   \label{eq:nodespace:field-equation}
 \end{equation}
 
@@ -388,7 +388,7 @@ Nodespace evolves dynamically under Hamiltonian:
 
 \begin{equation}
   H_{\text{nodespace}} = \sum_{i,j} \frac{1}{2} \Pi_{ij}^2 + V(C_{ij}) + H_{\text{int}}
-  \eqtag{G}{QM}{T}
+  \eqtag{X}{QM}{T}
   \label{eq:nodespace:hamiltonian}
 \end{equation}
 
@@ -403,13 +403,13 @@ where:
 
 \begin{equation}
   \frac{dC_{ij}}{dt} = \{C_{ij}, H_{\text{nodespace}}\}_{\text{PB}} = \Pi_{ij}
-  \eqtag{G}{QM}{T}
+  \eqtag{X}{QM}{T}
   \label{eq:nodespace:heisenberg-1}
 \end{equation}
 
 \begin{equation}
   \frac{d\Pi_{ij}}{dt} = -\frac{\partial V}{\partial C_{ij}} - \sum_k \frac{\partial H_{\text{int}}}{\partial C_{ik}} \delta_{jk}
-  \eqtag{G}{QM}{T}
+  \eqtag{X}{QM}{T}
   \label{eq:nodespace:heisenberg-2}
 \end{equation}
 
@@ -424,7 +424,7 @@ Even in the absence of classical matter, nodespace exhibits quantum fluctuations
 
 \begin{equation}
   C_{ij}(t) = \langle C_{ij} \rangle + \delta C_{ij}(t)
-  \eqtag{G}{QM}{T}
+  \eqtag{X}{QM}{T}
   \label{eq:nodespace:fluctuations}
 \end{equation}
 
@@ -436,7 +436,7 @@ The fluctuation spectrum is characterized by:
 
 \begin{equation}
   \langle \delta C_{ij}(t) \delta C_{kl}(t') \rangle = G_{ijkl}(t - t')
-  \eqtag{G}{QM}{T}
+  \eqtag{X}{QM}{T}
   \label{eq:nodespace:correlation}
 \end{equation}
 
@@ -444,7 +444,7 @@ For homogeneous vacuum, this simplifies:
 
 \begin{equation}
   G_{ijkl}(\tau) = \frac{\lambda_{\text{node}}^2}{(4\pi)^{d/2}} e^{-\tau^2 / \tau_0^2} (\delta_{ik} \delta_{jl} + \delta_{il} \delta_{jk})
-  \eqtag{G}{QM}{S}
+  \eqtag{X}{QM}{S}
   \label{eq:nodespace:correlation-explicit}
 \end{equation}
 
@@ -487,7 +487,7 @@ Nodespace imprints signatures on the cosmic microwave background. The low-$l$ su
 
 \begin{equation}
   C_l^{\text{nodespace}} = C_l^{\text{LCDM}} \left(1 - \epsilon \exp\left(-\frac{l}{l_0}\right)\right)
-  \eqtag{G}{EXP}{E}
+  \eqtag{X}{EXP}{E}
   \label{eq:nodespace:cmb-signature}
 \end{equation}
 
@@ -505,7 +505,7 @@ Nodespace connectivity induces fractal patterns in galaxy distribution:
 
 \begin{equation}
   N(r) \sim r^{d_f}, \quad d_f = 2 + \delta_{\text{fractal}}
-  \eqtag{G}{EXP}{E}
+  \eqtag{X}{EXP}{E}
   \label{eq:nodespace:lss-fractal}
 \end{equation}
 
@@ -519,7 +519,7 @@ At energy scales $E \sim \hbar c / \lambda_{\text{node}} \sim 200$ MeV (femtomet
 
 \begin{equation}
   \sigma_{\text{measured}} = \sigma_{\text{QFT}} \left(1 + \frac{\lambda_{\text{Compton}}^2}{\lambda_{\text{node}}^2}\right)
-  \eqtag{G}{EXP}{S}
+  \eqtag{X}{EXP}{S}
   \label{eq:nodespace:cross-section-correction}
 \end{equation}
 
@@ -531,7 +531,7 @@ Nodespace induces frequency-dependent gravitational wave speed:
 
 \begin{equation}
   v_{\text{GW}}(f) = c \left(1 - \frac{1}{2} \left(\frac{f}{f_{\text{node}}}\right)^2 + \mathcal{O}(f^4)\right)
-  \eqtag{G}{EXP}{S}
+  \eqtag{X}{EXP}{S}
   \label{eq:nodespace:gw-dispersion}
 \end{equation}
 
