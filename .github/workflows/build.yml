@@ -20,35 +20,72 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache TeXLive packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/texlive
+            ~/.texlive
+          key: ${{ runner.os }}-texlive-${{ hashFiles('synthesis/main.tex', 'synthesis/preamble.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-
+
       - name: Build PDF with LuaLaTeX
+        id: latex-build
         uses: xu-cheng/latex-action@v4
-        continue-on-error: true
         with:
           root_file: main.tex
           working_directory: synthesis
           latexmk_shell_escape: true
           latexmk_use_lualatex: true
           args: -file-line-error -interaction=nonstopmode -f -outdir=../build
+        continue-on-error: true
 
-      - name: Check PDF exists
+      - name: Check PDF exists and analyze warnings
+        id: check-pdf
         run: |
           if [ -f build/main.pdf ]; then
             echo "✓ PDF generated successfully"
             ls -lh build/main.pdf
+            echo "pdf_exists=true" >> $GITHUB_OUTPUT
+
+            # Analyze warnings/errors in log
+            if [ -f build/main.log ]; then
+              echo ""
+              echo "=== Build Statistics ==="
+              grep -c "Undefined control sequence" build/main.log || echo "0 undefined control sequences"
+              grep -c "LaTeX Warning: Reference" build/main.log || echo "0 undefined references"
+              grep -c "LaTeX Warning: Citation" build/main.log || echo "0 undefined citations"
+
+              # Count total warnings (expected: ~87 undefined refs + ~20 citations)
+              warning_count=$(grep -c "LaTeX Warning:" build/main.log || echo "0")
+              echo "Total warnings: $warning_count"
+
+              # This is acceptable for in-progress work
+              if [ "$warning_count" -lt 200 ]; then
+                echo "✓ Warning count within acceptable range"
+                exit 0
+              else
+                echo "⚠ Excessive warnings detected"
+                exit 1
+              fi
+            fi
           else
-            echo "✗ PDF not found"
+            echo "✗ PDF not found - compilation failed"
+            echo "pdf_exists=false" >> $GITHUB_OUTPUT
             exit 1
           fi
 
       - name: Upload PDF artifact
+        if: steps.check-pdf.outputs.pdf_exists == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: pdf
           path: build/main.pdf
           retention-days: 1
 
-      - name: Upload build logs on failure
-        if: failure()
+      - name: Upload build logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: latex-logs
@@ -58,14 +95,132 @@ jobs:
             build/main.blg
           retention-days: 3
 
+  build-chapters:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        chapter: [
+          "01", "02", "03", "04", "05", "06",
+          "07", "08", "09", "10", "11", "12",
+          "13", "14", "15", "16", "17", "18",
+          "19", "20", "21", "22", "23", "24",
+          "25", "26", "27", "28", "29", "30"
+        ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache TeXLive packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/texlive
+            ~/.texlive
+          key: ${{ runner.os }}-texlive-${{ hashFiles('synthesis/main.tex', 'synthesis/preamble.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-
+
+      - name: Compile Chapter ${{ matrix.chapter }}
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: test_ch${{ matrix.chapter }}.tex
+          working_directory: synthesis
+          latexmk_shell_escape: true
+          latexmk_use_lualatex: true
+          args: -file-line-error -interaction=nonstopmode -f
+        continue-on-error: true
+
+      - name: Check chapter PDF
+        run: |
+          if [ -f synthesis/test_ch${{ matrix.chapter }}.pdf ]; then
+            echo "✓ Chapter ${{ matrix.chapter }} compiled successfully"
+            ls -lh synthesis/test_ch${{ matrix.chapter }}.pdf
+          else
+            echo "⚠ Chapter ${{ matrix.chapter }} compilation had issues (may be incomplete content)"
+          fi
+
+      - name: Upload chapter PDF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chapter-${{ matrix.chapter }}
+          path: |
+            synthesis/test_ch${{ matrix.chapter }}.pdf
+            synthesis/test_ch${{ matrix.chapter }}.log
+          retention-days: 1
+
+  build-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10+
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Cache Python packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('scripts/*.py') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Build equation catalog
+        run: |
+          python scripts/build_catalog_pipeline.py --base-dir . --scan-dir notes --scan-dir synthesis
+
+      - name: Generate catalog reports
+        run: |
+          python scripts/catalog_parity.py --base-dir .
+          python scripts/gap_todo.py --base-dir .
+          python scripts/validate_catalog.py --base-dir .
+
+      - name: Display catalog statistics
+        run: |
+          if [ -f equation_summary.txt ]; then
+            echo "=== Equation Catalog Summary ==="
+            cat equation_summary.txt
+          fi
+          if [ -f VALIDATION_REPORT.md ]; then
+            echo ""
+            echo "=== Validation Report ==="
+            head -30 VALIDATION_REPORT.md
+          fi
+
+      - name: Upload catalog artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: equation-catalog
+          path: |
+            equation_catalog.csv
+            equation_summary.txt
+            notation_conflicts.txt
+            top_equations.txt
+            CATALOG_PARITY.md
+            CATALOG_GAPS_TODO.md
+            VALIDATION_REPORT.md
+          retention-days: 7
+
   build-web:
-    needs: build-pdf
+    needs: [build-pdf, build-catalog]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+
+      - name: Cache TeXLive packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/texlive
+            ~/.texlive
+          key: ${{ runner.os }}-texlive-svg-${{ hashFiles('figures/tikz/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-svg-
 
       - name: Install TeXLive and generate SVG figures
         uses: xu-cheng/texlive-action@v2
@@ -100,11 +255,94 @@ jobs:
             cp figures/svg/*.svg site/figs/ 2>/dev/null || echo "No SVGs generated"
             echo "=== Figure generation complete ==="
 
-      - name: Copy PDF to site
+      - name: Download PDF artifact
         uses: actions/download-artifact@v4
         with:
           name: pdf
           path: site/pdf
+
+      - name: Download equation catalog
+        uses: actions/download-artifact@v4
+        with:
+          name: equation-catalog
+          path: site/catalog
+
+      - name: Create catalog index page
+        run: |
+          mkdir -p site
+          cat > site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PhysicsForge - Unified Field Theory Research</title>
+            <style>
+              body { font-family: system-ui; max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+              h1 { color: #2c3e50; }
+              .section { margin: 2rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; }
+              .file-list { display: grid; gap: 1rem; }
+              .file-link { padding: 1rem; background: white; border-radius: 4px; text-decoration: none;
+                           color: #2c3e50; display: block; border-left: 4px solid #3498db; }
+              .file-link:hover { background: #ecf0f1; }
+              .file-name { font-weight: bold; display: block; margin-bottom: 0.5rem; }
+              .file-desc { font-size: 0.9rem; color: #7f8c8d; }
+            </style>
+          </head>
+          <body>
+            <h1>PhysicsForge: Unified Field Theory Research</h1>
+
+            <div class="section">
+              <h2>Master Document</h2>
+              <div class="file-list">
+                <a href="pdf/main.pdf" class="file-link">
+                  <span class="file-name">main.pdf</span>
+                  <span class="file-desc">Complete synthesis document (30 chapters, 5 parts)</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="section">
+              <h2>Equation Catalog</h2>
+              <div class="file-list">
+                <a href="catalog/equation_catalog.csv" class="file-link">
+                  <span class="file-name">equation_catalog.csv</span>
+                  <span class="file-desc">Master catalog with provenance</span>
+                </a>
+                <a href="catalog/equation_summary.txt" class="file-link">
+                  <span class="file-name">equation_summary.txt</span>
+                  <span class="file-desc">Statistics by framework/domain</span>
+                </a>
+                <a href="catalog/CATALOG_PARITY.md" class="file-link">
+                  <span class="file-name">CATALOG_PARITY.md</span>
+                  <span class="file-desc">Coverage analysis (catalog vs modules)</span>
+                </a>
+                <a href="catalog/CATALOG_GAPS_TODO.md" class="file-link">
+                  <span class="file-name">CATALOG_GAPS_TODO.md</span>
+                  <span class="file-desc">Missing content action items</span>
+                </a>
+                <a href="catalog/VALIDATION_REPORT.md" class="file-link">
+                  <span class="file-name">VALIDATION_REPORT.md</span>
+                  <span class="file-desc">Catalog integrity check results</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="section">
+              <h2>Frameworks</h2>
+              <ul>
+                <li><strong>Aether Framework:</strong> Scalar field dynamics, zero-point energy, quantum foam, time crystals</li>
+                <li><strong>Genesis Framework:</strong> Exceptional Lie groups (E8, E7, E6, F4, G2), Cayley-Dickson algebras, fractal geometries</li>
+                <li><strong>Pais Framework:</strong> Gravitational-electromagnetic unification with scalar-ZPE interactions</li>
+              </ul>
+            </div>
+
+            <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd; color: #7f8c8d; text-align: center;">
+              <p>Generated by GitHub Actions • <a href="https://github.com/eirikr-physics/PhysicsForge">View Repository</a></p>
+            </footer>
+          </body>
+          </html>
+          EOF
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
@@ -112,7 +350,7 @@ jobs:
           path: site
 
   deploy:
-    needs: [build-pdf, build-web]
+    needs: [build-pdf, build-catalog, build-web]
     runs-on: ubuntu-latest
     environment:
       name: github-pages

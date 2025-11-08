@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   build-and-release:
@@ -13,7 +14,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build PDF with LuaLaTeX
+      - name: Attempt to download PDF artifact from build.yml
+        id: download-artifact
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: pdf
+          path: build
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.release.target_commitish }}
+
+      - name: Check if artifact exists and is valid
+        id: validate-artifact
+        run: |
+          if [ -f build/main.pdf ]; then
+            FILE_SIZE=$(stat -c%s build/main.pdf)
+            if [ "$FILE_SIZE" -gt 0 ]; then
+              echo "artifact_valid=true" >> $GITHUB_OUTPUT
+              echo "✓ Valid PDF artifact found (size: $FILE_SIZE bytes)"
+              ls -lh build/main.pdf
+            else
+              echo "artifact_valid=false" >> $GITHUB_OUTPUT
+              echo "✗ PDF artifact has zero size, will rebuild"
+            fi
+          else
+            echo "artifact_valid=false" >> $GITHUB_OUTPUT
+            echo "✗ PDF artifact not found, will rebuild"
+          fi
+
+      - name: Rebuild PDF with LuaLaTeX (fallback)
+        if: steps.validate-artifact.outputs.artifact_valid != 'true'
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
@@ -22,10 +52,27 @@ jobs:
           latexmk_use_lualatex: true
           args: -file-line-error -interaction=nonstopmode -f -outdir=../build
 
+      - name: Validate rebuilt PDF
+        if: steps.validate-artifact.outputs.artifact_valid != 'true'
+        run: |
+          if [ ! -f build/main.pdf ]; then
+            echo "✗ PDF rebuild failed - file not found"
+            exit 1
+          fi
+          FILE_SIZE=$(stat -c%s build/main.pdf)
+          if [ "$FILE_SIZE" -eq 0 ]; then
+            echo "✗ PDF rebuild failed - zero size"
+            exit 1
+          fi
+          echo "✓ PDF rebuilt successfully (size: $FILE_SIZE bytes)"
+          ls -lh build/main.pdf
+
       - name: Rename PDF with version tag
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
           cp build/main.pdf build/PhysicsForge-${VERSION}.pdf
+          echo "✓ Created versioned PDF: PhysicsForge-${VERSION}.pdf"
+          ls -lh build/PhysicsForge-${VERSION}.pdf
 
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
