@@ -1,32 +1,13 @@
-This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2026/dev/Arch Linux)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: alpha.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "Pais2019Patent"
-Warning--I didn't find a database entry for "Konopka2008QuantumGraphity"
-Warning--I didn't find a database entry for "Barcelo2011Analogue"
-Warning--I didn't find a database entry for "Padmanabhan2010Holographic"
-Warning--I didn't find a database entry for "Fox1933Tourmaline"
-Warning--I didn't find a database entry for "Calcagni2017Multifractional"
-Warning--I didn't find a database entry for "Adler1995Quaternionic"
-Warning--I didn't find a database entry for "Baez2010Division"
-Warning--I didn't find a database entry for "Podlubny1999Fractional"
-Warning--I didn't find a database entry for "Riess1998"
-Warning--I didn't find a database entry for "Perlmutter1999"
+Warning--entry type for "Pais2019Patent" isn't style-file defined
+--line 10 of file bibliography.bib
 Warning--I didn't find a database entry for "Else2016Floquet"
-Warning--I didn't find a database entry for "Khemani2016TC"
 Warning--I didn't find a database entry for "Zhang2017TrappedIons"
-Warning--I didn't find a database entry for "Kyprianidis2021Prethermal"
 Warning--I didn't find a database entry for "Mi2022TimeCrystal"
-Warning--I didn't find a database entry for "Patscheider2024DTC"
-Warning--I didn't find a database entry for "NVtimecrystal2024"
-Warning--I didn't find a database entry for "DTquasicrystal2025"
-Warning--I didn't find a database entry for "RydbergFracDTC2024"
-Warning--I didn't find a database entry for "Casimir1948Original"
-Warning--I didn't find a database entry for "Lamoreaux1997"
-Warning--I didn't find a database entry for "Milton2001"
-Warning--I didn't find a database entry for "NanoFab2024"
 Warning--I didn't find a database entry for "Padamsee2008"
 Warning--I didn't find a database entry for "Dielectrics2022"
 Warning--I didn't find a database entry for "Vacuum2023"
@@ -42,45 +23,45 @@ Warning--I didn't find a database entry for "Pfenning1997WarpOptimization"
 Warning--I didn't find a database entry for "MorrisThorne1988Wormholes"
 Warning--I didn't find a database entry for "Ford1995QuantumInequalities"
 Warning--I didn't find a database entry for "FordRoman1996Constraints"
-You've used 0 entries,
+You've used 16 entries,
             2543 wiz_defined-function locations,
-            636 strings with 5835 characters,
-and the built_in function-call counts, 24 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 10
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 2
+            711 strings with 8715 characters,
+and the built_in function-call counts, 7900 in all, are:
+= -- 693
+> -- 595
+< -- 9
++ -- 220
+- -- 219
+* -- 690
+:= -- 1392
+add.period$ -- 48
+call.type$ -- 16
+change.case$ -- 156
+chr.to.int$ -- 16
+cite$ -- 16
+duplicate$ -- 242
+empty$ -- 445
+format.name$ -- 239
+if$ -- 1504
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+missing$ -- 19
+newline$ -- 83
+num.names$ -- 50
+pop$ -- 155
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 176
 quote$ -- 0
-skip$ -- 2
+skip$ -- 184
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
-text.prefix$ -- 0
+substring$ -- 296
+swap$ -- 24
+text.length$ -- 9
+text.prefix$ -- 8
 top$ -- 0
-type$ -- 0
+type$ -- 112
 warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There were 39 warnings)
+while$ -- 57
+width$ -- 20
+write$ -- 205
+(There were 19 warnings)

@@ -2,6 +2,48 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+---
+
+## ⚠️ **CRITICAL: MANDATORY BUILD WORKFLOW** ⚠️
+
+**ALWAYS OPERATE FROM PROJECT ROOT: `/home/eirikr/Playground/PhysicsForge/`**
+
+### Build Entry Point (MANDATORY FOR ALL OPERATIONS)
+
+```bash
+# ALWAYS start here - this is the ONLY correct working directory
+cd /home/eirikr/Playground/PhysicsForge/
+
+# ALL builds, cleaning, and validation MUST use the root Makefile:
+make latex          # Build LaTeX document
+make clean          # Clean build artifacts
+make ci             # Run full CI pipeline
+make smoke          # Quick smoke tests
+make test           # Run pytest
+make validate       # Validate catalog
+make audit          # Repository audit
+```
+
+**This applies to:**
+- ✅ ALL manual commands
+- ✅ ALL agent tasks and deployments
+- ✅ ALL build/test/validation operations
+- ✅ ALL file operations that reference build outputs
+
+**Never:**
+- ❌ Run builds from `/home/eirikr/Playground/PhysicsForge/synthesis/` directly
+- ❌ Use relative paths that assume synthesis/ as working directory
+- ❌ Deploy agents without explicitly setting working directory context
+- ❌ Execute scripts without confirming you're in project root first
+
+**Verification before ANY build operation:**
+```bash
+pwd                 # Must show: /home/eirikr/Playground/PhysicsForge
+ls -la Makefile     # Must exist at project root
+```
+
+---
+
 ## Project Overview
 
 This is a theoretical physics and advanced mathematics research repository synthesizing unified field theories, quantum-gravitational models, and crystalline spacetime engineering. The work integrates:

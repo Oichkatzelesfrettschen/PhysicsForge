@@ -20,6 +20,7 @@ PDFLATEX_LOG="$LOG_DIR/pdflatex_compile.log"
 echo "Starting compilation of $MAIN..."
 
 # Pre-clean potentially stale aux files that can carry bad encodings (preserve .ind to honor test flow)
+# CRITICAL: .out file can get UTF-16 encoded by hyperref, causing "File ended while scanning use of \@@BOOKMARK"
 rm -f main.{aux,idx,ilg,out,toc,lot,lof,nav,snm,bbl,blg} 2>/dev/null || true
 
 # Convert any UTF-16 .tex files to UTF-8 to avoid hyperref bookmark crashes
@@ -51,9 +52,17 @@ if command -v latexmk >/dev/null 2>&1; then
   # Pre-pass: emit aux/out/toc to scrub encoding artifacts before latexmk, but skip if .ind exists (tests edit it)
   if command -v pdflatex >/dev/null 2>&1 && [ ! -f "${MAIN%.tex}.ind" ]; then
     pdflatex -interaction=nonstopmode "$MAIN" >/dev/null 2>&1 || true
+    # CRITICAL: .out file from first pass can be UTF-16, scrub it to UTF-8
     for ext in aux out toc ind ilg idx lot lof nav snm; do
       f="${MAIN%.tex}.$ext"
       if [ -f "$f" ]; then
+        # Detect UTF-16 and convert to UTF-8, then strip BOM/NUL
+        enc=$(file -bi "$f" 2>/dev/null || echo "")
+        bom=$(xxd -p -l 2 "$f" 2>/dev/null || echo "")
+        if [[ "$enc" == *"charset=utf-16"* ]] || [[ "$bom" == "feff" ]] || [[ "$bom" == "fffe" ]]; then
+          iconv -f utf-16 -t utf-8 "$f" > "$f".clean && mv "$f".clean "$f" || true
+        fi
+        # Always strip BOM and NUL
         perl -0777 -pe 's/\x{FEFF}//g; s/\x00//g' "$f" > "$f".clean && mv "$f".clean "$f"
       fi
     done
@@ -62,13 +71,20 @@ if command -v latexmk >/dev/null 2>&1; then
   if latexmk -pdf "$MAIN" > "$LATEXMK_LOG" 2>&1; then
     echo "Compilation successful. Output at $(dirname "$MAIN")/$(basename "$MAIN" .tex).pdf"
   else
-    # Attempt one automatic scrub-and-rerun to handle stray BOM/NUL in aux files
+    # Attempt one automatic scrub-and-rerun to handle stray BOM/NUL/UTF-16 in aux files
     echo "latexmk failed; attempting aux scrub and one retry..." >&2
-    # Hard-clean critical aux files that often get truncated on abort (keep .ind for tests)
+    # Hard-clean critical aux files that often get truncated or UTF-16 encoded on abort (keep .ind for tests)
     rm -f "${MAIN%.tex}".{aux,out,toc,lof,lot,nav,snm} 2>/dev/null || true
     for ext in aux out toc ind ilg idx lot lof nav snm; do
       f="${MAIN%.tex}.$ext"
       if [ -f "$f" ]; then
+        # Detect UTF-16 and convert to UTF-8, then strip BOM/NUL
+        enc=$(file -bi "$f" 2>/dev/null || echo "")
+        bom=$(xxd -p -l 2 "$f" 2>/dev/null || echo "")
+        if [[ "$enc" == *"charset=utf-16"* ]] || [[ "$bom" == "feff" ]] || [[ "$bom" == "fffe" ]]; then
+          iconv -f utf-16 -t utf-8 "$f" > "$f".clean && mv "$f".clean "$f" || true
+        fi
+        # Always strip BOM and NUL
         perl -0777 -pe 's/\x{FEFF}//g; s/\x00//g' "$f" > "$f".clean && mv "$f".clean "$f"
       fi
     done

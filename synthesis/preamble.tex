@@ -19,7 +19,23 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mathtools}
+\usepackage{cancel}       % Strike-through in equations
 \usepackage{physics}      % Dirac notation, derivatives
+
+%------------------------------------------------------------------------------
+% COLORS (must come before graphics)
+%------------------------------------------------------------------------------
+\usepackage{xcolor}
+% PhysicsForge standard colors
+\definecolor{scalarblue}{RGB}{0,102,204}      % Scalar-vacuum sector
+\definecolor{symmgreen}{RGB}{34,139,34}       % Exceptional symmetries
+\definecolor{gemorange}{RGB}{255,140,0}       % Gravitoelectromagnetism
+\definecolor{forgepurple}{RGB}{128,0,128}     % PhysicsForge unified
+% Legacy color names (backward compatibility)
+\definecolor{aetherblue}{RGB}{0,102,204}
+\definecolor{genesisgreen}{RGB}{34,139,34}
+\definecolor{paisred}{RGB}{204,0,0}
+\definecolor{unifiedpurple}{RGB}{128,0,128}
 
 %------------------------------------------------------------------------------
 % GRAPHICS AND FIGURES
@@ -28,24 +44,19 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing,shapes.geometric}
+\usepgfplotslibrary{fillbetween}  % For contour prepared functionality
+\usepgfplotslibrary{colormaps}    % For enhanced colormap support
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing,shapes.geometric,cd}
+\usepackage{circuitikz}  % For circuit diagrams
+\usepackage{tikz-cd}     % For commutative diagrams
 
 %------------------------------------------------------------------------------
 % TABLES
 %------------------------------------------------------------------------------
+\usepackage{array}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{multirow}
-\usepackage{array}
-
-%------------------------------------------------------------------------------
-% COLORS
-%------------------------------------------------------------------------------
-\usepackage{xcolor}
-\definecolor{aetherblue}{RGB}{0,102,204}
-\definecolor{genesisgreen}{RGB}{34,139,34}
-\definecolor{paisred}{RGB}{204,0,0}
-\definecolor{unifiedpurple}{RGB}{128,0,128}
 
 %------------------------------------------------------------------------------
 % UNITS AND FORMATTING
@@ -62,7 +73,7 @@
 % Neutralize stray zero-width BOM/ZWSP if they sneak into sources
 \DeclareUnicodeCharacter{FEFF}{}
 \DeclareUnicodeCharacter{200B}{}
-\usepackage[unicode=false,bookmarks=false]{hyperref}
+\usepackage[pdfencoding=auto,bookmarks=false]{hyperref}
 \hypersetup{
   colorlinks=true,
   linkcolor=blue,
@@ -127,19 +138,31 @@
 \newtheorem{note}[theorem]{Note}
 
 %------------------------------------------------------------------------------
-% CUSTOM MACROS: FRAMEWORK ATTRIBUTION
+% CUSTOM MACROS: FRAMEWORK ATTRIBUTION (PhysicsForge Standard Nomenclature)
 %------------------------------------------------------------------------------
-\newcommand{\aetherattr}{\textsuperscript{\color{aetherblue}[A]}}
-\newcommand{\genesisattr}{\textsuperscript{\color{genesisgreen}[G]}}
-\newcommand{\paisattr}{\textsuperscript{\color{paisred}[P]}}
-\newcommand{\unifiedattr}{\textsuperscript{\color{unifiedpurple}[U]}}
-\newcommand{\mathgenericattr}{\textsuperscript{[M]}}
+% NEW STANDARD PHYSICS NOMENCLATURE
+\newcommand{\scalarattr}{\textsuperscript{\color{scalarblue}[S]}}        % Scalar-vacuum sector
+\newcommand{\symmattr}{\textsuperscript{\color{symmgreen}[X]}}           % eXceptional symmetries
+\newcommand{\gemattr}{\textsuperscript{\color{gemorange}[G]}}            % Gravitoelectromagnetism
+\newcommand{\physforgeattr}{\textsuperscript{\color{forgepurple}[P]}}    % PhysicsForge unified
+\newcommand{\mathgenericattr}{\textsuperscript{[M]}}                     % Mathematical/generic
 
 % Inline framework names (for narrative text)
-\newcommand{\aether}{\textcolor{aetherblue}{Aether}}
-\newcommand{\genesis}{\textcolor{genesisgreen}{Genesis}}
-\newcommand{\pais}{\textcolor{paisred}{Pais}}
-\newcommand{\unified}{\textcolor{unifiedpurple}{Unified}}
+\newcommand{\scalarsector}{\textcolor{scalarblue}{scalar-vacuum}}
+\newcommand{\symmsector}{\textcolor{symmgreen}{symmetry}}
+\newcommand{\gemsector}{\textcolor{gemorange}{GEM}}
+\newcommand{\physforge}{\textcolor{forgepurple}{PhysicsForge}}
+
+% BACKWARD COMPATIBILITY (temporary during migration)
+% Legacy macro names preserved as aliases
+\let\aetherattr\scalarattr
+\let\genesisattr\symmattr
+\let\paisattr\gemattr
+\let\unifiedattr\physforgeattr
+\let\aether\scalarsector
+\let\genesis\symmsector
+\let\pais\gemsector
+\let\unified\physforge
 
 %------------------------------------------------------------------------------
 % CUSTOM MACROS: EQUATION TAGS
@@ -282,6 +305,16 @@
 %------------------------------------------------------------------------------
 \setcounter{tocdepth}{2}     % Include subsections in TOC
 \setcounter{secnumdepth}{3}  % Number subsubsections
+
+%------------------------------------------------------------------------------
+% SHADED BOX ENVIRONMENT
+%------------------------------------------------------------------------------
+\usepackage{framed}
+% xcolor already loaded above
+\definecolor{shadecolor}{gray}{0.95}
+\newenvironment{shadedbox}%
+  {\begin{shaded}\begin{quote}}%
+  {\end{quote}\end{shaded}}%
 
 %==============================================================================
 % END PREAMBLE

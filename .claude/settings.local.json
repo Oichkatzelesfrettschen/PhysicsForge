@@ -111,7 +111,18 @@
       "mcp__filesystem__write_file",
       "mcp__filesystem__read_text_file",
       "Bash(ssh:*)",
-      "Bash(gh repo create:*)"
+      "Bash(gh repo create:*)",
+      "Bash(bash scripts/compile.sh:*)",
+      "Bash(xxd:*)",
+      "Bash(bash:*)",
+      "Bash(latexmk:*)",
+      "Bash(kpsewhich:*)",
+      "Bash(./comprehensive_latex_fix.sh:*)",
+      "Bash(./fix_unicode.sh:*)",
+      "Bash(cut:*)",
+      "Bash(continue)",
+      "Bash(new=\"$f/eq_ae/eq_sc\")",
+      "Bash(new=\"$f/eq_aether_/eq_scalar_\")"
     ],
     "deny": [],
     "ask": []

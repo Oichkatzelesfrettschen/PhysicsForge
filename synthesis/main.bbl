@@ -1,3 +1,100 @@
-\begin{thebibliography}{}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{KMM{\etalchar{+}}21}
+
+\bibitem[Adl95]{Adler1995Quaternionic}
+Stephen~L. Adler.
+\newblock {\em Quaternionic Quantum Mechanics and Quantum Fields}.
+\newblock Oxford University Press, 1995.
+
+\bibitem[BH10]{Baez2010Division}
+John~C. Baez and John Huerta.
+\newblock Division algebras and supersymmetry i.
+\newblock In R.~Doran, G.~Friedman, and J.~Rosenberg, editors, {\em
+  Superstrings, Geometry, Topology, and C*-algebras}, pages 65--80. AMS, 2010.
+
+\bibitem[BLV11]{Barcelo2011Analogue}
+Carlos Barceló, Stefano Liberati, and Matt Visser.
+\newblock Analogue gravity.
+\newblock {\em Living Reviews in Relativity}, 14(1):3, 2011.
+
+\bibitem[Cal17]{Calcagni2017Multifractional}
+Gianluca Calcagni.
+\newblock {\em Classical and Quantum Cosmology}.
+\newblock Springer, 2017.
+
+\bibitem[Cas48]{Casimir1948Original}
+H.~B.~G. Casimir.
+\newblock On the attraction between two perfectly conducting plates.
+\newblock {\em Proc. Kon. Nederland. Akad. Wetensch.}, B51:793--795, 1948.
+
+\bibitem[KLMS16]{Khemani2016TC}
+Vedika Khemani, Achilleas Lazarides, Roderich Moessner, and S.~L. Sondhi.
+\newblock Phase structure of driven quantum systems.
+\newblock {\em Physical Review Letters}, 116(25):250401, 2016.
+
+\bibitem[KMM{\etalchar{+}}21]{Kyprianidis2021Prethermal}
+A.~Kyprianidis, F.~Machado, W.~Morong, P.~Becker, K.~S. Collins, D.~V. Else,
+  L.~Feng, P.~W. Hess, C.~Nayak, G.~Pagano, A.~C. Potter, M.~P. Zaletel, N.~Y.
+  Yao, and C.~Monroe.
+\newblock Observation of a prethermal discrete time crystal.
+\newblock {\em Science}, 372(6547):1192--1196, 2021.
+
+\bibitem[KMS08]{Konopka2008QuantumGraphity}
+Tomasz Konopka, Fotini Markopoulou, and Simone Severini.
+\newblock Quantum graphity: a model of emergent locality.
+\newblock {\em Physical Review D}, 77(10):104029, 2008.
+
+\bibitem[Lam97]{Lamoreaux1997}
+S.~K. Lamoreaux.
+\newblock Demonstration of the casimir force in the 0.6 to 6 $\mu$m range.
+\newblock {\em Physical Review Letters}, 78:5--8, 1997.
+
+\bibitem[LZW{\etalchar{+}}24]{RydbergFracDTC2024}
+Bang Liu, Li-Hua Zhang, Qi-Feng Wang, Yu~Ma, Tian-Yu Zhang, Jia-Hui Wu, Xu-Gen
+  Liu, Chuan-Sheng Li, Ke-Xin Gong, Jian-Ming Zhao, and Jing Zhang.
+\newblock Higher-order and fractional discrete time crystals in floquet-driven
+  rydberg atoms.
+\newblock {\em Nature Communications}, 15(1):4893, 2024.
+
+\bibitem[Mil01]{Milton2001}
+Kimball~A. Milton.
+\newblock {\em The Casimir Effect: Physical Manifestations of Zero-Point
+  Energy}.
+\newblock World Scientific, 2001.
+
+\bibitem[Pad12]{Padmanabhan2010Holographic}
+T.~Padmanabhan.
+\newblock Emergence of cosmic space and the generalized holographic
+  equipartition.
+\newblock {\em Physical Review D}, 86(10):104013, 2012.
+
+\bibitem[PAG{\etalchar{+}}99]{Perlmutter1999}
+S.~Perlmutter, G.~Aldering, G.~Goldhaber, R.~A. Knop, P.~Nugent, P.~G. Castro,
+  S.~Deustua, S.~Fabbro, D.~E. Groom, I.~M. Hook, A.~G. Kim, M.~Y. Kim, J.~C.
+  Lee, N.~J. Nunes, R.~Pain, C.~R. Pennypacker, R.~Quimby, C.~Lidman, R.~S.
+  Ellis, M.~Irwin, R.~G. McMahon, P.~Ruiz-Lapuente, N.~Walton, B.~Schaefer,
+  B.~J. Boyle, A.~V. Filippenko, T.~Matheson, A.~S. Fruchter, N.~Panagia,
+  H.~J.~M. Newberg, and W.~J. Couch.
+\newblock Measurements of omega and lambda from 42 high-redshift supernovae.
+\newblock {\em The Astrophysical Journal}, 517(2):565, 1999.
+
+\bibitem[Pai19]{Pais2019Patent}
+Salvatore~Cezar Pais.
+\newblock High frequency gravitational wave generator, June 2019.
+
+\bibitem[Pod99]{Podlubny1999Fractional}
+Igor Podlubny.
+\newblock {\em Fractional Differential Equations}.
+\newblock Academic Press, 1999.
+
+\bibitem[RFC{\etalchar{+}}98]{Riess1998}
+Adam~G. Riess, Alexei~V. Filippenko, Peter Challis, Alejandro Clocchiatti, Alan
+  Diercks, Peter~M. Garnavich, Ron~L. Gilliland, Craig~J. Hogan, Saurabh Jha,
+  Robert~P. Kirshner, B.~Leibundgut, M.~M. Phillips, David Reiss, Brian~P.
+  Schmidt, Robert~A. Schommer, R.~Chris Smith, J.~Spyromilio, Christopher
+  Stubbs, Nicholas~B. Suntzeff, and John Tonry.
+\newblock Observational evidence from supernovae for an accelerating universe
+  and a cosmological constant.
+\newblock {\em The Astronomical Journal}, 116(3):1009, 1998.
 
 \end{thebibliography}
