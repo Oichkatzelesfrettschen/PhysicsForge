@@ -22,13 +22,13 @@ jobs:
 
       - name: Build PDF with LuaLaTeX
         uses: xu-cheng/latex-action@v4
+        continue-on-error: true
         with:
           root_file: main.tex
           working_directory: synthesis
           latexmk_shell_escape: true
           latexmk_use_lualatex: true
           args: -file-line-error -interaction=nonstopmode -f -outdir=../build
-          continue_on_error: true
 
       - name: Check PDF exists
         run: |
