@@ -48,6 +48,7 @@ jobs:
           retention-days: 3
 
   build-web:
+    needs: build-pdf
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,42 +56,35 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Install TeXLive (small scheme) for figure generation
+      - name: Install TeXLive and generate SVG figures
         uses: xu-cheng/texlive-action@v2
         with:
           scheme: small
-          packages: >-
-            latexmk
-            xetex
-            dvisvgm
-            standalone
-            pgf
-            pgfplots
-            fontspec
-            unicode-math
+          run: |
+            # Install required packages for figure generation
+            tlmgr install latexmk xetex dvisvgm standalone pgf pgfplots fontspec unicode-math
 
-      - name: Generate SVG figures from TikZ (XDV→SVG with WOFF2)
-        run: |
-          mkdir -p build/xdv figures/svg site/figs
-          shopt -s nullglob
-          echo "=== Generating SVG figures from TikZ ==="
-          for f in figures/tikz/*.tex; do
-            if [ -f "$f" ]; then
-              base=$(basename "$f" .tex)
-              echo "Processing: $base"
-              # XeLaTeX to XDV (not PDF)
-              xelatex --no-pdf -interaction=nonstopmode -halt-on-error \
-                -output-directory=build/xdv "$f" || echo "Warning: xelatex failed for $f"
-              # XDV to SVG with WOFF2 embedded fonts
-              if [ -f "build/xdv/${base}.xdv" ]; then
-                dvisvgm --exact --font-format=woff2 -n -a \
-                  -o "figures/svg/${base}.svg" "build/xdv/${base}.xdv" || echo "Warning: dvisvgm failed for $base"
+            # Generate SVG figures from TikZ (XDV→SVG with WOFF2)
+            mkdir -p build/xdv figures/svg site/figs
+            shopt -s nullglob
+            echo "=== Generating SVG figures from TikZ ==="
+            for f in figures/tikz/*.tex; do
+              if [ -f "$f" ]; then
+                base=$(basename "$f" .tex)
+                echo "Processing: $base"
+                # XeLaTeX to XDV (not PDF)
+                xelatex --no-pdf -interaction=nonstopmode -halt-on-error \
+                  -output-directory=build/xdv "$f" || echo "Warning: xelatex failed for $f"
+                # XDV to SVG with WOFF2 embedded fonts
+                if [ -f "build/xdv/${base}.xdv" ]; then
+                  dvisvgm --exact --font-format=woff2 -n -a \
+                    -o "figures/svg/${base}.svg" "build/xdv/${base}.xdv" || echo "Warning: dvisvgm failed for $base"
+                fi
               fi
-            fi
-          done
-          # Copy generated SVGs to site
-          cp figures/svg/*.svg site/figs/ 2>/dev/null || echo "No SVGs generated"
-          echo "=== Figure generation complete ==="
+            done
+            # Copy generated SVGs to site
+            cp figures/svg/*.svg site/figs/ 2>/dev/null || echo "No SVGs generated"
+            echo "=== Figure generation complete ==="
 
       - name: Copy PDF to site
         uses: actions/download-artifact@v4
@@ -104,7 +98,7 @@ jobs:
           path: site
 
   deploy:
-    needs: [build-web]
+    needs: [build-pdf, build-web]
     runs-on: ubuntu-latest
     environment:
       name: github-pages

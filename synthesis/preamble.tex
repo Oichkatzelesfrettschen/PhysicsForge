@@ -71,8 +71,12 @@
 % CROSS-REFERENCING AND HYPERLINKS
 %------------------------------------------------------------------------------
 % Neutralize stray zero-width BOM/ZWSP if they sneak into sources
-\DeclareUnicodeCharacter{FEFF}{}
-\DeclareUnicodeCharacter{200B}{}
+% Note: \DeclareUnicodeCharacter only works with pdflatex; LuaLaTeX and XeLaTeX handle Unicode natively
+\usepackage{iftex}
+\ifPDFTeX
+  \DeclareUnicodeCharacter{FEFF}{}
+  \DeclareUnicodeCharacter{200B}{}
+\fi
 \usepackage[pdfencoding=auto,bookmarks=false]{hyperref}
 \hypersetup{
   colorlinks=true,
@@ -99,7 +103,8 @@
 % INDEX
 %------------------------------------------------------------------------------
 \usepackage{makeidx}
-\newcommand{\hyperxindexformat}[2]{}
+% Use \providecommand to avoid conflicts with hyperref's internal definition
+\providecommand{\hyperxindexformat}[2]{}
 \makeindex
 
 % Provide abstract environment for book class (tests expect it)
