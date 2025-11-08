@@ -29,43 +29,117 @@ MAP = {
     "\u2192": "->",
     "\u2190": "<-",
     "\u2194": "<->",
+    "\u21A6": "|->",  # maps to
+    "\u21D2": "=>",  # implies
+    "\u21D0": "<=",  # implied by
+    "\u21D4": "<=>",  # iff
     # math symbols
-    "\u00D7": "x",   # multiplication sign
+    "\u00D7": "*",   # multiplication sign
+    "\u00F7": "/",   # division sign
+    "\u00B1": "+/-", # plus-minus
+    "\u2213": "-/+", # minus-plus
     "\u2260": "!=",  # not equal
-    "\u2248": "~",   # approximately
+    "\u2248": "~=",  # approximately
+    "\u2243": "~=",  # asymptotically equal
+    "\u2245": "~=",  # approximately equal
+    "\u2261": "==",  # identical to
+    "\u2264": "<=",  # less than or equal
+    "\u2265": ">=",  # greater than or equal
+    "\u2208": "in",  # element of
+    "\u2209": "not in",  # not element of
+    "\u2282": "subset",  # subset of
+    "\u2283": "superset",  # superset of
+    "\u221E": "infinity",  # infinity
     "\u221A": "sqrt",  # square root
+    "\u221B": "cbrt",  # cube root
     "\u222B": "integral",   # integral
+    "\u222E": "contour_integral",  # contour integral
     "\u2211": "sum",   # summation
-    "\u220F": "prod",  # product
+    "\u220F": "product",  # product
     "\u2207": "nabla",
-    "\u2202": "partial",
-    # greek letters (subset common)
-    "\u03B1": " alpha",
-    "\u03B2": " beta",
-    "\u03B3": " gamma",
-    "\u03B4": " delta",
-    "\u03B5": " epsilon",
-    "\u03B6": " zeta",
-    "\u03B7": " eta",
-    "\u03BA": " kappa",
-    "\u03BC": " mu",
-    "\u03BE": " xi",
-    "\u03C0": " pi",
-    "\u03C1": " rho",
-    "\u03C3": " sigma",
-    "\u03C6": " phi",
-    "\u03C8": " psi",
-    "\u03C9": " omega",
-    "\u0394": " Delta",
-    "\u039B": " Lambda",
-    # superscripts/subscripts digits and signs
+    "\u2202": "d",  # partial derivative
+    "\u2206": "Delta",  # increment
+    "\u2227": "and",  # logical and
+    "\u2228": "or",   # logical or
+    "\u00AC": "not",  # logical not
+    "\u2200": "forall",  # for all
+    "\u2203": "exists",  # there exists
+    "\u2234": "therefore",  # therefore
+    "\u2235": "because",   # because
+    "\u220E": "(QED)",  # end of proof
+    "\u25A1": "(box)",  # box
+    "\u2295": "(+)",  # direct sum / XOR
+    "\u2212": "-",  # minus sign (different from hyphen)
+    "\u0304": "",   # combining overline (remove)
+    "\U0001D544": "M",  # mathematical bold capital M (Monster group)
+    # greek letters (lowercase)
+    "\u03B1": "alpha",
+    "\u03B2": "beta",
+    "\u03B3": "gamma",
+    "\u03B4": "delta",
+    "\u03B5": "eps",
+    "\u03B6": "zeta",
+    "\u03B7": "eta",
+    "\u03B8": "theta",
+    "\u03B9": "iota",
+    "\u03BA": "kappa",
+    "\u03BB": "lambda",
+    "\u03BC": "mu",
+    "\u03BD": "nu",
+    "\u03BE": "xi",
+    "\u03C0": "pi",
+    "\u03C1": "rho",
+    "\u03C3": "sigma",
+    "\u03C4": "tau",
+    "\u03C5": "upsilon",
+    "\u03C6": "phi",
+    "\u03C7": "chi",
+    "\u03C8": "psi",
+    "\u03C9": "omega",
+    # greek letters (uppercase)
+    "\u0391": "ALPHA",
+    "\u0392": "BETA",
+    "\u0393": "GAMMA",
+    "\u0394": "DELTA",
+    "\u0395": "EPSILON",
+    "\u0396": "ZETA",
+    "\u0397": "ETA",
+    "\u0398": "THETA",
+    "\u039B": "LAMBDA",
+    "\u039E": "XI",
+    "\u03A0": "PI",
+    "\u03A3": "SIGMA",
+    "\u03A6": "PHI",
+    "\u03A8": "PSI",
+    "\u03A9": "OMEGA",
+    # special letters
+    "\u210F": "hbar",  # h-bar
+    "\u2113": "ell",   # script ell
+    # blackboard bold
+    "\u211D": "R",  # real numbers
+    "\u2102": "C",  # complex numbers
+    "\u210D": "H",  # quaternions
+    "\u211A": "Q",  # rationals
+    "\u2124": "Z",  # integers
+    "\u2115": "N",  # naturals
+    "\U0001D546": "O",  # octonions
+    "\U0001D54A": "S",  # sphere
+    # superscripts digits
     "\u00B2": "^2",
     "\u00B3": "^3",
     "\u00B9": "^1",
+    "\u2070": "^0",
     "\u2074": "^4",
     "\u2075": "^5",
     "\u2076": "^6",
+    "\u2077": "^7",
+    "\u2078": "^8",
+    "\u2079": "^9",
+    "\u207A": "^+",
     "\u207B": "^-",
+    "\u207D": "^(",
+    "\u207E": "^)",
+    # subscripts digits
     "\u2080": "_0",
     "\u2081": "_1",
     "\u2082": "_2",
@@ -76,9 +150,35 @@ MAP = {
     "\u2087": "_7",
     "\u2088": "_8",
     "\u2089": "_9",
-    # checkmarks/crosses
+    "\u208A": "_+",
+    "\u208B": "_-",
+    "\u208D": "_(",
+    "\u208E": "_)",
+    # Latin subscripts (mathematical)
+    "\u1D62": "_i",  # subscript i
+    "\u2C7C": "_j",  # subscript j
+    "\u2C6A": "_k",  # subscript k
+    "\u2097": "_l",  # subscript l
+    "\u2098": "_m",  # subscript m
+    "\u2099": "_n",  # subscript n
+    "\u209A": "_p",  # subscript p
+    "\u209B": "_r",  # subscript r
+    "\u209C": "_s",  # subscript s
+    "\u209D": "_t",  # subscript t
+    "\u1D65": "_v",  # subscript v
+    "\u1D6A": "_x",  # subscript x
+    # smart quotes
+    "\u2018": "'",  # left single quote
+    "\u2019": "'",  # right single quote
+    "\u201C": '"',  # left double quote
+    "\u201D": '"',  # right double quote
+    # checkmarks/crosses/warnings
     "\u2713": "[OK]",
     "\u2717": "[X]",
+    "\u26A0": "[!]",  # warning sign
+    "\u2705": "[OK]",  # check mark button
+    "\u2193": "v",  # down arrow
+    "\u2022": "*",  # bullet
     # box drawing to ASCII dashes
     "\u2500": "-",
     "\u2502": "|",
@@ -89,6 +189,8 @@ MAP = {
     "\u2514": "+",
     "\u2510": "+",
     "\u2518": "+",
+    # degrees
+    "\u00B0": "deg",
 }
 
 
