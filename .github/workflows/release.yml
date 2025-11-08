@@ -1,0 +1,37 @@
+name: Release PDF
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build PDF with LuaLaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          working_directory: synthesis
+          latexmk_shell_escape: true
+          latexmk_use_lualatex: true
+          args: -file-line-error -interaction=nonstopmode -f -outdir=../build
+
+      - name: Rename PDF with version tag
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          cp build/main.pdf build/PhysicsForge-${VERSION}.pdf
+
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/PhysicsForge-${{ github.ref_name }}.pdf
+            build/main.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
