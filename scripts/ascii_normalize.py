@@ -215,9 +215,16 @@ def normalize_text(s: str) -> str:
     while prev != s:
         prev = s
         s = _re.sub(r"\^([0-9])\^", r"^\1", s)
-    # Collapse multiple spaces
-    s = ' '.join(s.split())
-    return s
+    # Collapse multiple spaces on same line (PRESERVE NEWLINES AND INDENTATION!)
+    lines = s.splitlines(keepends=True)
+    result_lines = []
+    import re as _re2
+    for line in lines:
+        # Preserve leading/trailing whitespace, collapse only internal consecutive spaces
+        # This regex replaces 2+ spaces with single space, but only in middle of line
+        collapsed = _re2.sub(r'(?<=\S)  +(?=\S)', ' ', line)
+        result_lines.append(collapsed)
+    return ''.join(result_lines)
 
 
 def main() -> None:
