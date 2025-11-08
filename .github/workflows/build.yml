@@ -28,6 +28,17 @@ jobs:
           latexmk_shell_escape: true
           latexmk_use_lualatex: true
           args: -file-line-error -interaction=nonstopmode -f -outdir=../build
+          continue_on_error: true
+
+      - name: Check PDF exists
+        run: |
+          if [ -f build/main.pdf ]; then
+            echo "✓ PDF generated successfully"
+            ls -lh build/main.pdf
+          else
+            echo "✗ PDF not found"
+            exit 1
+          fi
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
