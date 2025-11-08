@@ -219,7 +219,7 @@ def monster_order_factorization() -> Dict[int, int]:
     """
     Return prime factorization of Monster group order
 
-    |M| = 2^46 · 3^20 · 5^9 · 7^6 · 11^2 · 13^3 · 17 · 19 · 23 · 29 · 31 · 41 · 47 · 59 · 71
+    |M| = 2^46 * 3^20 * 5^9 * 7^6 * 11^2 * 13^3 * 17 * 19 * 23 * 29 * 31 * 41 * 47 * 59 * 71
 
     Returns:
         Dictionary {prime: exponent}

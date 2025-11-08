@@ -13,8 +13,8 @@ from typing import Dict, Tuple
 
 # Exact constants (SI 2019 definitions)
 c = 299792458.0 # m/s (exact)
-h = 6.62607015e-34 # J·s (exact)
-hbar = h / (2 * math.pi) # J·s (exact)
+h = 6.62607015e-34 # J*s (exact)
+hbar = h / (2 * math.pi) # J*s (exact)
 
 # Measured constants (CODATA 2018)
 G_mean = 6.67430e-11 # m^3 kg^-1 s^-2
@@ -147,7 +147,7 @@ def print_planck_units(G: float = G_mean) -> None:
     print("=" * 70)
     print(f"Gravitational constant: G = {G:.5e} m^3 kg^-1 s^-2")
     print(f"Speed of light: c = {c:.0f} m/s (exact)")
-    print(f"Reduced Planck constant: hbar = {hbar:.10e} J·s (exact)")
+    print(f"Reduced Planck constant: hbar = {hbar:.10e} J*s (exact)")
     print("=" * 70)
 
     for name, value in units.items():

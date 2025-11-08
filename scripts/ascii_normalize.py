@@ -35,6 +35,7 @@ MAP = {
     "\u21D4": "<=>",  # iff
     # math symbols
     "\u00D7": "*",   # multiplication sign
+    "\u00B7": "*",   # middle dot (multiplication)
     "\u00F7": "/",   # division sign
     "\u00B1": "+/-", # plus-minus
     "\u2213": "-/+", # minus-plus
