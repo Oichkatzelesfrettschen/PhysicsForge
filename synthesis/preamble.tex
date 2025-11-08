@@ -8,9 +8,16 @@
 %------------------------------------------------------------------------------
 % ENCODING AND FONTS
 %------------------------------------------------------------------------------
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% Use fontspec for LuaLaTeX/XeLaTeX (Unicode engines), fontenc for pdfLaTeX
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}         % UTF-8 input encoding (pdflatex only)
+  \usepackage[T1]{fontenc}            % T1 font encoding (pdflatex only)
+  \usepackage{lmodern}                % Latin Modern fonts
+\else
+  \usepackage{fontspec}               % Modern font selection (LuaLaTeX/XeLaTeX)
+  \setmainfont{Latin Modern Roman}    % Use Latin Modern for consistency
+\fi
 
 %------------------------------------------------------------------------------
 % MATHEMATICS
@@ -72,7 +79,7 @@
 %------------------------------------------------------------------------------
 % Neutralize stray zero-width BOM/ZWSP if they sneak into sources
 % Note: \DeclareUnicodeCharacter only works with pdflatex; LuaLaTeX and XeLaTeX handle Unicode natively
-\usepackage{iftex}
+% (iftex already loaded in ENCODING AND FONTS section)
 \ifPDFTeX
   \DeclareUnicodeCharacter{FEFF}{}
   \DeclareUnicodeCharacter{200B}{}
