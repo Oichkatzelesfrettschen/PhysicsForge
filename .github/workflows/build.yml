@@ -72,6 +72,9 @@ jobs:
         with:
           scheme: small
           run: |
+            # Update tlmgr itself first
+            tlmgr update --self
+
             # Install required packages for figure generation
             tlmgr install latexmk xetex dvisvgm standalone pgf pgfplots fontspec unicode-math
 
