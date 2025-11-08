@@ -149,3 +149,57 @@ ascii_normalize:
 	python scripts/ascii_normalize.py --base-dir $(BASE_DIR) --path docs --path synthesis
 todo:
 	python scripts/todowrite.py --base-dir $(BASE_DIR)
+
+# ==============================================================================
+# GitHub Pages Publishing Targets
+# ==============================================================================
+
+.PHONY: svg figures clean-svg web
+
+# Generate SVG figures from TikZ (XDV → SVG with WOFF2 fonts)
+svg: figures
+
+figures:
+	@echo "=== Generating SVG figures from TikZ ==="
+	@mkdir -p build/xdv figures/svg
+	@for f in figures/tikz/*.tex; do \
+		if [ -f "$$f" ]; then \
+			base=$$(basename "$$f" .tex); \
+			echo "Processing: $$base"; \
+			xelatex --no-pdf -interaction=nonstopmode -halt-on-error \
+				-output-directory=build/xdv "$$f" || echo "Warning: xelatex failed for $$f"; \
+			xdv_file=""; \
+			if [ -f "$${base}.xdv" ]; then \
+				xdv_file="$${base}.xdv"; \
+				mv "$${base}.xdv" "build/xdv/$${base}.xdv" 2>/dev/null || true; \
+			elif [ -f "build/xdv/$${base}.xdv" ]; then \
+				xdv_file="build/xdv/$${base}.xdv"; \
+			fi; \
+			if [ -n "$$xdv_file" ] && [ -f "build/xdv/$${base}.xdv" ]; then \
+				dvisvgm --exact --font-format=woff2 -n -a \
+					-o "figures/svg/$${base}.svg" "build/xdv/$${base}.xdv" || echo "Warning: dvisvgm failed for $$base"; \
+			fi; \
+		fi; \
+	done
+	@echo "=== Copying SVGs to site ==="
+	@mkdir -p site/figs
+	@cp figures/svg/*.svg site/figs/ 2>/dev/null || echo "No SVGs to copy"
+	@echo "=== Figure generation complete ==="
+
+# Build everything for web deployment
+web: latex svg
+	@echo "=== Preparing site for deployment ==="
+	@mkdir -p site/pdf
+	@cp synthesis/main.pdf site/pdf/ 2>/dev/null || cp build/main.pdf site/pdf/ || echo "Warning: PDF not found"
+	@echo "=== Web build complete. Site ready in site/ ==="
+
+# Clean SVG build artifacts
+clean-svg:
+	rm -rf build/xdv figures/svg site/figs
+	@echo "Cleaned SVG build artifacts"
+
+# Serve locally for testing (requires Python 3)
+serve:
+	@echo "=== Starting local server at http://localhost:8000 ==="
+	@cd site && python3 -m http.server 8000
+

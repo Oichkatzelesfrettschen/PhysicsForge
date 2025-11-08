@@ -116,3 +116,10 @@ equation_catalog.csv
 equation_summary.txt
 notation_conflicts.txt
 top_equations.txt
+# GitHub Pages build artifacts
+build/
+figures/svg/
+site/figs/
+site/pdf/
+*.xdv
+
