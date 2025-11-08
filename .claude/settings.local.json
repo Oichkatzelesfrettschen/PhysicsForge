@@ -122,7 +122,21 @@
       "Bash(cut:*)",
       "Bash(continue)",
       "Bash(new=\"$f/eq_ae/eq_sc\")",
-      "Bash(new=\"$f/eq_aether_/eq_scalar_\")"
+      "Bash(new=\"$f/eq_aether_/eq_scalar_\")",
+      "WebFetch(domain:www.gnu.org)",
+      "mcp__fetch__fetch",
+      "mcp__filesystem__search_files",
+      "mcp__filesystem__list_directory",
+      "Bash(curl:*)",
+      "Bash(/home/eirikr/Playground/PhysicsForge/LICENSE)",
+      "Bash(xelatex:*)",
+      "Bash(dvisvgm:*)",
+      "Bash(/usr/bin/find:*)",
+      "Bash(fc-list:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh run watch:*)",
+      "Bash(gh api:*)"
     ],
     "deny": [],
     "ask": []
