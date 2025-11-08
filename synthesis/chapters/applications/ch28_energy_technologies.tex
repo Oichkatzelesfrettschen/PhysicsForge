@@ -38,13 +38,13 @@ where $\lambda$ and $\kappa$ are coupling constants with dimensions [energy]$^{-
 \subsection{Energy Extraction Principle}
 
 Energy harvesting relies on creating spatial gradients in the vacuum energy density through boundary conditions. Following the generalized Casimir formalism, the extractable energy per unit volume between two parallel plates separated by distance $a$ is:
-\input{modules/equations/eq_aether_general_energy_extraction}
+\input{modules/equations/eq_scalar_general_energy_extraction}
 
 \subsection{Scalar Modulation of Casimir Force}
 
 Scalar field coupling modulates the Casimir force amplitude through direct interaction with quantum vacuum fluctuations. The modified Casimir force incorporating scalar field corrections is:
 
-\input{modules/equations/eq_aether_casimir_scalar_modulation}
+\input{modules/equations/eq_scalar_casimir_scalar_modulation}
 
 The first correction term $\kappa\phi/M_p$ represents linear scalar-vacuum coupling, where $\kappa$ is a dimensionless coupling constant and $M_p$ is the Planck mass. The second term $\alpha\nabla^2\phi$ captures spatial gradients in the scalar field configuration, providing a dissipative correction that stabilizes the Casimir system against runaway fluctuations. For typical laboratory scalar field amplitudes ($\phi \sim 10^{-10}$ in Planck units) and plate separations ($a \sim 1$ micrometer), these corrections modify the baseline Casimir force by factors of $10^{-3}$--$10^{-2}$, potentially measurable with modern precision force sensors.
 
@@ -220,7 +220,8 @@ Current state-of-the-art (2025) nanofabrication can achieve $\sim 5$ nm resoluti
 
 For Casimir-based exotic matter generation relevant to wormholes and warp drives (discussed in Chapter 30), the required energy density is fundamentally constrained by the zero-point energy available in the vacuum:
 
-\input{modules/equations/eq_aether_exotic_matter_density}
+% DUPLICATE REMOVED: eq_scalar_exotic_matter_density already included in ch30 line 198
+% \input{modules/equations/eq_scalar_exotic_matter_density}
 
 The negative sign indicates that exotic matter corresponds to regions where the local vacuum energy density is depleted below the ambient zero-point level. The effective volume $V_{\text{eff}}$ represents the spatial region over which Casimir boundary conditions maintain this negative energy state. For parallel plates separated by $a = 1$ nm, $E_{\text{ZPE}} \sim 10^{-17}$ J and $V_{\text{eff}} \sim 10^{-27}$ m$^3$, yielding $\rho_{\text{exotic}} \sim -10^{10}$ kg/m$^3$---vastly more concentrated than any known material. This demonstrates the extreme difficulty of generating macroscopic quantities of exotic matter via Casimir engineering alone.
 
@@ -228,7 +229,7 @@ The negative sign indicates that exotic matter corresponds to regions where the 
 
 Alternative energy extraction mechanisms leverage plasmoid configurations to couple electromagnetic fields with vacuum fluctuations. Plasmoid configurations enable thrust generation through:
 
-\input{modules/equations/eq_aether_plasmoid_thrust}
+\input{modules/equations/eq_scalar_plasmoid_thrust}
 
 The thrust arises from the Lorentz force density $\rho(\mathbf{E} \times \mathbf{B})$ integrated over the plasmoid volume. For high-current plasma discharges ($I \sim 10^6$ A) in toroidal geometries with characteristic fields $E \sim 10^5$ V/m and $B \sim 1$ T, the integrated thrust can reach $F_{\text{plasmoid}} \sim 10^3$ N---sufficient for laboratory demonstration but far below propulsion requirements for macroscopic vehicles. Coupling to scalar field enhancements may amplify this by factors of $10$--$10^2$ under resonant conditions.
 
@@ -240,7 +241,7 @@ The thrust arises from the Lorentz force density $\rho(\mathbf{E} \times \mathbf
 
 Energy extraction from rotating black holes via scalar field coupling yields modifications to the standard Penrose process. The extractable energy depends on the zero-point energy density gradient near the ergosphere:
 
-\input{modules/equations/eq_aether_black_hole_energy_harvesting}
+\input{modules/equations/eq_scalar_black_hole_energy_harvesting}
 
 The integration extends from the Schwarzschild radius $r_s = 2GM/c^2$ to the outer edge of the ergosphere at $r \sim 2r_s$ for a maximally rotating Kerr black hole. The ZPE density $\text{ZPE}(r)$ increases dramatically near the event horizon due to gravitational blueshifting of vacuum fluctuations. For a stellar-mass black hole ($M \sim 10 M_{\odot}$, $r_s \sim 30$ km), the integrated energy reaches $E_{\text{out}} \sim 10^{47}$ J---equivalent to the mass-energy of a small asteroid. However, extraction efficiency is limited by Hawking radiation and superradiance, typically yielding $\eta_{\text{extract}} < 10^{-6}$ for realistic configurations.
 
@@ -248,7 +249,7 @@ The integration extends from the Schwarzschild radius $r_s = 2GM/c^2$ to the out
 
 The black hole entropy with scalar hair contributions constrains the maximum extractable energy through the generalized second law of thermodynamics:
 
-\input{modules/equations/eq_aether_black_hole_entropy}
+\input{modules/equations/eq_scalar_black_hole_entropy}
 
 This is the Bekenstein-Hawking entropy formula, where $A$ is the event horizon area. Scalar field coupling adds corrections proportional to the scalar charge $Q_\phi$, modifying the area law as $A \to A + \alpha Q_\phi^2$ where $\alpha$ is a coupling constant. Energy extraction that reduces horizon area must be accompanied by entropy increase elsewhere (e.g., Hawking radiation emission), ensuring the total entropy $S_{\text{total}} = S_{\text{BH}} + S_{\text{radiation}} \geq 0$ never decreases. This fundamental limit caps energy extraction efficiency at $\sim 29\%$ for Kerr black holes, independent of scalar field enhancements.
 
@@ -260,7 +261,7 @@ This is the Bekenstein-Hawking entropy formula, where $A$ is the event horizon a
 
 Cold plasma enables energy transfer from vacuum fluctuations via resonant coupling between plasma waves and zero-point oscillations. The power transfer in cold plasma systems is governed by:
 
-\input{modules/equations/eq_aether_cold_plasma_energy_transfer}
+\input{modules/equations/eq_scalar_cold_plasma_energy_transfer}
 
 The integrand represents the work done by the electric field $\mathbf{E}$ on the plasma polarization $\mathbf{P} = \epsilon_0 \chi_e \mathbf{E}$, where $\chi_e$ is the electric susceptibility. For plasma frequencies $\omega_p \sim 10^{10}$ rad/s (typical of low-density discharges), resonant energy transfer occurs when external drive frequencies match $\omega_p$, enabling efficient coupling to ZPE modes at similar frequencies. Power densities of $P_{\text{plasma}} \sim 10^6$ W/m$^3$ have been observed in pulsed discharge experiments, though sustained operation remains challenging due to plasma instabilities.
 
@@ -268,7 +269,7 @@ The integrand represents the work done by the electric field $\mathbf{E}$ on the
 
 Plasma wave resonances couple to ZPE oscillations through modification of the dispersion relation. The wave equation governing plasma-ZPE coupling is:
 
-\input{modules/equations/eq_aether_plasma_wave_zpe_coupling}
+\input{modules/equations/eq_scalar_plasma_wave_zpe_coupling}
 
 The right-hand side couples the electric field to the zero-point energy density $\rho_{\text{ZPE}}$, creating a source term that drives plasma waves even in the absence of external currents. This enables parametric amplification: an initial plasma wave seeds growth via ZPE coupling, potentially reaching amplification factors of $10^3$--$10^6$ in high-Q cavities. However, the ZPE coupling strength is typically weak ($\rho_{\text{ZPE}} \sim 10^{-15}$ in normalized units), requiring extremely low-noise conditions to observe amplification above thermal backgrounds.
 
@@ -276,7 +277,7 @@ The right-hand side couples the electric field to the zero-point energy density 
 
 Scalar field coupling provides stabilization of plasma instabilities through modification of the plasma potential. The coupled plasma equation governing scalar field stabilization is:
 
-\input{modules/equations/eq_aether_coupled_plasma_scalar_stabilization}
+\input{modules/equations/eq_scalar_coupled_plasma_scalar_stabilization}
 
 The source term $k\rho_{\text{plasma}}$ represents feedback from plasma density fluctuations to the scalar potential $\Phi$, which in turn modifies the plasma equilibrium via the Lorentz force. This coupling suppresses Rayleigh-Taylor and drift instabilities that normally limit plasma confinement. Numerical simulations indicate that scalar coupling with $k \sim 10^{-2}$ (in normalized units) can extend plasma lifetime by factors of $10^2$--$10^3$ compared to unmodified configurations, enabling sustained ZPE extraction over second-to-minute timescales rather than microseconds.
 
@@ -416,7 +417,7 @@ To translate these order-of-magnitude estimates into experimental design targets
 \begin{equation}
 P_{\text{raw}} = \rho_{\text{power}}^{\text{max}} V_{\text{eff}} \approx 2.5 \times 10^{-7} \text{ W}.
 \end{equation}
-Applying the conversion efficiencies from \eqref{eq:energy:total-efficiency} gives a net electrical power $P_{\text{net}} \approx 1 \times 10^{-8}$ W, roughly five orders of magnitude below the $1$ mW thermal load imposed by the cryostat. Although the device fails as an energy source, it excels as a precision metrology platform: with force sensitivity better than $10^{-12}$ N/Hz$^{1/2}$ the same apparatus can probe Aether scalar gradients and set limits on $\lambda$ and $\kappa$ that complement collider searches~\cite{ScalarSearch2023}. This dual-use perspective—treat the harvester as a scientific instrument first, technology prototype second—should steer near-term laboratory programs.
+Applying the conversion efficiencies from \eqref{eq:energy:total-efficiency} gives a net electrical power $P_{\text{net}} \approx 1 \times 10^{-8}$ W, roughly five orders of magnitude below the $1$ mW thermal load imposed by the cryostat. Although the device fails as an energy source, it excels as a precision metrology platform: with force sensitivity better than $10^{-12}$ N/Hz$^{1/2}$ the same apparatus can probe Aether scalar gradients and set limits on $\lambda$ and $\kappa$ that complement collider searches~\cite{ScalarSearch2023}. This dual-use perspective---treat the harvester as a scientific instrument first, technology prototype second---should steer near-term laboratory programs.
 
 \subsection{Comparison with Conventional Sources}
 

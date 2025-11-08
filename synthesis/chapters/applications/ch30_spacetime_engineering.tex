@@ -125,14 +125,14 @@ The central obstacle to practicable warp metrics is the null energy condition (N
 \begin{equation}
 \int_{-\infty}^{+\infty} \rho_{\text{exotic}}(\tau) \, f(\tau/\tau_0)\, d\tau \geq -\frac{K}{\tau_0^4},
 \end{equation}
-where $f$ is a sampling function of width $\tau_0$ and $K$ is an order-unity constant. For $\tau_0 = 10^{-6}$ s (a typical laboratory timescale) the lower bound is $\rho_{\text{exotic}} \gtrsim -10^{24}$ J/m$^3$—still enormous, but forty orders of magnitude smaller than the Alcubierre requirement. Three mitigation avenues emerge:
+where $f$ is a sampling function of width $\tau_0$ and $K$ is an order-unity constant. For $\tau_0 = 10^{-6}$ s (a typical laboratory timescale) the lower bound is $\rho_{\text{exotic}} \gtrsim -10^{24}$ J/m$^3$---still enormous, but forty orders of magnitude smaller than the Alcubierre requirement. Three mitigation avenues emerge:
 \begin{enumerate}
 \item \textbf{Pulse sequencing}: Use rapid, alternating sequences of positive and negative energy ``packets'' to satisfy quantum inequalities while accumulating an effective metric perturbation. This trades large static energy densities for ultrafast modulation bandwidth ($> \,\mathrm{THz}$).
 \item \textbf{Distributed cavities}: Tile thousands of micro-scale Casimir cavities around the bubble wall. Each cavity provides a small negative energy density $\rho_i$; collectively they approximate the continuous distribution required by the metric. This ``granular exotic matter'' approach scales with cavity density rather than individual cavity power.
 \item \textbf{Scalar field compensation}: Adjust the stress-energy tensor with a coherent scalar field so that the exotic component appears only in a small comoving region, while the scalar field stores the compensating positive energy elsewhere in the bubble~\cite{Barcelo2011Analogue}. The net effect reduces $|T_{\mu\nu} k^\mu k^\nu|$ by a factor $\eta_{\text{scalar}}$ that depends on controllable field amplitudes.
 \end{enumerate}
 
-None of these techniques eliminate NEC violations, but they shrink the instantaneous exotic energy density by several orders of magnitude and recast the problem as one of ultrafast control, high-Q cavity fabrication, and scalar-field engineering—areas where Chapters 7, 8, and 28 already provide research roadmaps.
+None of these techniques eliminate NEC violations, but they shrink the instantaneous exotic energy density by several orders of magnitude and recast the problem as one of ultrafast control, high-Q cavity fabrication, and scalar-field engineering---areas where Chapters 7, 8, and 28 already provide research roadmaps.
 
 \section{Traversable Wormholes}
 \label{sec:wormholes}
@@ -187,7 +187,7 @@ Even with advanced Casimir engineering (fractal geometries, superconducting cavi
 
 Aether scalar fields modify the wormhole metric to incorporate vacuum fluctuation effects and scalar field coupling. The effective metric in the presence of wormholes receives corrections from the scalar field configuration:
 
-\input{modules/equations/eq_aether_effective_metric_wormhole}
+\input{modules/equations/eq_scalar_effective_metric_wormhole}
 
 The classical metric $g_{\text{classical}}$ corresponds to the Morris-Thorne geometry, while the modification term $\lambda\phi^2$ represents the scalar field contribution. For typical wormhole throat radii ($r_0 \sim 1$ m) and scalar field amplitudes ($\phi \sim 1$ GeV), the metric correction is of order $\lambda\phi^2/M_{\text{Pl}}^2 \sim 10^{-35}$, negligible for macroscopic geometries. However, near Planck-scale wormholes ($r_0 \sim \ell_{\text{Pl}} \sim 10^{-35}$ m), scalar corrections become order unity, significantly modifying the throat geometry and potentially stabilizing micro-wormholes against quantum collapse.
 
@@ -195,7 +195,7 @@ The classical metric $g_{\text{classical}}$ corresponds to the Morris-Thorne geo
 
 The exotic matter energy density required for stabilization is fundamentally linked to Casimir energy extraction capabilities (discussed extensively in Chapter 28). As derived in Equation~\eqref{eq:aether:exotic-matter-density}:
 
-\input{modules/equations/eq_aether_exotic_matter_density}
+\input{modules/equations/eq_scalar_exotic_matter_density}
 
 For wormhole applications, the effective volume $V_{\text{eff}} \sim r_0^3$ scales with the throat radius cubed. To stabilize a human-traversable wormhole ($r_0 \sim 1$ m), the required exotic energy $E_{\text{ZPE}} \sim -10^{47}$ J (as calculated in Section~\ref{sec:wormholes}), yielding $\rho_{\text{exotic}} \sim -10^{47}$ kg/m$^3$. Even with optimized Casimir configurations achieving $\rho_{\text{Casimir}} \sim -10^{14}$ J/m$^3$ (Chapter 28), the deficit is $10^{33}$---utterly beyond any conceivable technology. Scalar field modifications reduce this by at most $40\%$ (as discussed below), still leaving the requirement $33$ orders of magnitude too large.
 
@@ -203,7 +203,7 @@ For wormhole applications, the effective volume $V_{\text{eff}} \sim r_0^3$ scal
 
 The Aether framework introduces a stabilization mechanism via vacuum foam coupling:
 
-\input{modules/equations/eq_aether_wormhole_stabilization_metric}
+\input{modules/equations/eq_scalar_wormhole_stabilization_metric}
 
 where $g$ is a dimensional coupling constant. This term modifies the stress-energy tensor near the throat, potentially reducing exotic matter requirements by $\sim 20\%$--$40\%$. Numerical simulations (Visser et al., 2003) suggest this is insufficient to eliminate the need for exotic matter, but it may increase wormhole stability timescales from milliseconds to seconds.
 
@@ -251,7 +251,7 @@ This is $200$ times the age of the universe. Inertia reduction is thermodynamica
 
 The force responsible for inertia reduction arises from the coupling between zero-point energy fluctuations and the local scalar field configuration. This inertia reduction force is given by:
 
-\input{modules/equations/eq_aether_inertia_reduction_force}
+\input{modules/equations/eq_scalar_inertia_reduction_force}
 
 The integral represents the spatial overlap between ZPE temporal fluctuations $\text{ZPE}(t)$ and the scalar field spatial profile $\phi(x)$. When these are in resonance (matching frequencies and coherent phases), the force acts to decouple matter from the local inertial frame, effectively reducing the resistance to acceleration. For a spacecraft with volume $V = 100$ m$^3$ and optimized scalar field $\phi \sim 1$ GeV, the inertia reduction force can reach $F_{\text{inertia}} \sim 10^5$ N---comparable to chemical rocket thrust. However, maintaining the required scalar field configuration consumes $\sim 10^{24}$ J as calculated above, making net energy gain impossible with current technology.
 
@@ -269,7 +269,7 @@ Still enormous, but within the range of hypothetical fusion or antimatter power 
 
 Scalar fields amplify gravitational wave strain via coupling to vacuum fluctuations that dress the metric perturbation. The amplified gravitational wave metric incorporating ZPE contributions is:
 
-\input{modules/equations/eq_aether_amplified_gravitational_wave_metric}
+\input{modules/equations/eq_scalar_amplified_gravitational_wave_metric}
 
 The unperturbed metric perturbation $h_{ij}$ represents the standard gravitational wave solution to linearized Einstein equations. The amplification term $\lambda\text{ZPE}(t)$ arises from time-dependent vacuum energy fluctuations that couple to the wave strain. For gravitational waves from binary black hole mergers ($h \sim 10^{-21}$ at Earth, $f \sim 100$ Hz), ZPE coupling with $\lambda \sim 10^{-45}$ J$^{-1}$ produces amplification $\lambda\text{ZPE} \sim 10^{-10}$, increasing effective strain by factors of $10^{11}$. However, this amplification is highly frequency-dependent, peaking at plasma frequencies $\omega_p \sim 10^{15}$ rad/s where ZPE density is maximal, far above LIGO/Virgo detection bands.
 
@@ -277,7 +277,7 @@ The unperturbed metric perturbation $h_{ij}$ represents the standard gravitation
 
 The effective metric governing test particle motion in a scalar-modified GW background incorporates quantum foam perturbations:
 
-\input{modules/equations/eq_aether_effective_gravitational_wave_metric}
+\input{modules/equations/eq_scalar_effective_gravitational_wave_metric}
 
 The quantum foam fluctuations $\delta\text{foam}$ represent Planck-scale stochastic perturbations to spacetime geometry that couple to the gravitational wave via the scalar field. This effective metric modifies geodesic equations, introducing decoherence and dissipation that damp gravitational wave amplitude over cosmological distances. For waves propagating through intergalactic vacuum with mean foam density $\langle\delta\text{foam}\rangle \sim 10^{-60}$ (in Planck units), the damping length scale is $\lambda_{\text{damp}} \sim c/H_0 \sim 10^{26}$ m (Hubble radius)---observable only for cosmological-distance sources but potentially detectable as anomalous redshift of gravitational wave frequencies.
 
