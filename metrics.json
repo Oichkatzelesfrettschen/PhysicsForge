@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "total": 4710,
+    "by_framework": {
+      "Unified": 4469,
+      "Genesis": 241
+    },
+    "by_domain": {
+      "General": 3186,
+      "EM": 561,
+      "QM": 141,
+      "GR": 248,
+      "Experimental": 31,
+      "Math": 531,
+      "Thermo": 12
+    },
+    "by_source": {
+      "EQUATION_CATALOG_README.md": 186,
+      "NOTES_DIRECTORY_ANALYSIS_REPORT.md": 242,
+      "README.md": 99,
+      "AUDIT_REPORTS_ARCHIVE.md": 173,
+      "CURRENT_STATUS.md": 10,
+      "GETTING_STARTED_GUIDE.md": 120,
+      "MCP_SERVERS_LOCAL_GUIDE.md": 165,
+      "PHASE_REPORTS_ARCHIVE.md": 213,
+      "PROJECT_OVERVIEW.md": 148,
+      "SOURCE_NORMALIZATION_TODO.md": 36,
+      "quantum-consciousness-unified-theory.txt": 121,
+      "README_MATHEMATICAL_REFERENCES.md": 3,
+      "cayley_dickson_algebras_reference.md": 172,
+      "exceptional_lie_groups_reference.md": 28,
+      "experimental_data_reference.md": 28,
+      "fractal_mathematics_reference.md": 17,
+      "bug_report.md": 1,
+      "test_agent.md": 27,
+      "AGENTS.md": 22,
+      "ANALYSIS_REPORT.md": 15,
+      "CLAUDE.md": 220,
+      "CLAUDE_MD_PLACEMENT.md": 107,
+      "COMPREHENSIVE_AUDIT.md": 153,
+      "COMPREHENSIVE_BUILD_FIX.md": 119,
+      "CONTOUR_FIX_REPORT.md": 67,
+      "CONTRIBUTING.md": 37,
+      "COPILOT.md": 18,
+      "DUPLICATE_LABELS_ANALYSIS.md": 21,
+      "DUPLICATE_LABEL_ANALYSIS_SUMMARY.md": 69,
+      "DUPLICATE_LABEL_FIX_PLAN.md": 347,
+      "EXCEPTIONAL_MATH_AUDIT.md": 221,
+      "FRAMEWORK_UNIFICATION_COMPLETE.md": 135,
+      "FRAMEWORK_UNIFICATION_PLAN.md": 141,
+      "GEMINI.md": 85,
+      "GITHUB_PUSH_INSTRUCTIONS.md": 82,
+      "INSTALLATION_REQUIREMENTS.md": 127,
+      "INTEGRATION_COMPLETE.md": 140,
+      "JULES_COORDINATION.md": 88,
+      "JULES_FINAL_REPORT.md": 163,
+      "JULES_FINAL_STATUS.md": 101,
+      "JULES_STATUS_UPDATE.md": 97,
+      "LATEX_PACKAGE_ANALYSIS.md": 85,
+      "NOTES_MODULARIZATION_PLAN.md": 171,
+      "PHASE1_PREAMBLE_UPDATE.md": 51,
+      "PHASE2_BATCH1_COMPLETE.md": 39
+    }
+  },
+  "metrics": {
+    "files_scanned": 50,
+    "files_skipped_size": 0,
+    "files_skipped_excluded": 0,
+    "files_skipped_decode": 0,
+    "bytes_scanned": 2091368,
+    "candidate_equations": 4949,
+    "unique_equations": 4710,
+    "elapsed_s": 44.845,
+    "timing_by_framework": {
+      "Unified": 140.886,
+      "Genesis": 8.799
+    },
+    "read_elapsed_s": 0.009,
+    "extract_elapsed_s": 149.677,
+    "timing_by_framework_breakdown": {
+      "Unified": {
+        "read_s": 0.008,
+        "extract_s": 140.878,
+        "classify_s": 0.199
+      },
+      "Genesis": {
+        "read_s": 0.001,
+        "extract_s": 8.798,
+        "classify_s": 0.01
+      }
+    },
+    "classify_elapsed_s": 0.21,
+    "by_domain": {
+      "General": 3186,
+      "EM": 561,
+      "QM": 141,
+      "GR": 248,
+      "Experimental": 31,
+      "Math": 531,
+      "Thermo": 12
+    },
+    "timing": {
+      "total_elapsed_s": 44.845,
+      "read_s": 0.009,
+      "extract_s": 149.677,
+      "classify_s": 0.21
+    }
+  }
+}
