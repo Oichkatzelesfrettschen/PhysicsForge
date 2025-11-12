@@ -139,3 +139,6 @@ markdown_links.txt
 # Generated workflow artifacts
 metrics.json
 plan.json
+
+# Claude Code local settings
+.claude/settings.local.json
