@@ -140,7 +140,10 @@
       "Bash(pacman -Qi:*)",
       "Bash(flake8:*)",
       "Bash(__NEW_LINE__ git add .gitignore)",
-      "Bash(__NEW_LINE__ git add .claude/settings.local.json)"
+      "Bash(__NEW_LINE__ git add .claude/settings.local.json)",
+      "Bash(__NEW_LINE__ git push origin main)",
+      "Bash(__NEW_LINE__ echo \"=== LOCAL STATE ===\" git log --oneline -5)",
+      "Bash(__NEW_LINE__ git show --stat HEAD)"
     ],
     "deny": [],
     "ask": []
