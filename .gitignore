@@ -136,3 +136,6 @@ fax.*
 patent.*
 markdown_links.txt
 
+# Generated workflow artifacts
+metrics.json
+plan.json

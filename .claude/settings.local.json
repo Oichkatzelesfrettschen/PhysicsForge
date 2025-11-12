@@ -138,7 +138,9 @@
       "Bash(gh run watch:*)",
       "Bash(gh api:*)",
       "Bash(pacman -Qi:*)",
-      "Bash(flake8:*)"
+      "Bash(flake8:*)",
+      "Bash(__NEW_LINE__ git add .gitignore)",
+      "Bash(__NEW_LINE__ git add .claude/settings.local.json)"
     ],
     "deny": [],
     "ask": []

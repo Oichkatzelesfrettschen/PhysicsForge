@@ -80,8 +80,7 @@ validate:
 bench:
 	python scripts/benchmark_extraction.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d)) || true
 
-smoke:
-	python scripts/test_extraction_smoke.py
+# smoke target moved to Enhanced CI/CD section below (line ~212)
 
 test:
 	pytest -q
@@ -209,10 +208,11 @@ serve:
 
 # ===== Enhanced CI/CD Targets =====
 
-# Fast smoke test for quick validation
+# Fast smoke test for quick validation (combines legacy + new approaches)
 .PHONY: smoke
 smoke:
 	@echo "=== Running smoke tests ==="
+	python scripts/test_extraction_smoke.py
 	pytest tests/test_ascii_normalize.py tests/test_classify_domain.py -q
 	python scripts/ascii_guard.py --base-dir .
 	@echo "=== Smoke tests passed ==="
