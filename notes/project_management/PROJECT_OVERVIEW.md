@@ -37,32 +37,9 @@ PART 1: DOCUMENT INVENTORY AND CLASSIFICATION
 1.1 Primary Framework Documents
 --------------------------------
 
-AETHER FRAMEWORK (3 documents):
-  [A1] Alpha001.06_DRAFT_Aether_Framework.md (165,867 lines, 4.5MB)
-       - Most comprehensive, includes kernel formulations
-       - Covers: Unified field equations, Cayley-Dickson to infinite dimensions
-       - Experimental simulation code structures
-       - Sections: Core math, hypercomplex extensions, Monster Group invariants
 
-  [A2] Alpha003.02_Aether_Chrystalline_Fluidic_Framework.md (3,765 lines, 157KB)
-       - Focus: Scalar fields and vacuum dynamics
-       - Detailed experimental protocols for each prediction
-       - Sections: Foundational principles, scalar-ZPE coupling, time crystals
 
-  [A3] Aether-Crystalline-Framework.md (1,096 lines, 55KB)
-       - Crystalline lattice interpretation of spacetime
-       - Experimental results and simulations
-       - Applications: Quantum computing, energy tech, biomimetic systems
 
-GENESIS FRAMEWORK (2 documents):
-  [G1] math5GenesisFrameworkUnveiled.md (2,222 lines, 118KB)
-       - Genesis cosmology and creation dynamics
-       - Nodespace theory and origami dimensions
-       - Multiverse resonance and consciousness as universal phenomenon
-
-  [G2] math4GenesisFramework.md (1,562 lines, 92KB)
-       - Mathematical foundations for Genesis
-       - Integration with String Theory, SUSY, modular symmetries
 
 PAIS SUPERFORCE (1 document + PDFs):
   [P1] draft reply to pais.md (96 lines, 7KB)
@@ -78,24 +55,9 @@ PAIS SUPERFORCE (1 document + PDFs):
 1.2 Supporting Mathematical Documents
 --------------------------------------
 
-MATHEMATICAL FOUNDATIONS:
-  [M1] Maximal_Extraction_SET1_SET2.md (26,208 lines, 676KB)
-       - Advanced structures: Lie algebras, exceptional symmetries
-       - E8 lattice theory and Gosset 421 polytope
-       - Cayley-Dickson recursive structures
-       - Fractal quantum systems and holographic dualities
 
-  [M2] Math_Spell_Draft.md (100 lines, 5KB)
-       - Recursive mathematical exploration
-       - Origami-fractal dynamics, tensor compression
-       - Negative dimensions and quantum tunneling
 
-EXPERIMENTAL LITERATURE REVIEWS (2010-2025):
-  [E1] E8_Research_Survey_2010-2025.md (1,727 lines)
-  [E2] Octonions_Cayley_Dickson_Literature_Review_2010-2025.md (1,109 lines)
-  [E3] Quantum_Foam_Experimental_Evidence_2010-2025.md (1,574 lines)
-  [E4] Scalar_Field_Experimental_Searches_2015-2025.md (1,839 lines)
-  [E5] Time_Crystal_Experimental_Observations_2016-2025.md (1,348 lines)
+
 
 APPLICATIONS:
   [T1] Tourmaline.pdf

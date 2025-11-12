@@ -279,44 +279,15 @@ Include in the PR description:
 
 ## Catalog Parity
 
-*   **Catalog rows**: 34860
-*   **Module equations indexed**: 282
-*   **Rows without module link**: 34849
-*   **Unreferenced modules**: 176
-
-**Actions Needed:**
-*   Add missing LaTeX modules for high-priority catalog rows.
-*   Adjust extractor normalization if equations differ due to macro formatting.
-*   Ensure chapters input the module files instead of re-embedding equations.
+See [Catalog Parity Report](reports/CATALOG_PARITY.md) for details.
 
 ## Dependency Audit (scripts)
 
-**Optional Modules (Missing):**
-*   PIL (pip: `Pillow`)
-*   fitz (pip: `pymupdf`)
-*   pix2tex (pip: `pix2tex`)
-
-**All Top-level Imports (union):**
-`PIL`, `__future__`, `argparse`, `collections`, `common`, `concurrent`, `csv`, `dataclasses`, `equation_extractor`, `fitz`, `fnmatch`, `generate_figures`, `hashlib`, `importlib`, `json`, `jsonschema`, `math`, `os`, `pathlib`, `pix2tex`, `re`, `scripts`, `shutil`, `subprocess`, `sys`, `time`, `typing`, `unittest`, `warnings`, `yaml`.
+See [Dependency Audit Report](reports/DEPENDENCY_AUDIT.md) for details.
 
 ## TODO / FIXME Tracker
 
-**Summary:**
-*   Total findings: 37
-*   FIXME: 8
-*   TBD: 6
-*   TODO: 23
-
-**Key Findings by File:**
-*   `docs/PROJECT_ROADMAP.md`: Mentions `TODO_TRACKER.md` for detailed task management.
-*   `notes/NOTES_DIRECTORY_ANALYSIS_REPORT.md`: Highlights 87 TODO/FIXME/PLACEHOLDER instances.
-*   `scripts/gap_todo.py`: Contains TODOs related to generating gap lists.
-*   `scripts/todowrite.py`: Contains FIXME/TODO/TBDs related to the tracker itself.
-*   `synthesis/COMPLETE_PROJECT_STATUS_2025-10-22.md`: Mentions a TBD for Part V Ch27-30.
-*   `synthesis/PHASE1_COMPLETION_REPORT_2025-10-22.md`: Mentions TODOs for TodoWrite Granularity.
-*   `synthesis/PHASE_3D_STATUS_REPORT.md`: Mentions no TODO, FIXME, TBD.
-*   `synthesis/SESSION_PHASE2_COMPLETION_2025-10-22.md`: Mentions a TODO for a commented out figure block.
-*   `synthesis/chapters/frameworks/ch15_pais_superforce.tex`: Contains a TODO for adding a Pais patent diagram.
+See [TODO / FIXME Tracker Report](reports/TODO_FIXME_TRACKER.md) for details.
 
 ## Notes Modularization & Deduplication Plan
 

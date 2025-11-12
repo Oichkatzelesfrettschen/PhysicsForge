@@ -1,3 +1,5 @@
+VENV_PATH := $(CURDIR)/venv
+
 .DEFAULT_GOAL := help
 .PHONY: help
 help:
@@ -61,7 +63,7 @@ SCANS ?= notes .
 .PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict todo reports ascii_guard ascii_normalize update_data_readme help
 
 pipeline:
-	python scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
+	$(VENV_PATH)/bin/python scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
 
 audit:
 	python scripts/repo_audit.py --base-dir $(BASE_DIR)

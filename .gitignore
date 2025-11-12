@@ -123,3 +123,16 @@ site/figs/
 site/pdf/
 *.xdv
 
+# Binary artifacts and image files
+*.pdf
+*.tif
+*.tiff
+*.ccitt
+*.params
+*.html
+reports/
+pais_diagram*
+fax.*
+patent.*
+markdown_links.txt
+
