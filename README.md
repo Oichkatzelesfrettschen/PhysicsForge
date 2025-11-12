@@ -1,5 +1,12 @@
 # Math & Science Research Hub
 
+[![CI](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/ci.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/ci.yml)
+[![Release](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/release.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/release.yml)
+[![Python Tests](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/python_tests.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/python_tests.yml)
+[![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://oichkatzelesfrettschen.github.io/PhysicsForge)
+[![Latest Release](https://img.shields.io/github/v/release/Oichkatzelesfrettschen/PhysicsForge)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/releases/latest)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
 ## Project Overview
 
 This repository serves as a **Math & Science Research Hub**, collecting research in early stages of development. It's primarily a **code project** with a strong emphasis on Python scripting for data extraction and analysis, and LaTeX for document synthesis. The project focuses on theoretical physics and advanced mathematics, synthesizing unified field theories, quantum-gravitational models, and crystalline spacetime engineering.

@@ -80,8 +80,7 @@ validate:
 bench:
 	python scripts/benchmark_extraction.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d)) || true
 
-smoke:
-	python scripts/test_extraction_smoke.py
+# smoke target moved to Enhanced CI/CD section below (line ~212)
 
 test:
 	pytest -q
@@ -205,3 +204,54 @@ serve:
 	@echo "=== Starting local server at http://localhost:8000 ==="
 	@cd site && python3 -m http.server 8000
 
+
+
+# ===== Enhanced CI/CD Targets =====
+
+# Fast smoke test for quick validation (combines legacy + new approaches)
+.PHONY: smoke
+smoke:
+	@echo "=== Running smoke tests ==="
+	python scripts/test_extraction_smoke.py
+	pytest tests/test_ascii_normalize.py tests/test_classify_domain.py -q
+	python scripts/ascii_guard.py --base-dir .
+	@echo "=== Smoke tests passed ==="
+
+# Parallel test execution for faster CI
+.PHONY: test-parallel
+test-parallel:
+	@echo "=== Running tests in parallel ==="
+	pytest -n auto --dist=loadgroup
+
+# Test with coverage report
+.PHONY: test-coverage
+test-coverage:
+	@echo "=== Running tests with coverage ==="
+	pytest --cov=scripts --cov-report=term-missing --cov-report=html
+
+# Quick validation before commit
+.PHONY: pre-commit
+pre-commit: ascii_guard smoke
+	@echo "=== Pre-commit validation passed ==="
+
+# CI validation (what runs in GitHub Actions)
+.PHONY: ci-check
+ci-check: lint test
+	@echo "=== CI checks passed ==="
+
+# Show test timing statistics
+.PHONY: test-timing
+test-timing:
+	@echo "=== Test execution timing ==="
+	pytest --durations=10
+
+# Security check (requires bandit)
+.PHONY: security-check
+security-check:
+	@echo "=== Running security scan ==="
+	@command -v bandit >/dev/null 2>&1 && bandit -r scripts/ -ll || echo "Install bandit: pip install bandit"
+
+# Full comprehensive check
+.PHONY: full-check
+full-check: ci-check test-coverage security-check
+	@echo "=== Full validation complete ==="

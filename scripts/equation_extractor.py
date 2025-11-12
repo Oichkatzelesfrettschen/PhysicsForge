@@ -39,7 +39,7 @@ _MATH_INLINE = re.compile(
 )
 
 # Symbols that typically signal "this is math starting here"
-_FIRST_MATH_OP = re.compile(r"[=~<>]")
+_FIRST_MATH_OP = re.compile(r"[=~=in<=>=/*]|->|<-|\|->")
 
 def extract_math_slice(text: str) -> Optional[str]:
     r"""
