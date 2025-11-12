@@ -70,26 +70,26 @@
     "bytes_scanned": 2091368,
     "candidate_equations": 4949,
     "unique_equations": 4710,
-    "elapsed_s": 44.845,
+    "elapsed_s": 50.433,
     "timing_by_framework": {
-      "Unified": 140.886,
-      "Genesis": 8.799
+      "Unified": 155.415,
+      "Genesis": 9.441
     },
     "read_elapsed_s": 0.009,
-    "extract_elapsed_s": 149.677,
+    "extract_elapsed_s": 164.846,
     "timing_by_framework_breakdown": {
       "Unified": {
-        "read_s": 0.008,
-        "extract_s": 140.878,
+        "read_s": 0.009,
+        "extract_s": 155.406,
         "classify_s": 0.199
       },
       "Genesis": {
         "read_s": 0.001,
-        "extract_s": 8.798,
-        "classify_s": 0.01
+        "extract_s": 9.44,
+        "classify_s": 0.011
       }
     },
-    "classify_elapsed_s": 0.21,
+    "classify_elapsed_s": 0.211,
     "by_domain": {
       "General": 3186,
       "EM": 561,
@@ -100,10 +100,10 @@
       "Thermo": 12
     },
     "timing": {
-      "total_elapsed_s": 44.845,
+      "total_elapsed_s": 50.433,
       "read_s": 0.009,
-      "extract_s": 149.677,
-      "classify_s": 0.21
+      "extract_s": 164.846,
+      "classify_s": 0.211
     }
   }
 }
