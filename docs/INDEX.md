@@ -1,0 +1,139 @@
+# PhysicsForge Documentation Index
+
+This index provides quick access to all documentation in the PhysicsForge repository.
+
+## Getting Started
+
+### Essential Reading (Start Here)
+1. **[README.md](../README.md)** - Project overview, setup, and quick start
+2. **[INSTALLATION_REQUIREMENTS.md](INSTALLATION_REQUIREMENTS.md)** - Comprehensive installation guide
+3. **[ARCHITECTURE.md](ARCHITECTURE.md)** - Repository structure and organization
+4. **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute to the project
+
+### For New Users
+- **[README.md](../README.md)** - Start here for project overview
+- **[INSTALLATION_REQUIREMENTS.md](INSTALLATION_REQUIREMENTS.md)** - Set up your environment
+- **[docs/examples/](examples/)** - Example workflows and usage patterns
+
+## Build and Development
+
+### Build Systems
+- **[Makefile](../Makefile)** - Primary build system (see `make help`)
+- **[SConstruct](../SConstruct)** - Alternative SCons build (see `scons -h`)
+- **[win_make.ps1](../win_make.ps1)** - Windows PowerShell wrapper
+
+### Development Guides
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines and workflows
+- **[CI_CD_GUIDE.md](CI_CD_GUIDE.md)** - Continuous integration and deployment
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Directory structure and data flow
+
+## Agent Integration
+
+### Primary Agent Documentation
+- **[GEMINI.md](../GEMINI.md)** - Google Gemini AI integration (root level)
+- **[CLAUDE.md](CLAUDE.md)** - Claude AI integration guide
+- **[COPILOT.md](COPILOT.md)** - GitHub Copilot integration guide
+- **[AGENTS.md](AGENTS.md)** - General repository guidelines for all agents
+
+### Agent Quick Reference
+- **Gemini**: Start with `GEMINI.md` for project conventions and build commands
+- **Claude**: See `docs/CLAUDE.md` for mandatory build workflow and project structure
+- **Copilot**: Reference `docs/COPILOT.md` for coding assistance and best practices
+- **All Agents**: Follow `docs/AGENTS.md` for universal repository guidelines
+
+## Research Frameworks
+
+### Superforce Framework
+- **[README_SUPERFORCE.md](README_SUPERFORCE.md)** - Superforce framework overview
+- **[SUPERFORCE_README.md](SUPERFORCE_README.md)** - Additional superforce documentation
+- **[scripts/superforce/](../scripts/superforce/)** - Computational implementations
+
+### Framework Integration
+- **[INTEGRATION_COMPLETE.md](INTEGRATION_COMPLETE.md)** - Integration status and notes
+
+## Release Information
+
+### Version History
+- **[RELEASE_NOTES_v1.0.md](RELEASE_NOTES_v1.0.md)** - v1.0 release notes and changelog
+
+## Technical References
+
+### Schemas
+- **[metrics.schema.json](metrics.schema.json)** - Extraction metrics JSON schema
+- **[plan.schema.json](plan.schema.json)** - Extraction plan JSON schema
+
+### GitHub Integration
+- **[GITHUB_PUSH_INSTRUCTIONS.md](GITHUB_PUSH_INSTRUCTIONS.md)** - Git workflow and push procedures
+
+## Archive
+
+Historical documentation and legacy materials are preserved in:
+- **[archive/historical_docs/](../archive/historical_docs/)** - Outdated documentation
+- **[archive/legacy_scripts/](../archive/legacy_scripts/)** - Superseded utility scripts
+
+See **[archive/README.md](../archive/README.md)** for details.
+
+## Quick Command Reference
+
+### Essential Commands
+```bash
+# Build and test
+make pipeline        # Full data extraction and catalog generation
+make test           # Run full test suite
+make ci             # Complete CI pipeline
+
+# Validation
+make validate       # Validate catalog integrity
+make audit          # Audit repository structure
+make parity         # Check catalog-module consistency
+make ascii_guard    # Enforce ASCII-only policy
+
+# LaTeX compilation
+make latex          # Standard LaTeX build
+make latex_strict   # Strict mode (errors fail build)
+
+# Reporting
+make reports        # Generate all reports
+make todo           # Update TODO tracker
+
+# Maintenance
+make clean          # Remove temporary files
+make help           # Show all available commands
+```
+
+### Windows Users
+```powershell
+# Use PowerShell wrapper
+.\win_make.ps1 pipeline
+.\win_make.ps1 test
+.\win_make.ps1 validate
+```
+
+## Documentation Standards
+
+All documentation follows these conventions:
+- **ASCII-only** for code and documentation files
+- **Markdown format** with level-one title
+- **Cross-references** using relative paths
+- **Scoped organization** mirroring directory structure
+
+Enforced by `make ascii_guard` and tested in CI.
+
+## Need Help?
+
+1. **Installation issues**: See `INSTALLATION_REQUIREMENTS.md`
+2. **Build problems**: Check `CI_CD_GUIDE.md` and run `make audit`
+3. **Contributing**: Read `CONTRIBUTING.md` and `AGENTS.md`
+4. **Structure questions**: Reference `ARCHITECTURE.md`
+5. **Agent integration**: See agent-specific docs (GEMINI.md, CLAUDE.md, etc.)
+
+## Contributing to Documentation
+
+To improve documentation:
+1. Follow ASCII-only policy
+2. Update this index when adding new docs
+3. Maintain cross-references
+4. Test with `make ascii_guard`
+5. Submit PR with clear description
+
+See `CONTRIBUTING.md` for full guidelines.
