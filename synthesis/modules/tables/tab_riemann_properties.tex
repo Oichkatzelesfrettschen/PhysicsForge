@@ -1,0 +1,115 @@
+% Riemann Tensor Components and Symmetries
+% Comprehensive comparison matrix showing all symmetry properties
+
+\begin{table}[htbp]
+\centering
+\caption{Riemann Tensor: Complete Symmetry Analysis}
+\label{tab:riemann_symmetries}
+\begin{tabular}{|l|c|p{6cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Property} & \textbf{Relation} & \textbf{Physical/Mathematical Meaning} \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!10}\textbf{Basic Definition}} \\
+\hline
+Riemann tensor & $R^\rho_{\sigma\mu\nu}$ & Measures non-commutativity of covariant derivatives \\
+\hline
+Via commutator & $[\nabla_\mu,\nabla_\nu]V^\rho = R^\rho_{\sigma\mu\nu}V^\sigma$ & Curvature from derivative commutator \\
+\hline
+Via Christoffel & $R^\rho_{\sigma\mu\nu} = \partial_\mu\Gamma^\rho_{\nu\sigma} - \partial_\nu\Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}$ & Explicit computation formula \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{green!10}\textbf{Index Symmetries}} \\
+\hline
+Antisymmetry (last) & $R^\rho_{\sigma\mu\nu} = -R^\rho_{\sigma\nu\mu}$ & Swapping last two indices changes sign \\
+\hline
+All lower indices & $R_{\rho\sigma\mu\nu} = g_{\rho\lambda}R^\lambda_{\sigma\mu\nu}$ & Lower all indices with metric \\
+\hline
+First pair antisym & $R_{\rho\sigma\mu\nu} = -R_{\sigma\rho\mu\nu}$ & With all indices down, first pair antisymmetric \\
+\hline
+Pair symmetry & $R_{\rho\sigma\mu\nu} = R_{\mu\nu\rho\sigma}$ & Symmetry between first and second pairs \\
+\hline
+Cyclic identity & $R_{\rho\sigma\mu\nu} + R_{\rho\mu\nu\sigma} + R_{\rho\nu\sigma\mu} = 0$ & Cyclic permutation of last 3 indices sums to zero \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{yellow!10}\textbf{Component Count}} \\
+\hline
+Naive count (4D) & $4^4 = 256$ & Total slots with 4 indices \\
+\hline
+After antisymmetry & $\binom{4}{2} \times \binom{4}{2} = 36$ & Two antisymmetric pairs \\
+\hline
+After pair symmetry & $\frac{36 + 6}{2} = 21$ & Diagonal terms + symmetry \\
+\hline
+After cyclic identity & $21 - 1 = 20$ & One constraint per set \\
+\hline
+\textbf{Independent (4D)} & \textbf{20 components} & This is why GR is so rich! \\
+\hline
+In 3D & 6 components & Less structure in lower dimensions \\
+\hline
+In 2D & 1 component & Single scalar curvature (Gaussian) \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{red!10}\textbf{Contractions}} \\
+\hline
+Ricci tensor & $R_{\mu\nu} = R^\lambda_{\mu\lambda\nu}$ & Contract first and third indices \\
+\hline
+Ricci scalar & $R = g^{\mu\nu}R_{\mu\nu} = R^\mu_\mu$ & Fully contracted curvature \\
+\hline
+Einstein tensor & $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}$ & Appears in field equations \\
+\hline
+Weyl tensor & $C_{\rho\sigma\mu\nu} = R_{\rho\sigma\mu\nu} - \text{(Ricci part)}$ & Trace-free part, 10 components in 4D \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{purple!10}\textbf{Bianchi Identities}} \\
+\hline
+First Bianchi & $R_{\rho[\sigma\mu\nu]} = 0$ & Cyclic identity (already listed) \\
+\hline
+Second Bianchi & $\nabla_{[\lambda}R_{\rho\sigma]\mu\nu} = 0$ & Differential identity \\
+\hline
+Contracted form & $\nabla^\mu G_{\mu\nu} = 0$ & Einstein tensor divergence-free \\
+\hline
+Physical meaning & Conservation of stress-energy & $\nabla^\mu T_{\mu\nu} = 0$ from field equations \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{orange!10}\textbf{Special Cases}} \\
+\hline
+Flat spacetime & $R^\rho_{\sigma\mu\nu} = 0$ everywhere & Minkowski, no curvature \\
+\hline
+Constant curvature & $R_{\mu\nu} = \Lambda g_{\mu\nu}$ & Maximally symmetric (de Sitter, anti-de Sitter) \\
+\hline
+Vacuum & $R_{\mu\nu} = 0$ & Einstein equations with $T_{\mu\nu}=0$ \\
+\hline
+Schwarzschild & $R=0$ but $R_{\mu\nu\rho\sigma} \neq 0$ & Vacuum solution, pure Weyl curvature \\
+\hline
+\end{tabular}
+\end{table}
+
+% Second table: Computational guide
+\begin{table}[htbp]
+\centering
+\caption{Riemann Tensor: Computational Workflow}
+\label{tab:riemann_computation}
+\begin{tabular}{|c|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Step} & \textbf{Computation} & \textbf{Complexity (4D)} \\
+\hline
+\hline
+1 & Compute metric $g_{\mu\nu}$ & 10 independent components \\
+\hline
+2 & Compute $\partial_\lambda g_{\mu\nu}$ & $10 \times 4 = 40$ derivatives \\
+\hline
+3 & Compute Christoffel $\Gamma^\lambda_{\mu\nu}$ & 40 symbols (symmetric) \\
+\hline
+4 & Compute $\partial_\mu\Gamma^\rho_{\nu\sigma}$ & $40 \times 4 = 160$ derivatives \\
+\hline
+5 & Form products $\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}$ & $40^2 = 1600$ products \\
+\hline
+6 & Combine per Riemann formula & 20 independent components \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\textit{Symbolic computation strongly recommended!}} \\
+\hline
+\end{tabular}
+\end{table}

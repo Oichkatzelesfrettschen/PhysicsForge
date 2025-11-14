@@ -1,0 +1,97 @@
+% Comparison Table: Ordinary vs. Covariant Derivatives
+% Pedagogical reference for understanding geometric derivatives
+
+\begin{table}[htbp]
+\centering
+\caption{Ordinary Derivative vs. Covariant Derivative: Complete Comparison}
+\label{tab:covariant_vs_ordinary}
+\begin{tabular}{|l|c|c|p{4cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Property} & \textbf{Ordinary $\partial_\mu$} & \textbf{Covariant $\nabla_\mu$} & \textbf{Physical Interpretation} \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{blue!10}\textbf{Definition}} \\
+\hline
+Scalar field $\phi$ & $\partial_\mu\phi$ & $\nabla_\mu\phi = \partial_\mu\phi$ & Scalars: No difference \\
+\hline
+Vector field $V^\nu$ & $\partial_\mu V^\nu$ & $\nabla_\mu V^\nu = \partial_\mu V^\nu + \Gamma^\nu_{\mu\lambda}V^\lambda$ & Connection term corrects for basis change \\
+\hline
+Covector $\omega_\nu$ & $\partial_\mu\omega_\nu$ & $\nabla_\mu\omega_\nu = \partial_\mu\omega_\nu - \Gamma^\lambda_{\mu\nu}\omega_\lambda$ & Minus sign for lower index \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{green!10}\textbf{Transformation Properties}} \\
+\hline
+Under coord change & NOT tensorial & IS a tensor & $\nabla_\mu V^\nu$ transforms as $(0,1)+(1,1)=(1,2)$ tensor \\
+\hline
+Reason & $\partial_\mu$ derivatives transform & Christoffel terms cancel & Connection compensates non-tensorial part \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{yellow!10}\textbf{Geometric Meaning}} \\
+\hline
+What it measures & Component change in coords & Intrinsic geometric change & Moving through curved geometry \\
+\hline
+Flat space & Same as covariant & Same as ordinary & $\Gamma^\lambda_{\mu\nu} = 0$ in Cartesian \\
+\hline
+Curved space & Coord-dependent & Geometric invariant & Parallel transport encoded \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{red!10}\textbf{Metric Compatibility}} \\
+\hline
+$\partial_\mu g_{\alpha\beta}$ & Generally $\neq 0$ & $\nabla_\mu g_{\alpha\beta} = 0$ & Metric is covariantly constant \\
+\hline
+Physical meaning & Coords may be non-orthogonal & Lengths preserved under transport & Fundamental assumption of GR \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{purple!10}\textbf{Commutativity}} \\
+\hline
+$[\partial_\mu,\partial_\nu]\phi$ & Always $= 0$ & Always $= 0$ & Scalars commute \\
+\hline
+$[\nabla_\mu,\nabla_\nu]V^\rho$ & N/A & $= R^\rho_{\sigma\mu\nu}V^\sigma$ & Riemann tensor measures non-commutativity \\
+\hline
+Physical meaning & Flat space & Curvature & Path-dependence of parallel transport \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{orange!10}\textbf{Examples: Schwarzschild Metric}} \\
+\hline
+Radial component & $\partial_r V^t$ & $\nabla_r V^t = \partial_r V^t + \Gamma^t_{r\lambda}V^\lambda$ & $\Gamma^t_{rt} = \frac{r_s}{2r(r-r_s)}$ \\
+\hline
+Time component & $\partial_t V^r$ & $\nabla_t V^r = \partial_t V^r + \Gamma^r_{tt}V^t$ & $\Gamma^r_{tt} = \frac{r_s(r-r_s)}{2r^3}$ \\
+\hline
+\hline
+\multicolumn{4}{|c|}{\cellcolor{cyan!10}\textbf{Computational Notes}} \\
+\hline
+Complexity & Simple: just differentiate & 40 Christoffel symbols needed & Symbolic computation helpful \\
+\hline
+For diagonal metric & Still simple & Simplifies: $\Gamma^i_{jk} = 0$ if $i \neq j \neq k$ & Many terms vanish \\
+\hline
+Numerical methods & Standard finite differences & Need connection interpolation & Geodesic integrators \\
+\hline
+\end{tabular}
+\end{table}
+
+% Second table: Index rules
+\begin{table}[htbp]
+\centering
+\caption{Christoffel Symbol: Index Position Rules}
+\label{tab:christoffel_index_rules}
+\begin{tabular}{|l|c|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Symbol Type} & \textbf{Index Pattern} & \textbf{Rule} \\
+\hline
+\hline
+Upper index & $\Gamma^\lambda_{\mu\nu}$ & Raised by metric: $g^{\lambda\rho}\Gamma_{\rho,\mu\nu}$ \\
+\hline
+Lower indices & $\Gamma^\lambda_{\mu\nu}$ & Symmetric: $\Gamma^\lambda_{\mu\nu} = \Gamma^\lambda_{\nu\mu}$ \\
+\hline
+All lower & $\Gamma_{\lambda,\mu\nu}$ & $= \frac{1}{2}(\partial_\mu g_{\nu\lambda} + \partial_\nu g_{\mu\lambda} - \partial_\lambda g_{\mu\nu})$ \\
+\hline
+Count in 4D & 40 independent & $\binom{4+2-1}{2} \times 4 = 10 \times 4$ \\
+\hline
+Vanish when & Flat Cartesian coords & $\partial_\mu g_{\nu\lambda} = 0$ everywhere \\
+\hline
+Physical units & $[\text{length}]^{-1}$ & Inverse length scale of curvature \\
+\hline
+\end{tabular}
+\end{table}
