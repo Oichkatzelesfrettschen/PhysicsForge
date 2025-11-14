@@ -1,0 +1,60 @@
+% Table: GPS Time Dilation Budget
+% Comprehensive breakdown of relativistic effects on GPS timing
+% Lions Commentary style: exhaustive detail with physical interpretation
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive Time Dilation Budget for GPS Satellites}
+\label{tab:prelim:gps-budget}
+\begin{tabular}{llccp{5cm}}
+\toprule
+\textbf{Effect} & \textbf{Theory} & \textbf{Sign} & \textbf{Magnitude} & \textbf{Physical Cause} \\
+& & & ($\mu$s/day) & \\
+\midrule
+\multicolumn{5}{l}{\textit{Gravitational Time Dilation (General Relativity)}} \\
+\quad Surface potential & GR & Reference & 0 & $\Phi_{\text{surf}} = -62.6$ MJ/kg \\
+\quad Orbit potential & GR & Faster & $+45.7$ & Weaker field: $\Phi_{\text{orbit}} = -52.3$ MJ/kg \\
+\quad Net gravitational & GR & Faster & $+45.7$ & $\Delta\Phi = +10.3$ MJ/kg \\
+\midrule
+\multicolumn{5}{l}{\textit{Velocity Time Dilation (Special Relativity)}} \\
+\quad Orbital velocity & SR & Slower & $-7.1$ & $v_{\text{orbit}} = 3.87$ km/s \\
+\quad Factor & SR & — & — & $\gamma^{-1} \approx 1 - v^2/(2c^2)$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Combined Relativistic Effects}} \\
+\quad Net effect & GR+SR & Faster & $\mathbf{+38.6}$ & Measured value: $+38.4 \pm 0.1$ \\
+\quad Daily error & — & Growth & $11.4$ km & Without correction \\
+\quad Per-minute error & — & Growth & $7.9$ m & Navigation failure time \\
+\midrule
+\multicolumn{5}{l}{\textit{Dimensional Analysis}} \\
+\quad Gravitational & — & — & $gh/c^2 \times (1$ day$)$ & $g = 9.8$ m/s$^2$, $h = 20{,}200$ km \\
+\quad Velocity & — & — & $v^2/(2c^2) \times (1$ day$)$ & $v^2/c^2 \approx 1.66 \times 10^{-10}$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Correction Implementation}} \\
+\quad Frequency offset & Engineering & Pre-adjusted & $-4.465 \times 10^{-10}$ & Factory setting \\
+\quad On-orbit tuning & Engineering & Real-time & $\pm 10^{-12}$ & Ground control \\
+\quad Final accuracy & System & Achieved & $< 0.01$ $\mu$s & Sub-meter precision \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison of Spacetime Curvature Effects Across Altitudes}
+\label{tab:prelim:curvature-altitudes}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Location} & \textbf{Altitude} & \textbf{$g_{00}$ Component} & \textbf{$\Delta t$/day} & \textbf{Position Error} \\
+& (km) & & ($\mu$s) & (without correction) \\
+\midrule
+Earth Surface & 0 & $-1.0000000007$ & Reference & — \\
+Commercial Aircraft & 10 & $-1.0000000008$ & $+0.1$ & $\sim 30$ m/day \\
+Low Earth Orbit & 400 & $-1.0000000011$ & $+4.3$ & $\sim 1.3$ km/day \\
+GPS Orbit & 20,200 & $-1.0000000022$ & $+38.6$ & $11.4$ km/day \\
+Geostationary Orbit & 35,786 & $-1.0000000032$ & $+53.2$ & $15.7$ km/day \\
+Moon & 384,400 & $-1.0000000125$ & $+125$ & $\sim 37$ km/day \\
+\midrule
+\multicolumn{5}{l}{\textit{Physical Interpretation:}} \\
+\multicolumn{5}{p{13cm}}{The $g_{00}$ component of the metric tensor directly determines gravitational time dilation. Larger deviations from $-1$ (Minkowski value) indicate stronger time dilation effects. GPS satellites experience moderate time dilation, sufficient to require correction but weak enough for Newtonian approximation $g_{00} \approx -(1 + 2\Phi/c^2)$ to remain accurate.} \\
+\bottomrule
+\end{tabular}
+\end{table}
