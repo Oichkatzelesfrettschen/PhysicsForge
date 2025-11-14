@@ -98,27 +98,27 @@ See **[archive/README.md](../archive/README.md)** for details.
 ### Essential Commands
 ```bash
 # Build and test
-make pipeline        # Full data extraction and catalog generation
-make test           # Run full test suite
-make ci             # Complete CI pipeline
+make pipeline # Full data extraction and catalog generation
+make test # Run full test suite
+make ci # Complete CI pipeline
 
 # Validation
-make validate       # Validate catalog integrity
-make audit          # Audit repository structure
-make parity         # Check catalog-module consistency
-make ascii_guard    # Enforce ASCII-only policy
+make validate # Validate catalog integrity
+make audit # Audit repository structure
+make parity # Check catalog-module consistency
+make ascii_guard # Enforce ASCII-only policy
 
 # LaTeX compilation
-make latex          # Standard LaTeX build
-make latex_strict   # Strict mode (errors fail build)
+make latex # Standard LaTeX build
+make latex_strict # Strict mode (errors fail build)
 
 # Reporting
-make reports        # Generate all reports
-make todo           # Update TODO tracker
+make reports # Generate all reports
+make todo # Update TODO tracker
 
 # Maintenance
-make clean          # Remove temporary files
-make help           # Show all available commands
+make clean # Remove temporary files
+make help # Show all available commands
 ```
 
 ### Windows Users

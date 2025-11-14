@@ -158,30 +158,30 @@ GitHub-specific configuration.
 
 ```
 notes/ + synthesis/ 
-    ↓ (extraction)
+    v (extraction)
 scripts/equation_extractor.py
-    ↓ (raw equations)
+    v (raw equations)
 scripts/merge_and_analyze_equations.py
-    ↓ (deduplicated)
+    v (deduplicated)
 data/catalogs/equation_catalog.csv
-    ↓ (validation)
+    v (validation)
 scripts/validate_catalog.py
-    ↓ (linking)
+    v (linking)
 scripts/link_modules.py
-    ↓ (compilation)
-synthesis/main.tex → synthesis/main.pdf
+    v (compilation)
+synthesis/main.tex -> synthesis/main.pdf
 ```
 
 ## Testing Flow
 
 ```
-make smoke     → Fast regression tests
-make test      → Full pytest suite
-make validate  → Catalog validation
-make audit     → Repository audit
-make parity    → Catalog-module consistency
-make gaps      → TODO and gap analysis
-make ci        → Full CI pipeline
+make smoke -> Fast regression tests
+make test -> Full pytest suite
+make validate -> Catalog validation
+make audit -> Repository audit
+make parity -> Catalog-module consistency
+make gaps -> TODO and gap analysis
+make ci -> Full CI pipeline
 ```
 
 ## Documentation Standards
