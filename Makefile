@@ -33,6 +33,9 @@ help:
 	@echo " LaTeX & Synthesis:                                                        "
 	@echo "   latex           - Compile the main LaTeX document.                      "
 	@echo "   latex_strict    - Compile LaTeX in strict mode (errors fail the build). "
+	@echo "   paper1          - Build standalone Chapter 1 paper with all visualizations."
+	@echo "   clean-paper1    - Clean Paper 1 build artifacts.                        "
+	@echo "   validate-paper1 - Validate Paper 1 for errors/warnings.                 "
 	@echo "   link            - Link equation modules into the synthesis directory.   "
 	@echo "                                                                           "
 	@echo "---------------------------------------------------------------------------"
@@ -60,7 +63,7 @@ SHELL := /bin/bash
 BASE_DIR ?= .
 SCANS ?= notes .
 
-.PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict todo reports ascii_guard ascii_normalize update_data_readme help
+.PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict paper1 clean-paper1 validate-paper1 todo reports ascii_guard ascii_normalize update_data_readme help
 
 pipeline:
 	$(VENV_PATH)/bin/python scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
@@ -96,6 +99,28 @@ latex:
 
 latex_strict:
 	bash synthesis/scripts/compile_strict.sh
+
+# Paper 1: Chapter 1 Standalone Demo (Lions Commentary Integration)
+paper1:
+	@echo "=== Building Paper 1: Chapter 1 Mathematical Preliminaries ==="
+	@mkdir -p output/papers
+	cd synthesis/papers && pdflatex -interaction=nonstopmode -halt-on-error paper1_chapter1_demo.tex
+	cd synthesis/papers && bibtex paper1_chapter1_demo || true
+	cd synthesis/papers && pdflatex -interaction=nonstopmode -halt-on-error paper1_chapter1_demo.tex
+	cd synthesis/papers && pdflatex -interaction=nonstopmode -halt-on-error paper1_chapter1_demo.tex
+	@mv synthesis/papers/paper1_chapter1_demo.pdf output/papers/ 2>/dev/null || echo "PDF already in place"
+	@echo "=== Paper 1 built successfully: output/papers/paper1_chapter1_demo.pdf ==="
+
+clean-paper1:
+	@echo "=== Cleaning Paper 1 build artifacts ==="
+	cd synthesis/papers && rm -f *.aux *.log *.out *.toc *.bbl *.blg *.pdf
+	rm -f output/papers/paper1_chapter1_demo.pdf
+	@echo "=== Paper 1 artifacts cleaned ==="
+
+validate-paper1:
+	@echo "=== Validating Paper 1 ==="
+	@cd synthesis/papers && pdflatex -interaction=nonstopmode paper1_chapter1_demo.tex | grep -i "warning\|error\|undefined" || echo "No warnings/errors found"
+	@echo "=== Paper 1 validation complete ==="
 
 quick_pipeline:
 	python scripts/equation_extractor.py --base-dir $(BASE_DIR) --scan-dir notes --max-files 30 --max-lines 400 --parallel-workers 4
