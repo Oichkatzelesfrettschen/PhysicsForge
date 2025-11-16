@@ -287,6 +287,50 @@ The eight particle states have mass ratios:\marginmath{Golden ratio: $\phi = 1.6
 
 Agreement within error! First direct observation of $E_8$ in nature.\margincaution{Abstract math $\to$ real physics}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+
+  % CoNb2O6 experimental setup schematic
+  \begin{scope}[xshift=0cm]
+    % Sample
+    \draw[fill=blue!20, thick] (0, 0) rectangle (3, 0.4) node[midway, black] {\small CoNb$_2$O$_6$ crystal};
+
+    % Magnetic field
+    \draw[->, ultra thick, red!70!black] (-1.5, -0.8) -- (-1.5, 1.2) node[above] {$\vec{B}$ (transverse)};
+
+    % Temperature
+    \node at (4.5, 0.2) [font=\small] {$T = 0.05$ K};
+
+    % Neutron beam
+    \draw[->, thick, blue!60!black, line width=2pt] (-0.5, 2) -- (1.5, 0.6) node[midway, above, sloped] {\small Neutron beam};
+    \draw[->, thick, orange!80!black, line width=2pt] (1.5, 0.6) -- (3.5, 2) node[midway, above, sloped] {\small Scattered};
+
+    % Critical field annotation
+    \draw[<->, thick, dashed] (0, -1.5) -- (3, -1.5) node[midway, below] {$h_c \approx 5.5$ Tesla};
+
+  \end{scope}
+
+  % Mass spectrum (right side)
+  \begin{scope}[xshift=6cm, yshift=-1cm]
+    \node at (1.5, 3.5) [font=\bfseries] {Observed Spectrum:};
+
+    \foreach \i/\mass/\ypos in {1/1.00/0, 2/1.62/0.5, 3/2.41/1.0, 4/3.89/1.5, 5/5.24/2.0, 6/6.42/2.5, 7/8.48/3.0, 8/10.3/3.5} {
+      \draw[fill=green!30, thick] (0, \ypos) rectangle (2.5, \ypos+0.35);
+      \node at (1.25, \ypos+0.175) [font=\small] {$m_{\i} = \mass$};
+    }
+
+    % Golden ratio annotation
+    \draw[->, thick, red] (2.7, 0.175) -- (3.5, 0.175) node[right, font=\small] {$m_2/m_1 = 1.62 \pm 0.01$};
+    \draw[->, thick, red] (2.7, 0.675) -- (3.5, 0.675) node[right, font=\small] {Theory: $\phi = 1.618$};
+
+  \end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{CoNb$_2$O$_6$ quantum magnet experiment} (Coldea et al., 2010). Left: Neutron scattering setup at critical magnetic field $h_c \approx 5.5$ T and temperature $T = 0.05$ K. Right: Observed 8-particle mass spectrum. Ratio $m_2/m_1 = 1.62 \pm 0.01$ matches predicted golden ratio $\phi = 1.618...$, confirming $E_8$ symmetry.}
+\label{fig:p2:conb2o6-experiment}
+\end{figure}
+
 \section{Unified Root System Properties}
 \label{sec:p2:exceptional:roots}
 
@@ -309,6 +353,78 @@ $E_8$   & 8   & 248 & 240 & 1 (equal)      & 30 \\
 \label{tab:p2:exceptional-groups}
 \end{table}
 
+\subsection{Dynkin Diagrams: Visual Signatures}
+
+Each exceptional group has a unique Dynkin diagram encoding its root system structure. Nodes represent simple roots; edges indicate root angles.\marginmath{Nodes = simple roots}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85, every node/.style={circle, draw, fill=white, minimum size=6pt, inner sep=1pt}]
+
+  % G2
+  \node at (-2, 5) [draw=none, fill=none, font=\bfseries] {$G_2$:};
+  \node (g1) at (0, 5) {};
+  \node (g2) at (1.5, 5) {};
+  \draw[line width=2pt] (g1) -- (g2);
+  \draw[->, line width=1pt, shorten <=2pt, shorten >=2pt] (0.75, 5.15) -- (0.3, 5.15);
+  \node at (3.5, 5) [draw=none, fill=none, font=\small] {12 roots};
+
+  % F4
+  \node at (-2, 3.5) [draw=none, fill=none, font=\bfseries] {$F_4$:};
+  \node (f1) at (0, 3.5) {};
+  \node (f2) at (1.2, 3.5) {};
+  \node (f3) at (2.4, 3.5) {};
+  \node (f4) at (3.6, 3.5) {};
+  \draw (f1) -- (f2);
+  \draw[line width=1.5pt] (f2) -- (f3);
+  \draw[->, line width=1pt, shorten <=2pt, shorten >=2pt] (1.8, 3.65) -- (2.1, 3.65);
+  \draw (f3) -- (f4);
+  \node at (5.2, 3.5) [draw=none, fill=none, font=\small] {48 roots};
+
+  % E6
+  \node at (-2, 2) [draw=none, fill=none, font=\bfseries] {$E_6$:};
+  \node (e61) at (0, 2) {};
+  \node (e62) at (1.2, 2) {};
+  \node (e63) at (2.4, 2) {};
+  \node (e64) at (3.6, 2) {};
+  \node (e65) at (4.8, 2) {};
+  \node (e66) at (2.4, 3.0) {};
+  \draw (e61) -- (e62) -- (e63) -- (e64) -- (e65);
+  \draw (e63) -- (e66);
+  \node at (6.4, 2) [draw=none, fill=none, font=\small] {72 roots};
+
+  % E7
+  \node at (-2, 0.5) [draw=none, fill=none, font=\bfseries] {$E_7$:};
+  \node (e71) at (0, 0.5) {};
+  \node (e72) at (1.0, 0.5) {};
+  \node (e73) at (2.0, 0.5) {};
+  \node (e74) at (3.0, 0.5) {};
+  \node (e75) at (4.0, 0.5) {};
+  \node (e76) at (5.0, 0.5) {};
+  \node (e77) at (2.0, 1.5) {};
+  \draw (e71) -- (e72) -- (e73) -- (e74) -- (e75) -- (e76);
+  \draw (e73) -- (e77);
+  \node at (6.6, 0.5) [draw=none, fill=none, font=\small] {126 roots};
+
+  % E8
+  \node at (-2, -1) [draw=none, fill=none, font=\bfseries] {$E_8$:};
+  \node (e81) at (0, -1) {};
+  \node (e82) at (0.9, -1) {};
+  \node (e83) at (1.8, -1) {};
+  \node (e84) at (2.7, -1) {};
+  \node (e85) at (3.6, -1) {};
+  \node (e86) at (4.5, -1) {};
+  \node (e87) at (5.4, -1) {};
+  \node (e88) at (1.8, -2.0) {};
+  \draw (e81) -- (e82) -- (e83) -- (e84) -- (e85) -- (e86) -- (e87);
+  \draw (e83) -- (e88);
+  \node at (7.0, -1) [draw=none, fill=none, font=\small] {240 roots};
+
+\end{tikzpicture}
+\caption{\textbf{Dynkin diagrams of exceptional Lie groups}. Nodes represent simple roots. Single lines indicate 120° angle, double lines 135° (with arrow to longer root), triple lines 150°. Branching nodes characterize $E$-series.}
+\label{fig:p2:dynkin-diagrams}
+\end{figure}
+
 \subsection{Weyl Groups}
 
 The Weyl group $W(G)$ is the discrete symmetry group of roots.\marginmath{Reflections and permutations}
@@ -322,6 +438,64 @@ Orders:\margincomp{$E_8$: nearly 700 million symmetries!}
   |W(E_8)|  &= 696729600 = 2^{14} \cdot 3^5 \cdot 5^2 \cdot 7
   \label{eq:p2:weyl-orders}
 \end{align}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9]
+
+  % Root length comparison
+  \node at (0, 4.5) [font=\bfseries] {Root Length Structure};
+
+  % G2: Two root lengths
+  \begin{scope}[yshift=3cm]
+    \node at (-2, 0) [font=\small] {$G_2$:};
+    \draw[thick, red!70!black] (0, 0) -- (1, 0);
+    \node at (0.5, -0.4) [font=\scriptsize] {short};
+    \draw[thick, blue!70!black] (2, 0) -- (3.73, 0);
+    \node at (2.865, -0.4) [font=\scriptsize] {long};
+    \node at (5, 0) [font=\scriptsize] {ratio $1:\sqrt{3}$};
+  \end{scope}
+
+  % F4: Two root lengths
+  \begin{scope}[yshift=2cm]
+    \node at (-2, 0) [font=\small] {$F_4$:};
+    \draw[thick, red!70!black] (0, 0) -- (1, 0);
+    \node at (0.5, -0.4) [font=\scriptsize] {short};
+    \draw[thick, blue!70!black] (2, 0) -- (3.41, 0);
+    \node at (2.705, -0.4) [font=\scriptsize] {long};
+    \node at (5, 0) [font=\scriptsize] {ratio $1:\sqrt{2}$};
+  \end{scope}
+
+  % E6, E7, E8: All equal
+  \begin{scope}[yshift=1cm]
+    \node at (-2, 0) [font=\small] {$E_6$:};
+    \draw[thick, green!60!black] (0, 0) -- (1.5, 0);
+    \node at (0.75, -0.4) [font=\scriptsize] {all equal};
+    \node at (5, 0) [font=\scriptsize] {simply-laced};
+  \end{scope}
+
+  \begin{scope}[yshift=0cm]
+    \node at (-2, 0) [font=\small] {$E_7$:};
+    \draw[thick, green!60!black] (0, 0) -- (1.5, 0);
+    \node at (0.75, -0.4) [font=\scriptsize] {all equal};
+    \node at (5, 0) [font=\scriptsize] {simply-laced};
+  \end{scope}
+
+  \begin{scope}[yshift=-1cm]
+    \node at (-2, 0) [font=\small] {$E_8$:};
+    \draw[thick, green!60!black] (0, 0) -- (1.5, 0);
+    \node at (0.75, -0.4) [font=\scriptsize] {all equal};
+    \node at (5, 0) [font=\scriptsize] {simply-laced};
+  \end{scope}
+
+  % Legend
+  \draw[thick, dashed] (-3, -1.8) -- (7, -1.8);
+  \node at (2, -2.3) [font=\small] {\textbf{Simply-laced}: all roots equal length (Dynkin diagram has only single edges)};
+
+\end{tikzpicture}
+\caption{\textbf{Root length structure of exceptional groups}. $G_2$ and $F_4$ have two root lengths (non-simply-laced); $E_6$, $E_7$, $E_8$ have all roots equal length (simply-laced). Root length ratios determine Dynkin diagram edge multiplicities.}
+\label{fig:p2:root-lengths}
+\end{figure}
 
 \subsection{Cartan Matrix and Topology}
 

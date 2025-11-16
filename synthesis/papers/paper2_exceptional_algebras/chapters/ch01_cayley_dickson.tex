@@ -69,6 +69,54 @@ Starting from $\mathbb{R}$ (1D), each doubling creates a new algebra:\marginphys
 
 At each step, the dimension doubles: $\dim(\mathcal{A}_{n+1}) = 2 \cdot \dim(\mathcal{A}_n)$.
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=2.5cm,
+  algebra/.style={rectangle, rounded corners, draw=blue!70, fill=blue!10, thick, minimum height=1.2cm, minimum width=1.8cm, align=center, font=\small},
+  arrow/.style={->, >=stealth, thick, blue!70},
+  loss/.style={font=\tiny, red!70!black, align=center}
+]
+  % Algebras
+  \node[algebra] (R) {$\mathbb{R}$\\1D\\Reals};
+  \node[algebra, right of=R] (C) {$\mathbb{C}$\\2D\\Complex};
+  \node[algebra, right of=C] (H) {$\mathbb{H}$\\4D\\Quaternions};
+  \node[algebra, right of=H] (O) {$\mathbb{O}$\\8D\\Octonions};
+  \node[algebra, below=1.5cm of H] (S) {$\mathbb{S}$\\16D\\Sedenions};
+  \node[algebra, below=1.5cm of O] (P) {$\mathbb{P}$\\32D\\Pathions};
+
+  % Arrows with doubling
+  \draw[arrow] (R) -- (C) node[midway, above, font=\footnotesize] {$\times 2$};
+  \draw[arrow] (C) -- (H) node[midway, above, font=\footnotesize] {$\times 2$};
+  \draw[arrow] (H) -- (O) node[midway, above, font=\footnotesize] {$\times 2$};
+  \draw[arrow] (O) -- (S) node[midway, right, font=\footnotesize] {$\times 2$};
+  \draw[arrow] (S) -- (P) node[midway, below, font=\footnotesize] {$\times 2$};
+
+  % Property losses
+  \node[loss, below=0.1cm of R] {};
+  \node[loss, below=0.1cm of C] {Lost:\\Ordering};
+  \node[loss, below=0.1cm of H] {Lost:\\Commutativity};
+  \node[loss, below=0.3cm of O] {Lost:\\Associativity};
+  \node[loss, right=0.1cm of S] {Lost:\\Division\\Zero divisors};
+  \node[loss, right=0.1cm of P] {Lost:\\Alternativity};
+
+  % Title annotation
+  \node[draw=none, font=\footnotesize\bfseries, above=0.8cm of C] {Cayley-Dickson Doubling Progression};
+
+  % Recursive formula box
+  \node[draw=green!60!black, fill=green!5, thick, rounded corners, align=left, font=\scriptsize, below=0.5cm of S, xshift=-1cm] {
+    \textbf{Doubling formula:}\\
+    $(a,b) \cdot (c,d) = (ac - d^*b, da + bc^*)$\\
+    Dimension: $2^{n+1}$ from $2^n$
+  };
+
+\end{tikzpicture}
+\caption{Cayley-Dickson recursion showing dimensional doubling from reals to pathions. Each doubling (blue arrows) doubles the dimension but costs an algebraic property (red labels). The construction terminates practical usefulness at octonions (8D), the last normed division algebra, though it can continue indefinitely. The green box shows the universal multiplication rule generating all algebras.}
+\label{fig:p2:cayley:recursion}
+\end{figure}
+
+\marginxref{Fig.~\ref{fig:p2:cayley:recursion}: Doubling hierarchy}
+
 \subsection{The Universal Multiplication Rule}
 
 Elements of $\mathcal{A}_{n+1}$ are pairs $(a,b)$ with $a,b \in \mathcal{A}_n$:\marginmath{Single formula generates all algebras}
@@ -149,6 +197,49 @@ Rotating vector $\mathbf{v}$: $\mathbf{v}' = q \mathbf{v} q^{-1}$.\margincomp{Mo
 
 The Pauli spin matrices are quaternion units in disguise.\marginphysics{Electron spin → Quaternionic structure}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.4, every node/.style={circle, draw, fill=blue!20, minimum size=6mm, font=\footnotesize}]
+  % Define quaternion unit positions at vertices of a cube projection
+  \def\cubescale{1.5}
+  % Front face (z=0 plane)
+  \node[fill=white] (1) at (0,0) {$1$};
+  \node (i) at (\cubescale,0) {$i$};
+  \node (j) at (0,\cubescale) {$j$};
+  \node (k) at (\cubescale,\cubescale) {$k$};
+  % Back face (z=1 plane)
+  \node[fill=red!30] (ni) at (0.4*\cubescale,-0.4*\cubescale) {$-i$};
+  \node[fill=red!30] (nj) at (0.4*\cubescale+\cubescale,-0.4*\cubescale) {$-j$};
+  \node[fill=red!30] (nk) at (0.4*\cubescale,\cubescale-0.4*\cubescale) {$-k$};
+  \node[fill=gray!40] (n1) at (0.4*\cubescale+\cubescale,\cubescale-0.4*\cubescale) {$-1$};
+
+  % Edges showing multiplication paths (color-coded for clarity)
+  \draw[thick, blue, ->] (1) -- (i) node[midway, below, draw=none, fill=none] {\tiny $\times i$};
+  \draw[thick, red, ->] (1) -- (j) node[midway, left, draw=none, fill=none] {\tiny $\times j$};
+  \draw[thick, green!60!black, ->] (i) -- (k) node[midway, right, draw=none, fill=none] {\tiny $\times j$};
+  \draw[thick, green!60!black, ->] (j) -- (k) node[midway, above, draw=none, fill=none] {\tiny $\times i$};
+
+  % Diagonal edges (depth)
+  \draw[dashed, gray] (1) -- (ni);
+  \draw[dashed, gray] (i) -- (n1);
+  \draw[dashed, gray] (j) -- (nk);
+  \draw[dashed, gray] (k) -- (nj);
+
+  % Back face edges
+  \draw[thick, opacity=0.5] (ni) -- (nj);
+  \draw[thick, opacity=0.5] (ni) -- (nk);
+  \draw[thick, opacity=0.5] (nj) -- (n1);
+  \draw[thick, opacity=0.5] (nk) -- (n1);
+
+  % Cyclic multiplication: ijk = -1
+  \draw[ultra thick, purple, ->] (2.2*\cubescale, 0.5*\cubescale) arc (0:270:0.3) node[midway, right, draw=none, fill=none, font=\small] {$ijk = -1$};
+\end{tikzpicture}
+\caption{Quaternion multiplication cube showing the three imaginary units $i, j, k$ and their negatives. The colored arrows indicate multiplication paths: $ij = k$ (green), $jk = i$ (blue), $ki = j$ (red). Non-commutativity is evident: $ij = k$ but $ji = -k$. The cyclic relation $ijk = -1$ (purple) is Hamilton's fundamental quaternion identity.}
+\label{fig:p2:cayley:quaternion-cube}
+\end{figure}
+
+\marginxref{Fig.~\ref{fig:p2:cayley:quaternion-cube}: Quaternion structure in 3D}
+
 \subsection{Octonions $\mathbb{O}$ (8D)}
 
 Octonions are eight-dimensional with basis $\{1, e_1, \ldots, e_7\}$. The seven imaginary units multiply via the \textbf{Fano plane}.\marginmath{Fano plane: 7 points, 7 lines}
@@ -164,6 +255,60 @@ Using the Fano plane:\marginex{Products from Fano geometry}
 Since $e_6 \neq -e_5$, associativity fails.\marginmath{Grouping matters: $(xy)z \neq x(yz)$}
 
 Octonions satisfy the weaker \textbf{Moufang identities}: $x(xy) = (xx)y$ and $(yx)x = y(xx)$.\marginmath{Alternative algebra: Moufang identities}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=2.2]
+  % Fano plane circle
+  \draw[thick, blue!70] (0,0) circle (1);
+
+  % Seven vertices (imaginary units e1-e7)
+  \foreach \i/\angle/\label in {1/90/e_1, 2/180/e_2, 3/270/e_3, 4/360/e_4, 5/51.43/e_5, 6/154.29/e_6, 7/257.14/e_7} {
+    \node[circle, fill=red!70!black, inner sep=2pt, text=white, font=\small] (\i) at (\angle:1) {$\label$};
+  }
+
+  % Seven lines (with orientation arrows for multiplication)
+  % Line 1: e1-e2-e4 (triangle side)
+  \draw[thick, blue, ->] (1) -- (2);
+  \draw[thick, blue, ->] (2) -- (4);
+  \draw[thick, blue, ->] (4) -- (1);
+
+  % Line 2: e2-e3-e5 (triangle side)
+  \draw[thick, green!60!black, ->] (2) -- (3);
+  \draw[thick, green!60!black, ->] (3) -- (5);
+  \draw[thick, green!60!black, ->] (5) -- (2);
+
+  % Line 3: e3-e4-e6 (triangle side)
+  \draw[thick, purple, ->] (3) -- (4);
+  \draw[thick, purple, ->] (4) -- (6);
+  \draw[thick, purple, ->] (6) -- (3);
+
+  % Line 4: e1-e3-e7 (through center)
+  \draw[thick, orange!80!black, ->] (1) -- (3);
+  \draw[thick, orange!80!black, ->] (3) -- (7);
+  \draw[thick, orange!80!black, ->] (7) -- (1);
+
+  % Central triangle (inscribed)
+  \draw[thick, red!60!black, dashed] (5) -- (6);
+  \draw[thick, red!60!black, dashed] (6) -- (7);
+  \draw[thick, red!60!black, dashed] (7) -- (5);
+
+  % Center point
+  \fill[black] (0,0) circle (0.5pt);
+
+  % Legend for multiplication rule
+  \node[draw=none, fill=white, align=left, font=\footnotesize, below left, inner sep=3pt] at (-0.3,-1.3) {
+    \textbf{Multiplication rule:}\\
+    Follow oriented line $\Rightarrow$ $e_i e_j = e_k$\\
+    Reverse direction $\Rightarrow$ $e_j e_i = -e_k$\\
+    Example: $e_1 e_2 = e_4$, $e_2 e_1 = -e_4$
+  };
+\end{tikzpicture}
+\caption{Fano plane encoding octonion multiplication. Seven imaginary units $e_1, \ldots, e_7$ sit at the vertices. Seven lines (including the circle and central triangle) each contain three units. Following the arrow direction from $e_i$ to $e_j$ to $e_k$ gives $e_i e_j = e_k$. Reversing gives a sign flip: $e_j e_i = -e_k$. Non-associativity arises from cyclic permutations not preserving products.}
+\label{fig:p2:cayley:fano-plane}
+\end{figure}
+
+\marginxref{Fig.~\ref{fig:p2:cayley:fano-plane}: Fano plane multiplication}
 
 \textbf{Hurwitz theorem} (1898): $\mathbb{R}, \mathbb{C}, \mathbb{H}, \mathbb{O}$ are the \emph{only} normed division algebras.\marginhistory{Hurwitz: Only 1, 2, 4, 8 dimensions}
 

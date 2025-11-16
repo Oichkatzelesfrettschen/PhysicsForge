@@ -103,6 +103,76 @@ For elliptic curve $E: y^2 = x^3 + ax + b$:\marginphysics{Elliptic curve invaria
 
 Two curves have the same $j$ iff they are isomorphic (same complex structure).\margindim{Moduli space of elliptic curves}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.3]
+
+  % Fundamental domain for PSL(2,Z) in upper half-plane
+  \begin{scope}[xshift=0cm]
+    % Upper half-plane representation
+    \fill[blue!10, opacity=0.5] (-1, 0) rectangle (1, 2.5);
+    \draw[thick] (-1, 0) -- (1, 0);
+
+    % Fundamental domain boundary
+    \draw[ultra thick, red!70!black] (-0.5, 0) arc (180:0:0.5);
+    \draw[ultra thick, red!70!black] (-1, 0.866) -- (-0.5, 0);
+    \draw[ultra thick, red!70!black] (1, 0.866) -- (0.5, 0);
+
+    % Shaded fundamental domain
+    \fill[orange!30, opacity=0.6] (-0.5, 0) arc (180:0:0.5) -- (1, 0.866) -- (1, 2.5) -- (-1, 2.5) -- (-1, 0.866) -- cycle;
+
+    % Axes
+    \draw[->, thick] (-1.2, 0) -- (1.2, 0) node[right] {$\text{Re}(\tau)$};
+    \draw[->, thick] (0, -0.2) -- (0, 2.7) node[above] {$\text{Im}(\tau)$};
+
+    % Labels
+    \node at (-0.5, -0.3) [font=\scriptsize] {$-1$};
+    \node at (0.5, -0.3) [font=\scriptsize] {$1$};
+    \node at (0, 0.7) [font=\scriptsize] {$i$};
+
+    % Fundamental domain label
+    \node at (0, 1.8) [font=\small, orange!80!black] {$\mathcal{F}$};
+
+    % Title
+    \node at (0, -0.8) [font=\small] {Modular Fundamental Domain};
+  \end{scope}
+
+  % j-invariant mapping (right side)
+  \begin{scope}[xshift=5.5cm, yshift=0.5cm]
+    % Complex plane for j
+    \draw[->, thick] (-1.5, 0) -- (1.5, 0) node[right] {$\text{Re}(j)$};
+    \draw[->, thick] (0, -1.2) -- (0, 1.2) node[above] {$\text{Im}(j)$};
+
+    % j-plane coverage (schematic)
+    \foreach \angle in {0,30,...,330} {
+      \pgfmathsetmacro{\radius}{0.3 + 0.5*rand}
+      \fill[green!50!black, opacity=0.15] (0,0) -- (\angle:\radius) arc (\angle:\angle+30:\radius) -- cycle;
+    }
+
+    % Pole at infinity
+    \node at (0, 0) [circle, fill=red!70!black, inner sep=2pt] {};
+    \node at (0.4, 0) [font=\scriptsize] {$\infty$};
+
+    % Special values
+    \fill[blue!70!black] (0.8, 0) circle (1.5pt);
+    \node at (1.1, -0.3) [font=\scriptsize] {$j=0$};
+
+    \fill[blue!70!black] (-0.9, 0) circle (1.5pt);
+    \node at (-1.2, -0.3) [font=\scriptsize] {$j=1728$};
+
+    % Title
+    \node at (0, -1.8) [font=\small] {$j$-invariant plane};
+
+    % Mapping arrow
+    \draw[->, ultra thick, blue!60!black] (-2.5, 1) -- (-1.8, 0.5);
+    \node at (-2.7, 1.3) [font=\scriptsize] {$j: \mathcal{F} \to \mathbb{C}$};
+  \end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{Modular fundamental domain and $j$-invariant}. Left: Fundamental domain $\mathcal{F}$ (orange) for PSL(2,$\mathbb{Z}$) in upper half-plane $\mathbb{H}$. Bounded by $|\text{Re}(\tau)| \leq 1/2$ and $|\tau| \geq 1$. Right: The $j$-invariant maps $\mathcal{F}$ bijectively to $\mathbb{C}$, with simple pole at $\tau = i\infty$ ($j \to \infty$). Special values: $j(i) = 1728$, $j(e^{2\pi i/3}) = 0$.}
+\label{fig:p2:j-invariant-domain}
+\end{figure}
+
 \section{Monstrous Moonshine Conjecture}
 \label{sec:p2:moonshine:conjecture}
 
@@ -216,6 +286,77 @@ Construction via $E_8$ lattices:\marginmath{$\Lambda_{24}$ from three $E_8$'s}
 
 where glue vectors shift by half-integers to eliminate roots.\margindim{Gluing kills all roots}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1]
+
+  % Leech lattice construction from three E8's
+  \begin{scope}[xshift=0cm]
+    % Three E8 lattices
+    \node at (-2, 3) [font=\bfseries] {Construction: $\Lambda_{24}$ from $E_8$'s};
+
+    % E8 #1
+    \draw[thick, blue!70!black, fill=blue!20] (-3, 1.5) circle (0.6);
+    \node at (-3, 1.5) [font=\small] {$E_8$};
+    \node at (-3, 0.7) [font=\scriptsize] {240 roots};
+
+    % E8 #2
+    \draw[thick, blue!70!black, fill=blue!20] (0, 1.5) circle (0.6);
+    \node at (0, 1.5) [font=\small] {$E_8$};
+    \node at (0, 0.7) [font=\scriptsize] {240 roots};
+
+    % E8 #3
+    \draw[thick, blue!70!black, fill=blue!20] (3, 1.5) circle (0.6);
+    \node at (3, 1.5) [font=\small] {$E_8$};
+    \node at (3, 0.7) [font=\scriptsize] {240 roots};
+
+    % Plus signs
+    \node at (-1.5, 1.5) [font=\Large] {$\oplus$};
+    \node at (1.5, 1.5) [font=\Large] {$\oplus$};
+
+    % Arrow down to gluing
+    \draw[->, ultra thick, orange!70!black] (0, 0.3) -- (0, -0.3);
+    \node at (1.5, -0.05) [font=\scriptsize] {+ glue vectors};
+
+    % Leech lattice result
+    \draw[thick, green!60!black, fill=green!20, rounded corners] (-4, -1.5) rectangle (4, -0.7);
+    \node at (0, -1.1) [font=\large] {$\Lambda_{24}$ (Leech Lattice)};
+
+    % Properties
+    \node at (0, -2.2) [font=\scriptsize, align=center] {
+      24D, even self-dual, \\
+      \textbf{no roots}, 196560 vectors of length 2
+    };
+  \end{scope}
+
+  % Right side: dimension accounting
+  \begin{scope}[xshift=7.5cm, yshift=0.5cm]
+    \node at (0, 2.5) [font=\bfseries] {Dimension Count};
+
+    \draw[thick] (-1.5, 1.8) rectangle (1.5, 0.2);
+    \node at (0, 1.5) [font=\small] {3 $\times$ $E_8$: 24D};
+    \node at (0, 1.1) [font=\scriptsize] {$8 + 8 + 8 = 24$};
+    \node at (0, 0.5) [font=\scriptsize, align=center] {Gluing removes\\all 720 roots};
+
+    % Arrow
+    \draw[->, thick] (0, 0) -- (0, -0.5);
+
+    % Result
+    \draw[thick, fill=green!15] (-1.5, -0.7) rectangle (1.5, -1.5);
+    \node at (0, -1.1) [font=\small] {$\Lambda_{24}$: unique!};
+
+    % Bottom annotation
+    \node at (0, -2.2) [font=\scriptsize, align=center] {
+      Optimal packing\\
+      in 24D (Viazovska)
+    };
+  \end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{Leech lattice construction from $E_8$}. Left: Three copies of $E_8$ lattice (8D each, 240 roots each) combined with glue vectors that shift by half-integers. Gluing eliminates all $3 \times 240 = 720$ roots. Right: Result is unique even self-dual lattice in 24D with no roots. Contains 196560 vectors of minimal length 2. Automorphism group is Conway group $\text{Co}_0$.}
+\label{fig:p2:leech-construction}
+\end{figure}
+
 \textbf{Properties}:\marginphysics{Most symmetric 24D lattice}
 \begin{itemize}
   \item Unique (up to isometry) in 24D
@@ -243,6 +384,79 @@ The Moonshine Module $V^\natural$ can be constructed from the Leech lattice:\mar
 \end{equation}
 
 where $V_{\Lambda_{24}}$ is the bosonic vertex algebra of the Leech lattice, and $g$ acts as reflection.\margincaution{$\mathbb{Z}_2$ orbifold}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+
+  % Monster group hierarchy tower
+  \node at (0, 5.5) [font=\bfseries] {From $E_8$ to Monster: The Moonshine Tower};
+
+  % E8 lattice (bottom)
+  \draw[thick, blue!70!black, fill=blue!15] (-1.5, 4) rectangle (1.5, 4.7);
+  \node at (0, 4.35) [font=\small] {$E_8$ Lattice ($\Lambda_{E_8}$)};
+  \node at (0, 3.7) [font=\scriptsize] {8D, 240 roots};
+
+  % Arrow up
+  \draw[->, ultra thick] (0, 3.5) -- (0, 3.0);
+  \node at (1.8, 3.25) [font=\scriptsize] {3 copies $\oplus$ glue};
+
+  % Leech lattice
+  \draw[thick, green!60!black, fill=green!15] (-2, 2.3) rectangle (2, 3.0);
+  \node at (0, 2.65) [font=\small] {Leech Lattice ($\Lambda_{24}$)};
+  \node at (0, 2) [font=\scriptsize] {24D, no roots, 196560 minimal vectors};
+
+  % Arrow up
+  \draw[->, ultra thick] (0, 1.8) -- (0, 1.3);
+  \node at (1.8, 1.55) [font=\scriptsize] {Aut$(\Lambda_{24})$};
+
+  % Conway group
+  \draw[thick, orange!70!black, fill=orange!15] (-2.2, 0.6) rectangle (2.2, 1.3);
+  \node at (0, 0.95) [font=\small] {Conway Group ($\text{Co}_0$)};
+  \node at (0, 0.35) [font=\scriptsize] {$|\text{Co}_0| \approx 8.3 \times 10^{18}$};
+
+  % Arrow up
+  \draw[->, ultra thick] (0, 0.1) -- (0, -0.4);
+  \node at (2.0, -0.15) [font=\scriptsize] {$\mathbb{Z}_2$ orbifold};
+
+  % Monster group (top)
+  \draw[thick, red!70!black, fill=red!15, rounded corners] (-2.5, -1.5) rectangle (2.5, -0.4);
+  \node at (0, -0.95) [font=\small] {Monster Group ($\mathbb{M}$)};
+  \node at (0, -1.8) [font=\scriptsize] {$|\mathbb{M}| \approx 8.08 \times 10^{53}$};
+
+  % Side annotations
+  \begin{scope}[xshift=4.5cm]
+    \node at (0, 4.35) [font=\scriptsize, align=left] {
+      Optimal packing,\\
+      248 symmetries
+    };
+
+    \node at (0, 2.65) [font=\scriptsize, align=left] {
+      Unique in 24D,\\
+      maximal symmetry
+    };
+
+    \node at (0, 0.95) [font=\scriptsize, align=left] {
+      Contains $M_{24}$,\\
+      sporadic simple
+    };
+
+    \node at (0, -0.95) [font=\scriptsize, align=left] {
+      Largest sporadic,\\
+      Moonshine VOA
+    };
+  \end{scope}
+
+  % Bottom summary
+  \node at (0, -2.7) [font=\small, align=center] {
+    $E_8 \to \Lambda_{24} \to \text{Co}_0 \to \mathbb{M}$\\
+    \scriptsize{Exceptional geometry $\to$ Largest sporadic group}
+  };
+
+\end{tikzpicture}
+\caption{\textbf{The moonshine tower from $E_8$ to Monster}. Bottom: Three $E_8$ lattices (8D, 240 roots each) combine with glue vectors to form Leech lattice $\Lambda_{24}$ (24D, no roots). Automorphism group Aut$(\Lambda_{24})$ is Conway group $\text{Co}_0$ ($|$Co$_0| \approx 8.3 \times 10^{18}$). $\mathbb{Z}_2$ orbifold of Leech CFT yields Moonshine Module with Monster symmetry $\mathbb{M}$ ($|\mathbb{M}| \approx 8 \times 10^{53}$). Each level builds on exceptional structures below.}
+\label{fig:p2:moonshine-tower}
+\end{figure}
 
 \section{$E_8$ and Moonshine}
 \label{sec:p2:moonshine:e8}

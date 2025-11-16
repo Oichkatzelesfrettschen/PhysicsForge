@@ -38,6 +38,66 @@ Continuum limit recovered by coarse-graining:\margincomp{Average over local cell
 
 For cells $L \gg \ell_P$, the lattice structure becomes invisible.\marginex{Like atoms in a crystal}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+
+  % 2D projection of Planck lattice
+  \begin{scope}[xshift=0cm]
+    % Lattice points (showing 8x8 grid)
+    \foreach \x in {0,0.5,...,3.5} {
+      \foreach \y in {0,0.5,...,3.5} {
+        \fill[blue!70!black] (\x, \y) circle (1.5pt);
+      }
+    }
+
+    % Lattice spacing annotation
+    \draw[<->, thick, red] (0, -0.5) -- (0.5, -0.5);
+    \node at (0.25, -0.8) [font=\scriptsize] {$a = \ell_P$};
+
+    % Title
+    \node at (1.75, 4.2) [font=\small] {Planck Lattice (2D slice)};
+    \node at (1.75, 3.8) [font=\scriptsize] {$\ell_P = 1.616 \times 10^{-35}$ m};
+
+    % Coarse-graining cell
+    \draw[thick, green!60!black, dashed] (0.5, 0.5) rectangle (2.5, 2.5);
+    \node at (1.5, 1.5) [font=\scriptsize, green!60!black] {cell};
+    \draw[->, thick, green!60!black] (2.7, 1.5) -- (3.3, 1.5);
+    \node at (4.2, 1.5) [font=\scriptsize, green!60!black] {$L \gg \ell_P$};
+
+  \end{scope}
+
+  % Continuum limit (right side)
+  \begin{scope}[xshift=6cm, yshift=0.5cm]
+    % Smooth spacetime representation
+    \shade[left color=blue!20, right color=blue!5] (0, 0) rectangle (3.5, 3);
+    \draw[thick] (0, 0) rectangle (3.5, 3);
+
+    % Coordinate grid (smooth)
+    \foreach \x in {0,0.7,1.4,2.1,2.8,3.5} {
+      \draw[gray!40, thin] (\x, 0) -- (\x, 3);
+    }
+    \foreach \y in {0,0.6,1.2,1.8,2.4,3} {
+      \draw[gray!40, thin] (0, \y) -- (3.5, \y);
+    }
+
+    % Labels
+    \node at (1.75, 3.7) [font=\small] {Continuum Limit};
+    \node at (1.75, 3.3) [font=\scriptsize] {$x^\mu \in \mathbb{R}^4$};
+
+    \node at (0.4, 2.5) [font=\scriptsize] {$x$};
+    \node at (3.2, 0.3) [font=\scriptsize] {$y$};
+
+    % Annotation
+    \draw[<->, thick, orange] (5, 1.5) -- (5.5, 1.5);
+    \node at (6.5, 1.5) [font=\scriptsize] {coarse-grain};
+  \end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{Planck lattice and continuum limit}. Left: Discrete spacetime as $E_8$ lattice (2D projection) with spacing $a = \ell_P \approx 10^{-35}$ m. Coarse-graining cell of size $L \gg \ell_P$ (green) averages over many lattice points. Right: Continuum limit emerges with smooth coordinates $x^\mu$. Lattice structure invisible at macroscopic scales.}
+\label{fig:p2:planck-lattice}
+\end{figure}
+
 \subsection{Why $E_8$ Lattice?}
 
 The $E_8$ root lattice (Chapter~\ref{ch:p2:e8-lattice}) is the optimal choice:\marginmath{Unique even unimodular in 8D}
@@ -83,6 +143,55 @@ For small displacements, dynamics are harmonic with dispersion:\margincomp{Sound
 
 where $\omega_0 = c / \ell_P \approx 10^{43}\,\text{rad/s}$ and $c_s \approx c/\sqrt{3}$ is sound speed.\marginmath{Speed of sound in 8D lattice}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.2]
+
+  % Phonon dispersion relation
+  \begin{axis}[
+    width=10cm, height=7cm,
+    xlabel={Wave vector $k$ ($\ell_P^{-1}$)},
+    ylabel={Frequency $\omega$ (rad/s)},
+    xmin=0, xmax=3.5,
+    ymin=0, ymax=4,
+    grid=major,
+    legend pos=north west,
+    ytick={0,1,2,3,4},
+    yticklabels={0, $\omega_0/4$, $\omega_0/2$, $3\omega_0/4$, $\omega_0$},
+    xtick={0,1,2,3},
+    xticklabels={0, $\pi/(4\ell_P)$, $\pi/(2\ell_P)$, $3\pi/(4\ell_P)$},
+  ]
+
+    % Linear (long wavelength) approximation
+    \addplot[domain=0:3.5, samples=100, thick, blue, dashed] {0.577 * x};
+    \addlegendentry{Linear: $\omega = c_s k$}
+
+    % Full dispersion (with lattice effects)
+    \addplot[domain=0:3.5, samples=100, thick, red] {sqrt(1 + 0.333 * x^2)};
+    \addlegendentry{Lattice: $\omega^2 = \omega_0^2 + c_s^2 k^2$}
+
+    % Planck frequency cutoff (horizontal line)
+    \addplot[domain=0:3.5, thick, green!60!black, dotted] {4};
+    \addlegendentry{Cutoff: $\omega_P = c/\ell_P$}
+
+    % Annotations
+    \node at (axis cs:1.5, 2.5) [font=\scriptsize, align=left] {
+      Continuum limit\\
+      ($k \ll \ell_P^{-1}$)
+    };
+
+    \node at (axis cs:2.8, 0.8) [font=\scriptsize, align=left] {
+      Lattice effects\\
+      ($k \sim \ell_P^{-1}$)
+    };
+
+  \end{axis}
+
+\end{tikzpicture}
+\caption{\textbf{Phonon dispersion relation in Planck lattice}. Blue dashed: Linear (continuum) approximation $\omega = c_s k$ with $c_s \approx 0.577c$. Red solid: Full lattice dispersion $\omega^2 = \omega_0^2 + c_s^2 k^2$ including lattice effects. Green dotted: Planck frequency cutoff $\omega_P = c/\ell_P \approx 10^{43}$ rad/s. At long wavelengths ($k \ll \ell_P^{-1}$), continuum limit applies; at Planck scale, lattice structure dominates.}
+\label{fig:p2:phonon-dispersion}
+\end{figure}
+
 \subsection{Metric from Displacement}
 
 The metric perturbation emerges from displacement gradients:\marginphysics{Geometry from vibrations}
@@ -110,6 +219,75 @@ For transverse phonons ($\mathbf{k} \cdot \mathbf{u} = 0$):\margincomp{Transvers
 \end{equation}
 
 \textbf{Physical meaning}: Gravity has microscopic origin---Planck-scale lattice vibrations averaged macroscopically.\marginphysics{Gravity emerges from quantum foam}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1]
+
+  % Emergent gravity from lattice vibrations
+  \begin{scope}[xshift=0cm]
+    % Undisturbed lattice (left)
+    \node at (1.5, 3.8) [font=\small] {Flat Spacetime};
+    \node at (1.5, 3.4) [font=\scriptsize] {(no vibrations)};
+
+    \foreach \x in {0,0.5,...,3} {
+      \foreach \y in {0,0.5,...,2.5} {
+        \fill[blue!70!black] (\x, \y) circle (1.2pt);
+      }
+    }
+
+    % Grid lines
+    \foreach \x in {0,0.5,...,3} {
+      \draw[blue!20, very thin] (\x, 0) -- (\x, 2.5);
+    }
+    \foreach \y in {0,0.5,...,2.5} {
+      \draw[blue!20, very thin] (0, \y) -- (3, \y);
+    }
+  \end{scope}
+
+  % Arrow indicating transformation
+  \draw[->, ultra thick, orange!70!black] (3.5, 1.5) -- (4.5, 1.5);
+  \node at (4, 2) [font=\scriptsize] {vibrations};
+
+  % Disturbed lattice (right) - emergent curvature
+  \begin{scope}[xshift=5cm]
+    \node at (1.5, 3.8) [font=\small] {Curved Spacetime};
+    \node at (1.5, 3.4) [font=\scriptsize] {(phonon excitations)};
+
+    % Displaced lattice points (sinusoidal distortion)
+    \foreach \x in {0,0.5,...,3} {
+      \foreach \y in {0,0.5,...,2.5} {
+        \pgfmathsetmacro{\dx}{0.15*sin(360*\y/1.5)*cos(360*\x/2)}
+        \pgfmathsetmacro{\dy}{0.15*cos(360*\y/1.5)*sin(360*\x/2)}
+        \fill[red!70!black] (\x+\dx, \y+\dy) circle (1.2pt);
+      }
+    }
+
+    % Distorted grid
+    \foreach \x in {0,0.5,...,3} {
+      \draw[red!30, very thin] plot[domain=0:2.5, samples=20, smooth]
+        (\x + 0.15*sin(360*\x/2)*cos(720*\x), \x);
+    }
+    \foreach \y in {0,0.5,...,2.5} {
+      \draw[red!30, very thin] plot[domain=0:3, samples=20, smooth]
+        (\x, \y + 0.15*cos(360*\y/1.5)*sin(360*\x/2));
+    }
+
+    % Displacement vector
+    \draw[->, thick, green!60!black] (1.5, 1.25) -- (1.7, 1.4);
+    \node at (2.2, 1.4) [font=\scriptsize] {$\mathbf{u}(x)$};
+  \end{scope}
+
+  % Bottom annotation
+  \node at (4, -0.8) [font=\small, align=center] {
+    Phonon vibrations $\to$ metric perturbation $\delta g_{\mu\nu}$\\
+    \scriptsize{Gravity = collective excitation of spacetime lattice}
+  };
+
+\end{tikzpicture}
+\caption{\textbf{Emergent gravity from lattice vibrations}. Left: Undisturbed $E_8$ lattice represents flat spacetime. Right: Lattice displacement field $\mathbf{u}(x)$ (green arrow) creates local distortions. Collective phonon excitations produce metric perturbation $\delta g_{\mu\nu} \propto \partial_\mu u_i \partial_\nu u^i$. Gravitational waves = coherent phonon modes propagating through spacetime lattice.}
+\label{fig:p2:emergent-gravity}
+\end{figure}
 
 \section{Lattice Vibrations and Field Coupling}
 \label{sec:p2:crystalline:field-coupling}
