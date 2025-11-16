@@ -1,0 +1,100 @@
+% Additional Comparison Matrices
+% File: tab_tensor_comparison_matrices.tex
+% Purpose: Multi-dimensional comparison matrices for tensor properties
+% For: Chapter 1 - Mathematical Preliminaries
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison matrix: Tensor transformation properties under coordinate changes $x^\mu \to x'^{\mu}$.}
+\label{tab:tensor_transformations}
+\small
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Object} & \textbf{Type} & \textbf{Transform as} & \textbf{Indices} & \textbf{Example} \\
+\midrule
+Scalar & $(0,0)$ & $\phi'(x') = \phi(x)$ & None & Temperature $T$ \\
+Vector & $(1,0)$ & $V'^{\mu} = \frac{\partial x'^{\mu}}{\partial x^\nu} V^\nu$ & Upper & Velocity $u^\mu$ \\
+Covector & $(0,1)$ & $\omega'_\mu = \frac{\partial x^\nu}{\partial x'^{\mu}} \omega_\nu$ & Lower & Gradient $\partial_\mu \phi$ \\
+Metric & $(0,2)$ & $g'_{\mu\nu} = \frac{\partial x^\alpha}{\partial x'^{\mu}} \frac{\partial x^\beta}{\partial x'^{\nu}} g_{\alpha\beta}$ & Lower-lower & $g_{\mu\nu}$ \\
+\midrule
+Christoffel & Not tensor & Has inhomogeneous term & Mixed & $\Gamma^\mu_{\alpha\beta}$ \\
+Riemann & $(1,3)$ & Tensor law & 1 up, 3 down & $R^\alpha_{\beta\mu\nu}$ \\
+Ricci & $(0,2)$ & Tensor law & Lower-lower & $R_{\mu\nu}$ \\
+Einstein & $(0,2)$ & Tensor law & Lower-lower & $G_{\mu\nu}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison matrix: Index manipulation operations and their physical/geometric meanings.}
+\label{tab:index_operations}
+\small
+\begin{tabular}{llcp{5cm}}
+\toprule
+\textbf{Operation} & \textbf{Notation} & \textbf{Formula} & \textbf{Physical/Geometric Meaning} \\
+\midrule
+\textbf{Raising} & $V_\mu \to V^\mu$ & $V^\mu = g^{\mu\nu} V_\nu$ & Convert covector to vector using metric \\
+\textbf{Lowering} & $V^\mu \to V_\mu$ & $V_\mu = g_{\mu\nu} V^\nu$ & Convert vector to covector using metric \\
+\textbf{Contraction} & $(m,n) \to (m-1,n-1)$ & $T^\mu_{\ \ \mu} = \sum_\mu T^\mu_{\ \ \mu}$ & Sum over repeated index (trace) \\
+\textbf{Symmetrization} & $T_{(\mu\nu)}$ & $\frac{1}{2}(T_{\mu\nu} + T_{\nu\mu})$ & Extract symmetric part \\
+\textbf{Antisymmetrization} & $T_{[\mu\nu]}$ & $\frac{1}{2}(T_{\mu\nu} - T_{\nu\mu})$ & Extract antisymmetric part (2-form) \\
+\textbf{Covariant deriv.} & $\nabla_\mu V^\nu$ & $\partial_\mu V^\nu + \Gamma^\nu_{\mu\alpha} V^\alpha$ & Parallel transport-compatible derivative \\
+\textbf{Lie derivative} & $\mathcal{L}_X Y$ & $[X,Y]$ (commutator) & Directional change along flow \\
+\midrule
+\multicolumn{4}{l}{\textit{\textbf{Algebraic Properties}}} \\
+\textbf{Metric compatibility} & $\nabla_\alpha g_{\mu\nu} = 0$ & -- & Covariant derivative commutes with raising/lowering \\
+\textbf{Torsion-free} & $\Gamma^\mu_{\alpha\beta} = \Gamma^\mu_{\beta\alpha}$ & -- & Connection symmetric in lower indices \\
+\textbf{Bianchi identity} & $\nabla_{[\alpha} R_{\beta\gamma]\delta\epsilon} = 0$ & -- & Integrability condition for curvature \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Cross-comparison matrix: Geometric objects across different geometric structures.}
+\label{tab:geometry_comparison}
+\footnotesize
+\begin{tabular}{lp{2.8cm}p{2.8cm}p{2.8cm}p{2.8cm}}
+\toprule
+\textbf{Object} & \textbf{Euclidean ($\mathbb{E}^n$)} & \textbf{Riemannian ($M,g$)} & \textbf{Pseudo-Riemannian ($M,g$)} & \textbf{Symplectic ($M,\omega$)} \\
+\midrule
+\textbf{Metric} & $\delta_{ij}$ (flat, positive) & $g_{ij} > 0$ (positive-definite) & $g_{\mu\nu}$ (indefinite, signature) & No metric (only 2-form $\omega$) \\
+\textbf{Connection} & $\Gamma = 0$ (flat) & Levi-Civita (metric-compatible) & Levi-Civita (metric-compatible) & Various (not unique) \\
+\textbf{Curvature} & $R = 0$ everywhere & $R_{ijkl}$ (intrinsic) & $R_{\mu\nu\alpha\beta}$ (intrinsic) & Not fundamental \\
+\textbf{Parallel transport} & Path-independent & Path-dependent if $R \neq 0$ & Path-dependent if $R \neq 0$ & Not standard \\
+\textbf{Geodesics} & Straight lines & Curves extremizing length & Curves extremizing interval (timelike/null/spacelike) & Hamiltonian flow \\
+\midrule
+\textbf{Physical application} & Classical mechanics (flat space) & Elasticity, surfaces & General relativity (spacetime) & Phase space, Hamiltonian mechanics \\
+\textbf{Signature} & $(+,+,\ldots,+)$ & $(+,+,\ldots,+)$ & $(-,+,+,+)$ (or reverse) & $N/A$ \\
+\textbf{Volume element} & $dV = dx^1 \cdots dx^n$ & $dV = \sqrt{g} dx^1 \cdots dx^n$ & $dV = \sqrt{-g} dx^0 \cdots dx^{n-1}$ & $\omega^n / n!$ \\
+\textbf{Chapter 1 focus} & Starting point & Generalization & Central topic (GR) & Mentioned (QM phase space) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Symmetry comparison matrix: Types of spacetime symmetries and their consequences (Noether theorem).}
+\label{tab:symmetry_matrix}
+\small
+\begin{tabular}{llp{4cm}l}
+\toprule
+\textbf{Symmetry} & \textbf{Killing vector} & \textbf{Physical interpretation} & \textbf{Conserved quantity} \\
+\midrule
+\textbf{Time translation} & $\xi^\mu = (1, 0, 0, 0)$ & Static spacetime, $\partial_t g_{\mu\nu} = 0$ & Energy $E$ \\
+\textbf{Spatial translation} & $\xi^\mu = (0, \vec{n})$ & Homogeneous space & Linear momentum $\vec{p}$ \\
+\textbf{Rotation} & $\xi^\mu = (0, \vec{r} \times \vec{n})$ & Spherical symmetry (part) & Angular momentum $\vec{L}$ \\
+\textbf{Boost} & $\xi^\mu = (x^i, t \delta^i_j)$ & Lorentz invariance & Center of mass motion \\
+\midrule
+\multicolumn{4}{l}{\textit{\textbf{Special Cases}}} \\
+Minkowski & 10 Killing vectors & Poincaré symmetry (ISO(1,3)) & Energy-momentum tensor conserved \\
+Schwarzschild & 4 Killing vectors & $\partial_t, \partial_\phi$ + 2 spatial rotations & Energy, angular momentum \\
+FLRW & 6 Killing vectors & Spatial isotropy + homogeneity & Reduces Einstein eqs. to Friedmann \\
+Kerr & 2 Killing vectors & Axisymmetry + stationarity & Energy, angular momentum \\
+pp-waves & 5 Killing vectors & Plane wave symmetry & Simplifies geodesics \\
+\midrule
+\textbf{No symmetries} & Generic & Most spacetimes & No conserved quantities (generally) \\
+\bottomrule
+\end{tabular}
+\end{table}

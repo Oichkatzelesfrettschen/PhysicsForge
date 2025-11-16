@@ -5,7 +5,7 @@
 This repository now contains a **formal proof** of the superforce scale identity:
 
 ```
-F* = c⁴/G ≈ 1.21 × 10⁴⁴ N
+F* = c^4/G ~= 1.21 * 10^44 N
 ```
 
 This identity is **exact** (up to measurement uncertainty in G) and connects Einstein's general relativity, quantum mechanics (via Planck units), and the unification of fundamental forces.
@@ -16,13 +16,13 @@ This identity is **exact** (up to measurement uncertainty in G) and connects Ein
 
 Three independent constructions all reduce to the same force scale:
 
-- **Construction A** (Energy/Length): `(m_P c²)/ℓ_P = c⁴/G`
-- **Construction B** (Coulomb Force): `(1/4πε₀)(q_P²/ℓ_P²) = c⁴/G`
-- **Construction C** (Newton Force): `G(m_P²/ℓ_P²) = c⁴/G`
+- **Construction A** (Energy/Length): `(m_P c^2)/ell_P = c^4/G`
+- **Construction B** (Coulomb Force): `(1/4pieps_0)(q_P^2/ell_P^2) = c^4/G`
+- **Construction C** (Newton Force): `G(m_P^2/ell_P^2) = c^4/G`
 
-**Numerical Verification**: All three agree to better than `10⁻¹⁴` relative precision.
+**Numerical Verification**: All three agree to better than `10^-^14` relative precision.
 
-**Uncertainty**: Relative uncertainty `σ_F*/F* ≈ 2.2×10⁻⁵` (limited by G measurement).
+**Uncertainty**: Relative uncertainty `sigma_F*/F* ~= 2.2*10^-^5` (limited by G measurement).
 
 ### 2. Python Validation Suite
 
@@ -32,22 +32,22 @@ Located in `scripts/superforce/`:
 - **`scale_identity.py`**: Three constructions + symbolic derivation
 - **`uncertainty.py`**: Monte Carlo uncertainty propagation (planned)
 - **`rg_running.py`**: One-loop RG evolution (SM vs MSSM comparison)
-- **`e8_breaking.py`**: E8 → SM symmetry breaking chains (planned)
+- **`e8_breaking.py`**: E8 -> SM symmetry breaking chains (planned)
 - **`modular_forms.py`**: Moonshine templates (planned)
 - **`validation.py`**: Comprehensive test suite
 
 **Run the proof**:
 ```bash
 cd scripts/superforce
-python scale_identity.py  # Shows symbolic derivation + numerical verification
-python rg_running.py      # RG unification analysis
+python scale_identity.py # Shows symbolic derivation + numerical verification
+python rg_running.py # RG unification analysis
 ```
 
 ### 3. LaTeX Equation Modules
 
 New equation modules in `synthesis/modules/equations/`:
 
-- `eq_superforce_planck_scale.tex` - Main identity F* = c⁴/G
+- `eq_superforce_planck_scale.tex` - Main identity F* = c^4/G
 - `eq_superforce_construction_a.tex` - Energy/length form
 - `eq_superforce_construction_b.tex` - Coulomb form
 - `eq_superforce_construction_c.tex` - Newton form
@@ -64,7 +64,7 @@ New equation modules in `synthesis/modules/equations/`:
 
 Automated workflows in `.github/workflows/`:
 
-- **`latex_build.yml`**: Compiles LaTeX → PDF, deploys to GitHub Pages
+- **`latex_build.yml`**: Compiles LaTeX -> PDF, deploys to GitHub Pages
 - **`python_tests.yml`**: Runs pytest + superforce validation
 
 **GitHub Pages**: Auto-deployed to `https://yourusername.github.io/Math_Science`
@@ -80,19 +80,19 @@ Features:
 Planned integrations:
 
 #### E8 Unification
-- **E8 → SM breaking chain**: E8 → E6×SU(3) → SO(10) → SU(5) → SM
+- **E8 -> SM breaking chain**: E8 -> E6*SU(3) -> SO(10) -> SU(5) -> SM
 - **Branching tables**: 248-dimensional adjoint decomposition
 - **Anomaly cancellation**: Automatic verification
-- **One-loop β-coefficients**: From light field content
+- **One-loop beta-coefficients**: From light field content
 
 #### Octonions
-- **Cayley-Dickson construction**: ℝ → ℂ → ℍ → 𝕆 → 𝕊 (sedenions)
-- **Triality**: Automorphisms of 𝕆 and G₂ connection
+- **Cayley-Dickson construction**: R -> C -> H -> O -> S (sedenions)
+- **Triality**: Automorphisms of O and G_2 connection
 - **Alternativity constraints**: Prune cubic couplings
 - **Jordan algebras**: Exceptional structures
 
 #### Moonshine
-- **Modular forms**: Partition function templates Z(τ)
+- **Modular forms**: Partition function templates Z(tau)
 - **Mock-modular forms**: For half-integer weight
 - **Graded spectrum**: Match rep multiplicities to Fourier coefficients
 - **Monstrous/umbral moonshine**: Sporadic group connections
@@ -101,27 +101,27 @@ Planned integrations:
 
 ```
 Math_Science/
-├── .github/
-│   └── workflows/
-│       ├── latex_build.yml       # LaTeX → PDF → Pages
-│       └── python_tests.yml      # Pytest + validation
-├── scripts/
-│   ├── superforce/               # NEW: Validation suite
-│   │   ├── planck_units.py
-│   │   ├── scale_identity.py
-│   │   ├── rg_running.py
-│   │   └── ...
-│   └── [existing scripts]
-├── synthesis/
-│   ├── modules/
-│   │   └── equations/
-│   │       ├── eq_superforce_*.tex  # NEW: Superforce proofs
-│   │       └── [existing equations]
-│   └── [existing structure]
-├── docs/
-│   ├── SUPERFORCE_PROOF_INTEGRATION.md  # Master integration plan
-│   └── [existing docs]
-└── [existing files]
++-- .github/
+| +-- workflows/
+| +-- latex_build.yml # LaTeX -> PDF -> Pages
+| +-- python_tests.yml # Pytest + validation
++-- scripts/
+| +-- superforce/ # NEW: Validation suite
+| | +-- planck_units.py
+| | +-- scale_identity.py
+| | +-- rg_running.py
+| | +-- ...
+| +-- [existing scripts]
++-- synthesis/
+| +-- modules/
+| | +-- equations/
+| | +-- eq_superforce_*.tex # NEW: Superforce proofs
+| | +-- [existing equations]
+| +-- [existing structure]
++-- docs/
+| +-- SUPERFORCE_PROOF_INTEGRATION.md # Master integration plan
+| +-- [existing docs]
++-- [existing files]
 ```
 
 ## Quick Start
@@ -141,7 +141,7 @@ pdflatex main.tex
 pdflatex main.tex
 
 # View output
-open main.pdf  # or xdg-open main.pdf on Linux
+open main.pdf # or xdg-open main.pdf on Linux
 ```
 
 ### CI/CD Workflow
@@ -156,21 +156,21 @@ open main.pdf  # or xdg-open main.pdf on Linux
 
 ## Physical Interpretation
 
-### Why F* = c⁴/G Matters
+### Why F* = c^4/G Matters
 
 1. **Scale Identity vs. Unification**:
    - F* is an **exact mathematical identity** (kinematic)
    - True gauge unification requires **dynamics** (RG running)
-   - MSSM achieves ~0.05 decade spread near 10¹⁶ GeV
+   - MSSM achieves ~0.05 decade spread near 10^16 GeV
    - SM has ~4 decade spread (no unification)
 
 2. **Connection to Einstein's Equations**:
-   - Inverse GR coupling: `c⁴/G ~ [energy/length] = [force]`
-   - Not phenomenological—follows from field equation structure
+   - Inverse GR coupling: `c^4/G ~ [energy/length] = [force]`
+   - Not phenomenological-follows from field equation structure
    - Pais (1986): "The superforce" at Planck scale
 
 3. **Quantum Gravity Threshold**:
-   - At ℓ_P, spacetime becomes "foamy" (quantum fluctuations)
+   - At ell_P, spacetime becomes "foamy" (quantum fluctuations)
    - Classical GR and QFT both break down
    - New physics (strings, loops, etc.) must emerge
 
@@ -178,27 +178,27 @@ open main.pdf  # or xdg-open main.pdf on Linux
 
 From `rg_running.py`:
 
-| Model | log₁₀ μ₁₂ | log₁₀ μ₂₃ | log₁₀ μ₁₃ | Spread |
+| Model | log_1_0 mu_1_2 | log_1_0 mu_2_3 | log_1_0 mu_1_3 | Spread |
 |-------|-----------|-----------|-----------|---------|
-| SM    | 9.99      | 11.93     | 13.01     | **3.96** |
-| 2HDM  | 10.10     | 12.14     | 13.11     | **3.24** |
-| MSSM  | 16.31     | 16.35     | 16.33     | **0.05** |
+| SM | 9.99 | 11.93 | 13.01 | **3.96** |
+| 2HDM | 10.10 | 12.14 | 13.11 | **3.24** |
+| MSSM | 16.31 | 16.35 | 16.33 | **0.05** |
 
 **Interpretation**:
-- MSSM couplings nearly meet at μ ~ 2×10¹⁶ GeV
+- MSSM couplings nearly meet at mu ~ 2*10^16 GeV
 - SM shows no single-scale unification
 - Superforce identity F* sets the **scale**, RG flow determines **whether** couplings meet
 
 ## Next Steps (Roadmap)
 
-### Phase 1: Core Proof ✅ (Complete)
+### Phase 1: Core Proof [OK] (Complete)
 - [x] Planck force equation modules
 - [x] Symbolic derivation
 - [x] Python validation suite
 - [x] Uncertainty analysis
 - [x] CI/CD automation
 
-### Phase 2: RG Analysis ✅ (Complete)
+### Phase 2: RG Analysis [OK] (Complete)
 - [x] One-loop running (SM, 2HDM, MSSM)
 - [x] Meeting scale tables
 - [x] Coupling evolution plots
@@ -240,7 +240,7 @@ See `CONTRIBUTING.md` for guidelines.
 
 Key points:
 - All LaTeX must compile cleanly (zero warnings)
-- Python code requires ≥ 90% test coverage
+- Python code requires >= 90% test coverage
 - Equations need full provenance headers
 - Follow repository naming conventions
 
@@ -254,7 +254,7 @@ If you use this work, please cite:
   title = {Superforce Proof and Exceptional Mathematics Integration},
   year = {2025},
   url = {https://github.com/yourusername/Math_Science},
-  note = {Formal proof of F* = c⁴/G via three independent constructions}
+  note = {Formal proof of F* = c^4/G via three independent constructions}
 }
 ```
 

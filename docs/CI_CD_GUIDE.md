@@ -65,23 +65,23 @@ PhysicsForge uses a comprehensive CI/CD pipeline built on GitHub Actions with lo
 
 ```bash
 # Fast validation before committing
-make smoke              # Quick tests + ASCII check (~10 seconds)
-make pre-commit         # Full pre-commit validation (~30 seconds)
+make smoke # Quick tests + ASCII check (~10 seconds)
+make pre-commit # Full pre-commit validation (~30 seconds)
 
 # Testing
-make test               # Full test suite (~2 minutes)
-make test-parallel      # Parallel test execution (faster)
-make test-coverage      # Tests with coverage report
-make test-timing        # Show slowest tests
+make test # Full test suite (~2 minutes)
+make test-parallel # Parallel test execution (faster)
+make test-coverage # Tests with coverage report
+make test-timing # Show slowest tests
 
 # Quality checks
-make lint               # ASCII guard + plan + metrics (~1 minute)
-make ascii_guard        # Just ASCII validation (~5 seconds)
-make security-check     # Security scan with bandit
+make lint # ASCII guard + plan + metrics (~1 minute)
+make ascii_guard # Just ASCII validation (~5 seconds)
+make security-check # Security scan with bandit
 
 # Comprehensive validation
-make ci-check           # What runs in CI (~3 minutes)
-make full-check         # All checks including coverage
+make ci-check # What runs in CI (~3 minutes)
+make full-check # All checks including coverage
 ```
 
 ### Development Workflow

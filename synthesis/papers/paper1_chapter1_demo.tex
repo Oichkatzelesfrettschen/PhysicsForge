@@ -1,0 +1,94 @@
+\documentclass[11pt,letterpaper,oneside]{book}
+
+% ===== Essential Packages =====
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,marginparwidth=1.5in]{geometry}
+
+% Mathematics
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathtools}
+
+% Graphics & Visualization
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,patterns,shapes,decorations.pathreplacing,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+% Marginal Notes (Lions Commentary Style)
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\footnotesize\sffamily}
+\usepackage{sidenotes}
+
+% Hyperlinks & Cross-references
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{cleveref}
+
+% Bibliography
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+% Index
+\usepackage{makeidx}
+\makeindex
+
+% ===== Custom Commands & Macros =====
+
+% Include marginal notes system (8 specialized macros)
+\input{../modules/marginal_notes_system}
+
+% Physical units
+\newcommand{\units}[1]{\,\mathrm{#1}}
+\newcommand{\Order}[1]{\mathcal{O}(#1)}
+
+% Tensor notation
+\newcommand{\tensor}[1]{\mathbf{#1}}
+\newcommand{\indices}[1]{{}^{#1}}
+
+% ===== Document Metadata =====
+\title{%
+  \vspace{-1cm}
+  \Huge\textbf{Mathematical Preliminaries for General Relativity}\\[0.5cm]
+  \Large A Comprehensive Lions Commentary-Style Introduction\\[0.3cm]
+  \large With Exhaustive Visualizations, Dimensional Analysis, and Physical Interpretations
+}
+\author{%
+  PhysicsForge Collaboration\\[0.3cm]
+  \small\textit{Chapter 1 Pedagogical Enhancement Pilot}
+}
+\date{\today}
+
+% ===== Document Begin =====
+\begin{document}
+
+\frontmatter
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+
+% ===== Chapter 1: Mathematical Preliminaries =====
+% This includes all 22 visualizations integrated with ~150 marginal notes
+
+\input{../chapters/foundations/ch01_mathematical_preliminaries}
+
+% ===== Bibliography =====
+\backmatter
+
+\bibliography{../bibliography}
+
+\printindex
+
+\end{document}

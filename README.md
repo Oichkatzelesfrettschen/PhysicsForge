@@ -19,9 +19,10 @@ This repository serves as a **Math & Science Research Hub**, collecting research
 *   **`data/`**: Staging area for catalogs, fixtures, and generated outputs.
 *   **`extracted_data/`**: Reports and longer-form generated analyses.
 *   **`output/`**: Rendered PDFs and reports.
-*   **`docs/`**: Guides, roadmaps, and repository documentation.
+*   **`docs/`**: Guides, roadmaps, and repository documentation. See [docs/INDEX.md](docs/INDEX.md) for complete documentation index.
 *   **`tests/`**: Unit and integration tests for Python scripts and LaTeX compilation.
 *   **`modules/`**: Reusable LaTeX components, especially equation snippets.
+*   **`archive/`**: Historical files, legacy scripts, and obsolete documentation preserved for reference.
 
 **Theoretical Frameworks Integrated:**
 *   **Aether Framework**: Scalar field dynamics, zero-point energy (ZPE), quantum foam, time crystals.
@@ -320,3 +321,28 @@ See [TODO / FIXME Tracker Report](reports/TODO_FIXME_TRACKER.md) for details.
 *   Zero content duplication.
 *   Clear organizational structure.
 *   All placeholders resolved or tracked.
+## Documentation
+
+This repository includes comprehensive documentation to help you navigate and contribute effectively.
+
+### Quick Start Documentation
+- **[README.md](README.md)** - This file: Project overview and quick start
+- **[docs/INDEX.md](docs/INDEX.md)** - Complete documentation index
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Repository structure and organization
+- **[docs/INSTALLATION_REQUIREMENTS.md](docs/INSTALLATION_REQUIREMENTS.md)** - Detailed setup guide
+
+### For AI Agents
+- **[GEMINI.md](GEMINI.md)** - Gemini AI integration guide
+- **[docs/CLAUDE.md](docs/CLAUDE.md)** - Claude AI integration guide  
+- **[docs/COPILOT.md](docs/COPILOT.md)** - GitHub Copilot integration guide
+- **[docs/AGENTS.md](docs/AGENTS.md)** - Universal repository guidelines
+
+### Development Documentation
+- **[docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)** - Contribution guidelines
+- **[docs/CI_CD_GUIDE.md](docs/CI_CD_GUIDE.md)** - Build and deployment workflows
+
+### Historical Archive
+- **[archive/README.md](archive/README.md)** - Legacy files and historical documentation
+
+For a complete list of all documentation, see **[docs/INDEX.md](docs/INDEX.md)**.
+

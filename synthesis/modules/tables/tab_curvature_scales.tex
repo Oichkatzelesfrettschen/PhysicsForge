@@ -1,0 +1,105 @@
+% Curvature Scales Comparison
+% File: tab_curvature_scales.tex
+% Purpose: Compare characteristic curvature scales across physical systems
+% For: Chapter 1 - Mathematical Preliminaries
+
+\begin{table}[htbp]
+\centering
+\caption{Curvature scales across physical systems: Ricci scalar $R$ and characteristic length scale $\ell_{\text{curv}} = |R|^{-1/2}$ (geometric units $c=G=1$).}
+\label{tab:curvature_scales}
+\small
+\begin{tabular}{lcccp{4cm}}
+\toprule
+\textbf{Physical System} & \textbf{Ricci scalar $R$} & \textbf{Curv. length $\ell_{\text{curv}}$} & \textbf{$R/R_{\text{Planck}}$} & \textbf{Physical significance} \\
+\midrule
+\multicolumn{5}{l}{\textit{\textbf{Cosmological Scales}}} \\
+Observable universe (present) & $\sim 10^{-52}$ m$^{-2}$ & $\sim 10^{26}$ m (Hubble) & $10^{-122}$ & Extremely weak curvature \\
+Early universe ($t=1$ s) & $\sim 10^{-10}$ m$^{-2}$ & $\sim 10^{5}$ m & $10^{-80}$ & Post-BBN era \\
+Inflation epoch & $\sim 10^{14}$ m$^{-2}$ & $\sim 10^{-7}$ m & $10^{-56}$ & Nearly exponential expansion \\
+Planck epoch ($t=t_P$) & $\sim 10^{70}$ m$^{-2}$ & $\sim 10^{-35}$ m (Planck) & $1$ & Quantum gravity regime \\
+\midrule
+\multicolumn{5}{l}{\textit{\textbf{Astrophysical Objects}}} \\
+Solar system (Earth orbit) & $\sim 10^{-27}$ m$^{-2}$ & $\sim 10^{13}$ m (0.1 AU) & $10^{-97}$ & Very weak field \\
+Sun surface & $\sim 10^{-11}$ m$^{-2}$ & $\sim 10^{5}$ m & $10^{-81}$ & Newtonian limit valid \\
+White dwarf & $\sim 10^{-6}$ m$^{-2}$ & $\sim 10^{3}$ m & $10^{-76}$ & Electron degeneracy pressure \\
+Neutron star surface & $\sim 10^{8}$ m$^{-2}$ & $\sim 10^{-4}$ m (0.1 mm) & $10^{-62}$ & Strong field, post-Newtonian \\
+Neutron star core & $\sim 10^{12}$ m$^{-2}$ & $\sim 10^{-6}$ m (1 μm) & $10^{-58}$ & Extreme curvature \\
+\midrule
+\multicolumn{5}{l}{\textit{\textbf{Black Holes}}} \\
+Supermassive BH (M87*, $10^9 M_\odot$) & $\sim 10^{-24}$ m$^{-2}$ & $\sim 10^{12}$ m (2500 AU) & $10^{-94}$ & Weak curvature at horizon \\
+Stellar BH ($10 M_\odot$) & $\sim 10^{-6}$ m$^{-2}$ & $\sim 10^{3}$ m (3 km) & $10^{-76}$ & Schwarzschild radius scale \\
+Primordial BH ($M_\text{asteroid}$) & $\sim 10^{6}$ m$^{-2}$ & $\sim 10^{-3}$ m (1 mm) & $10^{-64}$ & Hawking radiation significant \\
+Micro BH ($M_\text{Planck}$) & $\sim 10^{70}$ m$^{-2}$ & $\sim 10^{-35}$ m (Planck) & $1$ & Quantum regime \\
+\midrule
+\multicolumn{5}{l}{\textit{\textbf{Gravitational Waves (strain h, frequency f)}}} \\
+LIGO detection (binary BH) & $\sim 10^{-42}$ strain & -- & -- & $h \sim 10^{-21}$, $f \sim 100$ Hz \\
+Pulsar timing arrays & $\sim 10^{-30}$ strain & -- & -- & $h \sim 10^{-15}$, $f \sim 10^{-8}$ Hz \\
+Cosmic GW background & $\sim 10^{-16}$ strain & -- & -- & Primordial, stochastic \\
+\midrule
+\multicolumn{5}{l}{\textit{\textbf{Comparison Scales}}} \\
+Flat spacetime (Minkowski) & $R = 0$ exactly & $\ell_{\text{curv}} \to \infty$ & $0$ & Reference (no curvature) \\
+Planck curvature & $R_P \sim 10^{70}$ m$^{-2}$ & $\ell_P \sim 10^{-35}$ m & $1$ & Quantum gravity threshold \\
+Earth surface (2D) & $R_\oplus \sim 10^{-14}$ m$^{-2}$ & $R_\oplus \sim 6 \times 10^{6}$ m & -- & Spatial curvature only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Regime classification for general relativity validity based on curvature scale and characteristic system parameters.}
+\label{tab:gr_validity_regimes}
+\small
+\begin{tabular}{lp{3.5cm}p{3.5cm}p{4cm}}
+\toprule
+\textbf{Regime} & \textbf{Condition} & \textbf{Approximation} & \textbf{Examples} \\
+\midrule
+\textbf{Newtonian} & $\ell_{\text{curv}} \gg L_{\text{system}}$, $v \ll c$, $\Phi/c^2 \ll 1$ & $g_{00} \approx -(1+2\Phi/c^2)$, $g_{ij} \approx \delta_{ij}$ & Solar system, galaxies, most astrophysics \\
+\midrule
+\textbf{Post-Newtonian} & $\Phi/c^2 \sim 10^{-6}-10^{-2}$, $v/c \sim 0.1-0.3$ & Expansion in $v/c$ and $\Phi/c^2$ & Binary pulsars, GPS corrections, perihelion precession \\
+\midrule
+\textbf{Strong field} & $\Phi/c^2 \sim 0.1-0.5$, $v/c \sim 0.3-0.6$ & Full Einstein equations, numerical required & Neutron star mergers, close binaries, accretion disks \\
+\midrule
+\textbf{Extreme/relativistic} & $\ell_{\text{curv}} \sim L_{\text{system}}$, $v \to c$ & Numerical relativity, no approximations & Black hole horizons, GW emission during merger \\
+\midrule
+\textbf{Quantum gravity} & $\ell_{\text{curv}} \sim \ell_P$, $R \sim R_P$ & Classical GR breaks down, quantum effects dominant & Planck epoch, BH singularities (interior), micro black holes \\
+\midrule
+\textbf{Cosmological} & $\ell_{\text{curv}} \sim H_0^{-1}$, homogeneous & FLRW metric, Friedmann equations & CMB, large-scale structure, dark energy \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Dimensional analysis: Characteristic scales and their physical significance in general relativity.}
+\label{tab:characteristic_scales}
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Scale} & \textbf{Value (SI)} & \textbf{Value (Natural)} & \textbf{Physical meaning} \\
+\midrule
+\multicolumn{4}{l}{\textit{\textbf{Fundamental Constants}}} \\
+Speed of light $c$ & $3.0 \times 10^8$ m/s & $1$ & Spacetime conversion \\
+Newton constant $G$ & $6.7 \times 10^{-11}$ m$^3$/kg/s$^2$ & $1$ & Gravitational coupling \\
+Planck constant $\hbar$ & $1.1 \times 10^{-34}$ J$\cdot$s & $1$ & Quantum scale \\
+\midrule
+\multicolumn{4}{l}{\textit{\textbf{Derived Scales}}} \\
+Planck length $\ell_P$ & $1.6 \times 10^{-35}$ m & $1$ & Quantum gravity length \\
+Planck time $t_P$ & $5.4 \times 10^{-44}$ s & $1$ & Quantum gravity time \\
+Planck mass $m_P$ & $2.2 \times 10^{-8}$ kg & $1$ & Quantum gravity mass \\
+Planck energy $E_P$ & $1.2 \times 10^{19}$ GeV & $1$ & Quantum gravity energy \\
+Planck density $\rho_P$ & $5.2 \times 10^{96}$ kg/m$^3$ & $1$ & Quantum gravity density \\
+Planck curvature $R_P$ & $\ell_P^{-2} \sim 10^{70}$ m$^{-2}$ & $1$ & Quantum gravity curvature \\
+\midrule
+\multicolumn{4}{l}{\textit{\textbf{Astrophysical Scales}}} \\
+Schwarzschild radius $r_s$ & $2GM/c^2$ & $2M$ & Black hole horizon \\
+Solar mass $M_\odot$ & $2.0 \times 10^{30}$ kg & $1.5$ km & Gravitational radius unit \\
+Hubble parameter $H_0$ & $2.2 \times 10^{-18}$ s$^{-1}$ & $10^{-61} \ell_P^{-1}$ & Cosmic expansion rate \\
+Hubble length $H_0^{-1}$ & $1.4 \times 10^{26}$ m & $10^{61} \ell_P$ & Observable universe scale \\
+\midrule
+\multicolumn{4}{l}{\textit{\textbf{Curvature Hierarchy}}} \\
+$R_{\text{cosmic}} / R_P$ & -- & $\sim 10^{-122}$ & Cosmological constant problem \\
+$R_{\text{NS}} / R_P$ & -- & $\sim 10^{-58}$ & Strong but classical \\
+$R_{\text{Sun}} / R_P$ & -- & $\sim 10^{-81}$ & Weak field \\
+\bottomrule
+\end{tabular}
+\end{table}

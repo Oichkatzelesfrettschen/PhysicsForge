@@ -140,5 +140,20 @@ markdown_links.txt
 metrics.json
 plan.json
 
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.tmp
+
+# Package/distribution artifacts
+*.tar.gz
+*.zip
+
 # Claude Code local settings
 .claude/settings.local.json

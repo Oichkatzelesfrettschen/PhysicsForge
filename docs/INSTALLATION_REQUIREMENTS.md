@@ -213,8 +213,8 @@ If you forgot to check "Add to PATH" during installation:
 # Manual PATH configuration
 # 1. Open System Properties > Environment Variables
 # 2. Edit PATH variable, add:
-#    C:\Users\<username>\AppData\Local\Programs\Python\Python3XX
-#    C:\Users\<username>\AppData\Local\Programs\Python\Python3XX\Scripts
+# C:\Users\<username>\AppData\Local\Programs\Python\Python3XX
+# C:\Users\<username>\AppData\Local\Programs\Python\Python3XX\Scripts
 
 # OR use PowerShell to modify PATH (run as Administrator)
 $pythonPath = "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python313"
@@ -799,30 +799,30 @@ pip --version
 
 # Check repository structure
 Write-Host "`n[4/7] Repository Structure:" -ForegroundColor Yellow
-if (Test-Path ".\synthesis") { Write-Host "  synthesis/ - OK" -ForegroundColor Green } else { Write-Host "  synthesis/ - MISSING" -ForegroundColor Red }
-if (Test-Path ".\scripts") { Write-Host "  scripts/ - OK" -ForegroundColor Green } else { Write-Host "  scripts/ - MISSING" -ForegroundColor Red }
-if (Test-Path ".\tests") { Write-Host "  tests/ - OK" -ForegroundColor Green } else { Write-Host "  tests/ - MISSING" -ForegroundColor Red }
-if (Test-Path ".\notes") { Write-Host "  notes/ - OK" -ForegroundColor Green } else { Write-Host "  notes/ - MISSING" -ForegroundColor Red }
+if (Test-Path ".\synthesis") { Write-Host " synthesis/ - OK" -ForegroundColor Green } else { Write-Host " synthesis/ - MISSING" -ForegroundColor Red }
+if (Test-Path ".\scripts") { Write-Host " scripts/ - OK" -ForegroundColor Green } else { Write-Host " scripts/ - MISSING" -ForegroundColor Red }
+if (Test-Path ".\tests") { Write-Host " tests/ - OK" -ForegroundColor Green } else { Write-Host " tests/ - MISSING" -ForegroundColor Red }
+if (Test-Path ".\notes") { Write-Host " notes/ - OK" -ForegroundColor Green } else { Write-Host " notes/ - MISSING" -ForegroundColor Red }
 
 # Check critical LaTeX files
 Write-Host "`n[5/7] LaTeX Project Files:" -ForegroundColor Yellow
-if (Test-Path ".\synthesis\preamble.tex") { Write-Host "  preamble.tex - OK" -ForegroundColor Green } else { Write-Host "  preamble.tex - MISSING" -ForegroundColor Red }
-if (Test-Path ".\synthesis\main.tex") { Write-Host "  main.tex - OK" -ForegroundColor Green } else { Write-Host "  main.tex - MISSING" -ForegroundColor Red }
+if (Test-Path ".\synthesis\preamble.tex") { Write-Host " preamble.tex - OK" -ForegroundColor Green } else { Write-Host " preamble.tex - MISSING" -ForegroundColor Red }
+if (Test-Path ".\synthesis\main.tex") { Write-Host " main.tex - OK" -ForegroundColor Green } else { Write-Host " main.tex - MISSING" -ForegroundColor Red }
 
 # Check Python scripts
 Write-Host "`n[6/7] Python Scripts:" -ForegroundColor Yellow
 `$scripts = @("equation_extractor.py", "build_catalog_pipeline.py", "merge_and_analyze_equations.py")
 foreach (`$script in `$scripts) {
     if (Test-Path ".\scripts\`$script") {
-        Write-Host "  `$script - OK" -ForegroundColor Green
+        Write-Host " `$script - OK" -ForegroundColor Green
     } else {
-        Write-Host "  `$script - MISSING" -ForegroundColor Red
+        Write-Host " `$script - MISSING" -ForegroundColor Red
     }
 }
 
 # Test Python stdlib imports
 Write-Host "`n[7/7] Python Standard Library:" -ForegroundColor Yellow
-python -c "import re, os, csv, argparse, pathlib, collections, subprocess, sys; print('  All stdlib modules - OK')"
+python -c "import re, os, csv, argparse, pathlib, collections, subprocess, sys; print(' All stdlib modules - OK')"
 
 Write-Host "`n=== Verification Complete ===" -ForegroundColor Cyan
 "@ | Out-File -FilePath verify_install.ps1 -Encoding utf8
@@ -915,9 +915,9 @@ $outputs = @(
 
 foreach ($output in $outputs) {
     if (Test-Path $output) {
-        Write-Host "  $output - OK" -ForegroundColor Green
+        Write-Host " $output - OK" -ForegroundColor Green
     } else {
-        Write-Host "  $output - MISSING" -ForegroundColor Red
+        Write-Host " $output - MISSING" -ForegroundColor Red
     }
 }
 ```
@@ -993,10 +993,10 @@ import subprocess
 import sys
 
 print('Module tests:')
-print(f'  re version: {re.__version__}')
-print(f'  pathlib: {Path.cwd()}')
-print(f'  collections.defaultdict: {defaultdict}')
-print(f'  sys.version: {sys.version}')
+print(f' re version: {re.__version__}')
+print(f' pathlib: {Path.cwd()}')
+print(f' collections.defaultdict: {defaultdict}')
+print(f' sys.version: {sys.version}')
 print('All required stdlib modules loaded successfully!')
 "@
 ```
@@ -1019,9 +1019,9 @@ Write-Host "Directory Structure Verification:" -ForegroundColor Cyan
 foreach ($dir in $requiredDirs) {
     if (Test-Path $dir) {
         $count = (Get-ChildItem $dir -File).Count
-        Write-Host "  $dir - OK ($count files)" -ForegroundColor Green
+        Write-Host " $dir - OK ($count files)" -ForegroundColor Green
     } else {
-        Write-Host "  $dir - MISSING" -ForegroundColor Red
+        Write-Host " $dir - MISSING" -ForegroundColor Red
     }
 }
 ```
@@ -1489,8 +1489,8 @@ Test-Path synthesis\preamble.tex
 E = mc^2
 
 % Correct
-$E = mc^2$  % inline
-\[ E = mc^2 \]  % display
+$E = mc^2$ % inline
+\[ E = mc^2 \] % display
 ```
 
 #### Error: "Package babel Error: Unknown option 'english'"

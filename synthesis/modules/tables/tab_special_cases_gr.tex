@@ -1,0 +1,142 @@
+% Special Cases and Limiting Behaviors in General Relativity
+% Comprehensive comparison across different spacetime geometries
+% Essential reference for understanding when approximations are valid
+
+\begin{table}[htbp]
+\centering
+\caption{Special Cases and Limiting Behaviors in General Relativity}
+\label{tab:special_cases_gr}
+\begin{tabular}{|l|l|p{5cm}|p{4cm}|p{3.5cm}|}
+\hline
+\textbf{Case} & \textbf{Condition} & \textbf{Metric/Key Feature} & \textbf{Physical System} & \textbf{Validity} \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Flat Spacetime}} \\
+\hline
+Minkowski & $R_{\mu\nu\alpha\beta} = 0$ & $ds^2 = -dt^2 + dx^2 + dy^2 + dz^2$ & Special relativity, no gravity & Exact in absence of matter \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Weak Field Approximations}} \\
+\hline
+Newtonian limit & $|g_{\mu\nu} - \eta_{\mu\nu}| \ll 1$, $v \ll c$ & $g_{00} \approx -(1 + 2\Phi/c^2)$ where $\nabla^2\Phi = 4\pi G\rho$ & Solar system orbits, GPS corrections & $GM/rc^2 \ll 1$ and $v \ll c$ \\
+\hline
+Post-Newtonian & $|h_{\mu\nu}| \sim (v/c)^2$ & $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu} + O(v^4/c^4)$ & Binary pulsars, precision tests & $(v/c)^2 \sim 10^{-4}$ to $10^{-1}$ \\
+\hline
+Linearized GR & $|h_{\mu\nu}| \ll 1$ & $\Box h_{\mu\nu} = -16\pi G T_{\mu\nu}$ (wave equation) & Gravitational waves far from source & Strain $h \sim 10^{-21}$ (LIGO) \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Spherically Symmetric Solutions}} \\
+\hline
+Schwarzschild & $T_{\mu\nu} = 0$, static, spherical & $ds^2 = -(1-\frac{2GM}{r})dt^2 + (1-\frac{2GM}{r})^{-1}dr^2 + r^2 d\Omega^2$ & Non-rotating black hole, star exterior & Exact vacuum solution \\
+\hline
+Schwarzschild interior & $\rho = \text{const}$, $p = p(r)$ & Matches to Schwarzschild at surface $R$ & Constant density star (crude approx) & $R > \frac{9}{4}r_s$ (stability) \\
+\hline
+Reissner-Nordstrom & $T_{\mu\nu} = F_{\mu\alpha}F_\nu^\alpha$, charge $Q$ & Additional $+\frac{GQ^2}{r^2}$ term in $g_{00}$ & Charged black hole & Exact for $Q \neq 0$, $J=0$ \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Rotating Solutions}} \\
+\hline
+Kerr & $T_{\mu\nu} = 0$, stationary, axisymmetric & Frame dragging $g_{t\phi} \neq 0$, ergosphere, ring singularity & Rotating black hole, pulsars & Exact for $a = J/M < M$ \\
+\hline
+Kerr-Newman & Charge $Q$ and angular momentum $J$ & Combines Reissner-Nordstrom and Kerr & Rotating charged black hole & Most general stationary BH \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Cosmological Solutions}} \\
+\hline
+FLRW (flat) & Homogeneous, isotropic, $k=0$ & $ds^2 = -dt^2 + a(t)^2(dx^2 + dy^2 + dz^2)$ & Standard cosmology ($\Omega_{\text{tot}} = 1$) & $\Lambda$CDM for $a \propto t^{2/3}$ (matter era) \\
+\hline
+FLRW (closed) & $k = +1$ & $ds^2 = -dt^2 + a(t)^2\frac{dr^2}{1-r^2} + \cdots$ & Closed universe ($\Omega > 1$) & Recollapses if no dark energy \\
+\hline
+FLRW (open) & $k = -1$ & $ds^2 = -dt^2 + a(t)^2\frac{dr^2}{1+r^2} + \cdots$ & Open universe ($\Omega < 1$) & Expands forever \\
+\hline
+de Sitter & $T_{\mu\nu} = 0$, $\Lambda > 0$ & $ds^2 = -(1-\frac{r^2}{R^2})dt^2 + (1-\frac{r^2}{R^2})^{-1}dr^2 + \cdots$, $R = \sqrt{3/\Lambda}$ & Pure vacuum energy (inflation, late-time acceleration) & Exact for $\rho = 0$, $\Lambda \neq 0$ \\
+\hline
+Anti-de Sitter & $\Lambda < 0$ & Negative curvature everywhere & AdS/CFT correspondence (string theory) & Conformal boundary \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Wave-like Solutions}} \\
+\hline
+pp-waves & $T_{\mu\nu} = 0$, plane-fronted & $ds^2 = -2du\,dv + H(u,x,y)du^2 + dx^2 + dy^2$ & Gravitational wave (exact) & Penrose limit of any spacetime \\
+\hline
+TT gauge & $h_{ij}^{TT}$, transverse-traceless & $h_{+} = A \cos(\omega(t-z))$, $h_{\times} = A \sin(\omega(t-z))$ & LIGO/Virgo detections & Far from source, $r \gg \lambda$ \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Strong Field Regimes}} \\
+\hline
+Near horizon ($r \to 2GM$) & $g_{00} \to 0$ & Light cone tipping, infinite redshift & Black hole physics, Hawking radiation & Quantum effects at $r \sim r_s$ \\
+\hline
+Planck scale & $\ell \sim \ell_P = \sqrt{\hbar G/c^3}$ & GR breaks down, quantum gravity needed & Early universe ($t < 10^{-43}$ s), singularities & $\ell_P \sim 10^{-35}$ m \\
+\hline
+\hline
+\multicolumn{5}{|c|}{\textbf{Specialized Coordinates}} \\
+\hline
+Rindler & Uniformly accelerating observer & $ds^2 = -(a\xi)^2 dt^2 + d\xi^2 + dy^2 + dz^2$ & Unruh effect, acceleration horizons & Minkowski in disguise \\
+\hline
+Kruskal-Szekeres & Maximal extension of Schwarzschild & Regular at horizon, shows two exterior regions & Black/white hole, wormhole (traversable?) & Covers full Schwarzschild manifold \\
+\hline
+Eddington-Finkelstein & Ingoing/outgoing null coordinates & Regular at horizon for infalling matter & Gravitational collapse & Preferred for dynamics \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Parameter Regimes and Characteristic Scales}
+\label{tab:parameter_regimes}
+\begin{tabular}{|l|c|l|p{6cm}|}
+\hline
+\textbf{Regime} & \textbf{Dimensionless Parameter} & \textbf{Typical Value} & \textbf{Physical Systems \& Observables} \\
+\hline
+\hline
+Weak field & $\epsilon = \frac{GM}{rc^2}$ & $\epsilon \ll 1$ & \textbullet~Solar system: $\epsilon \sim 10^{-6}$ (Earth orbit) \newline \textbullet~GPS satellites: $\epsilon \sim 10^{-9}$ \newline \textbullet~Perihelion precession: $\sim \epsilon$ per orbit \\
+\hline
+Strong field & $\epsilon = \frac{GM}{rc^2}$ & $\epsilon \sim 0.1 - 0.5$ & \textbullet~Neutron star surface: $\epsilon \sim 0.2$ \newline \textbullet~Event horizon: $\epsilon = 0.5$ \newline \textbullet~Light bending: $\Delta\theta \sim 2\epsilon$ \\
+\hline
+Post-Newtonian & $v/c$ & $10^{-4} < v/c < 10^{-1}$ & \textbullet~Binary pulsars: $v/c \sim 10^{-3}$ \newline \textbullet~BH mergers (LIGO): $v/c \sim 0.3 - 0.6$ \newline \textbullet~Corrections: $O((v/c)^2, (v/c)^4, \ldots)$ \\
+\hline
+Cosmological & $H_0^{-1}$ (Hubble time) & $\sim 14$ Gyr & \textbullet~CMB anisotropies: $\Delta T/T \sim 10^{-5}$ \newline \textbullet~Dark energy: $\rho_\Lambda/\rho_c \sim 0.7$ \newline \textbullet~Curvature: $|k| < 0.01$ (flat) \\
+\hline
+GW strain & $h = \frac{\Delta L}{L}$ & $10^{-23} < h < 10^{-21}$ & \textbullet~LIGO sensitivity: $h \sim 10^{-23}$ \newline \textbullet~Binary coalescence: $h \sim 10^{-21}$ at 100 Mpc \newline \textbullet~Stochastic background: $\Omega_{GW} \sim 10^{-15}$ \\
+\hline
+Quantum gravity & $\ell/\ell_P$ & $\ell \gg \ell_P$ (classical) & \textbullet~Planck length: $\ell_P \sim 10^{-35}$ m \newline \textbullet~Planck energy: $E_P \sim 10^{19}$ GeV \newline \textbullet~Black hole evaporation: $t \sim (M/M_P)^3 t_P$ \\
+\hline
+Compactness & $\mathcal{C} = \frac{GM}{Rc^2}$ & $\mathcal{C} < 0.5$ (stable) & \textbullet~Sun: $\mathcal{C} \sim 10^{-6}$ \newline \textbullet~White dwarf: $\mathcal{C} \sim 10^{-4}$ \newline \textbullet~Neutron star: $\mathcal{C} \sim 0.2$ \newline \textbullet~Black hole: $\mathcal{C} = 0.5$ (horizon) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Approximation Validity and Corrections}
+\label{tab:approximation_corrections}
+\begin{tabular}{|l|p{7cm}|p{7cm}|}
+\hline
+\textbf{Approximation} & \textbf{Leading Correction} & \textbf{When Breakdown Occurs} \\
+\hline
+\hline
+Newtonian gravity & Post-Newtonian: $O((v/c)^2, GM/rc^2)$ & $v/c > 0.1$ or $GM/rc^2 > 0.01$ (strong field or high velocity) \\
+\hline
+Special relativity (no gravity) & GR corrections: $\Delta t/t \sim GM/rc^2$ & Any gravitational field, e.g., GPS ($\Delta t \sim 38$ $\mu$s/day) \\
+\hline
+Schwarzschild (non-rotating) & Kerr (rotation): $a/M = J/M^2$ & Rotating objects (all realistic astrophysical sources) \\
+\hline
+Schwarzschild (uncharged) & Reissner-Nordstrom: $Q^2 G/c^4 M^2$ & Charged black holes (ratio $Q/M \ll 1$ in nature) \\
+\hline
+Weak field linearized GR & Quadratic corrections: $O(h^2)$ & $h > 10^{-2}$ (strong field near compact objects) \\
+\hline
+Geodesic motion (test particle) & Self-force: $m/M$ & Extended objects, tidal deformation ($m/M > 10^{-6}$) \\
+\hline
+Vacuum Einstein equations & Matter stress-energy: $8\pi G T_{\mu\nu}/c^4$ & Any matter present (stars, gas, radiation) \\
+\hline
+Point-particle approximation & Tidal forces: $R_{\mu\nu\alpha\beta} \times (\text{size})^2$ & Object size comparable to curvature radius \\
+\hline
+Slow-motion ($v \ll c$) & Relativistic corrections: $(v/c)^2$ & High velocities (e.g., particle accelerators, BH mergers) \\
+\hline
+Static spacetime & Time-dependent: $\partial_t g_{\mu\nu} \neq 0$ & Gravitational waves, cosmological expansion, collapse \\
+\hline
+Asymptotic flatness & Cosmological constant: $\Lambda r^2$ & Large distances ($r > \Lambda^{-1/2} \sim 10^{26}$ m for $\Lambda_{\text{obs}}$) \\
+\hline
+Classical GR & Quantum corrections: $\hbar G E^2/c^5$ & Planck scale energies ($E \sim 10^{19}$ GeV), black hole evaporation \\
+\hline
+\end{tabular}
+\end{table}

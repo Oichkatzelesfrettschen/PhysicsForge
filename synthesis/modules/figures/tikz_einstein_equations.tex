@@ -1,0 +1,90 @@
+% Einstein Field Equations: Component Breakdown
+% Visual guide to the structure of Einstein's equations
+
+\begin{tikzpicture}[scale=1.0]
+
+% Title
+\node[font=\LARGE\bfseries] at (0,6.5) {Einstein Field Equations: $G_{\mu\nu} = 8\pi G T_{\mu\nu}$};
+
+% Left side: Geometry (Einstein tensor)
+\node[draw, thick, fill=blue!10, minimum width=6cm, minimum height=4cm, align=left] (geom) at (-4,3) {
+    \textbf{\large Geometry Side: $G_{\mu\nu}$}\\[8pt]
+    \textbf{Einstein Tensor:}\\
+    $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}$\\[8pt]
+    \textbf{Components:}\\
+    • Ricci tensor $R_{\mu\nu}$ (10 components)\\
+    • Ricci scalar $R = g^{\mu\nu}R_{\mu\nu}$\\
+    • Metric tensor $g_{\mu\nu}$\\[8pt]
+    \textbf{Divergence-free:}\\
+    $\nabla^\mu G_{\mu\nu} = 0$ (Bianchi identity)
+};
+
+% Right side: Matter (stress-energy tensor)
+\node[draw, thick, fill=red!10, minimum width=6cm, minimum height=4cm, align=left] (matter) at (4,3) {
+    \textbf{\large Matter Side: $T_{\mu\nu}$}\\[8pt]
+    \textbf{Stress-Energy Tensor:}\\
+    $T_{\mu\nu}$ = energy-momentum content\\[8pt]
+    \textbf{Components:}\\
+    • $T_{00}$: energy density\\
+    • $T_{0i}$: momentum density\\
+    • $T_{ij}$: stress (pressure/shear)\\[8pt]
+    \textbf{Conserved:}\\
+    $\nabla^\mu T_{\mu\nu} = 0$ (local conservation)
+};
+
+% Equals sign with constant
+\node[font=\Huge] at (0,3) {$=$};
+\node[draw, fill=yellow!20, font=\large] at (0,4.3) {$8\pi G$};
+\node[font=\tiny, align=center] at (0,5) {Newton's\\constant};
+
+% Arrow showing causality
+\draw[->, ultra thick, purple] (geom.east) -- node[above, font=\large, text=purple] {spacetime curvature} (0,3.5);
+\draw[->, ultra thick, purple] (0,2.5) -- node[below, font=\large, text=purple] {matter/energy content} (matter.west);
+
+% Component breakdown for 4D spacetime
+\node[draw, thick, fill=green!10, minimum width=14cm, align=left, font=\small] at (0,0.5) {
+    \textbf{In 4D Spacetime (t, x, y, z):}\\[4pt]
+    \begin{tabular}{ll}
+    $G_{00} = 8\pi G T_{00}$: & Time-time component (energy density determines time curvature) \\
+    $G_{0i} = 8\pi G T_{0i}$: & Time-space components (momentum density $\leftrightarrow$ frame dragging) \\
+    $G_{ij} = 8\pi G T_{ij}$: & Space-space components (stress/pressure $\leftrightarrow$ spatial curvature) \\
+    \end{tabular}
+};
+
+% Physical interpretation box
+\node[draw, thick, fill=orange!10, minimum width=14cm, align=left, font=\small] at (0,-1.5) {
+    \textbf{Physical Interpretation:}\\[4pt]
+    • \textbf{Wheeler's maxim:} "Spacetime tells matter how to move; matter tells spacetime how to curve"\\
+    • \textbf{10 independent equations} (symmetric $4\times4$ matrix has 10 unique components)\\
+    • \textbf{4 constraints} from $\nabla^\mu G_{\mu\nu}=0$ leave \textbf{6 dynamical degrees of freedom}\\
+    • \textbf{Units:} Both sides have dimensions $[\text{energy}]/[\text{volume}] = [\text{pressure}]$
+};
+
+% Example: Schwarzschild vacuum
+\node[draw, thick, fill=cyan!10, minimum width=6.5cm, align=left, font=\tiny] at (-3.75,-3.3) {
+    \textbf{Example: Schwarzschild Vacuum}\\
+    $T_{\mu\nu} = 0$ (no matter)\\
+    $\Rightarrow G_{\mu\nu} = 0$\\
+    $\Rightarrow R_{\mu\nu} = 0$ (Ricci-flat)\\
+    But $R_{\mu\nu\rho\sigma} \neq 0$ (Weyl curvature)\\
+    Solution: $g_{tt} = -(1-r_s/r)$, $g_{rr} = (1-r_s/r)^{-1}$
+};
+
+% Example: Cosmology
+\node[draw, thick, fill=cyan!10, minimum width=6.5cm, align=left, font=\tiny] at (3.75,-3.3) {
+    \textbf{Example: Cosmology (FLRW)}\\
+    $T_{\mu\nu} = (\rho + p)u_\mu u_\nu + p g_{\mu\nu}$ (perfect fluid)\\
+    Friedmann equations:\\
+    $\left(\frac{\dot{a}}{a}\right)^2 = \frac{8\pi G}{3}\rho - \frac{k}{a^2}$\\
+    $\frac{\ddot{a}}{a} = -\frac{4\pi G}{3}(\rho + 3p)$
+};
+
+% Linearized limit box
+\node[draw, thick, fill=magenta!10, minimum width=14cm, align=left, font=\small] at (0,-5) {
+    \textbf{Weak Field Limit (Linearized Gravity):}\\[4pt]
+    $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ where $|h_{\mu\nu}| \ll 1$\\
+    $\Rightarrow \Box h_{\mu\nu} = -16\pi G T_{\mu\nu}$ (wave equation!)\\
+    Predicts gravitational waves propagating at speed $c$
+};
+
+\end{tikzpicture}

@@ -1,0 +1,114 @@
+% Dimensional Analysis Workflow for Chapter 1 Concepts
+% Systematic tracking of units through GR calculations
+% Essential for verification and physical interpretation
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9,
+    process/.style={rectangle, draw=blue!60, fill=blue!10, thick, minimum width=3.5cm, minimum height=0.9cm, align=center, font=\small},
+    data/.style={rectangle, draw=green!60, fill=green!10, thick, minimum width=3.5cm, minimum height=0.7cm, align=center, font=\small},
+    check/.style={diamond, draw=red!60, fill=red!10, thick, minimum width=2.5cm, minimum height=0.9cm, align=center, font=\small},
+    result/.style={rectangle, draw=purple!60, fill=purple!10, thick, minimum width=3.5cm, minimum height=0.9cm, align=center, font=\small, rounded corners},
+    arrow/.style={->, >=stealth, thick}
+]
+
+    % Title
+    \node[anchor=north, font=\Large\bfseries] at (0,8.5) {Dimensional Analysis Workflow: General Relativity};
+    
+    % Starting point: Metric
+    \node[data] (metric) at (0,7) {Metric Tensor\\$g_{\mu\nu}$\\[2pt][dimensionless]};
+    
+    % First derivatives
+    \draw[arrow] (metric) -- (0,5.5);
+    \node[process] (partialg) at (0,5) {Partial Derivatives\\$\partial_\alpha g_{\mu\nu}$\\[2pt]$[\text{length}^{-1}]$};
+    
+    % Christoffel symbols
+    \draw[arrow] (partialg) -- (0,3.5);
+    \node[process] (chris) at (0,3) {Christoffel Symbols\\$\Gamma^\mu_{\alpha\beta} = \frac{1}{2}g^{\mu\nu}(\partial_\alpha g_{\beta\nu} + \partial_\beta g_{\alpha\nu} - \partial_\nu g_{\alpha\beta})$\\[2pt]$[\text{length}^{-1}]$};
+    
+    % Dimensional check 1
+    \draw[arrow] (chris) -- (-4.5,1.5);
+    \node[check] (check1) at (-4.5,0.5) {Units\\consistent?};
+    \draw[arrow] (check1) -- (-4.5,-1) node[below, font=\small, align=center] {$g^{\mu\nu}$: [1]\\$\partial$: [length$^{-1}$]\\Result: [length$^{-1}$] \checkmark};
+    
+    % Riemann tensor (parallel path)
+    \draw[arrow] (chris) -- (0,1.5);
+    \node[process] (riemann) at (0,1) {Riemann Tensor\\$R^\alpha_{\beta\mu\nu} = \partial_\mu \Gamma^\alpha_{\beta\nu} - \partial_\nu \Gamma^\alpha_{\beta\mu} + \Gamma^\alpha_{\mu\lambda}\Gamma^\lambda_{\beta\nu} - \Gamma^\alpha_{\nu\lambda}\Gamma^\lambda_{\beta\mu}$\\[2pt]$[\text{length}^{-2}]$};
+    
+    % Dimensional check 2
+    \draw[arrow] (riemann) -- (4.5,0.5);
+    \node[check] (check2) at (4.5,-0.5) {Each term\\same units?};
+    \draw[arrow] (check2) -- (4.5,-2) node[below, font=\small, align=center] {$\partial \Gamma$: [L$^{-1}$][L$^{-1}$]=[L$^{-2}$]\\$\Gamma \Gamma$: [L$^{-1}$][L$^{-1}$]=[L$^{-2}$]\\\checkmark All terms [L$^{-2}$]};
+    
+    % Ricci tensor
+    \draw[arrow] (riemann) -- (0,-1);
+    \node[process] (ricci) at (0,-1.5) {Ricci Tensor (contraction)\\$R_{\mu\nu} = R^\alpha_{\mu\alpha\nu}$\\[2pt]$[\text{length}^{-2}]$};
+    
+    % Ricci scalar
+    \draw[arrow] (ricci) -- (-4.5,-2.5);
+    \node[process] (scalar) at (-4.5,-3.5) {Ricci Scalar\\$R = g^{\mu\nu}R_{\mu\nu}$\\[2pt]$[\text{length}^{-2}]$};
+    
+    % Einstein tensor
+    \draw[arrow] (ricci) -- (0,-3);
+    \draw[arrow] (scalar) -- (-2.25,-4.5);
+    \node[process] (einstein) at (0,-4.5) {Einstein Tensor\\$G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R$\\[2pt]$[\text{length}^{-2}]$};
+    
+    % Dimensional check 3
+    \draw[arrow] (einstein) -- (4.5,-4.5);
+    \node[check] (check3) at (4.5,-5.5) {Subtraction\\valid?};
+    \draw[arrow] (check3) -- (4.5,-7) node[below, font=\small, align=center] {$R_{\mu\nu}$: [L$^{-2}$]\\$g_{\mu\nu}R$: [1][L$^{-2}$]=[L$^{-2}$]\\\checkmark Compatible};
+    
+    % Field equations
+    \draw[arrow] (einstein) -- (0,-6);
+    \node[result] (field) at (0,-6.8) {Einstein Field Equations\\$G_{\mu\nu} = 8\pi G T_{\mu\nu}$\\[2pt]Both sides: $[\text{length}^{-2}]$};
+    
+    % Stress-energy check
+    \draw[arrow] (field) -- (-4.5,-8);
+    \node[data, minimum width=4cm] (stress) at (-4.5,-9.2) {Stress-Energy Tensor\\$T_{\mu\nu}$: $[\text{energy}/\text{volume}]$\\$= [\text{mass} \cdot \text{length}^{-3}]$};
+    
+    % Gravitational constant
+    \draw[arrow] (field) -- (4.5,-8);
+    \node[data, minimum width=4cm] (gravconst) at (4.5,-9.2) {Newton's Constant\\$G$: $[\text{length}^3 \cdot \text{mass}^{-1} \cdot \text{time}^{-2}]$\\In natural units ($c=1$): $[\text{mass}^{-2}]$};
+    
+    % Final verification box
+    \draw[thick, fill=magenta!10] (-7,-10.5) rectangle (7,-12);
+    \node[align=center, font=\small] at (0,-11.25) {
+        \textbf{Dimensional Consistency Verification}\\[3pt]
+        $[G_{\mu\nu}] = [\text{length}^{-2}]$ \quad $\Rightarrow$ \quad $[8\pi G T_{\mu\nu}] = [\text{mass}^{-2}] \cdot [\text{mass} \cdot \text{length}^{-3}] = [\text{length}^{-2}]$ \checkmark\\[3pt]
+        \textbf{Key Insight}: In $c=1$ units, $[G] = [\text{mass}]^{-2} = [\text{length}]^2$, making $[T_{\mu\nu}] = [\text{length}]^{-2}$ consistent with geometry
+    };
+    
+    % Side annotation box: Common pitfalls
+    \draw[thick, fill=yellow!10] (8,3) rectangle (13,-3);
+    \node[align=left, font=\footnotesize, anchor=north west] at (8.2,2.8) {
+        \textbf{Common Pitfalls}:\\[3pt]
+        1. Forgetting $c$ in SI units\\
+        \quad $(G_{\mu\nu}$ becomes $[\text{time}^{-2}])$\\[3pt]
+        2. Mixing coordinate derivatives\\
+        \quad $(\partial/\partial x^\mu$ vs $\partial/\partial x_\mu)$\\[3pt]
+        3. Index placement errors\\
+        \quad $(g^{\mu\nu}$ vs $g_{\mu\nu}$ changes dims)\\[3pt]
+        4. Covariant vs contravariant\\
+        \quad $(V^\mu$ vs $V_\mu = g_{\mu\nu}V^\nu)$\\[3pt]
+        5. Forgetting metric in raising/\\
+        \quad lowering (factors of $g$)
+    };
+    
+    % Side annotation box: Natural units
+    \draw[thick, fill=cyan!10] (8,-5) rectangle (13,-9);
+    \node[align=left, font=\footnotesize, anchor=north west] at (8.2,-5.2) {
+        \textbf{Natural Units ($c=\hbar=1$)}:\\[3pt]
+        $[\text{mass}] = [\text{energy}] = [\text{length}]^{-1} = [\text{time}]^{-1}$\\[5pt]
+        \textbf{Conversions}:\\
+        $1 \text{ GeV} = 1.78 \times 10^{-27}$ kg\\
+        $1 \text{ GeV}^{-1} = 1.97 \times 10^{-16}$ m\\
+        $1 \text{ GeV}^{-1} = 6.58 \times 10^{-25}$ s\\[5pt]
+        \textbf{Planck scale}:\\
+        $M_P = \sqrt{\hbar c/G} \sim 10^{19}$ GeV\\
+        $\ell_P = \sqrt{\hbar G/c^3} \sim 10^{-35}$ m
+    };
+    
+\end{tikzpicture}
+\caption{Dimensional analysis workflow for general relativity calculations. Main flow (center): systematic progression from metric tensor through Christoffel symbols, Riemann tensor, Ricci tensor/scalar, Einstein tensor, to field equations, with dimensional consistency checks at each stage. Right boxes: common pitfalls to avoid and natural unit conversions. All tensor components track dimensions explicitly to ensure physical consistency.}
+\label{fig:dimensional_analysis}
+\end{figure}

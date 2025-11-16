@@ -13,6 +13,11 @@
 \index{curved spacetime}
 
 %-----------------------------------------------------------------------------
+% MARGINAL NOTES SYSTEM: Lions Commentary-style annotations
+%-----------------------------------------------------------------------------
+\input{modules/marginal_notes_system}
+
+%-----------------------------------------------------------------------------
 % OPENING NARRATIVE: The GPS Paradox
 %-----------------------------------------------------------------------------
 
@@ -37,6 +42,23 @@ This seemingly exotic phenomenon reveals a profound truth: \textbf{spacetime is 
 This chapter develops that mathematical language---differential geometry and quantum formalism---from physical intuition. We will discover why vectors need ``parallel transport,'' why the Pythagorean theorem fails in curved space, how curvature emerges from non-commutativity of derivatives, and why the Einstein tensor naturally couples to mass-energy.
 
 Most importantly, we will see that this mathematics is not abstract formalism imposed on nature, but rather the simplest consistent language capable of describing the phenomena we observe.
+
+%-----------------------------------------------------------------------------
+% GPS PARADOX: Comprehensive Visualizations
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_gps_orbit_detailed}
+\caption{GPS satellite orbit geometry with gravitational potential contours. The satellite at altitude $h = \SI{20200}{\kilo\meter}$ experiences gravitational time dilation of $+\SI{45}{\micro\second}/\text{day}$ (clocks run faster) and velocity time dilation of $-\SI{7}{\micro\second}/\text{day}$ (clocks run slower), yielding net effect of $+\SI{38}{\micro\second}/\text{day}$. \mnote{GPS orbit: $r = \SI{26600}{\kilo\meter}$ from Earth center, $v = \SI{3.87}{\kilo\meter/\second}$ orbital velocity.}}
+\label{fig:prelim:gps-orbit}
+\end{figure}
+
+\mphys{Without relativistic corrections, GPS positioning errors would accumulate at $\SI{11}{\kilo\meter}/\text{day}$, rendering the system useless within hours.}
+
+% Time dilation budget: Comprehensive breakdown
+\input{modules/tables/tab_time_dilation_budget}
+\mdim{Gravitational time dilation scales as $\Delta t/t \approx GM/(rc^2) \approx 10^{-9}$ at GPS altitude. Velocity effect scales as $v^2/(2c^2) \approx 10^{-10}$.}
 
 %-----------------------------------------------------------------------------
 \section{Building Intuition: Why Curved Spacetime Requires a Metric}
@@ -84,6 +106,21 @@ This motivates the \textbf{metric tensor}\index{metric tensor}\index{tensor!metr
   \item \textbf{Signature} $(-,+,+,+)$: Time has opposite sign to space. This encodes causality: timelike intervals ($ds^2 < 0$) represent possible particle worldlines, while spacelike intervals ($ds^2 > 0$) cannot be traversed by any signal.
 \end{itemize}
 
+\mxref{See \S\ref{sec:prelim:curvature} for how metric determines curvature via Riemann tensor.}
+
+%-----------------------------------------------------------------------------
+% METRIC TENSOR: Structure Visualization
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_metric_structure}
+\caption{Metric tensor $g_{\mu\nu}$ as a $4 \times 4$ symmetric matrix encoding spacetime geometry. Diagonal elements (red) represent time and space; off-diagonal terms (orange) indicate mixing. In flat Minkowski spacetime, $g_{\mu\nu} = \eta_{\mu\nu} = \text{diag}(-1,+1,+1,+1)$. Schwarzschild metric near Earth shows small deviations $\sim GM/(rc^2) \approx 10^{-9}$. \mphys{Signature $(-,+,+,+)$ encodes causality structure of spacetime.}}
+\label{fig:prelim:metric-structure}
+\end{figure}
+
+\mdim{Metric is dimensionless. Line element $ds^2$ has dimensions $[\text{length}]^2$ or $[\text{time}]^2$ in natural units $c=1$.}
+
 \subsection{Worked Example: Schwarzschild Metric Near Earth}
 
 For GPS satellites, we need the metric in Earth's gravitational field. Outside a spherical mass $M$, the Schwarzschild solution\index{Schwarzschild metric}\index{metric!Schwarzschild} gives:
@@ -119,6 +156,21 @@ Over one day ($\SI{86400}{\second}$), this produces:
 Actually, special relativity's velocity time dilation ($v = \SI{3.87}{\kilo\meter\per\second}$) \emph{slows} the satellite clock by \SI{7}{\micro\second} per day. The net effect is approximately \SI{38}{\micro\second} per day faster, exactly as observed.
 
 \textbf{Observable consequence}: Without correcting $g_{00}$ in the metric, GPS positioning drifts by \SI{11}{\kilo\meter} per day---about \SI{8}{\meter} per minute. Every navigation calculation implicitly solves Einstein's field equations.
+
+\mcaution{Common misconception: Gravitational time dilation is not due to ``gravity slowing time.'' It's geometric---clocks measure intervals in curved spacetime, and $g_{00}$ quantifies the curvature.}
+
+%-----------------------------------------------------------------------------
+% LIGHT CONE STRUCTURE: Causality in Curved Spacetime
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_lightcone_curved}
+\caption{Light cone structure in flat Minkowski spacetime (left) versus curved Schwarzschild spacetime (right). Near a massive object, light cones tip progressively toward the event horizon, narrowing the causal future. At $r = 2GM/c^2$ (horizon), the light cone tips fully inward---nothing escapes. \mphys{Light cone tipping visualizes how gravity affects causality structure.}}
+\label{fig:prelim:lightcone}
+\end{figure}
+
+\mxref{Light cone structure connects to geodesic equation in \S\ref{sec:prelim:geodesics}: photon paths follow null geodesics where $ds^2 = 0$.}
 
 \subsection{Bridge to Covariant Derivatives}
 
@@ -162,6 +214,28 @@ Let's decode this formula term by term:
 \textbf{Physical meaning}: The Christoffel symbols tell you how much a vector component changes \emph{not} because the vector itself is changing, but because the coordinate basis vectors are rotating or stretching as you move.
 
 \textbf{Units and dimensional analysis}: If coordinates $x^\mu$ have dimension $[L]$ and the metric is dimensionless (in geometric units), then $\Gamma^\rho_{\mu\nu}$ has dimension $[L^{-1}]$. For the Schwarzschild metric, $\Gamma^t_{tr} \sim GM/r^2 \sim g/c^2$ near Earth.
+
+\mdim{Christoffel symbols $\Gamma^\rho_{\mu\nu}$ have dimension $[\text{length}]^{-1}$. For Earth, $\Gamma^t_{tr} \sim 10^{-17} \, \text{m}^{-1}$.}
+
+%-----------------------------------------------------------------------------
+% CHRISTOFFEL SYMBOLS: Computation Flowchart & Parallel Transport
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_christoffel_computation}
+\caption{Computational flowchart for Christoffel symbols: (1) Start with metric $g_{\mu\nu}$, (2) Compute partial derivatives $\partial_\sigma g_{\mu\rho}$, (3) Form symmetric combination, (4) Contract with inverse metric $g^{\nu\rho}$. Algorithm complexity: $O(D^4)$ for $D$ dimensions. \mcomp{Use symbolic computation (Mathematica, SymPy) for complex metrics.}}
+\label{fig:prelim:christoffel-algo}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_parallel_transport_sphere}
+\caption{Parallel transport on a 2-sphere: Transport a vector (blue arrow) along two different paths from equator to North Pole. Path A: north along prime meridian. Path B: east along equator to $90^\circ$, then north. Final vectors differ by $90^\circ$ rotation. \mphys{Holonomy (path-dependence) measures curvature: flat space has zero holonomy.}}
+\label{fig:prelim:parallel-transport}
+\end{figure}
+
+\mcaution{Parallel transport is \emph{path-dependent} in curved space. This is the geometric essence of curvature!}
 
 \subsection{Worked Example: Christoffel Symbols for Schwarzschild Metric}
 
@@ -213,6 +287,18 @@ For a covariant (lower-index) vector $W_\mu$, the signs flip:
 This is the defining property of the Levi-Civita connection: it preserves the metric under parallel transport.
 
 \textbf{Limiting case}: In flat Minkowski spacetime with Cartesian coordinates, all $\Gamma^\mu_{\nu\sigma} = 0$, and the covariant derivative reduces to the ordinary partial derivative: $\nabla_\mu = \partial_\mu$.
+
+\mxref{Covariant derivative generalizes to tensors: $\nabla_\sigma T^{\mu\nu} = \partial_\sigma T^{\mu\nu} + \Gamma^\mu_{\rho\sigma} T^{\rho\nu} + \Gamma^\nu_{\rho\sigma} T^{\mu\rho}$. One $\Gamma$ term per index.}
+
+%-----------------------------------------------------------------------------
+% COVARIANT VS ORDINARY DERIVATIVES: Comprehensive Comparison
+%-----------------------------------------------------------------------------
+
+\input{modules/tables/tab_covariant_vs_ordinary}
+
+\mdim{Covariant derivative $\nabla_\mu$ and ordinary derivative $\partial_\mu$ have same dimensions $[\text{length}]^{-1}$. Difference is $\Gamma^\mu_{\nu\sigma} V^\nu$ with dimensions $[\text{length}]^{-1} \times [\text{vector}]$.}
+
+\mcaution{Never use ordinary derivatives $\partial_\mu$ on tensor equations in curved spacetime! Always use covariant derivatives $\nabla_\mu$ to maintain geometric meaning.}
 
 \subsection{Bridge to Curvature}
 
@@ -268,6 +354,23 @@ With our conventions (mostly plus signature), the explicit formula is:
 
 These symmetries reduce the 256 components of $R^\rho{}_{\sigma\mu\nu}$ in 4D to just 20 independent components.
 
+\mcomp{Computing Riemann tensor: $O(D^5)$ operations for $D$ dimensions. For Schwarzschild metric: $R_{trtr} \sim (GM/r^3)$ (tidal term).}
+
+%-----------------------------------------------------------------------------
+% RIEMANN TENSOR: Holonomy & Comprehensive Properties
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_riemann_holonomy}
+\caption{Geometric meaning of Riemann tensor: Parallel transport a vector $V$ around a closed loop. In flat space, $V$ returns unchanged. In curved space, $V$ rotates by angle $\Delta \theta \propto R^\rho{}_{\sigma\mu\nu} \times (\text{area})$. \mphys{Holonomy angle quantifies curvature: $\Delta \theta \sim R \times A$ where $A$ is loop area.}}
+\label{fig:prelim:riemann-holonomy}
+\end{figure}
+
+\input{modules/tables/tab_riemann_properties}
+
+\mhist{Riemann (1854) introduced curvature tensor for abstract manifolds. Einstein (1915) realized it governs spacetime physics in field equations $G_{\mu\nu} = 8\pi G T_{\mu\nu}$.}
+
 \subsection{Ricci Tensor and Ricci Scalar}
 
 Most physics does not require the full Riemann tensor. Two contractions are particularly important:
@@ -318,6 +421,21 @@ This is precisely the property needed to match the stress-energy tensor $T^{\mu\
 \end{equation}
 
 \textbf{Physical interpretation}: Curvature (left side) is produced by mass-energy (right side). The GPS time dilation we started with is a solution to this equation for $T^{\mu\nu}$ representing Earth's mass.
+
+\mdim{Einstein equations are dimensionless in geometric units ($G=c=1$). Restoring units: $[G_{\mu\nu}] = [\text{length}]^{-2}$, $[T_{\mu\nu}] = [\text{energy}]/[\text{length}]^3 = [\text{mass}]/[\text{length}] \cdot [\text{time}]^{-2}$, giving $8\pi G/c^4 \sim 10^{-43} \, \text{m}^{-1} \cdot \text{kg}^{-1} \cdot \text{s}^{2}$.}
+
+%-----------------------------------------------------------------------------
+% EINSTEIN FIELD EQUATIONS: Structure & Examples
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_einstein_equations}
+\caption{Einstein field equations structure: Geometry (left, $G_{\mu\nu}$) equals matter-energy (right, $T_{\mu\nu}$). Examples: Schwarzschild (spherical star), FLRW (expanding universe), gravitational waves (ripples in spacetime). \mphys{``Matter tells spacetime how to curve; spacetime tells matter how to move'' (Wheeler).}}
+\label{fig:prelim:einstein-eqns}
+\end{figure}
+
+\mex{Schwarzschild solution: $T_{\mu\nu} = 0$ (vacuum) gives black hole metric. FLRW solution: $T_{\mu\nu} = (\rho + p) u_\mu u_\nu + p g_{\mu\nu}$ (perfect fluid) gives cosmology.}
 
 \subsection{Worked Example: Ricci Curvature of a 2-Sphere}
 
@@ -521,6 +639,21 @@ Complex vector spaces naturally encode these features. The mathematical structur
 
 \textbf{Normalization}: Physical states are normalized: $\braket{\psi|\psi} = 1$. This ensures probabilities sum to 1.
 
+\mxref{Quantum formalism connects to differential geometry via geometric phase (Berry phase) and fiber bundles. See \S\ref{sec:geometric-phase} for gauge field interpretation of quantum phases.}
+
+%-----------------------------------------------------------------------------
+% QUANTUM FORMALISM: Complete Hierarchy
+%-----------------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_quantum_structure}
+\caption{Quantum mechanics formalism hierarchy: Hilbert space $\mathcal{H}$ (infinite-dimensional vector space) → States $\ket{\psi}$ → Operators $\hat{A}$ (observables) → Dynamics (Schr\"odinger equation $i\hbar \partial_t \ket{\psi} = \hat{H} \ket{\psi}$) → Measurement (Born rule $P = |\braket{\phi|\psi}|^2$). \mphys{Complete structure encodes superposition, interference, entanglement.}}
+\label{fig:prelim:quantum-structure}
+\end{figure}
+
+\mdim{Quantum mechanics dimensionality: $[\hbar] = [\text{energy}] \cdot [\text{time}] = [\text{action}]$. Schr\"odinger equation: $[\partial_t \ket{\psi}] = [\text{time}]^{-1} \times [\text{state}]$, $[\hat{H}\ket{\psi}] = [\text{energy}] \times [\text{state}] = \hbar \times [\text{time}]^{-1} \times [\text{state}]$. Dimensional consistency requires $\hbar$.}
+
 \subsection{Operators Represent Observables}
 
 In quantum mechanics, every measurable quantity (energy, momentum, position, spin) is represented by a \textbf{Hermitian operator}\index{Hermitian operator}\index{operator!Hermitian}\index{observable|see{Hermitian operator}} $\hat{A}$ satisfying $\hat{A}^\dagger = \hat{A}$.
@@ -705,6 +838,221 @@ We have established the core mathematical language required for unified field th
 
   \item \textbf{Spectral methods}: Fourier analysis for decomposing fields into modes, essential for field quantization and harmonic analysis.
 \end{enumerate}
+
+%=============================================================================
+% ADVANCED INTEGRATION: Cross-Cutting Topics & Comprehensive Analysis
+%=============================================================================
+
+\subsection{Advanced Integration: Geodesics, Dimensional Analysis, and Comprehensive Comparisons}
+
+The following sections synthesize the mathematical tools we've developed, providing cross-cutting perspectives and comprehensive reference material.
+
+%-----------------------------------------------------------------------------
+% Geodesic Equation: Complete Treatment
+%-----------------------------------------------------------------------------
+
+\subsubsection{Geodesic Equation and Free-Fall Trajectories}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_geodesic_equation}
+\caption{Geodesic equation structure: $d^2 x^\mu/d\tau^2 = -\Gamma^\mu_{\nu\rho} (dx^\nu/d\tau)(dx^\rho/d\tau)$. Left: coordinate acceleration. Right: curvature correction (Christoffel term). \mphys{Free particles follow geodesics---\"straight lines\" in curved spacetime.}}
+\label{fig:prelim:geodesic-equation}
+\end{figure}
+
+The geodesic equation describes how particles move under gravity alone (no other forces). It is the relativistic generalization of Newton's first law:
+
+\begin{equation}
+  \frac{d^2 x^\mu}{d\tau^2} + \Gamma^\mu_{\nu\rho} \frac{dx^\nu}{d\tau} \frac{dx^\rho}{d\tau} = 0
+  \label{eq:prelim:geodesic-eq-full}
+\end{equation}
+
+where $\tau$ is proper time along the worldline.
+
+\textbf{Physical interpretation}:
+\begin{itemize}
+  \item \textbf{Left term}: Coordinate acceleration $d^2 x^\mu/d\tau^2$ (how fast coordinates change).
+  \item \textbf{Right term}: Curvature correction $\Gamma^\mu_{\nu\rho} u^\nu u^\rho$ (how curved geometry affects motion).
+\end{itemize}
+
+\textbf{Examples}:
+\begin{itemize}
+  \item \textbf{Schwarzschild geodesics}: Planetary orbits, GPS satellite trajectories, light bending.
+  \item \textbf{GPS application}: Radial geodesic gives time dilation $dt/d\tau = (1 - 2GM/rc^2)^{-1/2}$.
+  \item \textbf{Equivalence principle}: Locally, geodesic motion is indistinguishable from inertial motion in flat space.
+\end{itemize}
+
+\textbf{Key properties}:
+\begin{enumerate}
+  \item Geodesics are extremal paths (shortest or longest proper time).
+  \item Four-velocity $u^\mu = dx^\mu/d\tau$ is tangent vector to geodesic.
+  \item Normalization: $g_{\mu\nu} u^\mu u^\nu = -c^2$ (timelike), $0$ (null), $+1$ (spacelike).
+  \item Conserved quantities arise from Killing vectors (symmetries of metric).
+\end{enumerate}
+
+%-----------------------------------------------------------------------------
+% Light Cone Structure in Curved Spacetime
+%-----------------------------------------------------------------------------
+
+\subsubsection{Causal Structure and Light Cones}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_lightcone_curved}
+\caption{Light cone structure: Flat (Minkowski) vs. curved (Schwarzschild). In flat space, light cones are 45° throughout. In curved space near horizon $r = 2GM$, light cones tip progressively inward---at horizon, even radially outward light rays remain at constant $r$. \mphys{Event horizon forms where light cones tip so far that escape becomes impossible.}}
+\label{fig:prelim:lightcone-curved}
+\end{figure}
+
+Light cones define causal structure: which events can influence which others.
+
+\textbf{Flat spacetime}: Light cones preserve 45° angle everywhere. Causal structure is simple: past light cone defines observable history, future light cone defines influenceable region.
+
+\textbf{Curved spacetime}: Light cones tip due to gravitational time dilation and spatial curvature:
+\begin{itemize}
+  \item \textbf{Near massive objects}: Light cones tip toward center of mass.
+  \item \textbf{At event horizon}: Light cone tips so far that interior/exterior become causally disconnected.
+  \item \textbf{Cosmology}: Expanding universe causes light cones to tip due to cosmic expansion.
+\end{itemize}
+
+\textbf{Implications}:
+\begin{itemize}
+  \item GPS signals: Light travel time affected by curvature (Shapiro delay).
+  \item Black hole information paradox: Tipped light cones prevent information escape.
+  \item Cosmic horizons: Expanding universe creates regions forever beyond causal contact.
+\end{itemize}
+
+%-----------------------------------------------------------------------------
+% Dimensional Analysis Workflow
+%-----------------------------------------------------------------------------
+
+\subsubsection{Dimensional Analysis and Unit Consistency}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_dimensional_analysis}
+\caption{Dimensional analysis workflow: Metric $\to$ Christoffel $\to$ Riemann $\to$ Einstein equations. At each stage, verify dimensional consistency: $[g_{\mu\nu}] = \text{dimensionless}$, $[\Gamma^\rho_{\mu\nu}] = [\text{length}]^{-1}$, $[R^\rho{}_{\sigma\mu\nu}] = [\text{length}]^{-2}$, $[G_{\mu\nu}] = [\text{length}]^{-2}$. \mcaution{Common error: forgetting factor of $c^2$ in $T_{\mu\nu}$ conversion between geometrized units and SI.}}
+\label{fig:prelim:dimensional-analysis}
+\end{figure}
+
+\textbf{Three key dimensional checks}:
+
+\textbf{1. Metric and Christoffel consistency}:
+\begin{equation}
+  \Gamma^\rho_{\mu\nu} = \frac{1}{2} g^{\rho\sigma} (\partial_\mu g_{\nu\sigma} + \partial_\nu g_{\mu\sigma} - \partial_\sigma g_{\mu\nu})
+\end{equation}
+\begin{itemize}
+  \item $[g_{\mu\nu}] = \text{dimensionless}$ (in geometrized units).
+  \item $[\partial_\mu] = [\text{length}]^{-1}$ (derivative is inverse length).
+  \item $[\Gamma^\rho_{\mu\nu}] = [\text{length}]^{-1}$ (consistent).
+\end{itemize}
+
+\textbf{2. Riemann curvature}:
+\begin{equation}
+  R^\rho{}_{\sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma} + \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma}
+\end{equation}
+\begin{itemize}
+  \item $[\partial_\mu \Gamma] = [\text{length}]^{-1} \times [\text{length}]^{-1} = [\text{length}]^{-2}$ ✓
+  \item $[\Gamma \times \Gamma] = [\text{length}]^{-1} \times [\text{length}]^{-1} = [\text{length}]^{-2}$ ✓
+  \item $[R^\rho{}_{\sigma\mu\nu}] = [\text{length}]^{-2}$ (intrinsic curvature scale).
+\end{itemize}
+
+\textbf{3. Einstein field equations}:
+\begin{equation}
+  G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
+\end{equation}
+\begin{itemize}
+  \item $[G_{\mu\nu}] = [R_{\mu\nu}] = [\text{length}]^{-2}$.
+  \item $[T_{\mu\nu}] = [\text{energy}]/[\text{volume}] = [\text{mass}][\text{length}]^{-1}[\text{time}]^{-2}$.
+  \item $[8\pi G/c^4] = [\text{length}][\text{mass}]^{-1} \times [\text{time}]^{-4}[\text{length}]^{-4} = [\text{mass}]^{-1}[\text{time}]^{-4}[\text{length}]^{-3}$.
+  \item Combined: $[G/c^4 \times T] = [\text{length}]^{-2}$ ✓ (consistent with $[G_{\mu\nu}]$).
+\end{itemize}
+
+\textbf{Common pitfalls}:
+\begin{itemize}
+  \item \textbf{Natural units confusion}: Setting $c = G = \hbar = 1$ hides dimensional factors. Always restore units for physical predictions.
+  \item \textbf{Signature conventions}: Some texts use $(+,-,-,-)$ signature, affecting signs in equations.
+  \item \textbf{Index placement}: Upper vs. lower indices affect dimensions when metric is not dimensionless.
+\end{itemize}
+
+%-----------------------------------------------------------------------------
+% Comprehensive Reference Tables: Special Cases, Computational Complexity, etc.
+%-----------------------------------------------------------------------------
+
+\subsubsection{Comprehensive Reference: Special Cases and Regimes}
+
+\input{modules/tables/tab_special_cases_gr}
+
+\mex{Schwarzschild solution: Weak field ($GM/rc^2 \ll 1$, Solar System), strong field ($GM/rc^2 \sim 1$, neutron stars), extreme ($GM/rc^2 \to 1$, black hole horizons).}
+
+\subsubsection{Computational Complexity and Tools}
+
+\input{modules/tables/tab_computational_complexity}
+
+\mcomp{Recommendation: Use Mathematica/Maple for exact symbolic computation, SymPy for Python integration, xAct for advanced tensor manipulation, numerical methods (finite differences) for strong-field astrophysics.}
+
+\subsubsection{Coordinate Systems: Schwarzschild Comparison}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_schwarzschild_coordinates}
+\caption{Three coordinate systems for Schwarzschild spacetime: Standard (singular at horizon), Eddington-Finkelstein (regular at horizon, good for infalling observers), Kruskal-Szekeres (maximally extended, reveals global structure). \mphys{Same physical geometry, different coordinate choices---horizon singularity is coordinate artifact, not physical.}}
+\label{fig:prelim:schwarzschild-coords}
+\end{figure}
+
+\mcaution{Coordinate singularity at $r = 2GM$ in standard Schwarzschild coordinates is artifact of coordinate choice. Physical singularity at $r = 0$ (curvature invariants diverge) is real.}
+
+\subsubsection{Tensor Comparison Matrices}
+
+\input{modules/tables/tab_tensor_comparison_matrices}
+
+\mxref{Killing vectors and conserved quantities: Schwarzschild (4), FLRW (6), Minkowski (10). See \S\ref{sec:symmetries-conservation} for detailed treatment.}
+
+\subsubsection{GR to Quantum Gravity Connection}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_gr_to_qft}
+\caption{Mathematical pathway from classical GR to quantum gravity: GR (deterministic curved spacetime) + QFT (quantum matter fields) $\to$ semiclassical gravity ($G_{\mu\nu} = 8\pi G \langle T_{\mu\nu} \rangle$) $\to$ full quantum gravity approaches (string theory, loop quantum gravity, etc.). \mphys{Planck scale ($\ell_P = 10^{-35}$ m) is where quantum gravity becomes essential.}}
+\label{fig:prelim:gr-to-qft}
+\end{figure}
+
+\textbf{Open challenges}: Background independence, time problem, observables in quantum gravity, cosmological constant problem, black hole information paradox.
+
+\subsubsection{Tidal Forces and Geodesic Deviation}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_tidal_forces}
+\caption{Geodesic deviation equation: $D^2 \xi^\alpha/D\tau^2 = R^\alpha{}_{\beta\mu\nu} u^\mu \xi^\beta u^\nu$. Two nearby geodesics separate due to curvature. Tidal acceleration spans 15 orders of magnitude: Earth-Moon tides ($\sim 10^{-6}$ m/s$^2$) to neutron star interiors ($\sim 10^{12}$ m/s$^2$). \mphys{Riemann tensor directly measures tidal forces---operational definition of spacetime curvature.}}
+\label{fig:prelim:tidal-forces}
+\end{figure}
+
+\textbf{Schwarzschild tidal formulas}:
+\begin{align}
+  \frac{d^2(\Delta r)}{d\tau^2} &= -\frac{2GM}{r^3} \Delta r \quad \text{(radial stretch)} \\
+  \frac{d^2(\Delta r_\perp)}{d\tau^2} &= +\frac{GM}{r^3} \Delta r_\perp \quad \text{(tangential squeeze)}
+\end{align}
+
+Characteristic 2:1 ratio: Radial stretching is twice tangential squeezing---signature of Schwarzschild geometry.
+
+\subsubsection{Curvature Scales Catalog}
+
+\input{modules/tables/tab_curvature_scales}
+
+\mphys{Curvature hierarchy spans 122 orders of magnitude: Observable universe ($R \sim 10^{-52}$ m$^{-2}$) to Planck epoch ($R \sim 10^{70}$ m$^{-2}$). GR validity: Newtonian ($R \ll m^{-2}$), post-Newtonian ($R \sim 10^{-10}$ m$^{-2}$, Solar System), strong field ($R \sim 10^{10}$ m$^{-2}$, neutron stars), quantum gravity ($R \sim 10^{70}$ m$^{-2}$, Planck scale).}
+
+\subsubsection{Historical Timeline: 200 Years of Differential Geometry}
+
+\begin{figure}[htbp]
+\centering
+\input{modules/figures/tikz_historical_timeline}
+\caption{Historical development of differential geometry and GR: Gauss (1827, Theorema Egregium) $\to$ Riemann (1854, metric tensor) $\to$ Christoffel (1869, connection symbols) $\to$ Einstein (1915, field equations) $\to$ Schwarzschild (1916, first exact solution) $\to$ Hawking (1974, black hole radiation) $\to$ LIGO (2015, gravitational waves detected) $\to$ EHT (2019, black hole image). \mhist{200-year intellectual journey from abstract geometry to experimental confirmation.}}
+\label{fig:prelim:historical-timeline}
+\end{figure}
+
+\textbf{Key milestones}: Intrinsic curvature (Gauss), Riemannian manifolds (Riemann), covariant derivatives (Christoffel), field equations (Einstein), experimental validation (Eddington 1919, LIGO 2015, EHT 2019).
+
+%=============================================================================
 
 \textbf{Key physical insights}:
 \begin{itemize}

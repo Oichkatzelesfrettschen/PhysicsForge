@@ -1,0 +1,85 @@
+% Riemann Tensor: Geometric Meaning via Parallel Transport Loop
+% Shows how curvature manifests as rotation after closed path
+
+\begin{tikzpicture}[scale=3]
+
+% Draw curved surface (2D projection of curved space)
+\draw[thick, fill=blue!5] plot[smooth cycle, tension=0.8] coordinates {
+    (0,0) (1.5,0.2) (2,1) (1.5,1.8) (0.5,2) (-0.3,1) (0,0)
+};
+
+% Grid on surface to show curvature
+\foreach \x in {0.2,0.4,...,1.6} {
+    \draw[gray!40, thin] plot[smooth, tension=0.7] coordinates {
+        (\x-0.2,0.1) (\x,0.5) (\x,1.5) (\x+0.1,1.9)
+    };
+}
+\foreach \y in {0.3,0.6,...,1.5} {
+    \draw[gray!40, thin] plot[smooth, tension=0.7] coordinates {
+        (0,\y) (0.7,\y) (1.4,\y) (2,\y+0.1)
+    };
+}
+
+% Closed path (small loop)
+\coordinate (P1) at (0.8,0.8);
+\coordinate (P2) at (1.2,0.8);
+\coordinate (P3) at (1.2,1.2);
+\coordinate (P4) at (0.8,1.2);
+
+% Draw the loop with directional arrows
+\draw[->, very thick, red] (P1) -- node[below, font=\tiny] {$\Delta x$} (P2);
+\draw[->, very thick, red] (P2) -- node[right, font=\tiny] {$\Delta y$} (P3);
+\draw[->, very thick, red] (P3) -- node[above, font=\tiny] {$-\Delta x$} (P4);
+\draw[->, very thick, red] (P4) -- node[left, font=\tiny] {$-\Delta y$} (P1);
+
+% Vector at start
+\draw[->, very thick, blue, line width=1.5pt] (P1) -- ++(0,0.3);
+\node[left, font=\small, text=blue] at (P1) {$V_0$};
+
+% Vector after loop (rotated slightly due to curvature)
+\draw[->, very thick, purple, line width=1.5pt] (P1) -- ++(-0.08,0.29);
+\node[right, font=\small, text=purple] at ($(P1)+(0.1,0.15)$) {$V_0 + \Delta V$};
+
+% Rotation angle annotation
+\draw[<->, thick, orange] ($(P1)+(0,0.3)$) arc (90:105:0.3);
+\node[above, font=\tiny, text=orange] at ($(P1)+(0,0.35)$) {$\Delta\theta$};
+
+% Formula box showing the relationship
+\node[draw, thick, fill=white, align=left, font=\small] at (2.8,1.5) {
+    \textbf{Riemann Curvature:}\\[2pt]
+    $\Delta V^\rho = R^\rho_{\sigma\mu\nu} V^\sigma \Delta x^\mu \Delta x^\nu$\\[4pt]
+    $\Delta\theta \propto R^\rho_{\sigma\mu\nu} \cdot \text{Area}$\\[4pt]
+    For small loop:\\
+    $\text{Area} = \Delta x^\mu \Delta x^\nu$
+};
+
+% Physical interpretation box
+\node[draw, thick, fill=yellow!10, align=left, font=\small] at (2.8,0.5) {
+    \textbf{Physical Meaning:}\\[2pt]
+    • Parallel transport vector\\
+    \quad around closed loop\\
+    • Returns rotated/changed\\
+    • Rotation $\propto$ curvature\\
+    • Riemann tensor $R^\rho_{\sigma\mu\nu}$\\
+    \quad measures this effect
+};
+
+% Symmetries annotation
+\node[draw, thick, fill=green!10, align=left, font=\tiny] at (2.8,-0.4) {
+    \textbf{Riemann Tensor Properties:}\\
+    • 20 independent components (4D)\\
+    • Antisymmetric: $R^\rho_{\sigma\mu\nu} = -R^\rho_{\sigma\nu\mu}$\\
+    • Bianchi identity: $\nabla_{[\lambda}R_{\rho\sigma]\mu\nu} = 0$\\
+    • Symmetry: $R_{\mu\nu\rho\sigma} = R_{\rho\sigma\mu\nu}$\\
+    • Units: $[\text{length}]^{-2}$
+};
+
+% Coordinate labels
+\node[font=\small] at (0.2,0.2) {$x^\mu$};
+\node[font=\small] at (1.9,0.3) {$x^\mu + \Delta x$};
+
+% Title
+\node[font=\large\bfseries] at (1,-0.6) {Riemann Tensor: Geometric Meaning};
+\node[font=\small] at (1,-0.85) {Curvature = Holonomy Around Infinitesimal Loop};
+
+\end{tikzpicture}

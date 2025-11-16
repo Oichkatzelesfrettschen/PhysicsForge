@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
-## ⚠️ **CRITICAL: MANDATORY BUILD WORKFLOW** ⚠️
+## [!]️ **CRITICAL: MANDATORY BUILD WORKFLOW** [!]️
 
 **ALWAYS OPERATE FROM PROJECT ROOT: `/home/eirikr/Playground/PhysicsForge/`**
 
@@ -15,20 +15,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 cd /home/eirikr/Playground/PhysicsForge/
 
 # ALL builds, cleaning, and validation MUST use the root Makefile:
-make latex          # Build LaTeX document
-make clean          # Clean build artifacts
-make ci             # Run full CI pipeline
-make smoke          # Quick smoke tests
-make test           # Run pytest
-make validate       # Validate catalog
-make audit          # Repository audit
+make latex # Build LaTeX document
+make clean # Clean build artifacts
+make ci # Run full CI pipeline
+make smoke # Quick smoke tests
+make test # Run pytest
+make validate # Validate catalog
+make audit # Repository audit
 ```
 
 **This applies to:**
-- ✅ ALL manual commands
-- ✅ ALL agent tasks and deployments
-- ✅ ALL build/test/validation operations
-- ✅ ALL file operations that reference build outputs
+- [OK] ALL manual commands
+- [OK] ALL agent tasks and deployments
+- [OK] ALL build/test/validation operations
+- [OK] ALL file operations that reference build outputs
 
 **Never:**
 - ❌ Run builds from `/home/eirikr/Playground/PhysicsForge/synthesis/` directly
@@ -38,8 +38,8 @@ make audit          # Repository audit
 
 **Verification before ANY build operation:**
 ```bash
-pwd                 # Must show: /home/eirikr/Playground/PhysicsForge
-ls -la Makefile     # Must exist at project root
+pwd # Must show: /home/eirikr/Playground/PhysicsForge
+ls -la Makefile # Must exist at project root
 ```
 
 ---
@@ -62,59 +62,59 @@ This is a theoretical physics and advanced mathematics research repository synth
 
 ```
 Math_Science/
-|-- synthesis/                    # PRIMARY WORK AREA - LaTeX book project
-|   |-- main.tex                  # Master file (book class, 5 parts, 30 chapters)
-|   |-- preamble.tex              # Packages, macros, equation tags (262 lines)
-|   |-- bibliography.bib          # BibTeX references (210 entries)
-|   |-- chapters/                 # 30 chapters organized by part
-|   |   |-- foundations/          # Ch01-06 (Phase 1 - COMPLETE)
-|   |   |-- frameworks/           # Ch07-16 (Aether + Genesis + Pais)
-|   |   |-- unification/          # Ch17-21 (Framework synthesis)
-|   |   |-- experiments/          # Ch22-26 (Validation protocols)
-|   |   `-- applications/         # Ch27-30 (Technology applications)
-|   |-- modules/                  # Reusable LaTeX components
-|   |   |-- equations/            # 163 equation modules (eq_*.tex)
-|   |   |-- figures/              # TikZ/pgfplots visualizations
-|   |   |-- tables/               # Data tables
-|   |   |-- derivations/          # Multi-step proofs
-|   |   |-- algorithms/           # Computational procedures
-|   |   `-- narrative/            # Reusable text sections
-|   |-- parts/                    # 5 part files
-|   |-- frontmatter/              # Title, abstract, notation, acknowledgments
-|   |-- backmatter/               # Appendices, glossary, index
-|   |-- scripts/                  # Build automation (PowerShell/Bash/Python)
-|   `-- data/                     # Generated datasets for figures
+|-- synthesis/ # PRIMARY WORK AREA - LaTeX book project
+| |-- main.tex # Master file (book class, 5 parts, 30 chapters)
+| |-- preamble.tex # Packages, macros, equation tags (262 lines)
+| |-- bibliography.bib # BibTeX references (210 entries)
+| |-- chapters/ # 30 chapters organized by part
+| | |-- foundations/ # Ch01-06 (Phase 1 - COMPLETE)
+| | |-- frameworks/ # Ch07-16 (Aether + Genesis + Pais)
+| | |-- unification/ # Ch17-21 (Framework synthesis)
+| | |-- experiments/ # Ch22-26 (Validation protocols)
+| | `-- applications/ # Ch27-30 (Technology applications)
+| |-- modules/ # Reusable LaTeX components
+| | |-- equations/ # 163 equation modules (eq_*.tex)
+| | |-- figures/ # TikZ/pgfplots visualizations
+| | |-- tables/ # Data tables
+| | |-- derivations/ # Multi-step proofs
+| | |-- algorithms/ # Computational procedures
+| | `-- narrative/ # Reusable text sections
+| |-- parts/ # 5 part files
+| |-- frontmatter/ # Title, abstract, notation, acknowledgments
+| |-- backmatter/ # Appendices, glossary, index
+| |-- scripts/ # Build automation (PowerShell/Bash/Python)
+| `-- data/ # Generated datasets for figures
 |
-|-- scripts/                      # Root-level Python utilities
-|   |-- equation_extractor.py     # Extract equations from text/markdown
-|   |-- pdf_equation_extractor.py # Extract equations from PDFs
-|   |-- merge_and_analyze_equations.py  # Build master catalog
-|   |-- build_catalog_pipeline.py # Run full extraction pipeline
-|   |-- catalog_parity.py         # Check catalog vs modules coverage
-|   |-- validate_catalog.py       # Validate catalog integrity
-|   |-- link_modules.py           # Cross-link equations by ID
-|   |-- gap_todo.py               # Generate TODO list for missing content
-|   |-- repo_audit.py             # Repository structure audit
-|   `-- tex_audit.py              # LaTeX package/label audit
+|-- scripts/ # Root-level Python utilities
+| |-- equation_extractor.py # Extract equations from text/markdown
+| |-- pdf_equation_extractor.py # Extract equations from PDFs
+| |-- merge_and_analyze_equations.py # Build master catalog
+| |-- build_catalog_pipeline.py # Run full extraction pipeline
+| |-- catalog_parity.py # Check catalog vs modules coverage
+| |-- validate_catalog.py # Validate catalog integrity
+| |-- link_modules.py # Cross-link equations by ID
+| |-- gap_todo.py # Generate TODO list for missing content
+| |-- repo_audit.py # Repository structure audit
+| `-- tex_audit.py # LaTeX package/label audit
 |
-|-- notes/                        # Working documents, drafts, architecture
-|-- papers/                       # Source PDFs and references
-|-- data/                         # Temporary data staging
-|-- docs/                         # Project documentation
-|   |-- CLAUDE_GUIDE.md           # Detailed technical guide (superseded by this file)
-|   |-- PROJECT_ROADMAP.md        # Phase timeline and milestones
-|   |-- REPOSITORY_INFO.md        # Build commands and guidelines
-|   `-- NOTATION_GLOSSARY.md      # Symbol definitions
+|-- notes/ # Working documents, drafts, architecture
+|-- papers/ # Source PDFs and references
+|-- data/ # Temporary data staging
+|-- docs/ # Project documentation
+| |-- CLAUDE_GUIDE.md # Detailed technical guide (superseded by this file)
+| |-- PROJECT_ROADMAP.md # Phase timeline and milestones
+| |-- REPOSITORY_INFO.md # Build commands and guidelines
+| `-- NOTATION_GLOSSARY.md # Symbol definitions
 |
-|-- equation_catalog.csv          # Master equation catalog (generated)
-|-- equation_summary.txt          # Catalog statistics (generated)
-|-- notation_conflicts.txt        # Symbol conflicts to resolve (generated)
-|-- top_equations.txt             # Most referenced equations (generated)
-|-- CATALOG_GAPS_TODO.md          # Missing content checklist (generated)
-|-- CATALOG_PARITY.md             # Coverage analysis (generated)
-|-- VALIDATION_REPORT.md          # Catalog validation results (generated)
-|-- Makefile                      # Linux/WSL build targets
-`-- README.md                     # Repository overview
+|-- equation_catalog.csv # Master equation catalog (generated)
+|-- equation_summary.txt # Catalog statistics (generated)
+|-- notation_conflicts.txt # Symbol conflicts to resolve (generated)
+|-- top_equations.txt # Most referenced equations (generated)
+|-- CATALOG_GAPS_TODO.md # Missing content checklist (generated)
+|-- CATALOG_PARITY.md # Coverage analysis (generated)
+|-- VALIDATION_REPORT.md # Catalog validation results (generated)
+|-- Makefile # Linux/WSL build targets
+`-- README.md # Repository overview
 ```
 
 ## Build Commands
@@ -124,8 +124,8 @@ Math_Science/
 **Full document build** (primary method):
 ```powershell
 cd synthesis
-.\scripts\compile.ps1                      # Standard build (pdflatex x2)
-.\scripts\compile.ps1 -Engine latexmk      # Alternative engine
+.\scripts\compile.ps1 # Standard build (pdflatex x2)
+.\scripts\compile.ps1 -Engine latexmk # Alternative engine
 ```
 
 **Manual compilation** (with bibliography):
@@ -140,9 +140,9 @@ pdflatex main.tex
 **Individual chapter testing**:
 ```powershell
 cd synthesis
-pdflatex test_ch01.tex                     # Test single chapter
-pdflatex test_part1_foundations.tex        # Test entire part
-.\test_compilation.ps1                     # Run full test suite (7 tests)
+pdflatex test_ch01.tex # Test single chapter
+pdflatex test_part1_foundations.tex # Test entire part
+.\test_compilation.ps1 # Run full test suite (7 tests)
 ```
 
 **Common issues**:
@@ -194,10 +194,10 @@ python scripts/link_modules.py --base-dir .
 
 ```powershell
 # Structure audit
-python scripts/repo_audit.py --base-dir .         # -> REPO_AUDIT.md
+python scripts/repo_audit.py --base-dir . # -> REPO_AUDIT.md
 
 # LaTeX audit (packages, labels, includes)
-python scripts/tex_audit.py --base-dir .          # -> TEX_AUDIT.md
+python scripts/tex_audit.py --base-dir . # -> TEX_AUDIT.md
 
 # Benchmark extraction performance
 python scripts/benchmark_extraction.py --base-dir . --scan-dir notes
@@ -206,16 +206,16 @@ python scripts/benchmark_extraction.py --base-dir . --scan-dir notes
 ### Make Targets (Linux/WSL)
 
 ```bash
-make pipeline      # Run full catalog pipeline
-make audit         # Repository audit
-make parity        # Catalog coverage check
-make gaps          # Generate gap TODO list
-make validate      # Validate catalog
-make bench         # Benchmark extraction
-make smoke         # Quick smoke test
-make test          # Run pytest
-make ci            # Full CI suite (smoke + test + validate + audit + parity + gaps)
-make latex         # Compile LaTeX (synthesis/scripts/compile.sh)
+make pipeline # Run full catalog pipeline
+make audit # Repository audit
+make parity # Catalog coverage check
+make gaps # Generate gap TODO list
+make validate # Validate catalog
+make bench # Benchmark extraction
+make smoke # Quick smoke test
+make test # Run pytest
+make ci # Full CI suite (smoke + test + validate + audit + parity + gaps)
+make latex # Compile LaTeX (synthesis/scripts/compile.sh)
 ```
 
 ## LaTeX Document Architecture
@@ -282,9 +282,9 @@ make latex         # Compile LaTeX (synthesis/scripts/compile.sh)
 
 **Framework attribution macros** (defined in preamble.tex):
 ```latex
-\aetherattr{content}      % Blue box with "Aether Framework"
-\genesisattr{content}     % Green box with "Genesis Framework"
-\paisattr{content}        % Orange box with "Pais Framework"
+\aetherattr{content} % Blue box with "Aether Framework"
+\genesisattr{content} % Green box with "Genesis Framework"
+\paisattr{content} % Orange box with "Pais Framework"
 ```
 
 **Usage in chapters**:
@@ -316,8 +316,8 @@ make latex         # Compile LaTeX (synthesis/scripts/compile.sh)
 ### Encoding: UTF-8 for LaTeX, ASCII for Code
 
 **UTF-8 REQUIRED** (LaTeX mathematical content):
-- Greek letters in equations: α, β, γ, φ, ψ, ω, ∇, ∂, ∫, ∑, ∏
-- Mathematical symbols: ℝ, ℂ, ℍ, 𝕆, ∞, ≈, ≤, ≥
+- Greek letters in equations: alpha, beta, gamma, phi, psi, omega, nabla, d, integral, sum, product
+- Mathematical symbols: R, C, H, O, infinity, ~=, <=, >=
 - Special characters in narrative text
 - `\usepackage[utf8]{inputenc}` in preamble.tex is correct and required
 
@@ -329,23 +329,23 @@ make latex         # Compile LaTeX (synthesis/scripts/compile.sh)
 ### LaTeX Best Practices
 
 **DO**:
-- ✓ Create one equation per file in `modules/equations/` with full header
-- ✓ Document source (file + line numbers) in equation header comments
-- ✓ Use `\input{}` for equations (not `\include{}` which adds page breaks)
-- ✓ Add framework attribution with `\aetherattr`, `\genesisattr`, `\paisattr`
-- ✓ Use proper `\label{eq:framework:descriptor}` for all equations
-- ✓ Test compile chapters individually before full document build
-- ✓ Verify cross-references after adding new equations
-- ✓ Add physical interpretation in equation header comments
+- [OK] Create one equation per file in `modules/equations/` with full header
+- [OK] Document source (file + line numbers) in equation header comments
+- [OK] Use `\input{}` for equations (not `\include{}` which adds page breaks)
+- [OK] Add framework attribution with `\aetherattr`, `\genesisattr`, `\paisattr`
+- [OK] Use proper `\label{eq:framework:descriptor}` for all equations
+- [OK] Test compile chapters individually before full document build
+- [OK] Verify cross-references after adding new equations
+- [OK] Add physical interpretation in equation header comments
 
 **DON'T**:
-- ✗ Hardcode equations directly in chapter files (defeats modularity)
-- ✗ Create duplicate equation content across chapters
-- ✗ Use Unicode in Python/PowerShell identifiers or comments
-- ✗ Commit without clean compilation (zero errors)
-- ✗ Skip cross-reference validation before merge
-- ✗ Use `\include{}` for equation modules (causes unwanted page breaks)
-- ✗ Forget to update equation_catalog.csv when adding modules
+- [X] Hardcode equations directly in chapter files (defeats modularity)
+- [X] Create duplicate equation content across chapters
+- [X] Use Unicode in Python/PowerShell identifiers or comments
+- [X] Commit without clean compilation (zero errors)
+- [X] Skip cross-reference validation before merge
+- [X] Use `\include{}` for equation modules (causes unwanted page breaks)
+- [X] Forget to update equation_catalog.csv when adding modules
 
 ### Python Script Conventions
 
@@ -391,9 +391,9 @@ from pathlib import Path
 6. **Test compile**: Verify PDF generation with `pdflatex test_chNN.tex`
 7. **Verify agent output**: ALWAYS use bash commands to verify line counts and timestamps
    ```powershell
-   wc -l chapters/*/chNN*.tex              # Line count
-   ls -lh chapters/*/chNN*.tex             # Timestamp
-   grep "keyword" chapters/*/chNN*.tex     # Content spot-check
+   wc -l chapters/*/chNN*.tex # Line count
+   ls -lh chapters/*/chNN*.tex # Timestamp
+   grep "keyword" chapters/*/chNN*.tex # Content spot-check
    ```
 
 ### Running Agents in Parallel
@@ -421,7 +421,7 @@ Claude: I'll deploy 3 agents in parallel to transform Ch07-09 to whitepaper styl
 
 ```powershell
 cd synthesis
-pdflatex test_ch01.tex     # Compile Ch01 standalone
+pdflatex test_ch01.tex # Compile Ch01 standalone
 # Check for errors in test_ch01.log
 # Verify test_ch01.pdf generated
 ```
@@ -430,8 +430,8 @@ pdflatex test_ch01.tex     # Compile Ch01 standalone
 
 ```powershell
 cd synthesis
-pdflatex test_part1_foundations.tex    # Part I (Ch01-06)
-pdflatex test_part2_frameworks.tex     # Part II (Ch07-16) - when created
+pdflatex test_part1_foundations.tex # Part I (Ch01-06)
+pdflatex test_part2_frameworks.tex # Part II (Ch07-16) - when created
 ```
 
 ### Run Full Test Suite
@@ -447,9 +447,9 @@ cd synthesis
 ```powershell
 cd synthesis
 pdflatex main.tex
-bibtex main          # Process bibliography
-pdflatex main.tex    # Resolve references (run 1)
-pdflatex main.tex    # Resolve references (run 2)
+bibtex main # Process bibliography
+pdflatex main.tex # Resolve references (run 1)
+pdflatex main.tex # Resolve references (run 2)
 # Output: main.pdf (full book)
 ```
 
@@ -559,16 +559,16 @@ python scripts/tex_audit.py --base-dir .
 ## Project Status (as of 2025-10-22)
 
 ### Completed
-- ✓ Phase 1: Foundations (Ch01-06) - 4,232 total lines
-- ✓ All 6 chapters meet whitepaper standards (50-65% narrative)
-- ✓ 163 equation modules created in `modules/equations/`
-- ✓ preamble.tex with all required packages and macros
-- ✓ Test suite infrastructure (8 test files)
-- ✓ Frontmatter (title, abstract, notation, acknowledgments)
-- ✓ Backmatter scaffolding (appendices, glossary, index)
-- ✓ Bibliography (210 entries)
-- ✓ Python extraction/catalog pipeline
-- ✓ Equation catalog system (CSV + analytics)
+- [OK] Phase 1: Foundations (Ch01-06) - 4,232 total lines
+- [OK] All 6 chapters meet whitepaper standards (50-65% narrative)
+- [OK] 163 equation modules created in `modules/equations/`
+- [OK] preamble.tex with all required packages and macros
+- [OK] Test suite infrastructure (8 test files)
+- [OK] Frontmatter (title, abstract, notation, acknowledgments)
+- [OK] Backmatter scaffolding (appendices, glossary, index)
+- [OK] Bibliography (210 entries)
+- [OK] Python extraction/catalog pipeline
+- [OK] Equation catalog system (CSV + analytics)
 
 ### In Progress
 - Phase 2: Frameworks (Ch07-16)
