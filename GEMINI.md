@@ -2,24 +2,38 @@
 
 This guide outlines how to use Google Gemini (and other local/remote LLM agents) to assist research, auditing, and code tasks within this repository.
 
-Last updated: 2025-10-23
+**Last updated: November 16, 2025**
+
+**IMPORTANT**: As of November 2025, PhysicsForge has been **restructured** from a single 500+ page monograph into **six modular papers** using **standard scientific terminology**. See `PAPER_STRUCTURE_NORMALIZED.md` for complete specifications.
 
 ---
 
 ## Project Overview
 
-This repository serves as a **Math & Science Research Hub**, collecting research in early stages of development. It's primarily a **code project** with a strong emphasis on Python scripting for data extraction and analysis, and LaTeX for document synthesis.
+This repository serves as a **Math & Science Research Hub** for unified field theories and advanced physics. It has been restructured into **six focused, peer-reviewable papers** using **standard physics nomenclature**.
+
+### Six Paper Series: "Unified Field Theories and Advanced Physics: A Mathematical Synthesis"
+
+1. **Paper 1**: Scalar Field Theory and Zero-Point Energy Coupling (25-30 pages)
+2. **Paper 2**: Exceptional Lie Algebras and Crystalline Lattice Structures (30-35 pages)
+3. **Paper 3**: Fractal Geometry and Hyperdimensional Field Structures (25-30 pages)
+4. **Paper 4**: Gravitational-Electromagnetic Unification via Scalar Intermediaries (28-33 pages)
+5. **Paper 5**: Experimental Protocols for Exotic Quantum States (30-35 pages)
+6. **Paper 6**: Applications to Quantum Computing and Energy Technologies (25-30 pages)
+
+**CRITICAL TERMINOLOGY REQUIREMENT**: Use ONLY standard physics terminology. Deprecated terms ("Aether Framework", "Genesis Framework", "Pais Superforce") have been eliminated. See `synthesis/shared/glossary.tex` for approved terminology (80+ standard terms).
 
 **Key Components:**
-*   **`source_materials/`**: Raw references and primary literature (PDFs, text).
-*   **`notes/`**: Working documents, drafts, and synthesis summaries.
-*   **`scripts/`**: Python utilities for cataloging, extracting, merging, validating, and reporting.
-*   **`synthesis/`**: LaTeX modules, tests, and build artifacts for framework documents.
-*   **`data/`**: Staging area for catalogs, fixtures, and generated outputs.
-*   **`extracted_data/`**: Reports and longer-form generated analyses.
-*   **`output/`**: Rendered PDFs and reports.
-*   **`docs/`**: Guides, roadmaps, and repository documentation.
-*   **`tests/`**: Unit and integration tests for Python scripts and LaTeX compilation.
+*   **`synthesis/shared/`**: **NEW** - Shared infrastructure (preamble, macros, glossary, notation) used by all papers
+*   **`synthesis/papers/`**: **NEW** - Six modular papers, each with chapters/, figures/, and paper-specific bibliography
+*   **`synthesis/build/`**: **NEW** - Compiled PDFs for all papers
+*   **`synthesis/chapters/`**: **LEGACY** - Original monograph chapters (being migrated to papers/)
+*   **`scripts/`**: Python utilities for cataloging, extracting, building papers, validation
+*   **`docs/`**: Comprehensive documentation including PAPER_STRUCTURE_NORMALIZED.md and RESTRUCTURE_PROGRESS_REPORT.md
+*   **`source_materials/`**: Raw references and primary literature (PDFs, text)
+*   **`notes/`**: Working documents, drafts, and synthesis summaries
+*   **`data/`**: Staging area for catalogs, fixtures, and generated outputs
+*   **`tests/`**: Unit and integration tests for Python scripts and LaTeX compilation
 
 ---
 

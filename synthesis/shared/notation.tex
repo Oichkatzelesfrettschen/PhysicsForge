@@ -1,0 +1,210 @@
+%==============================================================================
+% NOTATION CONVENTIONS
+% Standard symbols used across all papers
+%==============================================================================
+
+\chapter*{Notation and Conventions}
+\addcontentsline{toc}{chapter}{Notation and Conventions}
+
+\section*{General Conventions}
+
+\subsection*{Units and Constants}
+Throughout this work, we use \textbf{natural units} where $\hbar = c = 1$ unless otherwise specified. The gravitational constant $G$ is retained explicitly. Standard SI units are provided for experimental contexts.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Constant} & \textbf{Symbol} & \textbf{Value (SI)} \\
+\midrule
+Speed of light & $c$ & $2.998 \times 10^8$ m/s \\
+Reduced Planck constant & $\hbar$ & $1.055 \times 10^{-34}$ J·s \\
+Gravitational constant & $G$ & $6.674 \times 10^{-11}$ m$^3$ kg$^{-1}$ s$^{-2}$ \\
+Boltzmann constant & $k_B$ & $1.381 \times 10^{-23}$ J/K \\
+Elementary charge & $e$ & $1.602 \times 10^{-19}$ C \\
+\bottomrule
+\end{tabular}
+\caption{Fundamental physical constants}
+\end{table}
+
+\subsection*{Index Conventions}
+
+\begin{itemize}
+\item \textbf{Greek indices} ($\mu, \nu, \rho, \sigma, \ldots$): Spacetime indices running from 0 to $D-1$ (typically 0 to 3 in 4D).
+\item \textbf{Latin indices} ($i, j, k, \ldots$): Spatial indices running from 1 to $D-1$ (typically 1 to 3 in 4D).
+\item \textbf{Capital Latin indices} ($A, B, C, \ldots$): Internal symmetry indices (gauge, flavor, etc.).
+\item \textbf{Repeated indices}: Einstein summation convention applies (sum over repeated indices).
+\end{itemize}
+
+\subsection*{Metric Signature}
+We adopt the \textbf{mostly-plus} signature: $(-,+,+,+)$ for Minkowski spacetime:
+\begin{equation*}
+\eta_{\mu\nu} = \mathrm{diag}(-1, +1, +1, +1)
+\end{equation*}
+
+\subsection*{Derivatives}
+
+\begin{itemize}
+\item \textbf{Partial derivative}: $\partial_\mu \equiv \frac{\partial}{\partial x^\mu}$
+\item \textbf{Covariant derivative}: $\nabla_\mu$ or $D_\mu$ (context-dependent)
+\item \textbf{d'Alembertian}: $\Box = \nabla_\mu \nabla^\mu = -\partial_t^2 + \nabla^2$ (in natural units with signature $(-,+,+,+)$)
+\item \textbf{Total derivative}: $\frac{\dd}{\dd t}$, $\frac{\dd}{\dd x}$
+\item \textbf{Functional derivative}: $\frac{\delta}{\delta \phi(x)}$
+\end{itemize}
+
+---
+
+\section*{Symbols by Category}
+
+\subsection*{Spacetime and Geometry}
+
+\begin{description}[style=nextline]
+\item[$x^\mu$] Spacetime coordinates
+\item[$\dd s^2$] Line element (proper distance/time)
+\item[$g_{\mu\nu}$] Metric tensor
+\item[$\Gamma^\lambda_{\mu\nu}$] Christoffel symbols (Levi-Civita connection)
+\item[$R^\rho_{\sigma\mu\nu}$] Riemann curvature tensor
+\item[$R_{\mu\nu}$] Ricci tensor
+\item[$R$] Ricci scalar (scalar curvature)
+\item[$G_{\mu\nu}$] Einstein tensor: $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu}$
+\item[$\epsilon_{\mu\nu\rho\sigma}$] Levi-Civita tensor (totally antisymmetric)
+\end{description}
+
+\subsection*{Quantum Mechanics and Field Theory}
+
+\begin{description}[style=nextline]
+\item[$|\psi\rangle$] Ket vector (quantum state)
+\item[$\langle\psi|$] Bra vector (dual state)
+\item[$\langle\psi|\phi\rangle$] Inner product
+\item[$\hat{H}$] Hamiltonian operator
+\item[$[\hat{A}, \hat{B}]$] Commutator: $\hat{A}\hat{B} - \hat{B}\hat{A}$
+\item[$\{\hat{A}, \hat{B}\}$] Anticommutator: $\hat{A}\hat{B} + \hat{B}\hat{A}$
+\item[$\phi(x)$] Scalar field
+\item[$A_\mu(x)$] Vector gauge field (e.g., photon)
+\item[$\psi(x)$] Spinor field (e.g., electron)
+\item[$\mathcal{L}$] Lagrangian density
+\item[$\mathcal{S}$] Action: $\mathcal{S} = \int \dd^4x \, \mathcal{L}$
+\end{description}
+
+\subsection*{Electromagnetism}
+
+\begin{description}[style=nextline]
+\item[$\mathbf{E}$] Electric field vector
+\item[$\mathbf{B}$] Magnetic field vector
+\item[$A_\mu = (\phi, \mathbf{A})$] 4-potential ($\phi$: electric potential, $\mathbf{A}$: vector potential)
+\item[$F_{\mu\nu}$] Electromagnetic field strength tensor
+\item[$\tilde{F}_{\mu\nu}$] Dual field tensor: $\tilde{F}_{\mu\nu} = \frac{1}{2}\epsilon_{\mu\nu\rho\sigma}F^{\rho\sigma}$
+\item[$J^\mu = (\rho, \mathbf{J})$] 4-current density
+\end{description}
+
+\subsection*{Thermodynamics and Statistical Mechanics}
+
+\begin{description}[style=nextline]
+\item[$T$] Temperature
+\item[$S$] Entropy
+\item[$F$] Helmholtz free energy: $F = E - TS$
+\item[$\mathcal{Z}$] Partition function
+\item[$\beta$] Inverse temperature: $\beta = 1/(k_B T)$
+\item[$\mu$] Chemical potential
+\end{description}
+
+\subsection*{Group Theory and Algebra}
+
+\begin{description}[style=nextline]
+\item[$\mathrm{SU}(N)$] Special unitary group of degree $N$
+\item[$\mathrm{SO}(N)$] Special orthogonal group of degree $N$
+\item[$E_8$] Exceptional Lie group of rank 8 (248-dimensional)
+\item[$\mathbb{R}$] Real numbers
+\item[$\mathbb{C}$] Complex numbers
+\item[$\mathbb{H}$] Quaternions (Hamilton)
+\item[$\mathbb{O}$] Octonions (Cayley)
+\item[$\mathbb{S}$] Sedenions (16-dimensional Cayley-Dickson algebra)
+\item[$\mathbb{Z}$] Integers
+\item[$\mathbb{Q}$] Rational numbers
+\item[$\mathbb{N}$] Natural numbers
+\end{description}
+
+\subsection*{Special Functions}
+
+\begin{description}[style=nextline]
+\item[$\Gamma(z)$] Gamma function
+\item[$\mathrm{B}(x,y)$] Beta function
+\item[$\zeta(s)$] Riemann zeta function
+\item[$J_n(x)$] Bessel function of the first kind
+\item[$Y_n(x)$] Bessel function of the second kind
+\item[$H_n^{(1,2)}(x)$] Hankel functions
+\item[$P_n(x)$] Legendre polynomials
+\item[$Y_\ell^m(\theta, \phi)$] Spherical harmonics
+\end{description}
+
+\subsection*{Vacuum and Zero-Point Energy}
+
+\begin{description}[style=nextline]
+\item[$|0\rangle$] Vacuum state
+\item[$E_0$] Zero-point energy: $E_0 = \frac{1}{2}\hbar\omega$
+\item[$\rho_{\mathrm{vac}}$] Vacuum energy density
+\item[$F_{\mathrm{Cas}}$] Casimir force
+\item[$P_{\mathrm{Cas}}$] Casimir pressure
+\end{description}
+
+---
+
+\section*{Typography and Formatting}
+
+\subsection*{Vectors and Tensors}
+
+\begin{itemize}
+\item \textbf{Vectors}: Boldface in 3D Euclidean space ($\mathbf{r}$, $\mathbf{E}$, $\mathbf{B}$)
+\item \textbf{4-vectors}: Indexed notation ($x^\mu$, $p^\mu$, $A^\mu$)
+\item \textbf{Tensors}: Indexed notation ($T^{\mu\nu}$, $g_{\mu\nu}$)
+\end{itemize}
+
+\subsection*{Operators and Functionals}
+
+\begin{itemize}
+\item \textbf{Operators}: Hat notation ($\hat{H}$, $\hat{p}$, $\hat{x}$) or calligraphic ($\mathcal{H}$, $\mathcal{L}$)
+\item \textbf{Functionals}: Square brackets ($S[\phi]$, $\Gamma[\phi]$)
+\end{itemize}
+
+\subsection*{Special Emphasis}
+
+\begin{itemize}
+\item \textbf{Important terms}: Boldface on first occurrence
+\item \textit{Technical terms}: Italics for definitions
+\item \texttt{Code/algorithms}: Monospace font
+\end{itemize}
+
+---
+
+\section*{Abbreviations}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Abbreviation} & \textbf{Meaning} \\
+\midrule
+GR & General Relativity \\
+QM & Quantum Mechanics \\
+QFT & Quantum Field Theory \\
+QED & Quantum Electrodynamics \\
+QCD & Quantum Chromodynamics \\
+SM & Standard Model \\
+ZPE & Zero-Point Energy \\
+EM & Electromagnetic \\
+CMB & Cosmic Microwave Background \\
+MBL & Many-Body Localization \\
+DTC & Discrete Time Crystal \\
+FTC & Floquet Time Crystal \\
+AdS/CFT & Anti-de Sitter / Conformal Field Theory \\
+SUSY & Supersymmetry \\
+UV & Ultraviolet \\
+IR & Infrared \\
+\bottomrule
+\end{tabular}
+\caption{Common abbreviations used throughout}
+\end{table}
+
+%==============================================================================
+% End of Notation
+%==============================================================================

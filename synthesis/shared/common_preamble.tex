@@ -1,0 +1,161 @@
+%==============================================================================
+% COMMON PREAMBLE: Shared Packages and Settings
+% Used by all papers in the PhysicsForge series
+%==============================================================================
+
+% Essential Encoding and Fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Page Geometry (with wide margins for marginal notes)
+\usepackage[margin=1in,marginparwidth=1.5in]{geometry}
+
+%------------------------------------------------------------------------------
+% Mathematics Packages
+%------------------------------------------------------------------------------
+\usepackage{amsmath}        % AMS mathematical facilities
+\usepackage{amssymb}        % AMS mathematical symbols
+\usepackage{amsfonts}       % AMS fonts
+\usepackage{amsthm}         % Theorem environments
+\usepackage{mathtools}      % Extensions to amsmath
+\usepackage{physics}        % Physics notation (bra-ket, derivatives, etc.)
+
+%------------------------------------------------------------------------------
+% Graphics and Visualization
+%------------------------------------------------------------------------------
+\usepackage{graphicx}       % Include external graphics
+\usepackage{xcolor}         % Color support
+
+% TikZ and PGFPlots for high-quality diagrams
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,patterns,shapes,decorations.pathreplacing,positioning,3d}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%------------------------------------------------------------------------------
+% Tables and Tabular Environments
+%------------------------------------------------------------------------------
+\usepackage{booktabs}       % Professional-quality tables
+\usepackage{array}          % Extended array/tabular
+\usepackage{tabularx}       % Auto-sizing table columns
+\usepackage{longtable}      % Multi-page tables
+\usepackage{multirow}       % Multi-row cells
+
+%------------------------------------------------------------------------------
+% Marginal Notes (Lions Commentary Style)
+%------------------------------------------------------------------------------
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\footnotesize\sffamily}
+\usepackage{sidenotes}
+
+%------------------------------------------------------------------------------
+% Cross-References and Hyperlinks
+%------------------------------------------------------------------------------
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{cleveref}       % Intelligent cross-referencing
+
+%------------------------------------------------------------------------------
+% Bibliography
+%------------------------------------------------------------------------------
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+%------------------------------------------------------------------------------
+% Index
+%------------------------------------------------------------------------------
+\usepackage{makeidx}
+\makeindex
+
+%------------------------------------------------------------------------------
+% Code Listings (for algorithms and pseudocode)
+%------------------------------------------------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!60!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray}
+}
+
+%------------------------------------------------------------------------------
+% Units and Physical Quantities
+%------------------------------------------------------------------------------
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  separate-uncertainty = true,
+  multi-part-units = single
+}
+
+%------------------------------------------------------------------------------
+% Theorem-like Environments
+%------------------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+%------------------------------------------------------------------------------
+% Caption Formatting
+%------------------------------------------------------------------------------
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  format=plain,
+  justification=justified,
+  singlelinecheck=false
+}
+
+%------------------------------------------------------------------------------
+% Headers and Footers
+%------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%------------------------------------------------------------------------------
+% Section Formatting
+%------------------------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{40pt}
+
+%------------------------------------------------------------------------------
+% Miscellaneous
+%------------------------------------------------------------------------------
+\usepackage{lipsum}         % Dummy text (for development)
+\usepackage{enumitem}       % Customizable lists
+\setlist{nosep}             % Compact lists
+
+%------------------------------------------------------------------------------
+% PDF Metadata (to be customized per paper)
+%------------------------------------------------------------------------------
+\hypersetup{
+  pdfauthor={PhysicsForge Collaboration},
+  pdfsubject={Unified Field Theories and Advanced Physics},
+  pdfkeywords={scalar fields, quantum vacuum, E8, exceptional algebras, unification},
+  pdfcreator={LaTeX with hyperref}
+}
+
+%==============================================================================
+% End of Common Preamble
+%==============================================================================
