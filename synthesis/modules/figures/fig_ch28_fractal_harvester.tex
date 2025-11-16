@@ -1,0 +1,86 @@
+%==============================================================================
+% Figure: Fractal ZPE Harvester (Sierpiński Triangle Antenna)
+% Source: Chapter 28 (Energy Technologies)
+% Purpose: Illustrate fractal antenna for multi-scale ZPE energy harvesting
+%==============================================================================
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.0]
+
+    % Define recursive Sierpinski triangle function
+    % Base case: draw filled triangle
+    % Recursive case: draw three smaller Sierpinskis
+    \newcommand{\sierpinski}[4]{% #1=x, #2=y, #3=size, #4=depth
+      \ifnum#4=0
+        % Base case: filled triangle
+        \fill[blue!60!black, opacity=0.8]
+          (#1,#2) --
+          ({#1+#3},{#2}) --
+          ({#1+#3/2},{#2+#3*0.866}) -- cycle;
+      \else
+        % Recursive case
+        \pgfmathtruncatemacro{\nextdepth}{#4-1}
+        \pgfmathsetmacro{\halfsize}{#3/2}
+        % Bottom-left triangle
+        \sierpinski{#1}{#2}{\halfsize}{\nextdepth}
+        % Bottom-right triangle
+        \sierpinski{#1+\halfsize}{#2}{\halfsize}{\nextdepth}
+        % Top triangle
+        \sierpinski{#1+\halfsize/2}{#2+\halfsize*0.866}{\halfsize}{\nextdepth}
+      \fi
+    }
+
+    % Draw Sierpinski triangle antenna (depth 4)
+    \sierpinski{-2}{0}{4}{4}
+
+    % Antenna feed point
+    \fill[red!80!black] (0,0) circle (0.1cm);
+    \node[red!80!black, font=\small\bfseries] at (0,-0.5) {Feed};
+
+    % Ground plane
+    \draw[thick, brown!70!black] (-2.5,-0.3) -- (2.5,-0.3);
+    \node[brown!70!black, font=\small] at (-3,-0.3) {Ground};
+
+    % Electromagnetic field arrows (multiband)
+    \foreach \angle/\len/\freq in {30/2.5/High, 60/2.0/Mid, 90/1.5/Low, 120/2.0/Mid, 150/2.5/High} {
+      \draw[->, green!60!black, thick, opacity=0.6]
+        (0,1) -- ({0+\len*cos(\angle)},{1+\len*sin(\angle)});
+    }
+
+    % Frequency annotations
+    \node[green!60!black, font=\footnotesize] at (2.5,3.5) {$f_{\text{high}}$};
+    \node[green!60!black, font=\footnotesize] at (1.5,2.5) {$f_{\text{mid}}$};
+    \node[green!60!black, font=\footnotesize] at (0.5,1.8) {$f_{\text{low}}$};
+
+    % Dimension annotation
+    \draw[<->, purple!70!black, thick] (-2,-0.8) -- (2,-0.8);
+    \node[purple!70!black, font=\small] at (0,-1.2) {$L_{\max} = 4$ cm};
+
+    \draw[<->, purple!70!black, thick] (-2,0) -- (-1.75,0);
+    \node[purple!70!black, font=\scriptsize] at (-1.875,-0.3) {$L_{\min}$};
+
+    % Fractal dimension display
+    \node[blue!70!black, font=\small\bfseries, align=center] at (5.5,2.5)
+      {Fractal Dimension:\\$D_H = \frac{\log 3}{\log 2} \approx 1.585$};
+
+    % Bandwidth formula
+    \node[orange!70!black, font=\small, align=center, text width=3.5cm] at (5.5,0.5)
+      {Bandwidth:\\$\Delta f \propto \left(\frac{L_{\max}}{L_{\min}}\right)^{0.585}$};
+
+    % Self-similarity zoom indicator
+    \draw[dashed, red!50!black, thick] (-1.5,0.5) rectangle (-0.5,1.366);
+    \draw[->, red!50!black, thick] (-0.5,1.366) -- (4.2,4.5);
+    \node[red!50!black, font=\scriptsize] at (4.5,5) {Self-similar at all scales};
+
+    % ZPE coupling annotation (bottom)
+    \node[black, font=\footnotesize, align=center, text width=8cm] at (1.5,-2.3)
+      {Multiband ZPE coupling: Fractal geometry resonates with vacuum fluctuations};
+    \node[black, font=\footnotesize, align=center, text width=8cm] at (1.5,-2.8)
+      {across $10^9$--$10^{12}$ Hz range. Each iteration couples to different mode.};
+
+  \end{tikzpicture}
+
+  \caption{Fractal-based Zero-Point Energy (ZPE) harvester using a Sierpiński triangle antenna. The fractal structure (blue) exhibits self-similarity across scales, with maximum dimension $L_{\max}$ and minimum feature size $L_{\min}$. Feed point (red) connects to ground plane (brown). The Hausdorff dimension $D_H \approx 1.585$ enables multiband operation: different scales resonate with ZPE vacuum fluctuations at frequencies $f_{\text{low}}$, $f_{\text{mid}}$, and $f_{\text{high}}$ (green arrows). Bandwidth scales as $\Delta f \propto (L_{\max}/L_{\min})^{D_H-1}$, providing broadband coupling across microwave to terahertz ranges. The dashed red box highlights self-similarity: zooming into any triangular region reveals the same pattern at finer scales. This multi-scale resonance is critical for harvesting energy from the broadband ZPE spectrum, though total extractable power remains limited by quantum inequalities and Casimir force constraints.}
+  \label{fig:ch28:fractal_harvester}
+\end{figure}
+%==============================================================================
