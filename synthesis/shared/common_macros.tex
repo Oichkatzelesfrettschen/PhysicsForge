@@ -1,0 +1,186 @@
+%==============================================================================
+% COMMON MACROS: Standard Physics Notation
+% Shared across all papers (framework-neutral)
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% Physical Constants
+%------------------------------------------------------------------------------
+\newcommand{\hbar}{\hslash}                    % Reduced Planck constant
+\newcommand{\clight}{c}                        % Speed of light
+\newcommand{\Gconst}{G}                        % Gravitational constant
+\newcommand{\kB}{k_{\mathrm{B}}}              % Boltzmann constant
+\newcommand{\echarge}{e}                       % Elementary charge
+\newcommand{\me}{m_{\mathrm{e}}}              % Electron mass
+\newcommand{\mp}{m_{\mathrm{p}}}              % Proton mass
+
+%------------------------------------------------------------------------------
+% Planck Units
+%------------------------------------------------------------------------------
+\newcommand{\lPlanck}{\ell_{\mathrm{P}}}      % Planck length
+\newcommand{\tPlanck}{t_{\mathrm{P}}}         % Planck time
+\newcommand{\EPlanck}{E_{\mathrm{P}}}         % Planck energy
+\newcommand{\mPlanck}{m_{\mathrm{P}}}         % Planck mass
+
+%------------------------------------------------------------------------------
+% Common Operators and Functions
+%------------------------------------------------------------------------------
+\newcommand{\Lagr}{\mathcal{L}}                % Lagrangian
+\newcommand{\Haml}{\mathcal{H}}                % Hamiltonian
+\newcommand{\Action}{\mathcal{S}}              % Action
+\newcommand{\Partition}{\mathcal{Z}}           % Partition function
+
+\newcommand{\Order}[1]{\mathcal{O}(#1)}        % Big-O notation
+\newcommand{\trace}{\mathrm{Tr}}               % Trace
+\newcommand{\Lie}{\mathcal{L}}                 % Lie derivative (context-dependent with Lagrangian)
+
+%------------------------------------------------------------------------------
+% Derivatives
+%------------------------------------------------------------------------------
+\newcommand{\dd}{\mathrm{d}}                   % Differential d
+\newcommand{\DD}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}          % Total derivative
+\newcommand{\PD}[2]{\frac{\partial #1}{\partial #2}}              % Partial derivative
+\newcommand{\PDD}[2]{\frac{\partial^2 #1}{\partial #2^2}}         % Second partial
+\newcommand{\PDDmixed}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}  % Mixed partial
+
+% Covariant derivative
+\newcommand{\covD}{\nabla}                     % Covariant derivative symbol
+
+%------------------------------------------------------------------------------
+% Tensor Notation
+%------------------------------------------------------------------------------
+\newcommand{\tensor}[1]{\mathbf{#1}}           % Bold for tensors/vectors
+\newcommand{\indices}[1]{{}^{#1}}              % Tensor indices
+
+% Common tensors in GR
+\newcommand{\metric}{g}                        % Metric tensor
+\newcommand{\Riemann}{R}                       % Riemann tensor
+\newcommand{\Ricci}{R}                         % Ricci tensor (context: Ricci or Riemann)
+\newcommand{\Einstein}{G}                      % Einstein tensor
+\newcommand{\Christoffel}{\Gamma}              % Christoffel symbols
+
+%------------------------------------------------------------------------------
+% Quantum Mechanics
+%------------------------------------------------------------------------------
+\newcommand{\ket}[1]{|#1\rangle}               % Ket vector
+\newcommand{\bra}[1]{\langle#1|}               % Bra vector
+\newcommand{\braket}[2]{\langle#1|#2\rangle}   % Bra-ket inner product
+\newcommand{\expectation}[1]{\langle #1 \rangle}  % Expectation value
+\newcommand{\commutator}[2]{[#1, #2]}          % Commutator
+\newcommand{\anticommutator}[2]{\{#1, #2\}}    % Anticommutator
+
+%------------------------------------------------------------------------------
+% Field Theory
+%------------------------------------------------------------------------------
+\newcommand{\scalarfield}{\phi}                % Scalar field
+\newcommand{\vectorfield}{A}                   % Vector field (gauge)
+\newcommand{\spinorfield}{\psi}                % Spinor field
+\newcommand{\fermionfield}{\psi}               % Fermion field
+\newcommand{\bosonfield}{\phi}                 % Boson field
+
+% Vacuum-related
+\newcommand{\vacuumenergy}{\rho_{\mathrm{vac}}}           % Vacuum energy density
+\newcommand{\vacuumstate}{|0\rangle}                      % Vacuum state
+\newcommand{\zpe}{E_0}                                     % Zero-point energy
+
+%------------------------------------------------------------------------------
+% Electromagnetism
+%------------------------------------------------------------------------------
+\newcommand{\Efield}{\mathbf{E}}               % Electric field
+\newcommand{\Bfield}{\mathbf{B}}               % Magnetic field
+\newcommand{\Jcurrent}{\mathbf{J}}             % Current density
+\newcommand{\Afield}{\mathbf{A}}               % Vector potential
+\newcommand{\phiEM}{\phi}                      % Electric potential
+
+\newcommand{\Fmunu}{F^{\mu\nu}}                % EM field tensor
+\newcommand{\Fmunustar}{\tilde{F}^{\mu\nu}}    % Dual EM tensor
+
+%------------------------------------------------------------------------------
+% Special Functions
+%------------------------------------------------------------------------------
+\newcommand{\Gamma}{\Gamma}                    % Gamma function (conflicts with Christoffel - use \GammaFunc if needed)
+\newcommand{\GammaFunc}[1]{\Gamma(#1)}         % Gamma function explicit
+\newcommand{\Beta}{\mathrm{B}}                 % Beta function
+\newcommand{\Zeta}{\zeta}                      % Riemann zeta
+\newcommand{\bessel}[2]{J_{#1}(#2)}            % Bessel function
+
+%------------------------------------------------------------------------------
+% Group Theory and Algebras
+%------------------------------------------------------------------------------
+\newcommand{\SU}[1]{\mathrm{SU}(#1)}           % Special unitary group
+\newcommand{\SO}[1]{\mathrm{SO}(#1)}           % Special orthogonal group
+\newcommand{\U}[1]{\mathrm{U}(#1)}             % Unitary group
+\newcommand{\Sp}[1]{\mathrm{Sp}(#1)}           % Symplectic group
+
+% Exceptional groups
+\newcommand{\Gtwo}{G_2}                        % G2
+\newcommand{\Ffour}{F_4}                       % F4
+\newcommand{\Esix}{E_6}                        % E6
+\newcommand{\Eseven}{E_7}                      % E7
+\newcommand{\Eeight}{E_8}                      % E8
+
+% Number systems
+\newcommand{\Reals}{\mathbb{R}}                % Real numbers
+\newcommand{\Complex}{\mathbb{C}}              % Complex numbers
+\newcommand{\Quaternions}{\mathbb{H}}          % Quaternions
+\newcommand{\Octonions}{\mathbb{O}}            % Octonions
+\newcommand{\Sedenions}{\mathbb{S}}            % Sedenions
+\newcommand{\Integers}{\mathbb{Z}}             % Integers
+\newcommand{\Naturals}{\mathbb{N}}             % Natural numbers
+\newcommand{\Rationals}{\mathbb{Q}}            % Rational numbers
+
+%------------------------------------------------------------------------------
+% Casimir Effect and Vacuum Engineering
+%------------------------------------------------------------------------------
+\newcommand{\casimirforce}{F_{\mathrm{Cas}}}             % Casimir force
+\newcommand{\casimirenergy}{E_{\mathrm{Cas}}}            % Casimir energy
+\newcommand{\casimirpressure}{P_{\mathrm{Cas}}}          % Casimir pressure
+
+%------------------------------------------------------------------------------
+% Cosmology
+%------------------------------------------------------------------------------
+\newcommand{\scalefactor}{a(t)}                % Scale factor
+\newcommand{\Hubble}{H}                        % Hubble parameter
+\newcommand{\cosmconst}{\Lambda}               % Cosmological constant
+\newcommand{\critdensity}{\rho_{\mathrm{crit}}}  % Critical density
+
+%------------------------------------------------------------------------------
+% Statistical Mechanics
+%------------------------------------------------------------------------------
+\newcommand{\entropy}{S}                       % Entropy
+\newcommand{\temperature}{T}                   % Temperature
+\newcommand{\freeenergy}{F}                    % Helmholtz free energy
+\newcommand{\grandpot}{\Omega}                 % Grand potential
+
+%------------------------------------------------------------------------------
+% Units and Dimensions
+%------------------------------------------------------------------------------
+\newcommand{\units}[1]{\,\mathrm{#1}}          % Physical units
+\newcommand{\GeV}{\units{GeV}}                 % GeV
+\newcommand{\MeV}{\units{MeV}}                 % MeV
+\newcommand{\eV}{\units{eV}}                   % eV
+\newcommand{\meter}{\units{m}}                 % Meter
+\newcommand{\second}{\units{s}}                % Second
+\newcommand{\kelvin}{\units{K}}                % Kelvin
+
+%------------------------------------------------------------------------------
+% Spacetime Coordinates
+%------------------------------------------------------------------------------
+\newcommand{\xmu}{x^\mu}                       % 4-position
+\newcommand{\dxmu}{\dd x^\mu}                  % 4-differential
+\newcommand{\partialmu}{\partial_\mu}          % 4-derivative
+
+%------------------------------------------------------------------------------
+% Miscellaneous
+%------------------------------------------------------------------------------
+\newcommand{\approxeq}{\simeq}                 % Approximately equal
+\newcommand{\defequal}{\equiv}                 % Defined as
+\newcommand{\propto}{\propto}                  % Proportional to
+
+% Highlighting and emphasis
+\newcommand{\important}[1]{\textbf{#1}}        % Important terms
+\newcommand{\technical}[1]{\textit{#1}}        % Technical terms
+
+%==============================================================================
+% End of Common Macros
+%==============================================================================

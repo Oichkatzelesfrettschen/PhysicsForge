@@ -31,11 +31,17 @@ help:
 	@echo "---------------------------------------------------------------------------"
 	@echo "                                                                           "
 	@echo " LaTeX & Synthesis:                                                        "
-	@echo "   latex           - Compile the main LaTeX document.                      "
+	@echo "   latex           - Compile the main LaTeX document (legacy monograph).   "
 	@echo "   latex_strict    - Compile LaTeX in strict mode (errors fail the build). "
-	@echo "   paper1          - Build standalone Chapter 1 paper with all visualizations."
-	@echo "   clean-paper1    - Clean Paper 1 build artifacts.                        "
-	@echo "   validate-paper1 - Validate Paper 1 for errors/warnings.                 "
+	@echo "   paper1          - Build standalone Chapter 1 demo (LEGACY).             "
+	@echo "   paper1-new      - Build Paper 1: Scalar Field Theory & ZPE.             "
+	@echo "   paper2          - Build Paper 2: Exceptional Algebras.                  "
+	@echo "   paper3          - Build Paper 3: Fractal Geometry.                      "
+	@echo "   paper4          - Build Paper 4: EM-Gravity Unification.                "
+	@echo "   paper5          - Build Paper 5: Experimental Protocols.                "
+	@echo "   paper6          - Build Paper 6: Applications.                          "
+	@echo "   papers_all      - Build all six papers.                                 "
+	@echo "   papers_clean    - Clean all paper build artifacts.                      "
 	@echo "   link            - Link equation modules into the synthesis directory.   "
 	@echo "                                                                           "
 	@echo "---------------------------------------------------------------------------"
@@ -63,7 +69,7 @@ SHELL := /bin/bash
 BASE_DIR ?= .
 SCANS ?= notes .
 
-.PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict paper1 clean-paper1 validate-paper1 todo reports ascii_guard ascii_normalize update_data_readme help
+.PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict paper1 clean-paper1 validate-paper1 todo reports ascii_guard ascii_normalize update_data_readme help paper1-new paper2 paper3 paper4 paper5 paper6 papers_all papers_clean
 
 pipeline:
 	$(VENV_PATH)/bin/python scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
@@ -280,3 +286,102 @@ security-check:
 .PHONY: full-check
 full-check: ci-check test-coverage security-check
 	@echo "=== Full validation complete ==="
+
+# ==============================================================================
+# NEW MODULAR PAPER SYSTEM (November 2025)
+# Six focused papers with standard physics nomenclature
+# ==============================================================================
+
+# Paper 1 (NEW): Scalar Field Theory and Zero-Point Energy Coupling
+paper1-new:
+	@echo "=== Building Paper 1: Scalar Field Theory and Zero-Point Energy ==="
+	@mkdir -p synthesis/build
+	cd synthesis/papers/paper1_scalar_field_zpe && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper1_main.tex && \
+		bibtex paper1_main || true && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper1_main.tex && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper1_main.tex
+	@mv synthesis/papers/paper1_scalar_field_zpe/paper1_main.pdf synthesis/build/paper1_scalar_field_zpe.pdf 2>/dev/null || true
+	@echo "=== Paper 1 built: synthesis/build/paper1_scalar_field_zpe.pdf ==="
+
+# Paper 2: Exceptional Lie Algebras and Crystalline Lattice Structures
+paper2:
+	@echo "=== Building Paper 2: Exceptional Algebras and Crystalline Lattices ==="
+	@mkdir -p synthesis/build
+	cd synthesis/papers/paper2_exceptional_algebras && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper2_main.tex && \
+		bibtex paper2_main || true && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper2_main.tex && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper2_main.tex
+	@mv synthesis/papers/paper2_exceptional_algebras/paper2_main.pdf synthesis/build/paper2_exceptional_algebras.pdf 2>/dev/null || true
+	@echo "=== Paper 2 built: synthesis/build/paper2_exceptional_algebras.pdf ==="
+
+# Paper 3: Fractal Geometry and Hyperdimensional Field Structures
+paper3:
+	@echo "=== Building Paper 3: Fractal Geometry and Hyperdimensional Fields ==="
+	@mkdir -p synthesis/build
+	cd synthesis/papers/paper3_fractal_geometry && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper3_main.tex && \
+		bibtex paper3_main || true && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper3_main.tex && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper3_main.tex
+	@mv synthesis/papers/paper3_fractal_geometry/paper3_main.pdf synthesis/build/paper3_fractal_geometry.pdf 2>/dev/null || true
+	@echo "=== Paper 3 built: synthesis/build/paper3_fractal_geometry.pdf ==="
+
+# Paper 4: Gravitational-Electromagnetic Unification via Scalar Intermediaries
+paper4:
+	@echo "=== Building Paper 4: Gravitational-EM Unification ==="
+	@mkdir -p synthesis/build
+	cd synthesis/papers/paper4_em_gravity_unification && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper4_main.tex && \
+		bibtex paper4_main || true && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper4_main.tex && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper4_main.tex
+	@mv synthesis/papers/paper4_em_gravity_unification/paper4_main.pdf synthesis/build/paper4_em_gravity_unification.pdf 2>/dev/null || true
+	@echo "=== Paper 4 built: synthesis/build/paper4_em_gravity_unification.pdf ==="
+
+# Paper 5: Experimental Protocols for Exotic Quantum States
+paper5:
+	@echo "=== Building Paper 5: Experimental Protocols ==="
+	@mkdir -p synthesis/build
+	cd synthesis/papers/paper5_experimental_protocols && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper5_main.tex && \
+		bibtex paper5_main || true && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper5_main.tex && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper5_main.tex
+	@mv synthesis/papers/paper5_experimental_protocols/paper5_main.pdf synthesis/build/paper5_experimental_protocols.pdf 2>/dev/null || true
+	@echo "=== Paper 5 built: synthesis/build/paper5_experimental_protocols.pdf ==="
+
+# Paper 6: Applications to Quantum Computing and Energy Technologies
+paper6:
+	@echo "=== Building Paper 6: Applications ==="
+	@mkdir -p synthesis/build
+	cd synthesis/papers/paper6_applications && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper6_main.tex && \
+		bibtex paper6_main || true && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper6_main.tex && \
+		pdflatex -interaction=nonstopmode -halt-on-error paper6_main.tex
+	@mv synthesis/papers/paper6_applications/paper6_main.pdf synthesis/build/paper6_applications.pdf 2>/dev/null || true
+	@echo "=== Paper 6 built: synthesis/build/paper6_applications.pdf ==="
+
+# Build all six papers
+papers_all: paper1-new paper2 paper3 paper4 paper5 paper6
+	@echo "================================================================"
+	@echo "All papers built successfully!"
+	@echo "================================================================"
+	@ls -lh synthesis/build/*.pdf
+
+# Clean all paper build artifacts
+papers_clean:
+	@echo "=== Cleaning all paper build artifacts ==="
+	find synthesis/papers -name "*.aux" -delete
+	find synthesis/papers -name "*.log" -delete
+	find synthesis/papers -name "*.out" -delete
+	find synthesis/papers -name "*.toc" -delete
+	find synthesis/papers -name "*.bbl" -delete
+	find synthesis/papers -name "*.blg" -delete
+	find synthesis/papers -name "*.fls" -delete
+	find synthesis/papers -name "*.fdb_latexmk" -delete
+	find synthesis/papers -name "*.synctex.gz" -delete
+	rm -f synthesis/build/*.pdf
+	@echo "=== All paper artifacts cleaned ==="

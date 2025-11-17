@@ -2,11 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**IMPORTANT**: As of November 2025, PhysicsForge has been **restructured** from a single monograph into **six modular papers** using **standard scientific terminology**. See `PAPER_STRUCTURE_NORMALIZED.md` and `RESTRUCTURE_PROGRESS_REPORT.md` for complete details.
+
 ---
 
 ## [!]️ **CRITICAL: MANDATORY BUILD WORKFLOW** [!]️
 
-**ALWAYS OPERATE FROM PROJECT ROOT: `/home/eirikr/Playground/PhysicsForge/`**
+**ALWAYS OPERATE FROM PROJECT ROOT: `/home/eirikr/Playground/PhysicsForge/` or `/home/user/PhysicsForge/`**
 
 ### Build Entry Point (MANDATORY FOR ALL OPERATIONS)
 
@@ -46,12 +48,20 @@ ls -la Makefile # Must exist at project root
 
 ## Project Overview
 
-This is a theoretical physics and advanced mathematics research repository synthesizing unified field theories, quantum-gravitational models, and crystalline spacetime engineering. The work integrates:
+This is a theoretical physics and advanced mathematics research repository synthesizing unified field theories, quantum-gravitational models, and advanced physics applications.
 
-- **Aether Framework**: Scalar field dynamics, zero-point energy (ZPE), quantum foam, time crystals
-- **Genesis Framework**: Exceptional Lie groups (E8, E7, E6, F4, G2), Cayley-Dickson algebras, fractal geometries, modular symmetries
-- **Pais Framework**: Gravitational-electromagnetic unification with scalar-ZPE interactions
-- **Mathematical Foundations**: Non-associative algebras, hyperdimensional constructs (up to 2048D), Monster Group modular invariants
+**NEW STRUCTURE (November 2025)**: Six modular papers using **standard physics terminology**:
+
+1. **Paper 1**: Scalar Field Theory and Zero-Point Energy Coupling
+2. **Paper 2**: Exceptional Lie Algebras and Crystalline Lattice Structures
+3. **Paper 3**: Fractal Geometry and Hyperdimensional Field Structures
+4. **Paper 4**: Gravitational-Electromagnetic Unification via Scalar Intermediaries
+5. **Paper 5**: Experimental Protocols for Exotic Quantum States
+6. **Paper 6**: Applications to Quantum Computing and Energy Technologies
+
+**CRITICAL**: Use ONLY standard terminology (Scalar Field Theory, E8 Lattice, Time Crystals, Casimir Effect, etc.). See `synthesis/shared/glossary.tex` for approved terms.
+
+**Key Topics**: Scalar field dynamics • Zero-point energy • Exceptional Lie groups (E8, E7, E6, F4, G2) • Cayley-Dickson algebras • Fractal geometries • Gravitational-electromagnetic unification • Time crystals • Quantum computing applications
 
 **Platform**: Cross-platform (Windows 11 / Linux CachyOS)
 **Shell**: PowerShell (Windows) / Bash (Linux)
@@ -60,12 +70,30 @@ This is a theoretical physics and advanced mathematics research repository synth
 
 ## Repository Structure
 
+**UPDATED November 2025**: Modular paper architecture
+
 ```
-Math_Science/
-|-- synthesis/ # PRIMARY WORK AREA - LaTeX book project
-| |-- main.tex # Master file (book class, 5 parts, 30 chapters)
-| |-- preamble.tex # Packages, macros, equation tags (262 lines)
-| |-- bibliography.bib # BibTeX references (210 entries)
+PhysicsForge/
+|-- synthesis/ # PRIMARY WORK AREA
+| |-- shared/ # **NEW**: Shared infrastructure for all papers
+| | |-- common_preamble.tex # LaTeX packages & settings
+| | |-- common_macros.tex # Standard physics macros (100+)
+| | |-- glossary.tex # Standard terminology (80+ terms)
+| | |-- notation.tex # Symbol conventions
+| | `-- marginal_notes_system.tex # Lions commentary macros
+| |
+| |-- papers/ # **NEW**: Six modular papers
+| | |-- paper1_scalar_field_zpe/
+| | |-- paper2_exceptional_algebras/
+| | |-- paper3_fractal_geometry/
+| | |-- paper4_em_gravity_unification/
+| | |-- paper5_experimental_protocols/
+| | `-- paper6_applications/
+| |
+| |-- build/ # **NEW**: Compiled PDFs
+| |-- main.tex # **LEGACY**: Original monograph (being phased out)
+| |-- preamble.tex # **LEGACY**: (migrated to shared/)
+| |-- bibliography.bib # **LEGACY**: (consolidated to shared/)
 | |-- chapters/ # 30 chapters organized by part
 | | |-- foundations/ # Ch01-06 (Phase 1 - COMPLETE)
 | | |-- frameworks/ # Ch07-16 (Aether + Genesis + Pais)

@@ -1,0 +1,573 @@
+%==============================================================================
+% PAPER 2, CHAPTER 3: E8 Lattice Theory
+%==============================================================================
+
+\chapter{$E_8$ Lattice Theory}
+\label{ch:p2:e8-lattice}
+
+\marginphysics{Most symmetric structure in 8D}
+
+\section{The Golden Ratio in a Quantum Magnet}
+
+In 2010, a team led by Radu Coldea at Oxford cooled cobalt niobate (CoNb$_2$O$_6$) to 0.04 Kelvin.\marginhistory{Coldea et al., Science 327, 177 (2010)} Bombarding the crystal with neutrons, they observed something extraordinary: the energy spectrum's first two levels had ratio $\phi = 1.618...$, the golden ratio.
+
+This was not coincidence.\marginmath{Golden ratio: $(1+\sqrt{5})/2$} The quantum magnet exhibited $E_8$ symmetry at its critical point. The spin chains transformed into a one-dimensional quantum critical system whose excitations organized according to the 240-fold symmetry of the $E_8$ exceptional Lie group.
+
+\textbf{Remarkable fact}: $E_8$ is not merely abstract mathematics.\marginphysics{Abstract math $\to$ real physics} It emerges when quantum systems reach maximum symmetry. This chapter explores the $E_8$ lattice structure and its manifestations across physics.
+
+\section{Lattice Definition and Construction}
+\label{sec:p2:e8:definition}
+
+\subsection{Mathematical Definition}
+
+The $E_8$ lattice is the unique even unimodular lattice in 8 dimensions:\marginmath{Even: $v \cdot v \in 2\mathbb{Z}$}
+\begin{equation}
+  \Lambda_{E_8} = \left\{ v \in \mathbb{R}^8 \mid v \cdot v \in 2\mathbb{Z}, \, v \in \mathbb{Z}^8 \text{ or } v \in \left(\mathbb{Z} + \tfrac{1}{2}\right)^8 \text{ with } \sum v_i \in 2\mathbb{Z} \right\}
+  \label{eq:p2:e8:lattice-definition}
+\end{equation}
+
+This combines:\marginmath{Integer + half-integer points}
+\begin{itemize}
+  \item \textbf{Integer lattice}: All vectors $(n_1, \ldots, n_8) \in \mathbb{Z}^8$
+  \item \textbf{Half-integer points}: Coordinates in $\mathbb{Z} + \frac{1}{2}$ with even sum
+\end{itemize}
+
+The evenness condition $v \cdot v \in 2\mathbb{Z}$ ensures all lattice vectors have even norm-squared.\margindim{Prevents topological defects}
+
+\subsection{Root System Embedding}
+
+The 240 shortest nonzero vectors form the root system of Lie algebra $\mathfrak{e}_8$.\marginmath{240 roots = minimal vectors}
+
+\textbf{Type I roots} (112 total): Two nonzero entries $\pm 1, \pm 1$:\marginex{Example: $(1, 1, 0, 0, 0, 0, 0, 0)$}
+\begin{equation}
+  \{ (\pm 1, \pm 1, 0, 0, 0, 0, 0, 0) \text{ and all permutations} \}
+  \label{eq:p2:e8:roots-type1}
+\end{equation}
+
+\textbf{Type II roots} (128 total): All entries $\pm \frac{1}{2}$ with even number of minus signs:\margincomp{Example: $(\frac{1}{2})^8$}
+\begin{equation}
+  \left\{ \left(\pm \tfrac{1}{2}, \ldots, \pm \tfrac{1}{2}\right) \mid \text{even number of } - \text{ signs} \right\}
+  \label{eq:p2:e8:roots-type2}
+\end{equation}
+
+All 240 roots have norm-squared:\marginmath{Uniform root length}
+\begin{equation}
+  \|v\|^2 = v \cdot v = 2
+  \label{eq:p2:e8:root-norm}
+\end{equation}
+
+\subsection{Worked Example: Root Verification}
+
+\textbf{Problem}: Verify that Type I and Type II roots decompose correctly and have norm-squared 2.
+
+\textbf{Type I verification}:\marginex{Check norm: $1^2 + 1^2 = 2$}
+
+Vector $v_1 = (1, 1, 0, 0, 0, 0, 0, 0)$:
+\begin{equation}
+  \|v_1\|^2 = 1^2 + 1^2 + 0 + 0 + 0 + 0 + 0 + 0 = 2 \quad \checkmark
+\end{equation}
+
+Count: Choose 2 positions from 8 (${8 \choose 2} = 28$), assign signs $(\pm 1, \pm 1)$ (4 choices):\marginmath{$28 \times 4 = 112$ Type I roots}
+\begin{equation}
+  N_{\text{Type I}} = 28 \times 4 = 112 \quad \checkmark
+\end{equation}
+
+\textbf{Type II verification}:\margincomp{6 plus, 2 minus signs}
+
+Vector $v_2 = (\tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{2}, \tfrac{1}{2}, -\tfrac{1}{2}, -\tfrac{1}{2})$ (2 minus, even):
+\begin{equation}
+  \|v_2\|^2 = 6 \times \tfrac{1}{4} + 2 \times \tfrac{1}{4} = \tfrac{8}{4} = 2 \quad \checkmark
+\end{equation}
+
+Count even number of minus signs (0, 2, 4, 6, 8):\marginmath{Binomial sum: $2^{n-1} = 128$}
+\begin{equation}
+  N_{\text{Type II}} = {8 \choose 0} + {8 \choose 2} + {8 \choose 4} + {8 \choose 6} + {8 \choose 8} = 1 + 28 + 70 + 28 + 1 = 128 \quad \checkmark
+\end{equation}
+
+Total: $112 + 128 = 240$ roots.\marginex{All with $\|v\|^2 = 2$}
+
+\subsection{Cartan Matrix}
+
+The $E_8$ Cartan matrix encodes root inner products:\margindim{$C_{ij} = 2\delta_{ij} - \alpha_i \cdot \alpha_j$}
+\begin{equation}
+  C_{E_8} = \begin{pmatrix}
+    2 & -1 &  0 &  0 &  0 &  0 &  0 &  0 \\
+   -1 &  2 & -1 &  0 &  0 &  0 &  0 &  0 \\
+    0 & -1 &  2 & -1 &  0 &  0 &  0 & -1 \\
+    0 &  0 & -1 &  2 & -1 &  0 &  0 &  0 \\
+    0 &  0 &  0 & -1 &  2 & -1 &  0 &  0 \\
+    0 &  0 &  0 &  0 & -1 &  2 & -1 &  0 \\
+    0 &  0 &  0 &  0 &  0 & -1 &  2 &  0 \\
+    0 &  0 & -1 &  0 &  0 &  0 &  0 &  2
+  \end{pmatrix}
+  \label{eq:p2:e8:cartan-matrix}
+\end{equation}
+
+Determinant: $\det(C_{E_8}) = 1$ (unimodular).\marginmath{Unimodular: $\det(C) = 1$}
+
+The branching at row 3 (two off-diagonal $-1$ entries) creates the exceptional structure.\marginphysics{Branching $\to$ exceptional symmetry}
+
+\section{Gosset $4_{21}$ Polytope}
+\label{sec:p2:e8:polytope}
+
+\subsection{Geometric Realization}
+
+The Gosset polytope $4_{21}$ is the 8-dimensional convex polytope whose vertices are the 240 $E_8$ roots.\marginhistory{Thorold Gosset, 1900} It is one of three semiregular 8-polytopes.
+
+\textbf{Vertex configuration}: 240 vertices at $(\pm 1, \pm 1, 0^6)$ permutations and $(\pm \frac{1}{2})^8$ with even minus\marginmath{240 vertices = 240 roots}
+
+\textbf{Schläfli symbol}: $\{3^{2,1,1}\}$ (semiregular)
+
+\subsection{Combinatorial Properties}
+
+\begin{table}[h]
+\centering\margindim{60480 triangular faces!}
+\begin{tabular}{lc}
+\hline
+\textbf{Element} & \textbf{Count} \\
+\hline
+Vertices (0-faces)     & 240 \\
+Edges (1-faces)        & 6720 \\
+2-faces (triangles)    & 60480 \\
+3-faces                & 241920 \\
+4-faces                & 483840 \\
+5-faces                & 483840 \\
+6-faces                & 207360 \\
+7-faces (facets)       & 17280 \\
+\hline
+\end{tabular}
+\caption{Face counts for Gosset $4_{21}$ polytope}\marginmath{Combinatorial explosion in 8D}
+\label{tab:p2:gosset-faces}
+\end{table}
+
+\subsection{Worked Example: Edge Count}
+
+\textbf{Problem}: Verify edge count $E = 6720$ using root geometry.
+
+Each root $\alpha$ connects to root $\beta$ if $\alpha \cdot \beta = -1$ (120-degree angle).\marginmath{Coordination number: $k = 56$}
+
+Each root has $k = 56$ nearest neighbors:\marginex{24 Type I + 32 Type II}
+\begin{itemize}
+  \item Type I root $(1,1,0^6)$: 24 Type I + 32 Type II neighbors = 56
+  \item Type II root: Similar count yields 56
+\end{itemize}
+
+Total edges:\margincomp{Divide by 2: each edge counted twice}
+\begin{equation}
+  E = \frac{V \times k}{2} = \frac{240 \times 56}{2} = \frac{13440}{2} = 6720 \quad \checkmark
+\end{equation}
+
+\textbf{Physical significance}: In $E_8$ gauge theory, 6720 is the number of distinct triple-boson interaction vertices.\marginphysics{Feynman diagrams: 6720 vertices}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.2]
+
+  % Gosset polytope 421: showing vertex-edge structure (3D projection schematic)
+
+  % Central vertex
+  \fill[blue!70!black] (0, 0) circle (3pt);
+  \node at (0, -0.4) [font=\scriptsize] {vertex};
+
+  % First layer: 56 neighbors (showing subset)
+  \foreach \i in {0,30,60,...,330} {
+    \pgfmathsetmacro{\radius}{1.2}
+    \fill[red!60!black] ({\i}:\radius) circle (2pt);
+    \draw[thick, blue!40] (0,0) -- ({\i}:\radius);
+  }
+
+  \node at (0, -2.2) [font=\scriptsize] {12 shown (of 56 nearest neighbors)};
+
+  % Second layer: connections (showing partial structure)
+  \foreach \i in {0,60,120,180,240,300} {
+    \pgfmathsetmacro{\radius}{1.2}
+    \pgfmathsetmacro{\nexti}{\i + 30}
+    \draw[gray!50, thin] ({\i}:\radius) -- ({\nexti}:\radius);
+  }
+
+  % Outer annotation
+  \draw[<->, thick, red] (0.3, 1.5) -- (1.5, 1.5);
+  \node at (0.9, 1.8) [font=\scriptsize] {$d = \sqrt{2}$};
+
+  % Right side: edge statistics
+  \begin{scope}[xshift=5cm, yshift=0.5cm]
+    \node at (0, 1.5) [font=\bfseries] {Gosset $4_{21}$ Structure};
+    \node at (0, 1.0) [font=\small, align=left] {
+      Vertices: 240 \\
+      Edges: 6720 \\
+      Coord. number: $k=56$
+    };
+
+    % Small polytope schematic
+    \draw[thick, blue!60!black] (-0.8, -0.5) -- (0.8, -0.5) -- (0.4, -1.3) -- (-0.4, -1.3) -- cycle;
+    \draw[thick, blue!60!black] (-0.8, -0.5) -- (-0.6, 0.2);
+    \draw[thick, blue!60!black] (0.8, -0.5) -- (0.6, 0.2);
+    \draw[thick, blue!60!black] (0.4, -1.3) -- (0.2, -1.8);
+    \draw[thick, blue!60!black] (-0.4, -1.3) -- (-0.2, -1.8);
+    \draw[thick, blue!60!black] (-0.6, 0.2) -- (0.6, 0.2) -- (0.2, -1.8) -- (-0.2, -1.8) -- cycle;
+
+    \node at (0, -2.3) [font=\scriptsize] {8D polytope (schematic)};
+  \end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{Gosset $4_{21}$ polytope edge structure}. Left: Central vertex (blue) connects to 56 nearest neighbors (red, 12 shown) at distance $\sqrt{2}$. Each neighbor connects to others forming triangular 2-faces. Right: Summary statistics and schematic. Total: 240 vertices, 6720 edges, 60480 triangular faces.}
+\label{fig:p2:gosset-polytope}
+\end{figure}
+
+\subsection{Symmetry Group}
+
+The full symmetry group is the Weyl group $W(E_8)$:\marginmath{Reflection group in 8D}
+\begin{equation}
+  |W(E_8)| = 696729600 = 2^{14} \cdot 3^5 \cdot 5^2 \cdot 7
+  \label{eq:p2:e8:weyl-order}
+\end{equation}
+
+This is the largest finite reflection group in 8D---nearly 700 million symmetries!\margincaution{Enormous discrete group}
+
+\section{Optimal Sphere Packing}
+\label{sec:p2:e8:packing}
+
+\subsection{Viazovska's Theorem (2016)}
+
+Maryna Viazovska proved the $E_8$ lattice achieves \textbf{optimal sphere packing density in 8D}:\marginhistory{Fields Medal 2022}
+\begin{equation}
+  \Delta_8 = \frac{\pi^4}{384} \approx 0.2537
+  \label{eq:p2:e8:packing-density}
+\end{equation}
+
+This means 25.37\% of 8D space can be filled with non-overlapping spheres---no arrangement is denser!\marginmath{Optimal in 8D and 24D only}
+
+\textbf{Proof method}: Uses modular forms and Fourier analysis, showing the $E_8$ theta function satisfies extremal properties.\margincomp{Elegant analytic proof}
+
+\subsection{Worked Example: Packing Density}
+
+\textbf{Problem}: Verify the packing density formula.
+
+The $E_8$ lattice is unimodular: fundamental domain has unit volume.\marginmath{$V_{\text{domain}} = 1$}
+
+Each lattice point centers a sphere with radius $r = \frac{1}{\sqrt{2}}$ (half the minimal distance $\sqrt{2}$).\marginex{Minimal distance from $\|v\|^2 = 2$}
+
+Volume of 8D sphere:\margindim{8D hypersphere formula}
+\begin{equation}
+  V_8(r) = \frac{\pi^4}{24} r^8
+\end{equation}
+
+Substituting $r = \frac{1}{\sqrt{2}}$:\margincomp{$r^8 = (1/\sqrt{2})^8 = 1/16$}
+\begin{equation}
+  V_{\text{sphere}} = \frac{\pi^4}{24} \cdot \frac{1}{16} = \frac{\pi^4}{384}
+\end{equation}
+
+Packing density:\marginmath{Sphere volume / domain volume}
+\begin{equation}
+  \Delta_8 = \frac{V_{\text{sphere}}}{V_{\text{domain}}} = \frac{\pi^4/384}{1} = \frac{\pi^4}{384} \approx 0.2537 \quad \checkmark
+\end{equation}
+
+\textbf{Physical meaning}: Optimal packing minimizes energy. The $E_8$ lattice appears in quantum error-correcting codes and crystal structures.\marginphysics{Energy minimization $\to$ optimal packing}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1]
+
+  % Sphere packing visualization (2D slice of 8D packing)
+
+  % Central sphere
+  \fill[blue!30, opacity=0.7] (0, 0) circle (0.707);
+  \draw[thick, blue!70!black] (0, 0) circle (0.707);
+  \node at (0, 0) [font=\scriptsize] {$r$};
+
+  % Surrounding spheres (kissing spheres)
+  \foreach \i in {0,30,60,90,120,150,180,210,240,270,300,330} {
+    \pgfmathsetmacro{\x}{1.414*cos(\i)}
+    \pgfmathsetmacro{\y}{1.414*sin(\i)}
+    \fill[red!30, opacity=0.6] (\x, \y) circle (0.707);
+    \draw[thick, red!70!black] (\x, \y) circle (0.707);
+  }
+
+  % Distance annotation
+  \draw[<->, thick, green!60!black] (0, 0) -- (1.414*cos(30), 1.414*sin(30));
+  \node at (0.5, 0.5) [font=\scriptsize, fill=white] {$\sqrt{2}$};
+
+  % Packing efficiency annotation
+  \node at (0, -2.8) [font=\small] {2D slice of 8D optimal packing};
+  \node at (0, -3.2) [font=\scriptsize] {Central sphere touches 12 neighbors (240 in 8D)};
+
+  % Right side: density statistics
+  \begin{scope}[xshift=6.5cm, yshift=0cm]
+    \node at (0, 1.5) [font=\bfseries] {$E_8$ Packing Density};
+    \node at (0, 0.8) [font=\small, align=left] {
+      Dimension: 8 \\
+      Kissing number: 240 \\
+      Density: $\Delta_8 = \frac{\pi^4}{384}$
+    };
+    \node at (0, -0.3) [font=\small] {$\approx 25.37\%$};
+
+    % Comparison bar
+    \draw[thick] (-1.5, -1) rectangle (1.5, -0.7);
+    \fill[green!60!black] (-1.5, -1) rectangle (0.31, -0.7);
+    \node at (0, -1.4) [font=\scriptsize] {Optimal (Viazovska 2016)};
+
+    % Dimensions where optimal is known
+    \node at (0, -2.2) [font=\scriptsize, align=center] {
+      Optimal known only in: \\
+      1D, 2D, 3D, 8D, 24D
+    };
+  \end{scope}
+
+\end{tikzpicture}
+\caption{\textbf{$E_8$ lattice sphere packing} (2D slice). Central sphere (blue) at lattice point contacts 12 neighbors in this projection (240 in full 8D). Sphere radius $r = 1/\sqrt{2}$; minimal distance $\sqrt{2}$. Packing density $\Delta_8 = \pi^4/384 \approx 0.2537$ is optimal (Viazovska 2016, Fields Medal 2022).}
+\label{fig:p2:e8-sphere-packing}
+\end{figure}
+
+\subsection{Kissing Number}
+
+The kissing number in 8D (maximum spheres touching a central sphere):\marginmath{240 = kissing number in 8D}
+\begin{equation}
+  \tau_8 = 240
+  \label{eq:p2:e8:kissing-number}
+\end{equation}
+
+Achieved by the 240 $E_8$ roots, proving optimality.\marginex{Geometry $\leftrightarrow$ algebra}
+
+\section{String Theory and Modular Forms}
+\label{sec:p2:e8:string-theory}
+
+\subsection{$E_8 \times E_8$ Heterotic Strings}
+
+In 10D heterotic string theory, consistency (anomaly cancellation) demands:\marginphysics{496-dimensional gauge group}
+\begin{equation}
+  \text{SO}(32) \quad \text{or} \quad E_8 \times E_8
+  \label{eq:p2:e8:heterotic-gauge}
+\end{equation}
+
+The $E_8 \times E_8$ theory arises from compactifying 16 right-moving dimensions on:\marginmath{Two independent $E_8$ lattices}
+\begin{equation}
+  T^{16} = \Lambda_{E_8} \oplus \Lambda_{E_8}
+  \label{eq:p2:e8:heterotic-torus}
+\end{equation}
+
+\textbf{Why two $E_8$ groups?} The 16D torus splits into two independent 8D lattices, each with $E_8$ symmetry.\margindim{Visible + hidden sectors}
+
+\subsection{Theta Function and Modular Invariance}
+
+The $E_8$ theta function encodes the partition function:\marginmath{$q = e^{2\pi i \tau}$}
+\begin{equation}
+  \Theta_{E_8}(\tau) = \sum_{v \in \Lambda_{E_8}} q^{v \cdot v / 2}
+  \label{eq:p2:e8:theta-function}
+\end{equation}
+
+This is a weight-4 modular form:\marginphysics{Modular transformation: $\tau \to -1/\tau$}
+\begin{equation}
+  \Theta_{E_8}\left(-\frac{1}{\tau}\right) = \tau^4 \Theta_{E_8}(\tau)
+  \label{eq:p2:e8:modular-transformation}
+\end{equation}
+
+Modular invariance ensures consistent predictions at all length scales, preventing divergences.\margincaution{Essential for quantum gravity}
+
+For $E_8 \times E_8$ heterotic strings:\margincomp{Dedekind eta function: $\eta(\tau)$}
+\begin{equation}
+  Z(\tau) = \frac{1}{\eta(\tau)^{24}} \cdot \Theta_{E_8}(\tau) \cdot \Theta_{E_8}(\tau)
+  \label{eq:p2:e8:partition-function}
+\end{equation}
+
+\subsection{Calabi-Yau Compactifications}
+
+Breaking $E_8$ via Calabi-Yau 3-fold compactification:\marginphysics{6D Calabi-Yau manifolds}
+\begin{equation}
+  E_8 \to E_6 \times \text{SU}(3) \to \text{SU}(3)_C \times \text{SU}(2)_L \times \text{U}(1)_Y \times \ldots
+  \label{eq:p2:e8:calabi-yau-breaking}
+\end{equation}
+
+The Standard Model gauge group emerges from suitable compactifications.\marginex{3 generations from topology}
+
+Number of generations = (Euler characteristic)/2.\marginmath{$\chi/2 = 3$ for realistic models}
+
+\section{$E_8$ in Grand Unified Theories}
+\label{sec:p2:e8:gut}
+
+\subsection{Breaking Chains}
+
+$E_8$ provides maximal symmetry for GUTs.\marginphysics{Largest exceptional $\to$ largest GUT}
+
+\textbf{Maximal breaking}:\marginmath{Sequential phase transitions}
+\begin{equation}
+  E_8 \to E_7 \times \text{U}(1) \to E_6 \times \text{SU}(2) \times \text{U}(1) \to \ldots
+  \label{eq:p2:e8:gut-maximal}
+\end{equation}
+
+\textbf{Via Spin(16)}:\margindim{Spin(16) intermediate stage}
+\begin{equation}
+  E_8 \to \text{Spin}(16) / \mathbb{Z}_2 \to \text{Spin}(10) \times \text{U}(1)^3 \to \text{SU}(5) \times \ldots
+  \label{eq:p2:e8:gut-spin16}
+\end{equation}
+
+These breaking chains occur as the universe cools from the Planck scale.\marginhistory{Big Bang $\to$ sequential symmetry breaking}
+
+\subsection{Compactification Radius}
+
+If extra dimensions have $E_8$ structure:\marginmath{Planck length: $\ell_P \sim 10^{-35}$ m}
+\begin{equation}
+  R_{\text{comp}} \sim \frac{\ell_P}{\sqrt{\alpha_{\text{GUT}}}} \sim 10^{-32} \text{ m}
+  \label{eq:p2:e8:compactification-radius}
+\end{equation}
+
+Far too small to observe directly, but influences physics via virtual Kaluza-Klein modes.\marginphysics{Virtual particles from extra dimensions}
+
+\section{Root System and Dynkin Diagram}
+\label{sec:p2:e8:dynkin}
+
+\subsection{Simple Roots}
+
+The 8 simple roots generate all 240 via Weyl reflections:\marginmath{Basis for root system}
+\begin{align}
+  \alpha_1 &= \tfrac{1}{2}(-1,-1,-1,-1,-1,-1,-1,\sqrt{3}) \nonumber \\
+  \alpha_2 &= (1,1,0,0,0,0,0,0) \nonumber \\
+  \alpha_3 &= (-1,1,0,0,0,0,0,0) \nonumber \\
+  \alpha_4 &= (0,-1,1,0,0,0,0,0) \nonumber \\
+  \alpha_5 &= (0,0,-1,1,0,0,0,0) \nonumber \\
+  \alpha_6 &= (0,0,0,-1,1,0,0,0) \nonumber \\
+  \alpha_7 &= (0,0,0,0,-1,1,0,0) \nonumber \\
+  \alpha_8 &= (0,0,0,0,0,-1,1,0)
+  \label{eq:p2:e8:simple-roots}
+\end{align}
+
+\subsection{Dynkin Diagram}
+
+The Dynkin diagram encodes simple root angles:\margindim{Nodes = roots, edges = angles}
+\begin{equation}
+  \begin{array}{ccccccccc}
+    \circ & - & \circ & - & \circ & - & \circ & - & \circ \\
+          &   &   &   &   & | &   &   &   \\
+          &   &   &   &   & \circ &   &   &
+  \end{array}
+  \label{eq:p2:e8:dynkin-diagram}
+\end{equation}
+
+Seven nodes in main chain, one branching at node 5.\marginmath{Branching $\to$ exceptional}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=2.2]
+
+  % Draw Coxeter plane projection of E8 roots (30-fold symmetry)
+  % We'll show a simplified version with 30 roots arranged in 30-fold rotation
+
+  % Outer ring: 30 roots with 30-fold symmetry
+  \foreach \i in {1,...,30} {
+    \pgfmathsetmacro{\angle}{360/30 * \i}
+    \fill[blue!60!black] ({\angle}:1) circle (1.5pt);
+  }
+
+  % Inner ring: 30 roots
+  \foreach \i in {1,...,30} {
+    \pgfmathsetmacro{\angle}{360/30 * \i + 6}
+    \fill[red!60!black] ({\angle}:0.618) circle (1.5pt);
+  }
+
+  % Innermost ring: 30 roots
+  \foreach \i in {1,...,30} {
+    \pgfmathsetmacro{\angle}{360/30 * \i}
+    \fill[green!60!black] ({\angle}:0.382) circle (1.5pt);
+  }
+
+  % Central cluster (remaining 150 roots projected near center)
+  \foreach \i in {1,...,40} {
+    \pgfmathsetmacro{\angle}{rand*360}
+    \pgfmathsetmacro{\radius}{0.15 + rand*0.12}
+    \fill[orange!70!black, opacity=0.5] ({\angle}:\radius) circle (0.8pt);
+  }
+
+  % Symmetry lines (showing 30-fold rotation)
+  \foreach \i in {0,30,60,90,120,150} {
+    \draw[gray!40, dashed, very thin] (0,0) -- (\i:1.1);
+  }
+
+  % Annotations
+  \node at (0, -1.4) [font=\small] {Coxeter plane projection};
+  \node at (0, -1.7) [font=\scriptsize] {(240 roots $\to$ 2D with 30-fold symmetry)};
+
+  % Scale indicator
+  \draw[<->, thick] (1.25, -0.9) -- (1.25, 0.9);
+  \node at (1.6, 0) [font=\scriptsize] {$h = 30$};
+
+\end{tikzpicture}
+\caption{\textbf{Coxeter plane projection of $E_8$ roots}. All 240 roots projected onto the Coxeter plane exhibit 30-fold rotational symmetry ($h = 30$). Colored rings show different projection radii; central cluster represents roots near projection center. Golden ratio $\phi = 0.618...$ appears in radial structure.}
+\label{fig:p2:e8-coxeter-projection}
+\end{figure}
+
+\subsection{Highest Root and Coxeter Number}
+
+The highest root (longest in partial ordering):\marginex{Coefficients in simple root basis}
+\begin{equation}
+  \theta = (1,2,3,4,5,6,4,2)
+  \label{eq:p2:e8:highest-root}
+\end{equation}
+
+The Coxeter number:\marginmath{Height + 1 = 30}
+\begin{equation}
+  h = 30
+  \label{eq:p2:e8:coxeter-number}
+\end{equation}
+
+This governs periodicity of modular transformations and appears in the 30-fold symmetry of Coxeter plane projection.\marginphysics{30-fold rotation in 2D projection}
+
+\section{Experimental Manifestation: CoNb$_2$O$_6$ Revisited}
+\label{sec:p2:e8:experiment}
+
+\subsection{Transverse Field Ising Model}
+
+The quantum magnet is described by:\marginmath{Quantum critical point}
+\begin{equation}
+  H = -J \sum_i \sigma_i^z \sigma_{i+1}^z - h \sum_i \sigma_i^x
+  \label{eq:p2:e8:ising-hamiltonian}
+\end{equation}
+
+At $h_c = J$, the system undergoes quantum phase transition.\marginphysics{Conformal field theory emerges}
+
+Low-energy physics exhibits $E_8$ symmetry (Zamolodchikov, 1989).
+
+\subsection{Mass Ratios and Golden Ratio}
+
+Eight particle states have masses:\marginmath{Golden ratio: $\phi = (1+\sqrt{5})/2$}
+\begin{equation}
+  m_1 : m_2 : \cdots : m_8 = 1 : \phi : \phi^2 : \phi^3 : 2\phi^2 : \phi^4 : 2\phi^3 : \phi^5
+  \label{eq:p2:e8:mass-ratios}
+\end{equation}
+
+\textbf{Coldea 2010 measurement} (inelastic neutron scattering):\marginex{Error bars: $\pm 0.01$}
+\begin{itemize}
+  \item Predicted: $m_2/m_1 = \phi = 1.618...$
+  \item Measured: $m_2/m_1 = 1.62 \pm 0.01$
+\end{itemize}
+
+Agreement within error!\marginhistory{First direct $E_8$ observation}
+
+\textbf{Significance}: Abstract 248-dimensional symmetry manifests in real systems.\margincaution{Math $\to$ physics connection}
+
+\section{Summary and Forward Bridge}
+
+We explored the $E_8$ lattice:\marginxref{Next: Crystalline spacetime Ch.~\ref{ch:p2:crystalline-spacetime}}
+
+\textbf{Key results}:\marginmath{240 roots, optimal packing}
+\begin{itemize}
+  \item \textbf{Unique structure}: Only even unimodular lattice in 8D
+  \item \textbf{240 roots}: Type I (112) + Type II (128), all with $\|v\|^2 = 2$
+  \item \textbf{Gosset $4_{21}$}: 240-vertex polytope, 6720 edges, $|W(E_8)| \approx 7 \times 10^8$
+  \item \textbf{Optimal packing}: Viazovska 2016, $\Delta_8 = \pi^4/384 \approx 0.2537$
+  \item \textbf{String theory}: $E_8 \times E_8$ heterotic gauge group, modular invariance
+  \item \textbf{Experimental}: CoNb$_2$O$_6$ golden ratio observation
+\end{itemize}
+
+\textbf{Worked examples} demonstrated:\margincomp{Verification techniques}
+\begin{itemize}
+  \item Root counting: 112 + 128 = 240
+  \item Edge enumeration: $V \times k / 2 = 6720$
+  \item Packing density: $\pi^4/384$ calculation
+\end{itemize}
+
+\textbf{Forward bridge}: Chapter~\ref{ch:p2:crystalline-spacetime} explores crystalline spacetime models where $E_8$ lattice structure emerges at the Planck scale, with phonon-graviton duality and experimental probes.\marginphysics{From math to spacetime structure}
+
+The $E_8$ lattice unifies abstract mathematics (sphere packing, modular forms) with fundamental physics (string theory, GUTs, condensed matter).\marginhistory{Viazovska to Coldea: 6 years}
+
+%==============================================================================
+% END OF CHAPTER 3
+%==============================================================================

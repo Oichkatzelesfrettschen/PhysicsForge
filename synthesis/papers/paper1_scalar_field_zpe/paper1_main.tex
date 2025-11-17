@@ -1,0 +1,118 @@
+%==============================================================================
+% PAPER 1: Scalar Field Theory and Zero-Point Energy Coupling
+% PhysicsForge Collaboration
+% Part of: "Unified Field Theories and Advanced Physics" Series
+%==============================================================================
+
+\documentclass[11pt,letterpaper,oneside]{book}
+
+%------------------------------------------------------------------------------
+% Shared Infrastructure
+%------------------------------------------------------------------------------
+\input{../../shared/common_preamble}
+\input{../../shared/common_macros}
+\input{../../shared/marginal_notes_system}
+
+%------------------------------------------------------------------------------
+% Paper-Specific Packages
+%------------------------------------------------------------------------------
+% (Add any paper-specific packages here)
+
+%------------------------------------------------------------------------------
+% Metadata
+%------------------------------------------------------------------------------
+\hypersetup{
+  pdftitle={Scalar Field Theory and Zero-Point Energy Coupling},
+  pdfauthor={PhysicsForge Collaboration},
+  pdfsubject={Quantum Vacuum Physics and Scalar Field Dynamics},
+  pdfkeywords={scalar fields, zero-point energy, Casimir effect, quantum vacuum}
+}
+
+\title{%
+  \vspace{-1cm}
+  \Huge\textbf{Scalar Field Theory and Zero-Point Energy Coupling}\\[0.5cm]
+  \Large A Comprehensive Lions Commentary-Style Treatment\\[0.3cm]
+  \large With Exhaustive Visualizations, Dimensional Analysis, and Physical Interpretations\\[0.5cm]
+  \normalsize\textit{PhysicsForge Paper Series — Paper 1 of 6}
+}
+
+\author{%
+  \Large PhysicsForge Collaboration\\[0.3cm]
+  \small\textit{Unified Field Theories and Advanced Physics Research Hub}\\[0.2cm]
+  \small\texttt{https://github.com/Oichkatzelesfrettschen/PhysicsForge}
+}
+
+\date{\today}
+
+%==============================================================================
+% DOCUMENT BEGIN
+%==============================================================================
+
+\begin{document}
+
+%------------------------------------------------------------------------------
+% Front Matter
+%------------------------------------------------------------------------------
+\frontmatter
+
+\maketitle
+
+% Abstract
+\begin{abstract}
+\noindent
+We present a comprehensive pedagogical treatment of scalar field theory and its coupling to the quantum vacuum zero-point energy (ZPE). Beginning with mathematical preliminaries in tensor calculus and differential geometry, we develop the Klein-Gordon Lagrangian formulation for scalar fields and explore vacuum fluctuation phenomena including the Casimir effect. We then investigate parametric resonance mechanisms for coherent field-vacuum coupling, with applications to energy extraction proposals and experimental tests.
+
+\vspace{1em}
+\noindent
+\textbf{Key Topics}: Scalar field dynamics • Zero-point energy • Casimir effect • Quantum vacuum • Parametric resonance • Field-vacuum coupling
+
+\vspace{1em}
+\noindent
+\textbf{Style}: This paper employs the Lions Commentary pedagogical approach with extensive marginal annotations, dimensional analysis, worked numerical examples, and multidimensional TikZ/PGFPlots visualizations.
+\end{abstract}
+
+% Table of Contents
+\tableofcontents
+\listoffigures
+\listoftables
+
+% Notation
+\input{../../shared/notation}
+
+%------------------------------------------------------------------------------
+% Main Matter
+%------------------------------------------------------------------------------
+\mainmatter
+
+% Chapter 1: Mathematical Preliminaries
+\input{chapters/ch01_mathematical_preliminaries}
+
+% Chapter 2: Scalar Field Lagrangian Formulation
+\input{chapters/ch02_scalar_lagrangian}
+
+% Chapter 3: Zero-Point Energy and Quantum Vacuum
+\input{chapters/ch03_quantum_vacuum}
+
+% Chapter 4: Field-Vacuum Coupling Mechanisms
+\input{chapters/ch04_field_vacuum_coupling}
+
+%------------------------------------------------------------------------------
+% Back Matter
+%------------------------------------------------------------------------------
+\backmatter
+
+% Glossary
+\input{../../shared/glossary}
+
+% Bibliography
+\bibliographystyle{plainnat}
+\bibliography{../../shared/bibliography_shared,bibliography_p1}
+
+% Index
+\printindex
+
+\end{document}
+
+%==============================================================================
+% END OF PAPER 1
+%==============================================================================

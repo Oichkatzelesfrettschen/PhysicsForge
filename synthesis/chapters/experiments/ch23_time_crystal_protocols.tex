@@ -20,11 +20,8 @@ where $\phi_{\text{TC}}(t,\omega)$ denotes the time-crystal order parameter osci
 Three apparatus probe different aspects of time-crystal physics:
 \begin{itemize}
   \item \textbf{Trapped ion chains}: Discrete time crystals (DTCs) via Floquet driving; long coherence times ($>100$ cycles), controllable disorder and many-body localization\cite{Zhang2017TrappedIons,Kyprianidis2021Prethermal}.
-  \item \textbf{Superconducting qubit arrays}: Eigenstate-ordered DTCs with programmable interactions; rapid tuning, large qubit counts (10--100 qubits)\cite{Mi2022TimeCrystal}%\cite{Patscheider2024DTC} % TODO: Add BibTeX entry when published
-.
-  \item \textbf{NV centers in diamond}: Room-temperature operation, ultra-long coherence ($>40$ minutes), solid-state integration%\cite{NVtimecrystal2024} % TODO: Add BibTeX entry when published
-, and discrete time quasicrystal phases%\cite{DTquasicrystal2025} % TODO: Add BibTeX entry when published
-.
+  \item \textbf{Superconducting qubit arrays}: Eigenstate-ordered DTCs with programmable interactions; rapid tuning, large qubit counts (10--100 qubits)\cite{Mi2022TimeCrystal,Solfanelli2024DTC}.
+  \item \textbf{NV centers in diamond}: Room-temperature operation, millisecond-scale coherence times, solid-state integration, and discrete time quasicrystal phases\cite{DTquasicrystal2025}.
 \end{itemize}
 
 \paragraph{Unified Framework Predictions.}
@@ -37,8 +34,7 @@ K_{\text{Lab}}(x,y,t) \sim \exp\Big[- \int_0^t \big(g \phi(x,s) \rho_{\text{ZPE}
 \begin{enumerate}
   \item Enhanced coherence lifetimes in presence of scalar-ZPE coupling ($\kappa > 0$).
   \item Sideband signatures at frequencies $\omega_{\text{sideband}} = n\omega \pm \omega_{\text{scalar}}$ where $\omega_{\text{scalar}}$ is scalar field resonance.
-  \item Modification of subharmonic period from pure integer multiples to fractional values in nodespace-coupled regimes%\cite{Patscheider2024DTC} % TODO: Add BibTeX entry when published
-.
+  \item Modification of subharmonic period from pure integer multiples to fractional values in nodespace-coupled regimes (observed in various platforms)\cite{Solfanelli2024DTC,DTquasicrystal2025}.
   \item Casimir-like force modifications in ion-trap geometries (predicted 5--15\% deviation for fractal electrode surfaces; see Ch.~\ref{ch:scalar_zpe_protocols}).
 \end{enumerate}
 
@@ -75,8 +71,7 @@ If scalar-ZPE coupling stabilizes a quasi-classical potential well (Ch.~\ref{ch:
 \quad \kappa > 0,
 \label{eq:ch23:coherence_enhancement}
 \end{equation}
-leading to \textit{anomalously long coherence times}---consistent with NV center observations ($>40$ minutes)%\cite{NVtimecrystal2024} % TODO: Add BibTeX entry when published
-.
+leading to \textit{anomalously long coherence times}. Note: The longest reported time crystal coherence ($>40$ minutes) was achieved in indium gallium arsenide nuclear spin systems\cite{Greilich2024TimeRobust}, not in NV centers, though NV-based time quasicrystals show promising stability\cite{DTquasicrystal2025}.
 
 \section{Trapped Ion Platform}\label{sec:ch23:ions}
 
@@ -249,8 +244,7 @@ Operate ion trap and qubit processor simultaneously (if feasible at shared facil
 \end{itemize}
 
 \paragraph{Time Quasicrystal Phase.}
-Recent observation%\cite{DTquasicrystal2025} % TODO: Add BibTeX entry when published
- of discrete time quasicrystals in NV ensembles: multiple incommensurate subharmonic frequencies. Protocol:
+Recent observation\cite{DTquasicrystal2025} of discrete time quasicrystals in NV ensembles: multiple incommensurate subharmonic frequencies. Protocol:
 \begin{enumerate}
   \item Apply two-tone Floquet drive: $H(t) = H_1 \cos(\omega_1 t) + H_2 \cos(\omega_2 t)$, with $\omega_1/\omega_2$ irrational (e.g., golden ratio $\phi = (1+\sqrt{5})/2$).
   \item Measure $\langle \hat{S}^z(t) \rangle$ over long times ($10^4$--$10^5$ cycles).
@@ -290,8 +284,7 @@ Extract $T_2$ by fitting decay vs. total evolution time $T_{\text{total}} = 16\t
 \subsection{Scalar-ZPE Coupling Search}
 
 \paragraph{Enhanced Coherence Signature.}
-Compare $T_2^{\text{DTC}}$ (effective coherence time of DTC oscillations) to baseline $T_2$ (XY-8 or Ramsey). Prediction: $T_2^{\text{DTC}}/T_2 > 1$ if scalar-ZPE coupling stabilizes collective time-crystal state. Room-temperature operation and long intrinsic $T_2$ make NV centers ideal for detecting \textit{anomalous coherence extension} (consistent with 40-minute record%\cite{NVtimecrystal2024} % TODO: Add BibTeX entry when published
-).
+Compare $T_2^{\text{DTC}}$ (effective coherence time of DTC oscillations) to baseline $T_2$ (XY-8 or Ramsey). Prediction: $T_2^{\text{DTC}}/T_2 > 1$ if scalar-ZPE coupling stabilizes collective time-crystal state. Room-temperature operation and millisecond-scale intrinsic $T_2$ make NV centers ideal for detecting \textit{anomalous coherence extension} in time quasicrystal phases\cite{DTquasicrystal2025}.
 
 \paragraph{Casimir Geometry Modulation.}
 Embed diamond sample between fractal-patterned metal plates (similar to Ch.~\ref{ch:scalar_zpe_protocols}, Casimir experiment). Vary plate separation $d = 100$ nm--$1$ $\mu$m and measure DTC coherence vs. $d$. \textbf{Prediction}: If ZPE-scalar coupling affects time crystals, observe modulation $T_2^{\text{DTC}}(d)$ correlated with Casimir force $F(d)$ (both probe vacuum fluctuations).
@@ -359,8 +352,7 @@ Vary experimental conditions and check consistency:
   \item \textbf{Sideband search}: Collect high-statistics time-series data ($10^5$ shots/point), compute PSD, search for peaks at $\omega_{\text{scalar}}$.
   \item \textbf{Coherence enhancement}: Compare $\tau_{\text{DTC}}$ in environments with modified ZPE (e.g., fractal Casimir plates, varied trap geometries).
   \item \textbf{Cross-platform correlation}: Operate ion trap and NV setup simultaneously, check for correlated fluctuations in $\langle \hat{O}(t) \rangle$.
-  \item \textbf{Time quasicrystal validation}: Implement two-tone drive on NV centers, verify quasiperiodic spectral structure; test for nodespace-origami signatures predicted by \genesis{} framework%\cite{DTquasicrystal2025} % TODO: Add BibTeX entry when published
-.
+  \item \textbf{Time quasicrystal validation}: Implement two-tone drive on NV centers, verify quasiperiodic spectral structure; test for nodespace-origami signatures predicted by \genesis{} framework\cite{DTquasicrystal2025}.
 \end{itemize}
 
 \paragraph{Success Criteria.}
@@ -385,9 +377,7 @@ This chapter presented comprehensive experimental protocols for time-crystal val
 
 \textbf{Outstanding tasks}:
 \begin{itemize}
-  \item Attach primary literature references (Zhang et al. 2017, Mi et al. 2022, Kyprianidis et al. 2021)\cite{Zhang2017TrappedIons,Mi2022TimeCrystal,Kyprianidis2021Prethermal}%\cite{DTquasicrystal2025} % TODO: Add BibTeX entry when published
-%\cite{NVtimecrystal2024} % TODO: Add BibTeX entry when published
-.
+  \item Attach primary literature references (Zhang et al. 2017, Mi et al. 2022, Kyprianidis et al. 2021, Zu et al. 2025, Solfanelli et al. 2024, Greilich et al. 2024)\cite{Zhang2017TrappedIons,Mi2022TimeCrystal,Kyprianidis2021Prethermal,DTquasicrystal2025,Solfanelli2024DTC,Greilich2024TimeRobust}.
   \item Derive expected sideband amplitudes from $\Kunified$ perturbative expansion.
   \item Cross-reference with Ch.~\ref{ch:scalar_zpe_protocols} (ZPE coherence detection) for gradiometry correlations.
 \end{itemize}

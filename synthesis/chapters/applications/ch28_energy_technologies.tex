@@ -40,11 +40,46 @@ The quality factor (Q) of a cavity is a measure of its ability to store energy. 
 
 The following equations are used to calculate the resonance frequency and quality factor of a resonant cavity:
 
-% TODO: Add dimensional resonance formulas
+\paragraph{Resonance Frequency for Common Geometries.}
 
-The following figures show some common resonant cavity designs:
+For a \textbf{spherical cavity} of radius $R$:
+\begin{equation}
+  \omega_{nlm} = \frac{c}{R} \sqrt{\epsilon_r \mu_r} \, x_{nl}
+  \label{eq:ch28:spherical_resonance}
+\end{equation}
+where $n,l,m$ are mode numbers, $x_{nl}$ is the $l$-th zero of the spherical Bessel function of order $n$, $\epsilon_r$ is relative permittivity, and $\mu_r$ is relative permeability. For the fundamental TE$_{101}$ mode: $x_{10} \approx 2.744$.
 
-% TODO: Add TikZ diagrams of cavity geometries
+For a \textbf{cylindrical cavity} of radius $R$ and length $L$:
+\begin{equation}
+  \omega_{mnp} = c \sqrt{\epsilon_r \mu_r} \sqrt{\left(\frac{x_{mn}}{R}\right)^2 + \left(\frac{p\pi}{L}\right)^2}
+  \label{eq:ch28:cylindrical_resonance}
+\end{equation}
+where $m,n,p$ are mode indices, and $x_{mn}$ is the $n$-th zero of the Bessel function $J_m$. For TM$_{010}$ mode: $x_{01} \approx 2.405$.
+
+For a \textbf{rectangular cavity} with dimensions $a \times b \times d$:
+\begin{equation}
+  \omega_{mnp} = c \sqrt{\epsilon_r \mu_r} \, \pi \sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2 + \left(\frac{p}{d}\right)^2}
+  \label{eq:ch28:rectangular_resonance}
+\end{equation}
+where $m,n,p$ are integer mode numbers.
+
+\paragraph{Quality Factor.}
+
+The quality factor $Q$ characterizes energy storage efficiency:
+\begin{equation}
+  Q = \omega_0 \frac{W_{\text{stored}}}{P_{\text{loss}}} = \frac{\omega_0}{\Delta \omega}
+  \label{eq:ch28:quality_factor}
+\end{equation}
+where $W_{\text{stored}}$ is stored energy, $P_{\text{loss}}$ is power dissipation, and $\Delta \omega$ is resonance width. For a metallic cavity with conductivity $\sigma$ and skin depth $\delta = \sqrt{2/(\omega \mu_0 \sigma)}$:
+\begin{equation}
+  Q_{\text{conductor}} \approx \frac{V}{S \delta}
+  \label{eq:ch28:conductor_q}
+\end{equation}
+where $V$ is cavity volume and $S$ is surface area. Superconducting cavities achieve $Q \sim 10^{10}$--$10^{12}$.
+
+The following figure shows common resonant cavity designs:
+
+\input{modules/figures/fig_ch28_cavity_geometries}
 
 
 \section{Fractal-Based Harvesters}
@@ -56,11 +91,50 @@ The key advantage of fractal-based harvesters is their ability to collect energy
 
 The following equations are used to calculate the fractal dimension of a fractal-based harvester:
 
-% TODO: Add fractal dimension formulas
+\paragraph{Hausdorff Dimension.}
+
+The Hausdorff dimension $D_H$ characterizes the scaling behavior of fractal structures:
+\begin{equation}
+  D_H = \lim_{\epsilon \to 0} \frac{\log N(\epsilon)}{\log(1/\epsilon)}
+  \label{eq:ch28:hausdorff_dimension}
+\end{equation}
+where $N(\epsilon)$ is the minimum number of balls of radius $\epsilon$ needed to cover the fractal set. For self-similar fractals with $N$ copies scaled by factor $r$:
+\begin{equation}
+  D_H = \frac{\log N}{\log(1/r)}
+  \label{eq:ch28:self_similar_dimension}
+\end{equation}
+
+\paragraph{Box-Counting Dimension.}
+
+A practical computational alternative is the box-counting dimension $D_B$:
+\begin{equation}
+  D_B = \lim_{\epsilon \to 0} \frac{\log N_{\text{box}}(\epsilon)}{\log(1/\epsilon)}
+  \label{eq:ch28:box_counting}
+\end{equation}
+where $N_{\text{box}}(\epsilon)$ is the number of boxes of side length $\epsilon$ that contain at least one point of the fractal.
+
+\paragraph{Fractal Antenna Examples.}
+
+For common fractal antenna geometries:
+\begin{itemize}
+  \item \textbf{Sierpiński triangle}: $D_H = \frac{\log 3}{\log 2} \approx 1.585$
+  \item \textbf{Koch curve}: $D_H = \frac{\log 4}{\log 3} \approx 1.262$
+  \item \textbf{Hilbert curve}: $D_H = 2$ (space-filling)
+  \item \textbf{Menger sponge}: $D_H = \frac{\log 20}{\log 3} \approx 2.727$
+\end{itemize}
+
+\paragraph{Electromagnetic Properties.}
+
+The fractal dimension affects antenna bandwidth and impedance. For a fractal antenna with dimension $D_H$, the bandwidth scales as:
+\begin{equation}
+  \Delta f \propto f_0 \cdot \left(\frac{L_{\max}}{L_{\min}}\right)^{D_H - 1}
+  \label{eq:ch28:fractal_bandwidth}
+\end{equation}
+where $L_{\max}$ and $L_{\min}$ are maximum and minimum structural scales, and $f_0$ is the design frequency. Higher $D_H$ enables broader multiband operation, critical for harvesting ZPE across frequency ranges.
 
 The following figure shows a diagram of a fractal-based harvester:
 
-% TODO: Add fractal harvester diagram
+\input{modules/figures/fig_ch28_fractal_harvester}
 
 
 \section{Material Requirements}
@@ -76,7 +150,52 @@ Finally, the materials used in a ZPE energy harvesting device must be able to wi
 
 The following table compares the properties of some common materials used in ZPE energy harvesting devices:
 
-% TODO: Add table of material properties
+\begin{table}[htbp]
+  \centering
+  \caption{Material properties for ZPE energy harvesting cavity construction. Values at room temperature (293 K) unless noted. Superconducting properties shown for operating temperatures below critical temperature $T_c$.}
+  \label{tab:ch28:material_properties}
+  \begin{tabular}{lccccc}
+    \toprule
+    \textbf{Material} & \textbf{$\epsilon_r$} & \textbf{$\sigma$ (S/m)} & \textbf{$T_c$ (K)} & \textbf{$Q$ (cavity)} & \textbf{Hardness} \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Superconducting Materials}} \\
+    YBCO & 15--25 & $10^{15}$ (SC) & 92 & $10^{10}$--$10^{11}$ & Hard \\
+    (YBa$_2$Cu$_3$O$_7$) & & & & & (ceramic) \\
+    \midrule
+    NbTi & 1 & $10^{14}$ (SC) & 9.2 & $10^9$--$10^{10}$ & Ductile \\
+    (Niobium-Titanium) & & & & & (metallic) \\
+    \midrule
+    Nb$_3$Sn & 1 & $10^{14}$ (SC) & 18.3 & $10^{10}$--$10^{11}$ & Brittle \\
+    (Niobium-Tin) & & & & & (intermetallic) \\
+    \midrule
+    \multicolumn{6}{l}{\textit{High-Permittivity Dielectrics}} \\
+    BaTiO$_3$ & 1200--10000 & $10^{-12}$ & --- & $10^3$--$10^4$ & Hard \\
+    (Barium Titanate) & (temp-dep) & & & & (ceramic) \\
+    \midrule
+    SrTiO$_3$ & 300--2000 & $10^{-10}$ & --- & $10^4$--$10^5$ & Hard \\
+    (Strontium Titanate) & & & & & (ceramic) \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Metamaterials and Composites}} \\
+    Carbon nanotubes & 2--4 (bulk) & $10^6$--$10^7$ & --- & $10^2$--$10^3$ & Very high \\
+    (CNT arrays) & & & & & (tensile) \\
+    \midrule
+    Graphene & 2.5 & $10^8$ & --- & $10^3$--$10^4$ & Extreme \\
+    (2D sheets) & & & & & (2D only) \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Traditional Conductors (for comparison)}} \\
+    Copper & 1 & $5.96 \times 10^7$ & --- & $10^4$--$10^5$ & Ductile \\
+    (room temp) & & (RT) & & & (metallic) \\
+    \midrule
+    Aluminum & 1 & $3.77 \times 10^7$ & --- & $10^4$--$10^5$ & Soft \\
+    (room temp) & & (RT) & & & (metallic) \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.3cm}
+  \footnotesize
+  \textbf{Key:} $\epsilon_r$ = relative permittivity (dielectric constant); $\sigma$ = electrical conductivity (Siemens/meter); $T_c$ = superconducting critical temperature; $Q$ = typical quality factor for resonant cavities; SC = superconducting state; RT = room temperature. \\
+  \textbf{Notes:} (1) YBCO exhibits highest $T_c$ among practical superconductors, enabling liquid nitrogen cooling instead of liquid helium. (2) BaTiO$_3$ permittivity is highly temperature-dependent, peaking near Curie temperature (393 K). (3) Carbon nanotubes and graphene offer extreme conductivity and mechanical strength but fabrication challenges for macroscopic cavities. (4) $Q$ values for superconductors assume cryogenic operation below $T_c$ in UHV conditions. (5) For ZPE harvesting, maximize $Q$ (energy storage) and $\epsilon_r$ (field enhancement) while maintaining structural integrity under thermal/mechanical stress.
+\end{table}
 
 
 \section{Projected Performance}

@@ -1,0 +1,242 @@
+%==============================================================================
+% SHARED GLOSSARY: Standard Physics Terminology
+% Purpose: Unified terminology across all papers in the series
+% Style: Standard physics nomenclature (no proprietary frameworks)
+%==============================================================================
+
+\chapter*{Glossary}
+\addcontentsline{toc}{chapter}{Glossary}
+
+\begin{description}[style=nextline]
+
+%------------------------------------------------------------------------------
+% Quantum Field Theory & Vacuum Physics
+%------------------------------------------------------------------------------
+
+\item[Casimir Effect]
+Attractive quantum vacuum force between conducting plates separated by distance $d$, scaling as $F \propto 1/d^4$. First predicted by Casimir (1948), experimentally confirmed by Lamoreaux (1997) to 5\% precision.
+
+\item[Zero-Point Energy (ZPE)]
+Irreducible quantum ground state energy of a field mode: $E_0 = \frac{1}{2}\hbar\omega$. Present even at absolute zero temperature due to Heisenberg uncertainty principle.
+
+\item[Quantum Vacuum]
+Lowest energy state of quantum fields, characterized by vacuum fluctuations and zero-point energy. Not truly "empty" but filled with virtual particle-antiparticle pairs.
+
+\item[Scalar Field]
+Spin-0 field $\phi(x)$ transforming as a Lorentz scalar. Examples: Higgs field, dilaton, inflaton, moduli fields.
+
+\item[Vacuum Fluctuations]
+Temporary creation and annihilation of virtual particle pairs in quantum vacuum, constrained by energy-time uncertainty $\Delta E \Delta t \geq \hbar/2$.
+
+\item[Parametric Resonance]
+Energy amplification mechanism when system parameters oscillate at twice the natural frequency, enabling coherent extraction from incoherent vacuum fluctuations.
+
+%------------------------------------------------------------------------------
+% Lie Algebras & Group Theory
+%------------------------------------------------------------------------------
+
+\item[E8 Lattice]
+248-dimensional exceptional Lie group lattice with highest symmetry in 8D. Root system defines densest sphere packing in 8 dimensions. Fundamental to heterotic string theory.
+
+\item[Exceptional Lie Groups]
+Five groups (G2, F4, E6, E7, E8) not belonging to classical series (A, B, C, D). Possess unique symmetry properties exploited in unification theories.
+
+\item[Dynkin Diagram]
+Graph encoding Lie algebra structure via nodes (simple roots) and edges (root inner products). E8 has extended affine diagram with 8 nodes.
+
+\item[Root System]
+Set of vectors in Euclidean space satisfying reflection symmetry. E8 has 240 roots forming a highly symmetric configuration.
+
+\item[Cayley-Dickson Construction]
+Doubling procedure generating normed division algebras: $\mathbb{R} \to \mathbb{C} \to \mathbb{H} \to \mathbb{O} \to \mathbb{S}$. Loses properties at each step: commutativity (C→H), associativity (H→O), alternativity (O→S).
+
+\item[Octonions ($\mathbb{O}$)]
+8-dimensional non-associative normed division algebra. Automorphism group is G2. Multiplication table encodes exceptional Lie algebra structures.
+
+\item[Quaternions ($\mathbb{H}$)]
+4-dimensional non-commutative division algebra. Basis: $\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\}$ with $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$.
+
+%------------------------------------------------------------------------------
+% General Relativity & Spacetime Geometry
+%------------------------------------------------------------------------------
+
+\item[Einstein Field Equations]
+$G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$, relating spacetime curvature to energy-momentum distribution.
+
+\item[Riemann Curvature Tensor]
+$R^\rho_{\sigma\mu\nu}$: fundamental measure of spacetime curvature. 20 independent components in 4D.
+
+\item[Ricci Tensor]
+Contraction of Riemann tensor: $R_{\mu\nu} = R^\rho_{\mu\rho\nu}$. Appears in Einstein equations.
+
+\item[Scalar Curvature]
+Full contraction: $R = g^{\mu\nu}R_{\mu\nu}$. Single number characterizing local curvature.
+
+\item[Christoffel Symbols]
+Connection coefficients $\Gamma^\lambda_{\mu\nu} = \frac{1}{2}g^{\lambda\rho}(\partial_\mu g_{\nu\rho} + \partial_\nu g_{\mu\rho} - \partial_\rho g_{\mu\nu})$. Encode gravitational acceleration.
+
+\item[Geodesic]
+Path of longest proper time (timelike) or extremal distance (spacelike). Equation: $\frac{d^2 x^\mu}{d\tau^2} + \Gamma^\mu_{\rho\sigma} \frac{dx^\rho}{d\tau}\frac{dx^\sigma}{d\tau} = 0$.
+
+%------------------------------------------------------------------------------
+% Unification Theories
+%------------------------------------------------------------------------------
+
+\item[Kaluza-Klein Theory]
+Unification of gravity and electromagnetism via compactified 5th dimension. Metric components $g_{5\mu}$ identified with electromagnetic potential $A_\mu$.
+
+\item[Scalar-Tensor Gravity]
+Extension of general relativity including scalar field non-minimally coupled to curvature. Examples: Brans-Dicke theory, $f(R)$ gravity.
+
+\item[Fifth Force]
+Hypothetical fundamental interaction mediated by scalar field, constrained by Eötvös experiments to $< 10^{-13}$ of gravity at mm scales.
+
+\item[Geometrized Electromagnetism]
+Formulation of Maxwell theory in geometric language (exterior calculus, differential forms). Facilitates unification with gravity.
+
+%------------------------------------------------------------------------------
+% Condensed Matter & Quantum Information
+%------------------------------------------------------------------------------
+
+\item[Time Crystal]
+Non-equilibrium phase of matter exhibiting spontaneous breaking of discrete time-translation symmetry. Observed in driven quantum systems (Floquet) and equilibrium many-body systems (discrete).
+
+\item[Floquet Time Crystal]
+Periodically driven quantum system with response at integer multiples of drive period (subharmonic response). Requires many-body localization to avoid thermalization.
+
+\item[Discrete Time Crystal]
+Equilibrium many-body system with periodic correlations in imaginary time. Recently observed in superfluid helium-3.
+
+\item[Many-Body Localization (MBL)]
+Quantum phase preventing thermalization in disordered interacting systems. Enables persistent time-crystalline order at finite temperature.
+
+\item[Quasicrystal]
+Aperiodic long-range ordered structure lacking translational symmetry. Examples: Penrose tiling (2D), icosahedral Al-Mn alloys (3D).
+
+%------------------------------------------------------------------------------
+% Black Hole Thermodynamics & Holography
+%------------------------------------------------------------------------------
+
+\item[Bekenstein-Hawking Entropy]
+Black hole entropy $S_{\text{BH}} = \frac{k_B c^3 A}{4 G \hbar}$, proportional to horizon area $A$. Suggests holographic principle.
+
+\item[Hawking Radiation]
+Thermal emission from black holes with temperature $T_H = \frac{\hbar c^3}{8\pi G M k_B}$. Causes black hole evaporation.
+
+\item[Holographic Principle]
+Physical information in volume is encoded on boundary surface. Formalized in AdS/CFT correspondence.
+
+\item[AdS/CFT Correspondence]
+Duality between gravity in Anti-de Sitter space and conformal field theory on boundary. Example: Type IIB string on AdS$_5 \times S^5$ ↔ $\mathcal{N}=4$ super Yang-Mills.
+
+%------------------------------------------------------------------------------
+% Fractal Geometry & Non-Integer Dimensions
+%------------------------------------------------------------------------------
+
+\item[Hausdorff Dimension]
+Fractal dimension $d_H$ defined via scaling: $N(\epsilon) \sim \epsilon^{-d_H}$ for $\epsilon \to 0$. Generalizes integer topological dimension.
+
+\item[Fractal Derivative]
+Generalization of derivative to non-integer orders. Caputo definition: $D^\alpha f(t) = \frac{1}{\Gamma(n-\alpha)} \int_0^t \frac{f^{(n)}(\tau)}{(t-\tau)^{\alpha+1-n}} d\tau$.
+
+\item[Self-Similarity]
+Property of looking identical at all scales (exact) or statistically similar (statistical). Characteristic of fractals.
+
+\item[Cantor Set]
+Perfect fractal set obtained by iteratively removing middle thirds of intervals. Hausdorff dimension $d_H = \ln 2 / \ln 3 \approx 0.631$.
+
+%------------------------------------------------------------------------------
+% Experimental Physics
+%------------------------------------------------------------------------------
+
+\item[Casimir Cavity]
+Resonant electromagnetic cavity designed to enhance Casimir force via boundary condition engineering. Proposed for zero-point energy extraction.
+
+\item[Dynamical Casimir Effect]
+Photon generation from vacuum via time-varying boundary conditions. Experimentally observed in superconducting circuits (Wilson et al. 2011).
+
+\item[Quantum Foam]
+Hypothetical fluctuating structure of spacetime at Planck scale ($\ell_P = \sqrt{\hbar G/c^3} \approx 10^{-35}$ m). Probed via Lorentz invariance tests, quantum gravity phenomenology.
+
+\item[Fifth Force Searches]
+Precision experiments constraining scalar-mediated forces: torsion balances, atom interferometry, Casimir measurements. Current limits: $\alpha < 10^{-13}$ (gravity strength) at 1 mm.
+
+%------------------------------------------------------------------------------
+% Quantum Computing & Information
+%------------------------------------------------------------------------------
+
+\item[Topological Protection]
+Error suppression via global degrees of freedom (anyonic braiding, Majorana zero modes). Exponentially suppressed errors vs. distance.
+
+\item[Decoherence Time ($T_2$)]
+Characteristic timescale for quantum coherence loss. Record: >40 minutes in NV centers at room temperature.
+
+\item[Quantum Annealing]
+Optimization algorithm using quantum tunneling to escape local minima. Implemented in D-Wave systems.
+
+%------------------------------------------------------------------------------
+% Mathematical Structures
+%------------------------------------------------------------------------------
+
+\item[Modular Forms]
+Complex functions invariant under modular group transformations. $j$-function connects Monster group to E8 via monstrous moonshine.
+
+\item[Monster Group]
+Largest sporadic finite simple group with order $\approx 8 \times 10^{53}$. Representation theory encodes modular forms.
+
+\item[Monstrous Moonshine]
+Unexpected connection between Monster group representations and coefficients of $j$-invariant. Proven via string theory (Borcherds 1992).
+
+\item[Sedenions ($\mathbb{S}$)]
+16-dimensional algebra from Cayley-Dickson doubling octonions. Non-alternative, contains zero divisors.
+
+%------------------------------------------------------------------------------
+% Energy & Propulsion
+%------------------------------------------------------------------------------
+
+\item[Metamaterial]
+Engineered material with electromagnetic properties not found in nature (e.g., negative refractive index). Applications: cloaking, superlensing, ZPE extraction.
+
+\item[Negative Index Material]
+Metamaterial with simultaneously negative permittivity ($\epsilon < 0$) and permeability ($\mu < 0$). Enables reversed Snell's law.
+
+\item[Electromagnetic Cloaking]
+Rendering objects invisible via transformation optics and metamaterials. Demonstrated at microwave and optical frequencies.
+
+%------------------------------------------------------------------------------
+% Cosmology
+%------------------------------------------------------------------------------
+
+\item[Compactification]
+Mechanism making extra dimensions unobservable by curling them into small manifolds (e.g., Calabi-Yau in string theory).
+
+\item[Calabi-Yau Manifold]
+Complex Kähler manifold with vanishing first Chern class. 6D examples used in string compactification, determining 4D physics.
+
+\item[Cosmic Microwave Background (CMB)]
+Relic thermal radiation from Big Bang at $T \approx 2.725$ K. Angular power spectrum constrains cosmological parameters to percent-level precision.
+
+%------------------------------------------------------------------------------
+% Units & Constants
+%------------------------------------------------------------------------------
+
+\item[Planck Length]
+$\ell_P = \sqrt{\hbar G / c^3} \approx 1.616 \times 10^{-35}$ m. Natural scale for quantum gravity.
+
+\item[Planck Energy]
+$E_P = \sqrt{\hbar c^5 / G} \approx 1.956 \times 10^9$ J $\approx 1.22 \times 10^{19}$ GeV. Energy scale where quantum gravity dominates.
+
+\item[Reduced Planck Constant]
+$\hbar = h / (2\pi) \approx 1.055 \times 10^{-34}$ J·s. Fundamental quantum of action.
+
+\item[Speed of Light]
+$c = 299{,}792{,}458$ m/s (exact by definition of meter).
+
+\item[Gravitational Constant]
+$G \approx 6.674 \times 10^{-11}$ m$^3$ kg$^{-1}$ s$^{-2}$.
+
+\end{description}
+
+%==============================================================================
+% End of Glossary
+%==============================================================================
