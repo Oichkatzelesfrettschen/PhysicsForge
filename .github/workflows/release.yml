@@ -171,7 +171,14 @@ jobs:
       - name: Upload All PDFs to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: release-files/**/*.pdf
+          files: |
+            release-files/paper1/*.pdf
+            release-files/paper2/*.pdf
+            release-files/paper3/*.pdf
+            release-files/paper4/*.pdf
+            release-files/paper5/*.pdf
+            release-files/paper6/*.pdf
+            release-files/monograph/*.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
