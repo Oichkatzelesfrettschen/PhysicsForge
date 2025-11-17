@@ -1,96 +1,110 @@
 # PhysicsForge GitHub Actions Workflows
 
-**Last Updated**: 2025-11-08
-**Architecture Version**: 2.0 (Consolidated)
+**Last Updated**: 2025-11-17
+**Architecture Version**: 2.1 (Papers Build Added)
 
 ---
 
 ## Overview
 
-The PhysicsForge CI/CD pipeline has been **consolidated from 7 workflows to 3 focused workflows**, eliminating redundancy and improving efficiency.
+The PhysicsForge CI/CD pipeline includes workflows for building research papers, validating code, and deploying documentation.
 
-**Key Metrics**:
-- Workflows: 7 → 3 (57% reduction)
-- Total jobs: 14 → 9 (36% reduction)
-- PR build time: ~8-12 min → ~5-7 min (40% faster)
-- GitHub Actions minutes/PR: ~40-60 min → ~25-35 min (40% reduction)
+**Current Workflows**:
+- **papers_build.yml** - Builds all 6 research papers (NEW)
+- **release.yml** - Builds and publishes papers + monograph on release (UPDATED)
+- **test.yml** - Tests and validation
+- **performance.yml** - Performance monitoring
+- **test-coverage.yml** - Code coverage
+- Legacy workflows (disabled)
 
 ---
 
-## Active Workflows (3)
+## Active Workflows
 
-### 1. build.yml - Build PDF and Deploy to GitHub Pages
+### 1. papers_build.yml - Build All Research Papers (NEW)
 
-**Purpose**: Production pipeline for PDF compilation, web assets, and GitHub Pages deployment
+**Purpose**: Build all 6 PhysicsForge research papers on every commit to validate LaTeX compilation
 
 **Triggers**:
-- `push` to main branch
+- `push` to main branch (when paper files change)
+- `pull_request` to main branch (when paper files change)  
 - `workflow_dispatch` (manual)
 
-**Jobs** (5):
+**Papers Built**:
+1. Paper 1: Scalar Field Theory and Zero-Point Energy
+2. Paper 2: Exceptional Algebras and Crystalline Lattices
+3. Paper 3: Fractal Geometry and Hyperdimensional Fields
+4. Paper 4: Gravitational-EM Unification
+5. Paper 5: Experimental Protocols for Exotic Quantum States
+6. Paper 6: Applications to Quantum Computing and Energy Technologies
 
-#### build-pdf
-- Compiles main.pdf with LuaLaTeX
-- Handles expected LaTeX warnings (up to 200)
-- Output: `build/main.pdf`
-- Artifact: `pdf` (1-day retention)
-- Cache: TeXLive packages (~500 MB)
-
-#### build-chapters (NEW)
-- Matrix compilation of individual chapters (Ch01-30)
-- Parallel execution for speed
-- Output: `test_chNN.pdf` for each chapter
-- Artifact: `chapter-pdfs` (1-day retention)
-- Useful for: Testing individual chapters, debugging LaTeX issues
-
-#### build-catalog (NEW)
-- Runs equation catalog pipeline
-- Generates 7 analysis reports:
-  - equation_catalog.csv
-  - equation_summary.txt
-  - notation_conflicts.txt
-  - top_equations.txt
-  - CATALOG_PARITY.md
-  - CATALOG_GAPS_TODO.md
-  - VALIDATION_REPORT.md
-- Artifact: `catalog` (7-day retention)
-- Cache: Python packages
-
-#### build-web
-- Generates SVG figures (XDV→SVG with WOFF2 fonts)
-- Downloads PDF and catalog artifacts
-- Combines into site/ directory structure
-- Creates landing page index.html
-- Artifact: `github-pages` (deployment)
-
-#### deploy
-- Deploys to GitHub Pages
-- Environment: github-pages
-- URL: Published in deployment output
+**Jobs**:
+- **build-papers**: Matrix job building all 6 papers in parallel
+  - Uses pdfLaTeX via xu-cheng/latex-action@v3
+  - Caches TeX Live packages
+  - Uploads each paper as individual artifact (30-day retention)
+- **build-all-papers-summary**: Generates summary table of build results
 
 **Key Features**:
-- ✅ Intelligent LaTeX error handling (warnings allowed, errors caught)
-- ✅ Triple caching layer (TeXLive, Python, figures)
-- ✅ Individual chapter compilation (lost feature restored)
-- ✅ Equation catalog deployed to Pages (lost feature restored)
-- ✅ Comprehensive build logs on failure
+- ✅ Parallel paper builds (6 papers built simultaneously)
+- ✅ Individual paper artifacts for download
+- ✅ TeX Live package caching
+- ✅ Build status summary
 
 **Artifact Flow**:
 ```
-build-pdf → [pdf artifact]
-             ↓
-build-chapters → [chapter-pdfs artifact]
-                  ↓
-build-catalog → [catalog artifact]
-                 ↓
-build-web → [github-pages artifact] (downloads: pdf + catalog)
-            ↓
-deploy → GitHub Pages
+build-papers (matrix) → [paper1, paper2, paper3, paper4, paper5, paper6]
+                        ↓
+build-all-papers-summary → Downloads all → Generates summary
 ```
 
 ---
 
-### 2. test.yml - Test and Validate (NEW - Consolidated)
+### 2. release.yml - Release All PDFs (UPDATED)
+
+**Purpose**: Build and publish all papers and monograph when a GitHub Release is created
+
+**Triggers**:
+- `release:published` (when git tag is published)
+
+**Jobs**:
+
+#### build-papers
+- **Matrix**: Builds all 6 papers in parallel
+- Uses pdfLaTeX via xu-cheng/latex-action@v3
+- Creates versioned PDFs (e.g., `PhysicsForge-Paper1-v1.0.0.pdf`)
+- Uploads each paper as artifact
+
+#### build-monograph
+- Builds complete monograph (legacy document)
+- **Primary Path**: Downloads PDF artifact from build.yml if available
+- **Fallback Path**: Rebuilds PDF with LuaLaTeX if artifact unavailable
+- Creates versioned monograph (e.g., `PhysicsForge-Monograph-v1.0.0.pdf`)
+
+#### release-all-pdfs
+- Downloads all paper and monograph artifacts
+- Uploads all PDFs to the GitHub Release
+- Generates release summary with file sizes
+
+**Release Artifacts**:
+- `PhysicsForge-Paper1-vX.Y.Z.pdf`
+- `PhysicsForge-Paper2-vX.Y.Z.pdf`
+- `PhysicsForge-Paper3-vX.Y.Z.pdf`
+- `PhysicsForge-Paper4-vX.Y.Z.pdf`
+- `PhysicsForge-Paper5-vX.Y.Z.pdf`
+- `PhysicsForge-Paper6-vX.Y.Z.pdf`
+- `PhysicsForge-Monograph-vX.Y.Z.pdf`
+
+**Key Features**:
+- ✅ All 7 PDFs attached to release
+- ✅ Versioned filenames
+- ✅ Parallel paper builds
+- ✅ Artifact reuse for monograph (fast)
+- ✅ Fallback rebuild for monograph (reliable)
+
+---
+
+### 3. test.yml - Test and Validate
 
 **Purpose**: Quality gates for pull requests and commits
 
@@ -190,6 +204,18 @@ deploy → GitHub Pages
 ## Workflow Dependency Graph
 
 ```
+push to main (paper files change)
+├─ papers_build.yml
+│  ├─ build-papers (matrix: 6 papers in parallel)
+│  │  ├─ paper1_scalar_field_zpe → [paper1 artifact]
+│  │  ├─ paper2_exceptional_algebras → [paper2 artifact]
+│  │  ├─ paper3_fractal_geometry → [paper3 artifact]
+│  │  ├─ paper4_em_gravity_unification → [paper4 artifact]
+│  │  ├─ paper5_experimental_protocols → [paper5 artifact]
+│  │  └─ paper6_applications → [paper6 artifact]
+│  └─ build-all-papers-summary
+│     └─ downloads all papers → generates summary
+
 push to main
 ├─ build.yml
 │  ├─ build-pdf (LuaLaTeX) → [pdf]
@@ -209,23 +235,34 @@ push to main
    └─ validate-catalog (integrity, superforce)
 
 release:published
-└─ release.yml
-   └─ build-and-release
-      ├─ try: download artifact from build.yml
-      ├─ fallback: rebuild PDF
-      └─ upload: versioned + main.pdf to release
+└─ release.yml (UPDATED)
+   ├─ build-papers (matrix: 6 papers)
+   │  ├─ paper1 → PhysicsForge-Paper1-vX.Y.Z.pdf
+   │  ├─ paper2 → PhysicsForge-Paper2-vX.Y.Z.pdf
+   │  ├─ paper3 → PhysicsForge-Paper3-vX.Y.Z.pdf
+   │  ├─ paper4 → PhysicsForge-Paper4-vX.Y.Z.pdf
+   │  ├─ paper5 → PhysicsForge-Paper5-vX.Y.Z.pdf
+   │  └─ paper6 → PhysicsForge-Paper6-vX.Y.Z.pdf
+   ├─ build-monograph
+   │  ├─ try: download artifact from build.yml
+   │  ├─ fallback: rebuild PDF
+   │  └─ output: PhysicsForge-Monograph-vX.Y.Z.pdf
+   └─ release-all-pdfs
+      ├─ downloads: all paper + monograph artifacts
+      ├─ generates: release summary
+      └─ uploads: all 7 PDFs to GitHub Release
 ```
 
 ---
 
 ## Caching Strategy
 
-### TeXLive Packages (build.yml)
-- **Jobs**: build-pdf, build-chapters
-- **Key**: `${{ runner.os }}-texlive-${{ hashFiles('synthesis/main.tex', 'synthesis/preamble.tex') }}`
-- **Path**: `/tmp/texlive`, `~/.texlive`
+### TeXLive Packages (build.yml, papers_build.yml, release.yml)
+- **Jobs**: build-pdf, build-chapters, build-papers (all workflows)
+- **Key**: `${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}`
+- **Path**: `~/.texlive`, `~/.texmf-var`, `~/.cache/texmf`
 - **Size**: ~500 MB
-- **Invalidation**: When main.tex or preamble.tex changes
+- **Invalidation**: When shared LaTeX infrastructure changes
 
 ### TeXLive SVG (build.yml)
 - **Job**: build-web
@@ -251,6 +288,7 @@ release:published
 
 | Artifact | Produced By | Used By | Retention |
 |----------|-------------|---------|-----------|
+| paper1-paper6 | papers_build.yml, release.yml | - (download only) | 30 days / release |
 | pdf | build-pdf | build-web, release.yml | 1 day |
 | chapter-pdfs | build-chapters | - (download only) | 1 day |
 | catalog | build-catalog | build-web | 7 days |
@@ -266,6 +304,47 @@ release:published
 ---
 
 ## Common Tasks
+
+### Build All Papers Manually
+```bash
+gh workflow run papers_build.yml
+```
+
+### View Latest Papers Build Status
+```bash
+gh run list --workflow=papers_build.yml --limit 5
+```
+
+### Download Individual Paper
+```bash
+# Download specific paper
+gh run download --name paper1_scalar_field_zpe
+
+# Download all papers
+gh run download --name paper1_scalar_field_zpe
+gh run download --name paper2_exceptional_algebras
+gh run download --name paper3_fractal_geometry
+gh run download --name paper4_em_gravity_unification
+gh run download --name paper5_experimental_protocols
+gh run download --name paper6_applications
+```
+
+### Build Papers Locally
+```bash
+# Build individual papers
+make paper1-new
+make paper2
+make paper3
+make paper4
+make paper5
+make paper6
+
+# Build all papers
+make papers_all
+
+# Clean build artifacts
+make papers_clean
+```
 
 ### Trigger Manual Build
 ```bash
@@ -476,6 +555,7 @@ gh run list --workflow=<workflow-name> --limit 10
 
 ## References
 
+- **docs/WORKFLOWS.md**: Comprehensive documentation for paper build workflows
 - **WORKFLOW_ANALYSIS.md**: Detailed analysis of consolidation rationale
 - **GitHub Actions Documentation**: https://docs.github.com/en/actions
 - **xu-cheng/latex-action**: https://github.com/xu-cheng/latex-action
@@ -487,5 +567,6 @@ gh run list --workflow=<workflow-name> --limit 10
 **Questions or Issues?**
 - Check troubleshooting section above
 - Review workflow run logs: `gh run list`
+- See docs/WORKFLOWS.md for paper build documentation
 - Consult WORKFLOW_ANALYSIS.md for historical context
 - Open GitHub issue with workflow run ID and error details

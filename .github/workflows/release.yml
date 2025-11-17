@@ -1,4 +1,4 @@
-name: Release PDF
+name: Release PDFs
 
 on:
   release:
@@ -9,10 +9,88 @@ permissions:
   actions: read
 
 jobs:
-  build-and-release:
+  build-papers:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        paper:
+          - number: 1
+            name: paper1_scalar_field_zpe
+            title: "Scalar Field Theory and Zero-Point Energy"
+          - number: 2
+            name: paper2_exceptional_algebras
+            title: "Exceptional Algebras and Crystalline Lattices"
+          - number: 3
+            name: paper3_fractal_geometry
+            title: "Fractal Geometry and Hyperdimensional Fields"
+          - number: 4
+            name: paper4_em_gravity_unification
+            title: "Gravitational-EM Unification"
+          - number: 5
+            name: paper5_experimental_protocols
+            title: "Experimental Protocols for Exotic Quantum States"
+          - number: 6
+            name: paper6_applications
+            title: "Applications to Quantum Computing and Energy Technologies"
+    
+    name: Build Paper ${{ matrix.paper.number }}
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache TeX Live packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.texlive
+            ~/.texmf-var
+            ~/.cache/texmf
+          key: ${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-papers-
+
+      - name: Build Paper ${{ matrix.paper.number }} with LaTeX
+        id: latex_build
+        continue-on-error: true
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper${{ matrix.paper.number }}_main.tex
+          working_directory: synthesis/papers/${{ matrix.paper.name }}
+          latexmk_shell_escape: true
+          args: -pdf -file-line-error -interaction=nonstopmode -halt-on-error
+
+      - name: Prepare PDF for release
+        if: always()
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          cd synthesis/papers/${{ matrix.paper.name }}
+          if [ -f paper${{ matrix.paper.number }}_main.pdf ]; then
+            cp paper${{ matrix.paper.number }}_main.pdf PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.pdf
+            echo "✓ Paper ${{ matrix.paper.number }} built successfully"
+            ls -lh PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.pdf
+            echo "BUILD_SUCCESS=true" >> $GITHUB_ENV
+          else
+            echo "✗ Paper ${{ matrix.paper.number }} build failed"
+            echo "BUILD_SUCCESS=false" >> $GITHUB_ENV
+            # Create a placeholder file to indicate failure
+            echo "Build failed for Paper ${{ matrix.paper.number }}" > PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.txt
+          fi
+
+      - name: Upload Paper ${{ matrix.paper.number }} as artifact
+        if: env.BUILD_SUCCESS == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper${{ matrix.paper.number }}
+          path: synthesis/papers/${{ matrix.paper.name }}/PhysicsForge-Paper${{ matrix.paper.number }}-${{ github.ref_name }}.pdf
+
+  build-monograph:
+    runs-on: ubuntu-latest
+    name: Build Monograph (Legacy)
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Attempt to download PDF artifact from build.yml
         id: download-artifact
@@ -44,7 +122,7 @@ jobs:
 
       - name: Rebuild PDF with LuaLaTeX (fallback)
         if: steps.validate-artifact.outputs.artifact_valid != 'true'
-        uses: xu-cheng/latex-action@v4
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
           working_directory: synthesis
@@ -67,18 +145,125 @@ jobs:
           echo "✓ PDF rebuilt successfully (size: $FILE_SIZE bytes)"
           ls -lh build/main.pdf
 
-      - name: Rename PDF with version tag
+      - name: Prepare monograph for release
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
-          cp build/main.pdf build/PhysicsForge-${VERSION}.pdf
-          echo "✓ Created versioned PDF: PhysicsForge-${VERSION}.pdf"
-          ls -lh build/PhysicsForge-${VERSION}.pdf
+          mkdir -p build
+          cp build/main.pdf build/PhysicsForge-Monograph-${VERSION}.pdf
+          echo "✓ Created versioned monograph: PhysicsForge-Monograph-${VERSION}.pdf"
+          ls -lh build/PhysicsForge-Monograph-${VERSION}.pdf
 
-      - name: Upload PDF to Release
+      - name: Upload Monograph as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monograph
+          path: build/PhysicsForge-Monograph-${{ github.ref_name }}.pdf
+
+  release-all-pdfs:
+    name: Upload All PDFs to Release
+    runs-on: ubuntu-latest
+    needs: [build-papers, build-monograph]
+    if: always()
+    
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-files
+
+      - name: List and check all files for release
+        run: |
+          echo "=== Checking available PDFs for release ==="
+          echo ""
+          
+          SUCCESS_PAPERS=()
+          FAILED_PAPERS=()
+          
+          for i in {1..6}; do
+            if find release-files/paper${i} -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+              echo "✓ Paper ${i}: Found PDF"
+              SUCCESS_PAPERS+=("$i")
+            else
+              echo "✗ Paper ${i}: No PDF found (build likely failed)"
+              FAILED_PAPERS+=("$i")
+            fi
+          done
+          
+          if find release-files/monograph -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+            echo "✓ Monograph: Found PDF"
+          else
+            echo "✗ Monograph: No PDF found"
+          fi
+          
+          echo ""
+          echo "=== Files to be released ==="
+          find release-files -type f -name "*.pdf" -exec ls -lh {} \;
+
+      - name: Upload All PDFs to Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            build/PhysicsForge-${{ github.ref_name }}.pdf
-            build/main.pdf
+            release-files/paper1/*.pdf
+            release-files/paper2/*.pdf
+            release-files/paper3/*.pdf
+            release-files/paper4/*.pdf
+            release-files/paper5/*.pdf
+            release-files/paper6/*.pdf
+            release-files/monograph/*.pdf
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Generate Release Summary
+        run: |
+          echo "## PhysicsForge Release ${{ github.ref_name }}" > release_notes.md
+          echo "" >> release_notes.md
+          echo "This release includes:" >> release_notes.md
+          echo "" >> release_notes.md
+          
+          # Check which papers were successfully built
+          SUCCESS_COUNT=0
+          FAIL_COUNT=0
+          
+          echo "### Research Papers" >> release_notes.md
+          for i in {1..6}; do
+            PAPER_NAMES=("" "Scalar Field Theory and Zero-Point Energy Coupling" "Exceptional Algebras and Crystalline Lattice Structures" "Fractal Geometry and Hyperdimensional Field Structures" "Gravitational-Electromagnetic Unification via Scalar Intermediaries" "Experimental Protocols for Exotic Quantum States" "Applications to Quantum Computing and Energy Technologies")
+            if find release-files/paper${i} -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+              echo "$i. ✓ **Paper ${i}**: ${PAPER_NAMES[$i]}" >> release_notes.md
+              SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+            else
+              echo "$i. ✗ **Paper ${i}**: ${PAPER_NAMES[$i]} (build failed)" >> release_notes.md
+              FAIL_COUNT=$((FAIL_COUNT + 1))
+            fi
+          done
+          
+          echo "" >> release_notes.md
+          echo "### Complete Monograph" >> release_notes.md
+          if find release-files/monograph -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+            echo "- ✓ Full unified document combining all research" >> release_notes.md
+          else
+            echo "- ✗ Build failed" >> release_notes.md
+          fi
+          
+          echo "" >> release_notes.md
+          echo "### Build Summary" >> release_notes.md
+          echo "- Successfully built: $SUCCESS_COUNT papers" >> release_notes.md
+          if [ $FAIL_COUNT -gt 0 ]; then
+            echo "- Failed to build: $FAIL_COUNT papers" >> release_notes.md
+            echo "" >> release_notes.md
+            echo "**Note**: Some papers are still under development and may have incomplete chapters or LaTeX errors." >> release_notes.md
+          fi
+          
+          echo "" >> release_notes.md
+          echo "### File Sizes" >> release_notes.md
+          if find release-files -type f -name "*.pdf" | grep -q .; then
+            find release-files -type f -name "*.pdf" | while read pdf; do
+              size=$(du -h "$pdf" | cut -f1)
+              name=$(basename "$pdf")
+              echo "- $name: $size" >> release_notes.md
+            done
+          else
+            echo "No PDFs were successfully built for this release." >> release_notes.md
+          fi
+          
+          cat release_notes.md
