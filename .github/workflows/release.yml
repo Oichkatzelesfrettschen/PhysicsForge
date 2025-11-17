@@ -1,4 +1,4 @@
-name: Release PDF
+name: Release PDFs
 
 on:
   release:
@@ -9,10 +9,81 @@ permissions:
   actions: read
 
 jobs:
-  build-and-release:
+  build-papers:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        paper:
+          - number: 1
+            name: paper1_scalar_field_zpe
+            title: "Scalar Field Theory and Zero-Point Energy"
+          - number: 2
+            name: paper2_exceptional_algebras
+            title: "Exceptional Algebras and Crystalline Lattices"
+          - number: 3
+            name: paper3_fractal_geometry
+            title: "Fractal Geometry and Hyperdimensional Fields"
+          - number: 4
+            name: paper4_em_gravity_unification
+            title: "Gravitational-EM Unification"
+          - number: 5
+            name: paper5_experimental_protocols
+            title: "Experimental Protocols for Exotic Quantum States"
+          - number: 6
+            name: paper6_applications
+            title: "Applications to Quantum Computing and Energy Technologies"
+    
+    name: Build Paper ${{ matrix.paper.number }}
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache TeX Live packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.texlive
+            ~/.texmf-var
+            ~/.cache/texmf
+          key: ${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-papers-
+
+      - name: Build Paper ${{ matrix.paper.number }} with LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper${{ matrix.paper.number }}_main.tex
+          working_directory: synthesis/papers/${{ matrix.paper.name }}
+          latexmk_shell_escape: true
+          args: -pdf -file-line-error -interaction=nonstopmode
+
+      - name: Prepare PDF for release
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          cd synthesis/papers/${{ matrix.paper.name }}
+          if [ -f paper${{ matrix.paper.number }}_main.pdf ]; then
+            cp paper${{ matrix.paper.number }}_main.pdf PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.pdf
+            echo "✓ Paper ${{ matrix.paper.number }} built successfully"
+            ls -lh PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.pdf
+          else
+            echo "✗ Paper ${{ matrix.paper.number }} build failed"
+            exit 1
+          fi
+
+      - name: Upload Paper ${{ matrix.paper.number }} as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper${{ matrix.paper.number }}
+          path: synthesis/papers/${{ matrix.paper.name }}/PhysicsForge-Paper${{ matrix.paper.number }}-${{ github.ref_name }}.pdf
+
+  build-monograph:
+    runs-on: ubuntu-latest
+    name: Build Monograph (Legacy)
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Attempt to download PDF artifact from build.yml
         id: download-artifact
@@ -44,7 +115,7 @@ jobs:
 
       - name: Rebuild PDF with LuaLaTeX (fallback)
         if: steps.validate-artifact.outputs.artifact_valid != 'true'
-        uses: xu-cheng/latex-action@v4
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
           working_directory: synthesis
@@ -67,18 +138,65 @@ jobs:
           echo "✓ PDF rebuilt successfully (size: $FILE_SIZE bytes)"
           ls -lh build/main.pdf
 
-      - name: Rename PDF with version tag
+      - name: Prepare monograph for release
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
-          cp build/main.pdf build/PhysicsForge-${VERSION}.pdf
-          echo "✓ Created versioned PDF: PhysicsForge-${VERSION}.pdf"
-          ls -lh build/PhysicsForge-${VERSION}.pdf
+          mkdir -p build
+          cp build/main.pdf build/PhysicsForge-Monograph-${VERSION}.pdf
+          echo "✓ Created versioned monograph: PhysicsForge-Monograph-${VERSION}.pdf"
+          ls -lh build/PhysicsForge-Monograph-${VERSION}.pdf
 
-      - name: Upload PDF to Release
+      - name: Upload Monograph as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monograph
+          path: build/PhysicsForge-Monograph-${{ github.ref_name }}.pdf
+
+  release-all-pdfs:
+    name: Upload All PDFs to Release
+    runs-on: ubuntu-latest
+    needs: [build-papers, build-monograph]
+    
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-files
+
+      - name: List all files for release
+        run: |
+          echo "Files to be released:"
+          find release-files -type f -name "*.pdf" -exec ls -lh {} \;
+
+      - name: Upload All PDFs to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            build/PhysicsForge-${{ github.ref_name }}.pdf
-            build/main.pdf
+          files: release-files/**/*.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Generate Release Summary
+        run: |
+          echo "## PhysicsForge Release ${{ github.ref_name }}" > release_notes.md
+          echo "" >> release_notes.md
+          echo "This release includes:" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "### Six Research Papers" >> release_notes.md
+          echo "1. **Paper 1**: Scalar Field Theory and Zero-Point Energy Coupling" >> release_notes.md
+          echo "2. **Paper 2**: Exceptional Algebras and Crystalline Lattice Structures" >> release_notes.md
+          echo "3. **Paper 3**: Fractal Geometry and Hyperdimensional Field Structures" >> release_notes.md
+          echo "4. **Paper 4**: Gravitational-Electromagnetic Unification via Scalar Intermediaries" >> release_notes.md
+          echo "5. **Paper 5**: Experimental Protocols for Exotic Quantum States" >> release_notes.md
+          echo "6. **Paper 6**: Applications to Quantum Computing and Energy Technologies" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "### Complete Monograph" >> release_notes.md
+          echo "- Full unified document combining all research" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "### File Sizes" >> release_notes.md
+          find release-files -type f -name "*.pdf" | while read pdf; do
+            size=$(du -h "$pdf" | cut -f1)
+            name=$(basename "$pdf")
+            echo "- $name: $size" >> release_notes.md
+          done
+          
+          cat release_notes.md

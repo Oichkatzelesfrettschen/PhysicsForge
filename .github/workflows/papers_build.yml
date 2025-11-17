@@ -1,0 +1,126 @@
+name: Build All Papers
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'synthesis/papers/**'
+      - 'synthesis/shared/**'
+      - '.github/workflows/papers_build.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'synthesis/papers/**'
+      - 'synthesis/shared/**'
+      - '.github/workflows/papers_build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  build-papers:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        paper:
+          - number: 1
+            name: paper1_scalar_field_zpe
+            title: "Scalar Field Theory and Zero-Point Energy"
+          - number: 2
+            name: paper2_exceptional_algebras
+            title: "Exceptional Algebras and Crystalline Lattices"
+          - number: 3
+            name: paper3_fractal_geometry
+            title: "Fractal Geometry and Hyperdimensional Fields"
+          - number: 4
+            name: paper4_em_gravity_unification
+            title: "Gravitational-EM Unification"
+          - number: 5
+            name: paper5_experimental_protocols
+            title: "Experimental Protocols for Exotic Quantum States"
+          - number: 6
+            name: paper6_applications
+            title: "Applications to Quantum Computing and Energy Technologies"
+    
+    name: Build Paper ${{ matrix.paper.number }} - ${{ matrix.paper.title }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache TeX Live packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.texlive
+            ~/.texmf-var
+            ~/.cache/texmf
+          key: ${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-papers-
+            ${{ runner.os }}-texlive-
+
+      - name: Build Paper ${{ matrix.paper.number }} with LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper${{ matrix.paper.number }}_main.tex
+          working_directory: synthesis/papers/${{ matrix.paper.name }}
+          latexmk_shell_escape: true
+          args: -pdf -file-line-error -interaction=nonstopmode
+
+      - name: Rename PDF for artifact
+        run: |
+          cd synthesis/papers/${{ matrix.paper.name }}
+          if [ -f paper${{ matrix.paper.number }}_main.pdf ]; then
+            mv paper${{ matrix.paper.number }}_main.pdf ${{ matrix.paper.name }}.pdf
+            echo "✓ PDF generated successfully: ${{ matrix.paper.name }}.pdf"
+            ls -lh ${{ matrix.paper.name }}.pdf
+          else
+            echo "✗ PDF generation failed"
+            exit 1
+          fi
+
+      - name: Upload Paper ${{ matrix.paper.number }} PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.paper.name }}
+          path: synthesis/papers/${{ matrix.paper.name }}/${{ matrix.paper.name }}.pdf
+          retention-days: 30
+
+  build-all-papers-summary:
+    name: Build Summary
+    runs-on: ubuntu-latest
+    needs: build-papers
+    if: always()
+    
+    steps:
+      - name: Download all paper artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: papers
+
+      - name: Generate build summary
+        run: |
+          echo "## Papers Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Paper | Status | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|------|" >> $GITHUB_STEP_SUMMARY
+          
+          for paper in papers/paper*; do
+            if [ -d "$paper" ]; then
+              paper_name=$(basename "$paper")
+              pdf_file=$(find "$paper" -name "*.pdf" | head -1)
+              if [ -f "$pdf_file" ]; then
+                size=$(du -h "$pdf_file" | cut -f1)
+                echo "| $paper_name | ✓ Built | $size |" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "| $paper_name | ✗ Failed | - |" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "All successfully built papers are available as artifacts for this workflow run." >> $GITHUB_STEP_SUMMARY
