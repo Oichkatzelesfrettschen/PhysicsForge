@@ -51,14 +51,17 @@ jobs:
             ${{ runner.os }}-texlive-papers-
 
       - name: Build Paper ${{ matrix.paper.number }} with LaTeX
+        id: latex_build
+        continue-on-error: true
         uses: xu-cheng/latex-action@v3
         with:
           root_file: paper${{ matrix.paper.number }}_main.tex
           working_directory: synthesis/papers/${{ matrix.paper.name }}
           latexmk_shell_escape: true
-          args: -pdf -file-line-error -interaction=nonstopmode
+          args: -pdf -file-line-error -interaction=nonstopmode -halt-on-error
 
       - name: Prepare PDF for release
+        if: always()
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
           cd synthesis/papers/${{ matrix.paper.name }}
@@ -66,12 +69,16 @@ jobs:
             cp paper${{ matrix.paper.number }}_main.pdf PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.pdf
             echo "✓ Paper ${{ matrix.paper.number }} built successfully"
             ls -lh PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.pdf
+            echo "BUILD_SUCCESS=true" >> $GITHUB_ENV
           else
             echo "✗ Paper ${{ matrix.paper.number }} build failed"
-            exit 1
+            echo "BUILD_SUCCESS=false" >> $GITHUB_ENV
+            # Create a placeholder file to indicate failure
+            echo "Build failed for Paper ${{ matrix.paper.number }}" > PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.txt
           fi
 
       - name: Upload Paper ${{ matrix.paper.number }} as artifact
+        if: env.BUILD_SUCCESS == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: paper${{ matrix.paper.number }}
@@ -156,6 +163,7 @@ jobs:
     name: Upload All PDFs to Release
     runs-on: ubuntu-latest
     needs: [build-papers, build-monograph]
+    if: always()
     
     steps:
       - name: Download all artifacts
@@ -163,9 +171,32 @@ jobs:
         with:
           path: release-files
 
-      - name: List all files for release
+      - name: List and check all files for release
         run: |
-          echo "Files to be released:"
+          echo "=== Checking available PDFs for release ==="
+          echo ""
+          
+          SUCCESS_PAPERS=()
+          FAILED_PAPERS=()
+          
+          for i in {1..6}; do
+            if find release-files/paper${i} -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+              echo "✓ Paper ${i}: Found PDF"
+              SUCCESS_PAPERS+=("$i")
+            else
+              echo "✗ Paper ${i}: No PDF found (build likely failed)"
+              FAILED_PAPERS+=("$i")
+            fi
+          done
+          
+          if find release-files/monograph -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+            echo "✓ Monograph: Found PDF"
+          else
+            echo "✗ Monograph: No PDF found"
+          fi
+          
+          echo ""
+          echo "=== Files to be released ==="
           find release-files -type f -name "*.pdf" -exec ls -lh {} \;
 
       - name: Upload All PDFs to Release
@@ -179,6 +210,7 @@ jobs:
             release-files/paper5/*.pdf
             release-files/paper6/*.pdf
             release-files/monograph/*.pdf
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -188,22 +220,50 @@ jobs:
           echo "" >> release_notes.md
           echo "This release includes:" >> release_notes.md
           echo "" >> release_notes.md
-          echo "### Six Research Papers" >> release_notes.md
-          echo "1. **Paper 1**: Scalar Field Theory and Zero-Point Energy Coupling" >> release_notes.md
-          echo "2. **Paper 2**: Exceptional Algebras and Crystalline Lattice Structures" >> release_notes.md
-          echo "3. **Paper 3**: Fractal Geometry and Hyperdimensional Field Structures" >> release_notes.md
-          echo "4. **Paper 4**: Gravitational-Electromagnetic Unification via Scalar Intermediaries" >> release_notes.md
-          echo "5. **Paper 5**: Experimental Protocols for Exotic Quantum States" >> release_notes.md
-          echo "6. **Paper 6**: Applications to Quantum Computing and Energy Technologies" >> release_notes.md
+          
+          # Check which papers were successfully built
+          SUCCESS_COUNT=0
+          FAIL_COUNT=0
+          
+          echo "### Research Papers" >> release_notes.md
+          for i in {1..6}; do
+            PAPER_NAMES=("" "Scalar Field Theory and Zero-Point Energy Coupling" "Exceptional Algebras and Crystalline Lattice Structures" "Fractal Geometry and Hyperdimensional Field Structures" "Gravitational-Electromagnetic Unification via Scalar Intermediaries" "Experimental Protocols for Exotic Quantum States" "Applications to Quantum Computing and Energy Technologies")
+            if find release-files/paper${i} -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+              echo "$i. ✓ **Paper ${i}**: ${PAPER_NAMES[$i]}" >> release_notes.md
+              SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+            else
+              echo "$i. ✗ **Paper ${i}**: ${PAPER_NAMES[$i]} (build failed)" >> release_notes.md
+              FAIL_COUNT=$((FAIL_COUNT + 1))
+            fi
+          done
+          
           echo "" >> release_notes.md
           echo "### Complete Monograph" >> release_notes.md
-          echo "- Full unified document combining all research" >> release_notes.md
+          if find release-files/monograph -name "*.pdf" -type f 2>/dev/null | grep -q .; then
+            echo "- ✓ Full unified document combining all research" >> release_notes.md
+          else
+            echo "- ✗ Build failed" >> release_notes.md
+          fi
+          
+          echo "" >> release_notes.md
+          echo "### Build Summary" >> release_notes.md
+          echo "- Successfully built: $SUCCESS_COUNT papers" >> release_notes.md
+          if [ $FAIL_COUNT -gt 0 ]; then
+            echo "- Failed to build: $FAIL_COUNT papers" >> release_notes.md
+            echo "" >> release_notes.md
+            echo "**Note**: Some papers are still under development and may have incomplete chapters or LaTeX errors." >> release_notes.md
+          fi
+          
           echo "" >> release_notes.md
           echo "### File Sizes" >> release_notes.md
-          find release-files -type f -name "*.pdf" | while read pdf; do
-            size=$(du -h "$pdf" | cut -f1)
-            name=$(basename "$pdf")
-            echo "- $name: $size" >> release_notes.md
-          done
+          if find release-files -type f -name "*.pdf" | grep -q .; then
+            find release-files -type f -name "*.pdf" | while read pdf; do
+              size=$(du -h "$pdf" | cut -f1)
+              name=$(basename "$pdf")
+              echo "- $name: $size" >> release_notes.md
+            done
+          else
+            echo "No PDFs were successfully built for this release." >> release_notes.md
+          fi
           
           cat release_notes.md
