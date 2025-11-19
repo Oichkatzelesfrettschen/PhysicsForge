@@ -62,12 +62,14 @@ Created `.github/workflows/`:
 - Deploys to GitHub Pages
 - Creates artifacts archive
 
-**`python_tests.yml`**:
-- Multi-platform (Ubuntu, macOS, Windows)
-- Multi-version Python (3.10, 3.11, 3.12)
+**`test.yml`**:
+- Multi-platform (Ubuntu, Windows)
+- Multi-version Python (3.11, 3.12)
 - Runs pytest with coverage
 - Superforce validation suite
 - Equation catalog integrity checks
+
+Note: python_tests.yml was consolidated into test.yml in Nov 2025
 
 ### 4. Documentation [OK]
 
@@ -114,7 +116,7 @@ Auto-generated landing page with:
 Math_Science/
 +-- .github/workflows/
 | +-- latex_build.yml [OK] NEW
-| +-- python_tests.yml [OK] NEW
+| +-- test.yml [OK] NEW (consolidated from python_tests.yml in Nov 2025)
 |
 +-- docs/
 | +-- SUPERFORCE_PROOF_INTEGRATION.md [OK] NEW

@@ -158,7 +158,7 @@ ci.yml.disabled
 latex_build.yml.disabled
 main.yml.disabled
 pages.yml.disabled
-python_tests.yml.disabled
+python_tests.yml.disabled (consolidated into test.yml in Nov 2025)
 performance.yml (active)
 ```
 

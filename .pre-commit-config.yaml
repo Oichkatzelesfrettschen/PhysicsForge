@@ -1,26 +1,92 @@
+---
+# PhysicsForge pre-commit hooks configuration
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+# Update hooks: pre-commit autoupdate
+
 repos:
   - repo: local
     hooks:
+      # ASCII character enforcement
       - id: ascii-guard
         name: ASCII Guard (code/docs)
         entry: python scripts/ascii_guard.py --base-dir .
-        language: system
+        language: python
         pass_filenames: false
+        additional_dependencies: []
+        types: [python, markdown, yaml]
+
+      # Quick pytest run (fail fast on obvious issues)
       - id: pytest-fast
-        name: Pytest (quick)
-        entry: pytest -q
-        language: system
+        name: Pytest (quick smoke tests)
+        entry: pytest -q -m "not slow" --tb=short
+        language: python
         pass_filenames: false
         stages: [commit]
+        additional_dependencies:
+          - pytest>=7.4.3
+          - pytest-cov>=4.1
+
+      # Equation extractor plan validation
       - id: plan-validate
-        name: Plan (quick) and validate
-        entry: bash -lc "python scripts/equation_extractor.py --base-dir . --scan-dir notes --plan-only --plan-output plan.json && python scripts/validate_plan_schema.py plan.json"
-        language: system
+        name: Equation extractor plan validation
+        entry: >
+          bash -c "python scripts/equation_extractor.py --base-dir .
+          --scan-dir notes --plan-only --plan-output plan.json &&
+          python scripts/validate_plan_schema.py plan.json &&
+          rm -f plan.json"
+        language: python
         pass_filenames: false
         stages: [commit]
+        files: ^scripts/equation_extractor\.py$
+        additional_dependencies:
+          - lark>=1.1.2
+          - jsonschema>=4.19
+
+      # Equation extractor metrics validation
       - id: metrics-validate
-        name: Metrics (quick) and validate
-        entry: bash -lc "python scripts/equation_extractor.py --base-dir . --scan-dir notes --max-files 30 --max-lines 300 --parallel-workers 2 --no-csv --no-ndjson --metrics-output metrics.json && python scripts/validate_metrics_schema.py metrics.json"
-        language: system
+        name: Equation extractor metrics validation
+        entry: >
+          bash -c "python scripts/equation_extractor.py --base-dir .
+          --scan-dir notes --max-files 30 --max-lines 300 --parallel-workers 2
+          --no-csv --no-ndjson --metrics-output metrics.json &&
+          python scripts/validate_metrics_schema.py metrics.json &&
+          rm -f metrics.json"
+        language: python
         pass_filenames: false
         stages: [commit]
+        files: ^scripts/equation_extractor\.py$
+        additional_dependencies:
+          - lark>=1.1.2
+          - jsonschema>=4.19
+
+  # Standard pre-commit hooks from official repo
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [--unsafe]  # Allow custom YAML tags in GitHub Actions
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  # Python code formatting (optional, commented out by default)
+  # Uncomment if using black for formatting
+  # - repo: https://github.com/psf/black
+  #   rev: 23.12.1
+  #   hooks:
+  #     - id: black
+  #       language_version: python3.11
+
+  # Python import sorting (optional, commented out by default)
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.13.2
+  #   hooks:
+  #     - id: isort
+  #       args: [--profile, black]
