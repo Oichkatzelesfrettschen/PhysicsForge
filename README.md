@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/ci.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/ci.yml)
 [![Release](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/release.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/release.yml)
-[![Python Tests](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/python_tests.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/python_tests.yml)
+[![Tests](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/test.yml/badge.svg)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/actions/workflows/test.yml)
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://oichkatzelesfrettschen.github.io/PhysicsForge)
 [![Latest Release](https://img.shields.io/github/v/release/Oichkatzelesfrettschen/PhysicsForge)](https://github.com/Oichkatzelesfrettschen/PhysicsForge/releases/latest)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
@@ -34,7 +34,7 @@ This repository serves as a **Math & Science Research Hub**, collecting research
 
 ### Core Environment
 
-*   **Python**: 3.10+ (tested with 3.11 and 3.13)
+*   **Python**: 3.11+ (tested with 3.11 and 3.12 in CI)
 *   **Pip**: 24.x+
 *   **GNU Make**: Required for using the `Makefile` commands.
     *   **Windows Users**: A `bash` environment (e.g., Git Bash, WSL) is required for `make` commands and LaTeX compilation scripts. Install GNU Make via Chocolatey (`choco install make`) or Scoop (`scoop install make`) and ensure `bash` is in your PATH.
@@ -42,18 +42,42 @@ This repository serves as a **Math & Science Research Hub**, collecting research
 
 ### Python Dependencies
 
-*   **Core**: No external packages are required to run unit tests and the basic text extraction pipeline.
-*   **Optional Feature Sets**: Install these only if you need the related features. An aggregate constraints file is available:
-    ```bash
-    pip install -r requirements-optional.txt
-    ```
-    This includes:
-    *   `pymupdf`: For PDF text extraction (`scripts/pdf_equation_extractor.py`, `scripts/pdf_text_extractor_poc.py`).
-    *   `pix2tex`, `Pillow`: For PDF image OCR to LaTeX (`scripts/pdf_image_equation_extractor.py`, `scripts/math_ocr_poc.py`).
-    *   `torch`, `torchvision`, `torchaudio`: ML backend for `pix2tex`.
-        *   **CPU-only (Windows)**: `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu`
-    *   `pytest`: For running tests locally (`pip install pytest`).
+PhysicsForge uses a modular dependency structure. Install only what you need:
 
+#### Core Dependencies (Minimal Installation)
+```bash
+pip install -r requirements.txt
+```
+Includes only essential packages for equation extraction pipeline: `lark`, `jsonschema`, `bibtexparser`.
+Most scripts use Python standard library only.
+
+#### Testing Dependencies
+```bash
+pip install -r requirements-test.txt
+```
+Includes `pytest`, `pytest-cov`, `pytest-xdist`, plus core dependencies.
+Required for running the test suite.
+
+#### Development Dependencies
+```bash
+pip install -r requirements-dev.txt
+```
+Includes code quality tools (`flake8`, `mypy`, `pylint`), formatters (`black`, `isort`),
+security scanners (`bandit`, `safety`), and all testing dependencies.
+Required for contributing code.
+
+#### Optional Feature Dependencies
+```bash
+pip install -r requirements-optional.txt
+```
+Includes all optional feature sets:
+*   **PDF Processing**: `pymupdf`, `Pillow` (for `scripts/pdf_*.py`)
+*   **OCR Features**: `pix2tex` (for `scripts/math_ocr_poc.py`, `scripts/pdf_image_equation_extractor.py`)
+*   **PyTorch**: ML backend for pix2tex
+    *   **CPU-only (Windows)**: `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu`
+*   **Superforce Module**: `numpy`, `scipy`, `matplotlib`, `numba`, `tqdm` (for `scripts/superforce/*.py`)
+
+#### External Tools
 *   **Ollama CLI**: Required for `scripts/ollama_batch.py`. Install from [https://ollama.com/](https://ollama.com/) and ensure it's in your system's PATH.
 
 ### LaTeX Package Requirements
