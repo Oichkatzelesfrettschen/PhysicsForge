@@ -40,8 +40,8 @@ def find_imports(scripts_dir: Path) -> tuple[set[str], bool]:
             print(f"Warning: Could not decode script file as UTF-8 (non-ASCII content?): {p}")
             had_errors_in_imports = True
             continue
-        except IOError as e:
-            print(f"Error reading script file {p}: {e}")
+        except IOError:
+            print(f"Error reading script file {p}")
             had_errors_in_imports = True
             continue
         except Exception as e:

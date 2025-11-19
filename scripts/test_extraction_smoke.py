@@ -4,7 +4,6 @@ Runs without external dependencies.
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 
 from equation_extractor import EquationExtractor  # type: ignore

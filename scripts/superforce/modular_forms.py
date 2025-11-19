@@ -28,7 +28,6 @@ References:
 from __future__ import annotations
 from typing import List, Dict, Tuple
 import numpy as np
-import math
 
 
 # Monster Group order

@@ -1,4 +1,7 @@
+# Virtual environment path (optional, not required for most targets)
+# To use venv: make venv && source venv/bin/activate
 VENV_PATH := $(CURDIR)/venv
+PYTHON := python
 
 .DEFAULT_GOAL := help
 .PHONY: help
@@ -72,7 +75,7 @@ SCANS ?= notes .
 .PHONY: pipeline audit parity gaps validate bench smoke test ci link latex latex_strict paper1 clean-paper1 validate-paper1 todo reports ascii_guard ascii_normalize update_data_readme help paper1-new paper2 paper3 paper4 paper5 paper6 papers_all papers_clean
 
 pipeline:
-	$(VENV_PATH)/bin/python scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
+	$(PYTHON) scripts/build_catalog_pipeline.py --base-dir $(BASE_DIR) $(foreach d,$(SCANS),--scan-dir $(d))
 
 audit:
 	python scripts/repo_audit.py --base-dir $(BASE_DIR)

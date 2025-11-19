@@ -1,10 +1,11 @@
+---
 name: Performance Monitoring
 
-on:
+'on':
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -22,7 +23,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-perf-${{ hashFiles('requirements-test.txt') }}
+          key: >-
+            ${{ runner.os }}-pip-perf-${{ hashFiles('requirements-test.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-perf-
             ${{ runner.os }}-pip-
@@ -55,7 +57,10 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Repository Metrics" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "Python files: $(find scripts tests -name '*.py' | wc -l)" >> $GITHUB_STEP_SUMMARY
-          echo "Total lines of code: $(find scripts tests -name '*.py' -exec wc -l {} + | tail -1)" >> $GITHUB_STEP_SUMMARY
-          echo "Test files: $(find tests -name 'test_*.py' | wc -l)" >> $GITHUB_STEP_SUMMARY
+          python_count=$(find scripts tests -name '*.py' | wc -l)
+          echo "Python files: $python_count" >> $GITHUB_STEP_SUMMARY
+          lines=$(find scripts tests -name '*.py' -exec wc -l {} + | tail -1)
+          echo "Total lines of code: $lines" >> $GITHUB_STEP_SUMMARY
+          test_count=$(find tests -name 'test_*.py' | wc -l)
+          echo "Test files: $test_count" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

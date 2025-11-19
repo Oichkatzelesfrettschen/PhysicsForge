@@ -10,11 +10,10 @@ All three reduce exactly to F* = c^4/G.
 """
 
 import math
-from typing import Dict, Tuple
-import numpy as np
+from typing import Dict
 
 from .planck_units import (
-    c, hbar, G_mean, G_std, eps0,
+    c, G_mean, G_std, eps0,
     planck_length, planck_mass, planck_charge
 )
 

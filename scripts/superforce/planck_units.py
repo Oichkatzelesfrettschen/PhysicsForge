@@ -9,7 +9,7 @@ References:
 """
 
 import math
-from typing import Dict, Tuple
+from typing import Dict
 
 # Exact constants (SI 2019 definitions)
 c = 299792458.0 # m/s (exact)

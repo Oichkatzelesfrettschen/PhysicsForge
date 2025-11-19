@@ -1,6 +1,39 @@
-pymupdf>=1.22,<2.0
-Pillow>=10,<12
-pix2tex>=0.1,<1.0
-jsonschema>=4.19,<5
-bibtexparser>=1.4.0,<2.0.0
-lark>=1.1.2
+# PhysicsForge Optional Dependencies
+# These are optional feature sets - install only if needed
+# Install with: pip install -r requirements-optional.txt
+
+# ============================================================================
+# PDF Processing Features (for scripts/pdf_*.py)
+# ============================================================================
+pymupdf>=1.22,<2.0  # PDF text extraction
+Pillow>=10,<12      # Image processing
+
+# ============================================================================
+# OCR Features (for scripts/math_ocr_poc.py, scripts/pdf_image_equation_extractor.py)
+# ============================================================================
+pix2tex>=0.1,<1.0   # LaTeX OCR
+# Note: pix2tex requires torch/torchvision - see below
+
+# ============================================================================
+# PyTorch (ML backend for pix2tex)
+# ============================================================================
+# Install CPU version on Windows:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# Or install from requirements:
+#   torch>=2.0,<3.0
+#   torchvision>=0.15,<1.0
+#   torchaudio>=2.0,<3.0
+
+# ============================================================================
+# Superforce Module Dependencies (for scripts/superforce/*.py)
+# ============================================================================
+numpy>=1.24,<2.0
+scipy>=1.10,<2.0
+matplotlib>=3.7,<4.0
+numba>=0.57,<1.0
+tqdm>=4.65,<5.0
+
+# ============================================================================
+# Include core dependencies
+# ============================================================================
+-r requirements.txt

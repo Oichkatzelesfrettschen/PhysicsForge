@@ -145,8 +145,10 @@ build-all-papers-summary → Downloads all → Generates summary
 
 **Consolidation**:
 - **From ci.yml (8 jobs)**: tests, windows_tests, ascii_guard, latex_strict → merged/removed
-- **From python_tests.yml (3 jobs)**: test, superforce_validation, equation_catalog → merged
+- **From test.yml (3 jobs)**: test, superforce_validation, equation_catalog → merged
 - **Removed duplicates**: All report generation moved to build.yml
+
+Note: python_tests.yml was consolidated into test.yml in Nov 2025
 
 **Why Consolidated**:
 - Testing and validation are distinct from building and deployment
@@ -189,7 +191,7 @@ build-all-papers-summary → Downloads all → Generates summary
 | Workflow | Reason | Superseded By |
 |----------|--------|---------------|
 | ci.yml.disabled | Consolidated into test.yml | test.yml |
-| python_tests.yml.disabled | Consolidated into test.yml | test.yml |
+| test.yml.disabled | Consolidated into test.yml | test.yml |
 | latex_build.yml.disabled | Legacy implementation | build.yml |
 | main.yml.disabled | Prototype CI | test.yml |
 | pages.yml.disabled | Manual deployment only | build.yml |
@@ -456,9 +458,11 @@ gh run list --workflow=<workflow-name> --limit 10
 
 **Typical PR**:
 - ci.yml: 8 jobs, ~6-8 minutes
-- python_tests.yml: 3 jobs (matrix), ~4-6 minutes
+- test.yml: 3 jobs (matrix), ~4-6 minutes
 - Total: ~8-12 minutes (some jobs parallel)
 - Actions minutes consumed: ~40-60 min
+
+Note: test.yml consolidated python_tests.yml and ci.yml workflows
 
 **Typical Release**:
 - build.yml: 3 jobs, ~3-4 minutes
@@ -500,9 +504,9 @@ gh run list --workflow=<workflow-name> --limit 10
 - Test coverage with Codecov
 - ASCII enforcement
 
-### From python_tests.yml → test.yml
+### From test.yml → test.yml (Consolidated)
 
-**What changed**:
+**What changed** (consolidation of python_tests.yml):
 - macOS removed from matrix (OS: 3 → 2)
 - Matrix testing consolidated with ci.yml tests
 
@@ -510,6 +514,8 @@ gh run list --workflow=<workflow-name> --limit 10
 - Python version matrix (3.11, 3.12)
 - Superforce validation
 - Equation catalog validation
+
+Note: python_tests.yml was consolidated into test.yml in Nov 2025
 
 ### From latex_build.yml.disabled → build.yml
 

@@ -65,7 +65,9 @@ New equation modules in `synthesis/modules/equations/`:
 Automated workflows in `.github/workflows/`:
 
 - **`latex_build.yml`**: Compiles LaTeX -> PDF, deploys to GitHub Pages
-- **`python_tests.yml`**: Runs pytest + superforce validation
+- **`test.yml`**: Runs pytest + superforce validation
+
+Note: python_tests.yml was consolidated into test.yml in Nov 2025
 
 **GitHub Pages**: Auto-deployed to `https://yourusername.github.io/Math_Science`
 
@@ -104,7 +106,7 @@ Math_Science/
 +-- .github/
 | +-- workflows/
 | +-- latex_build.yml # LaTeX -> PDF -> Pages
-| +-- python_tests.yml # Pytest + validation
+| +-- test.yml # Pytest + validation (consolidated from python_tests.yml in Nov 2025)
 +-- scripts/
 | +-- superforce/ # NEW: Validation suite
 | | +-- planck_units.py

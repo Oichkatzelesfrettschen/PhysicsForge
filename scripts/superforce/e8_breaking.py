@@ -206,7 +206,6 @@ def e8_to_so10_u1(rep_dim: int = E8_DIM) -> BranchingRule:
 
     # Verify: 45 + 1 + 16 + 16 + 10 + 120 = 208... WAIT, this doesn't match!
     # Let me recalculate the Slansky table values
-    total = sum(c.dimension for c in children)
     # Note: Slansky table shows this differently. Need to check.
 
     multiplicities = {

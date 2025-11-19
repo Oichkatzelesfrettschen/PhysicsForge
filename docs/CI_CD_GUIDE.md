@@ -36,11 +36,12 @@ PhysicsForge uses a comprehensive CI/CD pipeline built on GitHub Actions with lo
 - **Duration**: ~5-7 minutes
 - **Outputs**: Timing metrics in job summary
 
-#### 4. **python_tests.yml** - Cross-Platform Testing
+#### 4. **test.yml** - Cross-Platform Testing
 - **Triggers**: All pushes and PRs
-- **Purpose**: Ensure compatibility across platforms
-- **Matrix**: Ubuntu, Windows, macOS
-- **Duration**: ~10-15 minutes
+- **Purpose**: Ensure compatibility across platforms and validate code quality
+- **Matrix**: Ubuntu (2), Windows (2) via Python 3.11 & 3.12 combinations
+- **Duration**: ~5-7 minutes
+- **Note**: Consolidated from python_tests.yml in Nov 2025
 
 #### 5. **build.yml** - PDF and Web Deployment
 - **Triggers**: Pushes to main, manual

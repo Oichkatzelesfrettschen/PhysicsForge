@@ -1,6 +1,7 @@
+---
 name: Release PDFs
 
-on:
+'on':
   release:
     types: [published]
 
@@ -32,9 +33,9 @@ jobs:
           - number: 6
             name: paper6_applications
             title: "Applications to Quantum Computing and Energy Technologies"
-    
+
     name: Build Paper ${{ matrix.paper.number }}
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,7 +47,8 @@ jobs:
             ~/.texlive
             ~/.texmf-var
             ~/.cache/texmf
-          key: ${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}
+          key: >-
+            ${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}
           restore-keys: |
             ${{ runner.os }}-texlive-papers-
 
@@ -62,7 +64,7 @@ jobs:
 
       - name: Prepare PDF for release
         if: always()
-        run: |
+        run: |  # yamllint disable rule:line-length
           VERSION=${GITHUB_REF#refs/tags/}
           cd synthesis/papers/${{ matrix.paper.name }}
           if [ -f paper${{ matrix.paper.number }}_main.pdf ]; then
@@ -74,7 +76,8 @@ jobs:
             echo "✗ Paper ${{ matrix.paper.number }} build failed"
             echo "BUILD_SUCCESS=false" >> $GITHUB_ENV
             # Create a placeholder file to indicate failure
-            echo "Build failed for Paper ${{ matrix.paper.number }}" > PhysicsForge-Paper${{ matrix.paper.number }}-${VERSION}.txt
+            P=${{ matrix.paper.number }}
+            echo "Build failed for Paper $P" > PhysicsForge-Paper$P-${VERSION}.txt
           fi
 
       - name: Upload Paper ${{ matrix.paper.number }} as artifact
@@ -87,7 +90,7 @@ jobs:
   build-monograph:
     runs-on: ubuntu-latest
     name: Build Monograph (Legacy)
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -104,7 +107,7 @@ jobs:
 
       - name: Check if artifact exists and is valid
         id: validate-artifact
-        run: |
+        run: |  # yamllint disable rule:line-length
           if [ -f build/main.pdf ]; then
             FILE_SIZE=$(stat -c%s build/main.pdf)
             if [ "$FILE_SIZE" -gt 0 ]; then
@@ -132,7 +135,7 @@ jobs:
 
       - name: Validate rebuilt PDF
         if: steps.validate-artifact.outputs.artifact_valid != 'true'
-        run: |
+        run: |  # yamllint disable rule:line-length
           if [ ! -f build/main.pdf ]; then
             echo "✗ PDF rebuild failed - file not found"
             exit 1
@@ -146,7 +149,7 @@ jobs:
           ls -lh build/main.pdf
 
       - name: Prepare monograph for release
-        run: |
+        run: |  # yamllint disable rule:line-length
           VERSION=${GITHUB_REF#refs/tags/}
           mkdir -p build
           cp build/main.pdf build/PhysicsForge-Monograph-${VERSION}.pdf
@@ -164,7 +167,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-papers, build-monograph]
     if: always()
-    
+
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -172,13 +175,13 @@ jobs:
           path: release-files
 
       - name: List and check all files for release
-        run: |
+        run: |  # yamllint disable rule:line-length
           echo "=== Checking available PDFs for release ==="
           echo ""
-          
+
           SUCCESS_PAPERS=()
           FAILED_PAPERS=()
-          
+
           for i in {1..6}; do
             if find release-files/paper${i} -name "*.pdf" -type f 2>/dev/null | grep -q .; then
               echo "✓ Paper ${i}: Found PDF"
@@ -188,13 +191,13 @@ jobs:
               FAILED_PAPERS+=("$i")
             fi
           done
-          
+
           if find release-files/monograph -name "*.pdf" -type f 2>/dev/null | grep -q .; then
             echo "✓ Monograph: Found PDF"
           else
             echo "✗ Monograph: No PDF found"
           fi
-          
+
           echo ""
           echo "=== Files to be released ==="
           find release-files -type f -name "*.pdf" -exec ls -lh {} \;
@@ -213,30 +216,40 @@ jobs:
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Generate Release Summary
-        run: |
+        run: |  # yamllint disable rule:line-length
           echo "## PhysicsForge Release ${{ github.ref_name }}" > release_notes.md
           echo "" >> release_notes.md
           echo "This release includes:" >> release_notes.md
           echo "" >> release_notes.md
-          
+
           # Check which papers were successfully built
           SUCCESS_COUNT=0
           FAIL_COUNT=0
-          
+          declare -a PAPER_NAMES=(
+            ""
+            "Scalar Field Theory and Zero-Point Energy Coupling"
+            "Exceptional Algebras and Crystalline Lattice Structures"
+            "Fractal Geometry and Hyperdimensional Field Structures"
+            "Gravitational-Electromagnetic Unification via Scalar"
+            "Experimental Protocols for Exotic Quantum States"
+            "Applications to Quantum Computing and Energy"
+          )
+
           echo "### Research Papers" >> release_notes.md
           for i in {1..6}; do
-            PAPER_NAMES=("" "Scalar Field Theory and Zero-Point Energy Coupling" "Exceptional Algebras and Crystalline Lattice Structures" "Fractal Geometry and Hyperdimensional Field Structures" "Gravitational-Electromagnetic Unification via Scalar Intermediaries" "Experimental Protocols for Exotic Quantum States" "Applications to Quantum Computing and Energy Technologies")
             if find release-files/paper${i} -name "*.pdf" -type f 2>/dev/null | grep -q .; then
-              echo "$i. ✓ **Paper ${i}**: ${PAPER_NAMES[$i]}" >> release_notes.md
+              PNAME="${PAPER_NAMES[$i]}"
+              echo "$i. ✓ **Paper ${i}**: $PNAME" >> release_notes.md
               SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
             else
-              echo "$i. ✗ **Paper ${i}**: ${PAPER_NAMES[$i]} (build failed)" >> release_notes.md
+              PNAME="${PAPER_NAMES[$i]}"
+              echo "$i. ✗ **Paper ${i}**: $PNAME (build failed)" >> release_notes.md
               FAIL_COUNT=$((FAIL_COUNT + 1))
             fi
           done
-          
+
           echo "" >> release_notes.md
           echo "### Complete Monograph" >> release_notes.md
           if find release-files/monograph -name "*.pdf" -type f 2>/dev/null | grep -q .; then
@@ -244,16 +257,17 @@ jobs:
           else
             echo "- ✗ Build failed" >> release_notes.md
           fi
-          
+
           echo "" >> release_notes.md
           echo "### Build Summary" >> release_notes.md
           echo "- Successfully built: $SUCCESS_COUNT papers" >> release_notes.md
           if [ $FAIL_COUNT -gt 0 ]; then
             echo "- Failed to build: $FAIL_COUNT papers" >> release_notes.md
             echo "" >> release_notes.md
-            echo "**Note**: Some papers are still under development and may have incomplete chapters or LaTeX errors." >> release_notes.md
+            echo "**Note**: Some papers are in development and may have" >> release_notes.md
+            echo "incomplete chapters or LaTeX build issues." >> release_notes.md
           fi
-          
+
           echo "" >> release_notes.md
           echo "### File Sizes" >> release_notes.md
           if find release-files -type f -name "*.pdf" | grep -q .; then
@@ -265,5 +279,5 @@ jobs:
           else
             echo "No PDFs were successfully built for this release." >> release_notes.md
           fi
-          
+
           cat release_notes.md
