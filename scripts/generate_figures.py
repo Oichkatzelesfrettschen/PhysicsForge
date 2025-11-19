@@ -12,7 +12,7 @@ import argparse
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable, Sequence
+from typing import Callable, Sequence
 
 try:  # Allow execution as ``python scripts/generate_figures.py``
     from scripts.common import resolve_base_dir

@@ -11,7 +11,7 @@ import argparse
 import os
 from pathlib import Path
 import re
-from collections import Counter, defaultdict
+from collections import Counter
 
 
 DOC_RE = re.compile(r"\\documentclass(?:\[[^\]]*\])?\{([^}]+)\}")

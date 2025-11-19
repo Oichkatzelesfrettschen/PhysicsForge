@@ -1,7 +1,6 @@
 import numpy as np
 from numba import njit, prange
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from scipy.linalg import expm
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import multiprocessing
@@ -20,17 +19,6 @@ def multiply_octonions(a_real, a_imag, b_real, b_imag):
         result_real, result_imag
     """
     # Fano plane multiplication rules
-    # Define the multiplication table
-    FANO_TABLE = [
-        (0, 1, 2),  # e1 * e2 = e3
-        (0, 3, 4),  # e1 * e4 = e5
-        (0, 5, 6),  # e1 * e6 = e7
-        (1, 3, 5),  # e2 * e4 = e6
-        (1, 4, 6),  # e2 * e5 = e7
-        (2, 3, 7),  # e3 * e4 = e8 (assuming e7 is index 6)
-        # Complete the table as per standard octonion multiplication
-    ]
-
     # Initialize result
     res_real = a_real * b_real - np.dot(a_imag, b_imag)
     res_imag = np.zeros(7)
@@ -176,7 +164,7 @@ def main():
 
     # Example: Compute all commutators (this will be computationally intensive)
     # Uncomment the following lines if you wish to compute all commutators
-    commutators = e8_dual.compute_all_commutators()
+    # e8_dual.compute_all_commutators()
 
     # Simulate symmetry breaking over 20 steps
     print("Starting symmetry breaking simulation...")

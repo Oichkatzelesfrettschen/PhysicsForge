@@ -1,14 +1,15 @@
+---
 name: Build All Papers
 
-on:
+'on':
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'synthesis/papers/**'
       - 'synthesis/shared/**'
       - '.github/workflows/papers_build.yml'
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'synthesis/papers/**'
       - 'synthesis/shared/**'
@@ -43,9 +44,9 @@ jobs:
           - number: 6
             name: paper6_applications
             title: "Applications to Quantum Computing and Energy Technologies"
-    
+
     name: Build Paper ${{ matrix.paper.number }} - ${{ matrix.paper.title }}
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -57,7 +58,7 @@ jobs:
             ~/.texlive
             ~/.texmf-var
             ~/.cache/texmf
-          key: ${{ runner.os }}-texlive-papers-${{ hashFiles('synthesis/shared/**') }}
+          key: ${{ runner.os }}-texlive-${{ hashFiles('synthesis/shared/**') }}
           restore-keys: |
             ${{ runner.os }}-texlive-papers-
             ${{ runner.os }}-texlive-
@@ -77,34 +78,40 @@ jobs:
         run: |
           cd synthesis/papers/${{ matrix.paper.name }}
           echo "=== Build Status for Paper ${{ matrix.paper.number }} ==="
-          
+
           # Check if PDF was generated
-          if [ -f paper${{ matrix.paper.number }}_main.pdf ]; then
-            PDF_SIZE=$(stat -f%z paper${{ matrix.paper.number }}_main.pdf 2>/dev/null || stat -c%s paper${{ matrix.paper.number }}_main.pdf)
-            echo "✓ PDF generated: paper${{ matrix.paper.number }}_main.pdf (${PDF_SIZE} bytes)"
-            mv paper${{ matrix.paper.number }}_main.pdf ${{ matrix.paper.name }}.pdf
-            ls -lh ${{ matrix.paper.name }}.pdf
+          paper_num="${{ matrix.paper.number }}"
+          paper_name="${{ matrix.paper.name }}"
+          if [ -f "paper${paper_num}_main.pdf" ]; then
+            PDF_SIZE=$(stat -f%z "paper${paper_num}_main.pdf" 2>/dev/null || \
+                       stat -c%s "paper${paper_num}_main.pdf")
+            echo "✓ PDF generated: paper${paper_num}_main.pdf (${PDF_SIZE} bytes)"
+            mv "paper${paper_num}_main.pdf" "${paper_name}.pdf"
+            ls -lh "${paper_name}.pdf"
             echo "BUILD_SUCCESS=true" >> $GITHUB_ENV
           else
             echo "✗ PDF generation failed - no output file"
             echo "BUILD_SUCCESS=false" >> $GITHUB_ENV
           fi
-          
+
           # Check for log file and extract errors
-          if [ -f paper${{ matrix.paper.number }}_main.log ]; then
+          if [ -f "paper${paper_num}_main.log" ]; then
             echo ""
             echo "=== LaTeX Error Summary ==="
-            grep -i "^!" paper${{ matrix.paper.number }}_main.log | head -20 || echo "No LaTeX errors found (! prefix)"
+            grep -i "^!" "paper${paper_num}_main.log" | head -20 || \
+              echo "No LaTeX errors found (! prefix)"
             echo ""
             echo "=== Undefined Control Sequences ==="
-            grep -i "Undefined control sequence" paper${{ matrix.paper.number }}_main.log | head -10 || echo "No undefined control sequences"
+            grep -i "Undefined control sequence" "paper${paper_num}_main.log" | \
+              head -10 || echo "No undefined control sequences"
             echo ""
             echo "=== Missing References ==="
-            grep -i "Reference.*undefined" paper${{ matrix.paper.number }}_main.log | head -10 || echo "No missing references"
+            grep -i "Reference.*undefined" "paper${paper_num}_main.log" | \
+              head -10 || echo "No missing references"
             echo ""
-            
+
             # Save log for artifact
-            cp paper${{ matrix.paper.number }}_main.log ${{ matrix.paper.name }}.log
+            cp "paper${paper_num}_main.log" "${paper_name}.log"
           else
             echo "✗ No log file found"
           fi
@@ -114,7 +121,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.paper.name }}
-          path: synthesis/papers/${{ matrix.paper.name }}/${{ matrix.paper.name }}.pdf
+          path: >-
+            synthesis/papers/${{ matrix.paper.name }}/${{ matrix.paper.name }}.pdf
           retention-days: 30
 
       - name: Upload Paper ${{ matrix.paper.number }} build logs
@@ -122,7 +130,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.paper.name }}-logs
-          path: synthesis/papers/${{ matrix.paper.name }}/${{ matrix.paper.name }}.log
+          path: >-
+            synthesis/papers/${{ matrix.paper.name }}/${{ matrix.paper.name }}.log
           retention-days: 7
           if-no-files-found: ignore
 
@@ -131,7 +140,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-papers
     if: always()
-    
+
     steps:
       - name: Download all paper artifacts
         uses: actions/download-artifact@v4
@@ -144,40 +153,50 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Paper | Status | Size | Notes |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|--------|------|-------|" >> $GITHUB_STEP_SUMMARY
-          
+
           SUCCESS_COUNT=0
           FAIL_COUNT=0
-          
+
           for paper in papers/paper*; do
             if [ -d "$paper" ] && [[ ! "$paper" =~ -logs$ ]]; then
               paper_name=$(basename "$paper")
               pdf_file=$(find "$paper" -name "*.pdf" | head -1)
               log_artifact="papers/${paper_name}-logs"
-              
+
               if [ -f "$pdf_file" ]; then
                 size=$(du -h "$pdf_file" | cut -f1)
-                echo "| $paper_name | ✓ Built | $size | - |" >> $GITHUB_STEP_SUMMARY
+                status_line="| $paper_name | ✓ Built | $size | - |"
+                echo "$status_line" >> $GITHUB_STEP_SUMMARY
                 SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
               else
                 if [ -d "$log_artifact" ]; then
-                  echo "| $paper_name | ✗ Failed | - | See logs artifact |" >> $GITHUB_STEP_SUMMARY
+                  status_line="| $paper_name | ✗ Failed | - | See logs artifact |"
+                  echo "$status_line" >> $GITHUB_STEP_SUMMARY
                 else
-                  echo "| $paper_name | ✗ Failed | - | No logs |" >> $GITHUB_STEP_SUMMARY
+                  status_line="| $paper_name | ✗ Failed | - | No logs |"
+                  echo "$status_line" >> $GITHUB_STEP_SUMMARY
                 fi
                 FAIL_COUNT=$((FAIL_COUNT + 1))
               fi
             fi
           done
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Summary" >> $GITHUB_STEP_SUMMARY
           echo "- ✓ Successfully built: $SUCCESS_COUNT papers" >> $GITHUB_STEP_SUMMARY
           echo "- ✗ Failed to build: $FAIL_COUNT papers" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
-          echo "- Successfully built papers are available as PDF artifacts (30-day retention)" >> $GITHUB_STEP_SUMMARY
-          echo "- Build logs for all papers are available as log artifacts (7-day retention)" >> $GITHUB_STEP_SUMMARY
+          echo "- Successfully built papers are available as PDF artifacts" >> \
+            $GITHUB_STEP_SUMMARY
+          echo "  (30-day retention)" >> $GITHUB_STEP_SUMMARY
+          echo "- Build logs for all papers are available as log artifacts" >> \
+            $GITHUB_STEP_SUMMARY
+          echo "  (7-day retention)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Note" >> $GITHUB_STEP_SUMMARY
-          echo "Papers with incomplete chapters or undefined LaTeX macros may fail to build." >> $GITHUB_STEP_SUMMARY
-          echo "This is expected during development. Check log artifacts for specific errors." >> $GITHUB_STEP_SUMMARY
+          echo "Papers with incomplete chapters or undefined LaTeX macros" >> \
+            $GITHUB_STEP_SUMMARY
+          echo "may fail to build. This is expected during development." >> \
+            $GITHUB_STEP_SUMMARY
+          echo "Check log artifacts for specific errors." >> $GITHUB_STEP_SUMMARY

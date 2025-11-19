@@ -1,0 +1,12 @@
+---
+extends: default
+
+rules:
+  line-length:
+    max: 132
+    level: error
+  document-start:
+    present: true
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0

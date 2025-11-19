@@ -6,9 +6,7 @@ Part of PhysicsForge Framework Unification Phase 2.
 
 import argparse
 import csv
-import os
 import re
-import shutil
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -102,7 +100,6 @@ def update_references_in_file(file_path: Path, renames: List[Tuple[str, str]],
         return 0
 
     content = file_path.read_text(encoding='utf-8')
-    original_content = content
     changes = 0
 
     for old_name, new_name in renames:
